@@ -85,3 +85,9 @@ p, li, dd, dt, blockquote {
   align-items: baseline;
   column-gap: 0.35em;
 }
+
+@media (max-width: 48rem) {
+  :root {
+    --page-gutter: var(--space-md);
+  }
+}
