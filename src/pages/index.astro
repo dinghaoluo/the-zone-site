@@ -2,7 +2,43 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="The Zone">
-  <h1>The Zone</h1>
-  <p>A visual companion to <em>Gravity's Rainbow</em> (1973).</p>
+<Layout title="Home" description="A visual companion to Gravity's Rainbow (1973).">
+  <section class="hero" aria-labelledby="home-title">
+    <div class="hero-inner">
+      <h1 id="home-title" class="hero-title wordmark"><span>The</span><span>Zone</span></h1>
+      <p class="hero-description">
+        a visual companion to <em>Gravity's Rainbow</em> (1973)
+      </p>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .hero-inner {
+    width: min(100%, var(--measure-site));
+    margin: 0 auto;
+    padding: var(--space-xl) clamp(4rem, 22vw, 22rem) var(--space-lg);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 6.25rem;
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0;
+    margin-left: -0.12em;
+  }
+
+  .hero-description {
+    max-width: 44rem;
+    margin-top: var(--space-sm);
+    font-family: var(--font-subtitle);
+    font-size: var(--text-xl);
+    line-height: 1.35;
+    color: #a09e92;
+  }
+
+  .hero-description em {
+    color: #d4d2c8;
+  }
+</style>
