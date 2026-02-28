@@ -79,3 +79,9 @@ p, li, dd, dt, blockquote {
   font-size: var(--text-prose);
   line-height: var(--lh-prose);
 }
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  column-gap: 0.35em;
+}
