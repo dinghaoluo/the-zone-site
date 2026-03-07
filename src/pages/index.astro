@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import StructuralPreview from '../components/StructuralPreview.astro';
 ---
 
 <Layout title="Home" description="A visual companion to Gravity's Rainbow (1973).">
@@ -9,6 +10,14 @@ import Layout from '../layouts/Layout.astro';
       <p class="hero-description">
         a visual companion to <em>Gravity's Rainbow</em> (1973)
       </p>
+    </div>
+  </section>
+
+  <section class="episode-field" aria-label="Episode word counts">
+    <div class="episode-field-inner">
+      <div class="episode-plate">
+        <StructuralPreview />
+      </div>
     </div>
   </section>
 </Layout>
@@ -40,5 +49,20 @@ import Layout from '../layouts/Layout.astro';
 
   .hero-description em {
     color: #d4d2c8;
+  }
+
+  .episode-field {
+    padding: 0 var(--page-gutter) var(--space-2xl);
+  }
+
+  .episode-field-inner {
+    width: min(100%, var(--measure-site));
+    margin: 0 auto;
+    padding: var(--space-xl) 0 0;
+    border-top: 1px solid #1a1a24;
+  }
+
+  .episode-plate {
+    min-width: 0;
   }
 </style>
