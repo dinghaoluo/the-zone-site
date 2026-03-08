@@ -1,6 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HomepagePreview from '../components/HomepagePreview.astro';
 import StructuralPreview from '../components/StructuralPreview.astro';
+
+const indexLinks = [
+  { slug: 'glossary', label: 'Glossary' },
+  { slug: 'reference', label: 'Reference' },
+  { slug: 'network', label: 'Network' },
+  { slug: 'episodes', label: 'Episodes' },
+  { slug: 'terrain', label: 'Terrain' },
+  { slug: 'language', label: 'Language' },
+  { slug: 'methods', label: 'Methods' },
+];
 ---
 
 <Layout title="Home" description="A visual companion to Gravity's Rainbow (1973).">
@@ -13,6 +24,19 @@ import StructuralPreview from '../components/StructuralPreview.astro';
     </div>
   </section>
 
+  <nav id="contents" class="contents" aria-label="Site sections">
+    <ul class="contents-list" role="list">
+      {indexLinks.map((link) => (
+        <li>
+          <div class="contents-entry contents-pending" aria-disabled="true">
+            <span class="contents-label">{link.label}</span>
+            <HomepagePreview slug={link.slug} />
+          </div>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
   <section class="episode-field" aria-label="Episode word counts">
     <div class="episode-field-inner">
       <div class="episode-plate">
@@ -23,9 +47,13 @@ import StructuralPreview from '../components/StructuralPreview.astro';
 </Layout>
 
 <style>
-  .hero-inner {
+  .hero-inner,
+  .contents {
     width: min(100%, var(--measure-site));
     margin: 0 auto;
+  }
+
+  .hero-inner {
     padding: var(--space-xl) clamp(4rem, 22vw, 22rem) var(--space-lg);
   }
 
@@ -49,6 +77,50 @@ import StructuralPreview from '../components/StructuralPreview.astro';
 
   .hero-description em {
     color: #d4d2c8;
+  }
+
+  .contents {
+    padding: var(--space-lg) clamp(4rem, 22vw, 22rem) var(--space-2xl);
+  }
+
+  .contents-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 8rem));
+    width: fit-content;
+    column-gap: var(--space-md);
+    row-gap: clamp(1.5rem, 3vw, 3rem);
+    list-style: none;
+  }
+
+  .contents-list > li {
+    min-width: 0;
+    list-style: none;
+  }
+
+  .contents-entry {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color: #d4d2c8;
+  }
+
+  .contents-pending {
+    color: #817f72;
+    opacity: 0.46;
+  }
+
+  .contents-pending :global(.homepage-preview) {
+    filter: grayscale(0.78);
+    opacity: 0.78;
+  }
+
+  .contents-label {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.1;
+    text-align: left;
   }
 
   .episode-field {
