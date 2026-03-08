@@ -1,0 +1,342 @@
+---
+import { episodePartLengths, episodeWordCounts } from '../data/episodeWordCounts';
+import { homepageLanguageSummary } from '../data/homepageLanguageSummary';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+
+const barsByPart = [3, 1, 4, 2];
+const episodeGroups: Array<{ words: number; part: number }> = [];
+let partStart = 0;
+
+episodePartLengths.forEach((partLength, part) => {
+  const partWords = episodeWordCounts.slice(partStart, partStart + partLength);
+  const groupCount = barsByPart[part];
+  for (let group = 0; group < groupCount; group += 1) {
+    const start = Math.floor(group * partWords.length / groupCount);
+    const end = Math.floor((group + 1) * partWords.length / groupCount);
+    const words = partWords
+      .slice(start, end)
+      .reduce((total, count) => total + count, 0) / Math.max(1, end - start);
+    episodeGroups.push({ words, part: part + 1 });
+  }
+  partStart += partLength;
+});
+
+const episodeGroupMax = Math.max(...episodeGroups.map((group) => group.words));
+const episodeBars = episodeGroups.map((group, index) => {
+  const height = 14 + group.words / episodeGroupMax * 48;
+  return {
+    ...group,
+    x: 6 + index * 11.1,
+    y: 66 - height,
+    height,
+  };
+});
+
+const languageMax = Math.max(...homepageLanguageSummary.map((language) => language.total));
+const languagePairs = homepageLanguageSummary.map((language, index) => ({
+  ...language,
+  y: 7 + index * 13.4,
+  sourceWidth: 16 + Math.sqrt(language.total / languageMax) * 36,
+  targetWidth: 12 + language.legible / Math.max(1, language.total) * 36,
+}));
+
+const methodScores = [0, 1, 2, 3];
+---
+
+{slug === 'glossary' && (
+  <span class="homepage-preview graphic-preview glossary-banner" aria-hidden="true">
+    <svg viewBox="0 0 120 72" preserveAspectRatio="none">
+      <rect class="glossary-banner-headword" x="5" y="4" width="86" height="9" rx="4.5" />
+      <rect class="glossary-banner-meta" x="94" y="7" width="21" height="6" rx="3" />
+      <rect class="glossary-banner-line" x="16" y="16" width="99" height="7" rx="3.5" />
+      <rect class="glossary-banner-line" x="5" y="25" width="110" height="7" rx="3.5" />
+      <rect class="glossary-banner-line" x="5" y="34" width="110" height="7" rx="3.5" />
+      <rect class="glossary-banner-line" x="5" y="43" width="110" height="7" rx="3.5" />
+      <rect class="glossary-banner-line" x="5" y="52" width="110" height="7" rx="3.5" />
+      <rect class="glossary-banner-line" x="5" y="61" width="19" height="7" rx="3.5" />
+    </svg>
+  </span>
+)}
+
+{slug === 'reference' && (
+  <span class="homepage-preview graphic-preview" aria-hidden="true">
+    <svg viewBox="0 0 120 72" preserveAspectRatio="none">
+      <rect class="reference-spine" x="8" y="2" width="8" height="67" rx="4" />
+      <rect class="reference-bar" x="26" y="3" width="88" height="7" rx="3.5" />
+      <rect class="reference-bar" x="26" y="12.8" width="88" height="7" rx="3.5" />
+      <rect class="reference-bar" x="26" y="22.6" width="88" height="7" rx="3.5" />
+      <rect class="reference-bar" x="26" y="32.4" width="88" height="7" rx="3.5" />
+      <rect class="reference-bar" x="26" y="42.2" width="88" height="7" rx="3.5" />
+      <rect class="reference-bar" x="26" y="52" width="88" height="7" rx="3.5" />
+      <rect class="reference-bar" x="26" y="61.8" width="88" height="7" rx="3.5" />
+    </svg>
+  </span>
+)}
+
+{slug === 'episodes' && (
+  <span class="homepage-preview graphic-preview" aria-hidden="true">
+    <svg viewBox="0 0 120 72" preserveAspectRatio="none">
+      <line class="episode-baseline" x1="5" y1="65.5" x2="115" y2="65.5" />
+      {episodeBars.map((bar) => (
+        <rect
+          class={`episode-bar episode-bar--part-${bar.part}`}
+          x={bar.x}
+          y={bar.y}
+          width="7"
+          height={bar.height}
+          rx="3.5"
+        />
+      ))}
+    </svg>
+  </span>
+)}
+
+{slug === 'language' && (
+  <span class="homepage-preview graphic-preview" aria-hidden="true">
+    <svg viewBox="0 0 120 72" preserveAspectRatio="none">
+      <rect class="language-divider" x="59" y="3" width="2" height="66" rx="1" />
+      {languagePairs.map((language) => (
+        <g>
+          <rect
+            class="language-source"
+            x={56 - language.sourceWidth}
+            y={language.y}
+            width={language.sourceWidth}
+            height="7"
+            rx="3.5"
+            style={`fill: var(${language.colour})`}
+          />
+          <rect
+            class="language-reading"
+            x="65"
+            y={language.y + 1.2}
+            width={language.targetWidth}
+            height="4.6"
+            rx="2.3"
+          />
+        </g>
+      ))}
+    </svg>
+  </span>
+)}
+
+{slug === 'network' && (
+  <span class="homepage-preview graphic-preview" aria-hidden="true">
+    <svg viewBox="0 0 120 72">
+      <g class="network-lines">
+        <path d="M18 50 L42 18 L68 34 L103 14" />
+        <path d="M18 50 L60 60 L68 34 L96 54" />
+        <path d="M42 18 L60 60 L103 14" />
+      </g>
+      <g class="network-nodes">
+        <circle class="network-node network-node--quest" cx="18" cy="50" r="4" />
+        <circle class="network-node network-node--counterforce" cx="42" cy="18" r="6" />
+        <circle class="network-node" cx="60" cy="60" r="3" />
+        <circle class="network-node network-node--quest" cx="68" cy="34" r="7" />
+        <circle class="network-node" cx="96" cy="54" r="3.5" />
+        <circle class="network-node network-node--counterforce" cx="103" cy="14" r="4.5" />
+      </g>
+    </svg>
+  </span>
+)}
+
+{slug === 'terrain' && (
+  <span class="homepage-preview graphic-preview" aria-hidden="true">
+    <svg viewBox="0 0 120 72">
+      <circle class="terrain-contour terrain-contour--england" cx="0" cy="-2" r="30" />
+      <circle class="terrain-contour terrain-contour--continent" cx="116" cy="76" r="72" />
+      <path class="terrain-route" d="M17 17 C35 25 44 49 64 53 C75 53 80 41 88 35 C96 29 103 25 110 21" />
+      <g class="terrain-points">
+        <circle cx="17" cy="17" r="4.5" />
+        <circle cx="64" cy="53" r="4.5" />
+        <circle class="terrain-point--germany" cx="88" cy="35" r="5.5" />
+        <circle cx="110" cy="21" r="4.5" />
+      </g>
+    </svg>
+  </span>
+)}
+
+{slug === 'methods' && (
+  <span class="homepage-preview graphic-preview" aria-hidden="true">
+    <svg viewBox="0 0 120 72" preserveAspectRatio="none">
+      {methodScores.map((score, column) => (
+        <g>
+          {[0, 1, 2].map((level) => (
+            <rect
+              class:list={[
+                'method-score-cell',
+                {
+                  [`method-score-cell--part-${column + 1}`]: level < score,
+                  'method-score-cell--empty': level >= score,
+                },
+              ]}
+              x={5 + column * 29}
+              y={52 - level * 20}
+              width="22"
+              height="11"
+              rx="5.5"
+            />
+          ))}
+        </g>
+      ))}
+    </svg>
+  </span>
+)}
+
+<style>
+  .homepage-preview {
+    display: block;
+    width: 5.4rem;
+    max-width: 100%;
+    aspect-ratio: 5 / 3;
+    margin-top: 0.55rem;
+    align-self: flex-start;
+  }
+
+  .graphic-preview svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .glossary-banner-headword {
+    fill: color-mix(in srgb, var(--plotline-slothrop) 88%, var(--color-bg));
+  }
+
+  .glossary-banner-meta {
+    fill: color-mix(in srgb, var(--color-text-dim) 30%, var(--color-bg));
+  }
+
+  .glossary-banner-line {
+    fill: color-mix(in srgb, var(--color-text-dim) 66%, var(--color-bg));
+  }
+
+  .episode-baseline {
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .episode-bar {
+    opacity: 0.84;
+  }
+
+  .episode-bar--part-1 {
+    fill: var(--color-part-1);
+  }
+
+  .episode-bar--part-2 {
+    fill: var(--color-part-2);
+  }
+
+  .episode-bar--part-3 {
+    fill: var(--color-part-3);
+  }
+
+  .episode-bar--part-4 {
+    fill: var(--color-part-4);
+  }
+
+  .language-divider {
+    fill: var(--color-text-dim);
+    opacity: 0.32;
+  }
+
+  .language-source {
+    opacity: 0.82;
+  }
+
+  .language-reading {
+    fill: var(--color-text-dim);
+    opacity: 0.54;
+  }
+
+  .network-lines path {
+    fill: none;
+    stroke: var(--color-text-dim);
+    stroke-width: 1;
+    opacity: 0.42;
+  }
+
+  .network-node {
+    fill: var(--color-bg);
+    stroke: var(--color-text-dim);
+    stroke-width: 1.4;
+  }
+
+  .network-node--quest {
+    fill: var(--network-quest);
+    stroke: var(--network-quest);
+  }
+
+  .network-node--counterforce {
+    fill: var(--network-counterforce);
+    stroke: var(--network-counterforce);
+  }
+
+  .terrain-contour {
+    fill: none;
+    stroke: var(--color-text-dim);
+    stroke-width: 1.4;
+    opacity: 0.62;
+  }
+
+  .terrain-contour--continent {
+    stroke-width: 1.8;
+  }
+
+  .terrain-route {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .terrain-points circle {
+    fill: var(--color-bg);
+    stroke: var(--color-accent);
+    stroke-width: 1.2;
+  }
+
+  .terrain-points .terrain-point--germany {
+    fill: var(--color-accent);
+  }
+
+  .method-score-cell {
+    opacity: 0.82;
+  }
+
+  .method-score-cell--part-1 {
+    fill: var(--color-part-1);
+  }
+
+  .method-score-cell--part-2 {
+    fill: var(--color-part-2);
+  }
+
+  .method-score-cell--part-3 {
+    fill: var(--color-part-3);
+  }
+
+  .method-score-cell--part-4 {
+    fill: var(--color-part-4);
+  }
+
+  .method-score-cell--empty {
+    fill: var(--color-text-dim);
+    opacity: 0.18;
+  }
+
+  @media (max-width: 48rem) {
+    .homepage-preview {
+      width: 4.8rem;
+    }
+
+  }
+</style>
