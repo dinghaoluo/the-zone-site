@@ -1,0 +1,35 @@
+---
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: '/glossary/', label: 'Glossary' },
+  { href: '/reference/', label: 'Reference' },
+];
+
+function isActive(href: string): boolean {
+  return pathname.startsWith(href);
+}
+---
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner container">
+    <a class="nav-brand wordmark" href="/" aria-label="The Zone">
+      <span>The</span><span>Zone</span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        {links.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[{ active: isActive(href) }]}
+              aria-current={isActive(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
