@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import HomepagePreview from '../components/HomepagePreview.astro';
 import StructuralPreview from '../components/StructuralPreview.astro';
 
@@ -15,6 +17,8 @@ const indexLinks = [
 ---
 
 <Layout title="Home" description="A visual companion to Gravity's Rainbow (1973).">
+  <Nav slot="nav" />
+
   <section class="hero" aria-labelledby="home-title">
     <div class="hero-inner">
       <h1 id="home-title" class="hero-title wordmark"><span>The</span><span>Zone</span></h1>
@@ -44,6 +48,8 @@ const indexLinks = [
       </div>
     </div>
   </section>
+
+  <Footer slot="footer" />
 </Layout>
 
 <style>
