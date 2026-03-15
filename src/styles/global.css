@@ -86,6 +86,21 @@ p, li, dd, dt, blockquote {
   column-gap: 0.35em;
 }
 
+a {
+  color: #c4a35a;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #d4b36a;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
 @media (max-width: 48rem) {
   :root {
     --page-gutter: var(--space-md);
