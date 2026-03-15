@@ -35,6 +35,7 @@
   --measure-site: 96rem;
   --measure-reading: 52rem;
   --page-gutter: clamp(2rem, 10vw, 9rem);
+  --wordmark-gap: 0.35em;
 
   --max-width: var(--measure-reading);
 }
