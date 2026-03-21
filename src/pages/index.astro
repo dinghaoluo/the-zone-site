@@ -147,4 +147,25 @@ const indexLinks = [
   .episode-plate {
     min-width: 0;
   }
+
+  @media (max-width: 48rem) {
+    .hero-inner,
+    .contents {
+      --homepage-gutter: var(--page-gutter);
+    }
+
+    .contents-list {
+      width: 100%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem 1rem;
+    }
+
+    .contents-entry {
+      padding: 0;
+    }
+
+    .contents-label {
+      font-size: 1.125rem;
+    }
+  }
 </style>
