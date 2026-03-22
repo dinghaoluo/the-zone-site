@@ -55,12 +55,13 @@ const indexLinks = [
 <style>
   .hero-inner,
   .contents {
+    --homepage-gutter: clamp(4rem, 22vw, 22rem);
     width: min(100%, var(--measure-site));
     margin: 0 auto;
   }
 
   .hero-inner {
-    padding: var(--space-xl) clamp(4rem, 22vw, 22rem) var(--space-lg);
+    padding: var(--space-xl) var(--homepage-gutter) var(--space-lg);
   }
 
   .hero-title {
@@ -86,7 +87,7 @@ const indexLinks = [
   }
 
   .contents {
-    padding: var(--space-lg) clamp(4rem, 22vw, 22rem) var(--space-2xl);
+    padding: var(--space-lg) var(--homepage-gutter) var(--space-2xl);
   }
 
   .contents-list {
