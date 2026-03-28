@@ -30,6 +30,40 @@ function isActive(href: string): boolean {
           </li>
         ))}
       </ul>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Use light theme">
+        <span class="theme-label" data-theme-label="d">d</span>
+        <span class="theme-sep">/</span>
+        <span class="theme-label" data-theme-label="l">l</span>
+      </button>
     </div>
   </div>
 </nav>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+
+  if (toggle) {
+    function updateLabels() {
+      const current = document.documentElement.dataset.theme || 'dark';
+      toggle!.querySelectorAll('.theme-label').forEach(el => {
+        const val = (el as HTMLElement).dataset.themeLabel;
+        (el as HTMLElement).classList.toggle('active',
+          (current === 'dark' && val === 'd') || (current === 'light' && val === 'l')
+        );
+      });
+      toggle!.setAttribute(
+        'aria-label',
+        current === 'dark' ? 'Use light theme' : 'Use dark theme'
+      );
+    }
+
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      updateLabels();
+    });
+
+    updateLabels();
+  }
+</script>
