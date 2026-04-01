@@ -41,6 +41,7 @@ function isActive(href: string): boolean {
 
 <script>
   const toggle = document.getElementById('theme-toggle');
+  const nav = document.querySelector('.nav') as HTMLElement | null;
 
   if (toggle) {
     function updateLabels() {
@@ -57,10 +58,16 @@ function isActive(href: string): boolean {
       );
     }
 
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') {
+      document.documentElement.dataset.theme = stored;
+    }
+
     toggle.addEventListener('click', () => {
       const current = document.documentElement.dataset.theme || 'dark';
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.dataset.theme = next;
+      localStorage.setItem('theme', next);
       updateLabels();
     });
 
