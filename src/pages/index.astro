@@ -93,12 +93,22 @@ const indexLinks = [
     scroll-margin-top: calc(var(--nav-height, 3.5rem) + var(--space-md));
   }
 
+  .contents-intro {
+    max-width: 44rem;
+    font-family: var(--font-prose);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    text-align: left;
+  }
+
   .contents-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 8rem));
     width: fit-content;
     column-gap: var(--space-md);
     row-gap: clamp(1.5rem, 3vw, 3rem);
+    margin-top: var(--space-xl);
     list-style: none;
   }
 
