@@ -6,14 +6,45 @@ import HomepagePreview from '../components/HomepagePreview.astro';
 import StructuralPreview from '../components/StructuralPreview.astro';
 
 const indexLinks = [
-  { slug: 'glossary', label: 'Glossary' },
-  { slug: 'reference', label: 'Reference' },
-  { slug: 'network', label: 'Network' },
-  { slug: 'episodes', label: 'Episodes' },
-  { slug: 'terrain', label: 'Terrain' },
-  { slug: 'language', label: 'Language' },
-  { slug: 'methods', label: 'Methods' },
+  {
+    slug: 'glossary',
+    label: 'Glossary',
+    available: false,
+  },
+  {
+    slug: 'reference',
+    label: 'Reference',
+    available: false,
+  },
+  {
+    slug: 'network',
+    label: 'Network',
+    available: false,
+  },
+  {
+    slug: 'episodes',
+    label: 'Episodes',
+    available: false,
+  },
+  {
+    slug: 'terrain',
+    label: 'Terrain',
+    available: false,
+  },
+  {
+    slug: 'language',
+    label: 'Language',
+    available: false,
+  },
+  {
+    slug: 'methods',
+    label: 'Methods',
+    available: false,
+  },
 ];
+
+const availableLinks = indexLinks.filter((link) => link.available);
+const pendingLinks = indexLinks.filter((link) => !link.available);
 ---
 
 <Layout title="Home" description="A visual companion to Gravity's Rainbow (1973).">
@@ -30,8 +61,23 @@ const indexLinks = [
 
   <nav id="contents" class="contents" aria-label="Site sections">
     <p class="contents-intro">Despite all its unintelligible digressions, its great many technical terms in languages other than English, its historical documentary and reflections... reading <i>Gravity's Rainbow</i> is still one of those once-in-a-lifetime experiences.<br><br>Coming to Pynchon's 1940s Europe at a stage when my own life involves looking at the cross-talk between countless neurones has made me appreciate greatly the raw chaotic power of Pynchon's prose. Its encyclopaedic reputation and the ability to keep its hundreds of characters in its grasp sure are impressive, but browsing through Reddit and Substack, I have a feeling that these tags frequently turn people away from this masterpiece, frequently persuade people that 'one should <i>prepare</i> for <i>Gravity's Rainbow</i>', whilst the best part of the reading experience may be to lose oneself in all the chaos, digression, and confusion.<br><br>That being said, external guidance did help me a great deal with reading this admittedly difficult novel. This site is my attempt to provide a visual reading companion to my second favourite book of all time. And I hope, just as I found great happiness in understanding the <i>Brennschluss</i> calculation after reading Niklas Riewald's <a href="https://niklasriewald.com/category/gravitys-rainbow/" target="_blank" rel="noopener">'The math behind <i>Gravity's Rainbow</i>'</a>, other readers can do the same as they scroll through <i>The Zone</i>.</p>
-    <ul class="contents-list" role="list">
-      {indexLinks.map((link) => (
+    {availableLinks.length > 0 && (
+      <ul class="contents-list contents-list--available" role="list">
+        {availableLinks.map((link) => (
+          <li>
+            <a class="contents-entry contents-link contents-link--available" href={`/${link.slug}/`}>
+              <HomepagePreview slug={link.slug} />
+              <div class="contents-copy">
+                <span class="contents-label">{link.label}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    <p class="contents-pending-heading" id="coming-soon-title" role="heading" aria-level="2"><em>coming soon...</em></p>
+    <ul class="contents-list contents-list--pending" role="list" aria-labelledby="coming-soon-title">
+      {pendingLinks.map((link) => (
         <li>
           <div class="contents-entry contents-pending" aria-disabled="true">
             <span class="contents-label">{link.label}</span>
@@ -112,6 +158,27 @@ const indexLinks = [
     list-style: none;
   }
 
+  .contents-list--pending {
+    grid-template-columns: repeat(5, minmax(0, 6.5rem));
+    column-gap: 0.75rem;
+    margin-top: var(--space-md);
+  }
+
+  .contents-pending-heading {
+    margin-top: var(--space-xl);
+    font-family: var(--font-prose);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-dim);
+  }
+
+  .contents-list--available {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    row-gap: var(--space-lg);
+  }
+
   .contents-list > li {
     min-width: 0;
     list-style: none;
@@ -124,6 +191,64 @@ const indexLinks = [
     height: 100%;
     padding: 0;
     color: var(--color-text);
+    transform-origin: left top;
+  }
+
+  .contents-link--available {
+    display: grid;
+    grid-template-columns: 5.4rem minmax(0, 1fr);
+    column-gap: var(--space-md);
+    align-items: start;
+  }
+
+  .contents-link--available .contents-label {
+    font-size: 1.5rem;
+  }
+
+  .contents-link--available :global(.homepage-preview) {
+    margin-top: 0.1rem;
+  }
+
+  .contents-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    justify-items: start;
+    gap: 0.35rem;
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+  }
+
+  .contents-label {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.1;
+    text-align: left;
+  }
+
+  .contents-link {
+    position: relative;
+    transition: color 0.18s ease;
+  }
+
+  .contents-link::after {
+    display: none;
+  }
+
+  .contents-link:hover,
+  .contents-link:focus-visible {
+    z-index: 1;
+  }
+
+  .contents-link:focus-visible {
+    outline-offset: 0.2rem;
+  }
+
+  .contents-link:hover .contents-label,
+  .contents-link:focus-visible .contents-label {
+    color: var(--color-accent);
   }
 
   .contents-pending {
@@ -134,17 +259,6 @@ const indexLinks = [
   .contents-pending :global(.homepage-preview) {
     filter: grayscale(0.78);
     opacity: 0.78;
-  }
-
-  .contents-label {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    line-height: 1.1;
-    text-align: left;
-  }
-
-  .contents-entry {
-    transform-origin: left top;
   }
 
   .episode-field {
@@ -168,14 +282,31 @@ const indexLinks = [
       --homepage-gutter: var(--page-gutter);
     }
 
+    .contents {
+      padding-bottom: var(--space-xl);
+    }
+
+    .hero-title {
+      font-size: 4.5rem;
+    }
+
     .contents-list {
       width: 100%;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem 1rem;
     }
 
-    .hero-title {
-      font-size: 4.5rem;
+    .contents-list--available {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contents-link--available {
+      grid-template-columns: 4.8rem minmax(0, 1fr);
+      column-gap: var(--space-md);
+    }
+
+    .contents-link--available .contents-label {
+      font-size: 1.3rem;
     }
 
     .contents-entry {
