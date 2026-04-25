@@ -1,0 +1,160 @@
+[
+  {
+    "title": "A <em>Gravity's Rainbow</em> Companion: Sources and Contexts for Pynchon's Novel",
+    "creators": "Steven Weisenburger",
+    "year": 2006,
+    "resourceType": "book",
+    "category": "guides",
+    "format": "book",
+    "publisherOrHost": "University of Georgia Press",
+    "shortAnnotation": "Page-by-page annotations keyed to the Viking and Penguin editions, with sources, historical context, and cross-references.",
+    "url": "https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/",
+    "accessCategory": "library",
+    "tags": [
+      "companion",
+      "annotation",
+      "reference"
+    ]
+  },
+  {
+    "title": "A Reader's Guide to <em>Gravity's Rainbow</em>",
+    "creators": "Douglas Fowler",
+    "year": 1980,
+    "resourceType": "guide",
+    "category": "guides",
+    "format": "book",
+    "publisherOrHost": "Ardis",
+    "shortAnnotation": "An early book-length guide to the novel, with a bibliography and index.",
+    "url": "https://openlibrary.org/books/OL4099811M",
+    "accessCategory": "library",
+    "tags": [
+      "reader-guide",
+      "orientation",
+      "early-scholarship"
+    ]
+  },
+  {
+    "title": "Proverbs For Paranoids: A <em>Gravity's Rainbow</em> Reading Guide",
+    "creators": "John Semley",
+    "year": 2022,
+    "resourceType": "guide",
+    "category": "guides",
+    "format": "web guide",
+    "publisherOrHost": "Gravity's Rainbow Guide",
+    "shortAnnotation": "A free, chapter-by-chapter guide that combines plot orientation with commentary.",
+    "url": "https://www.gravitysrainbowguide.com/",
+    "accessCategory": "open",
+    "tags": [
+      "reading-guide",
+      "chapter-by-chapter",
+      "open-access",
+      "commentary"
+    ]
+  },
+  {
+    "title": "The Math Behind <em>Gravity's Rainbow</em>",
+    "creators": "Niklas Riewald",
+    "year": 2019,
+    "resourceType": "guide series",
+    "category": "guides",
+    "format": "web series (8 posts)",
+    "publisherOrHost": "niklasriewald.com",
+    "shortAnnotation": "Eight essays explain the novel's yaw control, double integrals, Poisson distribution, power series, rotational symmetry, and Brennschluss calculation.",
+    "url": "https://niklasriewald.com/category/gravitys-rainbow/",
+    "accessCategory": "open",
+    "tags": [
+      "mathematics",
+      "rockets",
+      "equations",
+      "open-access"
+    ]
+  },
+  {
+    "title": "Some Things That \"Happen\" (More or Less) in <em>Gravity's Rainbow</em>",
+    "creators": "Michael Davitt Bell",
+    "year": 1996,
+    "resourceType": "guide",
+    "category": "guides",
+    "format": "web page",
+    "publisherOrHost": "Harvard (hosted)",
+    "shortAnnotation": "A chapter-by-chapter plot guide, freely shareable under attribution.",
+    "url": "https://people.math.harvard.edu/~ctm/links/culture/rainbow.bell.html",
+    "accessCategory": "open",
+    "tags": [
+      "plot-guide",
+      "orientation",
+      "open-access"
+    ]
+  },
+  {
+    "title": "Pictures Showing What Happens on Each Page of Thomas Pynchon's Novel <em>Gravity's Rainbow</em>",
+    "creators": "Zak Smith",
+    "year": 2006,
+    "resourceType": "illustrated book",
+    "category": "guides",
+    "format": "illustrated book",
+    "publisherOrHost": "Tin House Books",
+    "shortAnnotation": "A visual companion with one image for every page of the novel, introduced by Steve Erickson.",
+    "url": "https://openlibrary.org/books/OL23240962M",
+    "accessCategory": "library",
+    "tags": [
+      "visual-companion",
+      "page-by-page",
+      "illustration"
+    ]
+  },
+  {
+    "title": "Pynchon Works: <em>Gravity's Rainbow</em>",
+    "creators": "Spermatikos Logos (Shipwreck Library)",
+    "year": 2021,
+    "resourceType": "essay",
+    "category": "guides",
+    "format": "web essay",
+    "publisherOrHost": "Shipwreck Library",
+    "shortAnnotation": "A first-reading guide to the novel's structure.",
+    "url": "https://shipwrecklibrary.com/the-modern-word/pynchon/sl-gr/",
+    "accessCategory": "open",
+    "tags": [
+      "overview",
+      "first-time-readers",
+      "fan-scholarship",
+      "structural-analysis"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em> (Course Page)",
+    "creators": "Peter Galison",
+    "year": 2010,
+    "resourceType": "syllabus",
+    "category": "guides",
+    "format": "course page",
+    "publisherOrHost": "Harvard University",
+    "shortAnnotation": "A single-novel course page organised around science, wartime explanation, causality, narrative form, and philosophy.",
+    "url": "https://galison.scholars.harvard.edu/class/gravitys-rainbow",
+    "accessCategory": "open",
+    "tags": [
+      "syllabus",
+      "teaching",
+      "history-of-science",
+      "philosophy"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em>: A Crash Course",
+    "creators": "Newberry Library",
+    "year": null,
+    "resourceType": "syllabus",
+    "category": "guides",
+    "format": "public course / syllabus",
+    "publisherOrHost": "Newberry Library",
+    "shortAnnotation": "The syllabus for a public reading course.",
+    "url": "https://www.newberry.org/calendar/gravitys-rainbow",
+    "accessCategory": "open",
+    "tags": [
+      "syllabus",
+      "public-humanities",
+      "reading-plan",
+      "introductory"
+    ]
+  }
+]
