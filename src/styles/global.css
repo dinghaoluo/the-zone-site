@@ -227,6 +227,77 @@ a.link-block::after {
   html { font-size: 14px; }
 }
 
+.h-scroll-fade {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.h-scroll-fade__scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.h-scroll-fade__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.h-scroll-fade::before,
+.h-scroll-fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2.5rem;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.h-scroll-fade::before {
+  left: 0;
+  background: linear-gradient(to left, transparent, var(--color-bg));
+}
+
+.h-scroll-fade::after {
+  right: 0;
+  background: linear-gradient(to right, transparent, var(--color-bg));
+}
+
+.h-scroll-fade.can-scroll-right::after {
+  opacity: 1;
+}
+
+.h-scroll-fade.can-scroll-left::before {
+  opacity: 1;
+}
+
+.h-scroll-fade.can-scroll:not(.is-at-right)::after {
+  opacity: 1;
+}
+
+.h-scroll-fade.can-scroll:not(.is-at-left)::before {
+  opacity: 1;
+}
+
+.h-scroll-fade__scroller.is-dragging {
+  cursor: grabbing !important;
+  user-select: none;
+}
+
+.h-scroll-fade.is-dragging {
+  user-select: none;
+}
+
+@media (max-width: 48rem) {
+  .h-scroll-fade__scroller {
+    cursor: default;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
