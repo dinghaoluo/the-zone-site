@@ -156,5 +156,167 @@
       "reading-plan",
       "introductory"
     ]
+  },
+  {
+    "title": "Encyclopedic Narrative: From Dante to Pynchon",
+    "creators": "Edward Mendelson",
+    "year": 1976,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article, 91(6), 1267\u20131275",
+    "publisherOrHost": "MLN",
+    "shortAnnotation": "Mendelson places <em>Gravity's Rainbow</em> in a lineage from Dante to Joyce and defines the 'encyclopedic narrative'.",
+    "url": "https://www.jstor.org/stable/2907136",
+    "accessCategory": "paywalled",
+    "tags": [
+      "theory",
+      "encyclopedic-novel",
+      "foundational",
+      "genre"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em> Analysis",
+    "creators": "Spermatikos Logos (Shipwreck Library)",
+    "year": 2021,
+    "resourceType": "essay",
+    "category": "analyses",
+    "format": "web essay (long read)",
+    "publisherOrHost": "Shipwreck Library",
+    "shortAnnotation": "A longer interpretation by the same site, written outside academic criticism.",
+    "url": "https://shipwrecklibrary.com/the-modern-word/pynchon/sl-gressay/",
+    "accessCategory": "open",
+    "tags": [
+      "long-read",
+      "analysis",
+      "fan-scholarship"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em>: A Folkloristic Reading",
+    "creators": "Mark E. Workman",
+    "year": 1983,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article",
+    "publisherOrHost": "Pynchon Notes",
+    "shortAnnotation": "Reads folk forms and collective meaning against the novel's military and technological systems.",
+    "url": "https://pynchonnotes.openlibhums.org/article/id/2844/",
+    "accessCategory": "open",
+    "tags": [
+      "open-access",
+      "folklore",
+      "reading-practice",
+      "counterforce"
+    ]
+  },
+  {
+    "title": "V2 to Bomarc: Reading <em>Gravity's Rainbow</em> in Context",
+    "creators": "Joshua Comyn",
+    "year": 2014,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article",
+    "publisherOrHost": "Orbit: A Journal of American Literature",
+    "shortAnnotation": "Connects the novel's V-2 material to Pynchon's Cold War and Bomarc context, including command-and-control systems.",
+    "url": "https://doi.org/10.16995/orb.387",
+    "accessCategory": "open",
+    "tags": [
+      "open-access",
+      "cold-war",
+      "rockets",
+      "context",
+      "technology"
+    ]
+  },
+  {
+    "title": "Pynchon's Mythography: An Approach to <em>Gravity's Rainbow</em>",
+    "creators": "Kathryn Hume",
+    "year": 1987,
+    "resourceType": "book",
+    "category": "analyses",
+    "format": "book",
+    "publisherOrHost": "Southern Illinois University Press",
+    "shortAnnotation": "Reads the novel through myth and ritual, answering claims of randomness.",
+    "url": "https://books.google.com/books/about/Pynchon_s_Mythography.html?id=3C1bAAAAMAAJ",
+    "accessCategory": "library",
+    "tags": [
+      "myth",
+      "structure",
+      "criticism",
+      "advanced"
+    ]
+  },
+  {
+    "title": "The Style of Connectedness: <em>Gravity's Rainbow</em> and Thomas Pynchon",
+    "creators": "Thomas Moore",
+    "year": 1987,
+    "resourceType": "book",
+    "category": "analyses",
+    "format": "book",
+    "publisherOrHost": "University of Missouri Press",
+    "shortAnnotation": "Surveys the novel's scientific, religious, and cultural sources.",
+    "url": "https://books.google.com/books/about/The_Style_of_Connectedness.html?id=U7lX0wPvhocC",
+    "accessCategory": "library",
+    "tags": [
+      "synthesis",
+      "connectedness",
+      "background",
+      "advanced"
+    ]
+  },
+  {
+    "title": "Approaches to <em>Gravity's Rainbow</em>",
+    "creators": "Charles Clerc (ed.)",
+    "year": 1983,
+    "resourceType": "book",
+    "category": "analyses",
+    "format": "edited volume",
+    "publisherOrHost": "Ohio State University Press",
+    "shortAnnotation": "Collects early essays devoted wholly to the novel.",
+    "url": "https://lccn.loc.gov/82006500",
+    "accessCategory": "library",
+    "tags": [
+      "essay-collection",
+      "criticism",
+      "early-scholarship"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em>, Domination, and Freedom",
+    "creators": "Luc Herman, Steven Weisenburger",
+    "year": 2013,
+    "resourceType": "book",
+    "category": "analyses",
+    "format": "book",
+    "publisherOrHost": "University of Georgia Press",
+    "shortAnnotation": "Studies the novel's politics, speech, race, environmental damage, and 1960s context.",
+    "url": "https://www.ugapress.org/9780820345956/gravitys-rainbow-domination-and-freedom/",
+    "accessCategory": "library",
+    "tags": [
+      "politics",
+      "domination",
+      "freedom",
+      "long-sixties",
+      "advanced"
+    ]
+  },
+  {
+    "title": "<em>Thomas Pynchon and American Counterculture</em>",
+    "creators": "Joanna Freer",
+    "year": 2014,
+    "resourceType": "book",
+    "category": "analyses",
+    "format": "book",
+    "publisherOrHost": "Cambridge University Press",
+    "shortAnnotation": "Two chapters deal directly with <em>Gravity's Rainbow</em>, the New Left, and the Black Panthers.",
+    "url": "https://doi.org/10.1017/CBO9781139875967",
+    "accessCategory": "paywalled",
+    "tags": [
+      "counterculture",
+      "politics",
+      "long-sixties",
+      "context"
+    ]
   }
 ]
