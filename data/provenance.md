@@ -11,6 +11,14 @@ dataset files.
   - Derived from the corrected episode texts in the working analysis archive.
   - Used by the homepage word-count plot and the Episodes preview.
 
+## reference
+
+- `src/data/references.json`
+  - Bibliography records.
+  - The public face uses each record's title, creator, year, category, note,
+    and URL. Format, host, access, and tag fields remain available for search
+    and source checking without appearing as extra labels on the page.
+
 ## fonts and browser icons
 
 - `public/fonts.css` declares the local site fonts.
