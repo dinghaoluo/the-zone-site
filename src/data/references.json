@@ -318,5 +318,185 @@
       "long-sixties",
       "context"
     ]
+  },
+  {
+    "title": "The Fictional Labyrinths of Thomas Pynchon",
+    "creators": "David Seed",
+    "year": 1988,
+    "resourceType": "book",
+    "category": "analyses",
+    "format": "book",
+    "publisherOrHost": "University of Iowa Press",
+    "shortAnnotation": "A book-length study of Pynchon's recurring labyrinths, sources, and formal systems.",
+    "url": "https://openlibrary.org/books/OL2742471M",
+    "accessCategory": "library",
+    "tags": [
+      "criticism",
+      "sources",
+      "structure",
+      "advanced"
+    ]
+  },
+  {
+    "title": "Pynchon, Postmodernism and Quantification: An Empirical Content Analysis of Thomas Pynchon's <em>Gravity's Rainbow</em>",
+    "creators": "Luc Herman, Robert Hogenraad, Wim van Mierlo",
+    "year": 2003,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article, 12(1), 27\u201341",
+    "publisherOrHost": "Language and Literature",
+    "shortAnnotation": "Tests claims about the novel's chaos through empirical content analysis.",
+    "url": "https://doi.org/10.1177/096394700301200102",
+    "accessCategory": "varies",
+    "tags": [
+      "quantification",
+      "methodology",
+      "digital-humanities-adjacent",
+      "narratology"
+    ]
+  },
+  {
+    "title": "A Phenomenology of the Present: Toward a Digital Understanding of <em>Gravity's Rainbow</em>",
+    "creators": "David Letzler",
+    "year": 2016,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article",
+    "publisherOrHost": "Orbit: A Journal of American Literature",
+    "shortAnnotation": "Uses word frequency, keyness, social-network analysis, and topic modelling to examine the novel's structure.",
+    "url": "https://doi.org/10.16995/orbit.131",
+    "accessCategory": "open",
+    "tags": [
+      "open-access",
+      "digital-humanities",
+      "networks",
+      "topic-modelling"
+    ]
+  },
+  {
+    "title": "Visualizing <em>Gravity's Rainbow</em>",
+    "creators": "Martin Paul Eve",
+    "year": 2015,
+    "resourceType": "essay",
+    "category": "analyses",
+    "format": "web essay",
+    "publisherOrHost": "eve.gd",
+    "shortAnnotation": "Uses TextPlot and Gephi to map the novel's 1,000 most frequent terms as a clustered semantic network.",
+    "url": "https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/",
+    "accessCategory": "open",
+    "tags": [
+      "visualisation",
+      "digital-humanities",
+      "semantic-network",
+      "open-access"
+    ]
+  },
+  {
+    "title": "Plotting <em>Gravity's Rainbow</em>",
+    "creators": "Katie Muth",
+    "year": 2018,
+    "resourceType": "interactive visualisation",
+    "category": "analyses",
+    "format": "interactive web project",
+    "publisherOrHost": "GitHub Pages",
+    "shortAnnotation": "An interactive project that plots the novel through four three-dimensional network views.",
+    "url": "https://krmuth.github.io/plot-gr/",
+    "accessCategory": "open",
+    "tags": [
+      "interactive",
+      "visualisation",
+      "networks",
+      "digital-humanities"
+    ]
+  },
+  {
+    "title": "Parabolic Post-Hermeneutics",
+    "creators": "Shannon Mattern",
+    "year": 2012,
+    "resourceType": "essay",
+    "category": "analyses",
+    "format": "web essay",
+    "publisherOrHost": "Words in Space",
+    "shortAnnotation": "Revisits the double-integral motif through temporal bandwidth, film, rocket guidance, and selfhood.",
+    "url": "https://wordsinspace.net/2012/03/17/parabolic-post-hermeneutics/",
+    "accessCategory": "open",
+    "tags": [
+      "mathematics",
+      "media-theory",
+      "film",
+      "rockets"
+    ]
+  },
+  {
+    "title": "The Three Equations in <em>Gravity's Rainbow</em>",
+    "creators": "Lance Schachterle, P. K. Aravind",
+    "year": 2001,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article",
+    "publisherOrHost": "Pynchon Notes",
+    "shortAnnotation": "Explains the novel's three equations and their mathematical, narrative, and rhetorical functions.",
+    "url": "https://doi.org/10.16995/pn.94",
+    "accessCategory": "open",
+    "tags": [
+      "open-access",
+      "mathematics",
+      "equations",
+      "science"
+    ]
+  },
+  {
+    "title": "Starry-Eyed Semiotics: Learning to Read Slothrop's Map and <em>Gravity's Rainbow</em>",
+    "creators": "Bernard Duyfhuizen",
+    "year": 1981,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article",
+    "publisherOrHost": "Pynchon Notes",
+    "shortAnnotation": "Reads Slothrop's map as a changing instrument of geography, interpretation, and narrative form.",
+    "url": "https://doi.org/10.16995/pn.477",
+    "accessCategory": "open",
+    "tags": [
+      "open-access",
+      "maps",
+      "spatial-reading",
+      "semiotics"
+    ]
+  },
+  {
+    "title": "The Environmental Pynchon: <em>Gravity's Rainbow</em> and the Ecological Context",
+    "creators": "Thomas Schaub",
+    "year": 1998,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article",
+    "publisherOrHost": "Pynchon Notes",
+    "shortAnnotation": "Connects the novel to 1960s ecological discourse and its treatment of waste and environmental damage.",
+    "url": "https://pynchonnotes.openlibhums.org/article/id/2738/",
+    "accessCategory": "open",
+    "tags": [
+      "open-access",
+      "ecology",
+      "waste",
+      "environment"
+    ]
+  },
+  {
+    "title": "Rocket Power \u2014 <em>Gravity's Rainbow</em> Reviewed",
+    "creators": "Richard Poirier",
+    "year": 1973,
+    "resourceType": "review",
+    "category": "analyses",
+    "format": "review essay",
+    "publisherOrHost": "Saturday Review (reprinted at ThomasPynchon.com)",
+    "shortAnnotation": "Poirier's 1973 review reads the novel through scale, politics, and historical imagination.",
+    "url": "https://thomaspynchon.com/rocket-power-gravitys-rainbow-reviewed-by-richard-poirier-1973/",
+    "accessCategory": "open",
+    "tags": [
+      "review",
+      "reception",
+      "primary-reception",
+      "long-read"
+    ]
   }
 ]
