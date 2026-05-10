@@ -145,6 +145,8 @@ const plainText = (value: string) => value
         card.hidden = !matchesCategory;
         if (matchesCategory) visible += 1;
       });
+      const list = document.getElementById('reference-list');
+      if (list) list.scrollTop = 0;
     }
 
     categoryControls.forEach(control => {
