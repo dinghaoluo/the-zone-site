@@ -70,6 +70,24 @@
     ]
   },
   {
+    "title": "Encyclopedic Narrative: From Dante to Pynchon",
+    "creators": "Edward Mendelson",
+    "year": 1976,
+    "resourceType": "article",
+    "category": "analyses",
+    "format": "journal article, 91(6), 1267–1275",
+    "publisherOrHost": "MLN",
+    "shortAnnotation": "Mendelson places <em>Gravity's Rainbow</em> in a lineage from Dante to Joyce and defines the 'encyclopedic narrative'.",
+    "url": "https://www.jstor.org/stable/2907136",
+    "accessCategory": "paywalled",
+    "tags": [
+      "theory",
+      "encyclopedic-novel",
+      "foundational",
+      "genre"
+    ]
+  },
+  {
     "title": "Some Things That \"Happen\" (More or Less) in <em>Gravity's Rainbow</em>",
     "creators": "Michael Davitt Bell",
     "year": 1996,
@@ -104,6 +122,23 @@
     ]
   },
   {
+    "title": "<em>Gravity's Rainbow</em> — Pynchon Wiki",
+    "creators": "Tim Ware <em>et al.</em>",
+    "year": null,
+    "resourceType": "wiki",
+    "category": "community",
+    "format": "website",
+    "publisherOrHost": "PynchonWiki.com",
+    "shortAnnotation": "Community-maintained alphabetical and page-by-page annotations.",
+    "url": "https://gravitys-rainbow.pynchonwiki.com/wiki/index.php?title=Main_Page",
+    "accessCategory": "open",
+    "tags": [
+      "wiki",
+      "annotation",
+      "page-by-page"
+    ]
+  },
+  {
     "title": "Pynchon Works: <em>Gravity's Rainbow</em>",
     "creators": "Spermatikos Logos (Shipwreck Library)",
     "year": 2021,
@@ -119,60 +154,6 @@
       "first-time-readers",
       "fan-scholarship",
       "structural-analysis"
-    ]
-  },
-  {
-    "title": "<em>Gravity's Rainbow</em> (Course Page)",
-    "creators": "Peter Galison",
-    "year": 2010,
-    "resourceType": "syllabus",
-    "category": "guides",
-    "format": "course page",
-    "publisherOrHost": "Harvard University",
-    "shortAnnotation": "A single-novel course page organised around science, wartime explanation, causality, narrative form, and philosophy.",
-    "url": "https://galison.scholars.harvard.edu/class/gravitys-rainbow",
-    "accessCategory": "open",
-    "tags": [
-      "syllabus",
-      "teaching",
-      "history-of-science",
-      "philosophy"
-    ]
-  },
-  {
-    "title": "<em>Gravity's Rainbow</em>: A Crash Course",
-    "creators": "Newberry Library",
-    "year": null,
-    "resourceType": "syllabus",
-    "category": "guides",
-    "format": "public course / syllabus",
-    "publisherOrHost": "Newberry Library",
-    "shortAnnotation": "The syllabus for a public reading course.",
-    "url": "https://www.newberry.org/calendar/gravitys-rainbow",
-    "accessCategory": "open",
-    "tags": [
-      "syllabus",
-      "public-humanities",
-      "reading-plan",
-      "introductory"
-    ]
-  },
-  {
-    "title": "Encyclopedic Narrative: From Dante to Pynchon",
-    "creators": "Edward Mendelson",
-    "year": 1976,
-    "resourceType": "article",
-    "category": "analyses",
-    "format": "journal article, 91(6), 1267\u20131275",
-    "publisherOrHost": "MLN",
-    "shortAnnotation": "Mendelson places <em>Gravity's Rainbow</em> in a lineage from Dante to Joyce and defines the 'encyclopedic narrative'.",
-    "url": "https://www.jstor.org/stable/2907136",
-    "accessCategory": "paywalled",
-    "tags": [
-      "theory",
-      "encyclopedic-novel",
-      "foundational",
-      "genre"
     ]
   },
   {
@@ -343,7 +324,7 @@
     "year": 2003,
     "resourceType": "article",
     "category": "analyses",
-    "format": "journal article, 12(1), 27\u201341",
+    "format": "journal article, 12(1), 27–41",
     "publisherOrHost": "Language and Literature",
     "shortAnnotation": "Tests claims about the novel's chaos through empirical content analysis.",
     "url": "https://doi.org/10.1177/096394700301200102",
@@ -482,7 +463,7 @@
     ]
   },
   {
-    "title": "Rocket Power \u2014 <em>Gravity's Rainbow</em> Reviewed",
+    "title": "Rocket Power — <em>Gravity's Rainbow</em> Reviewed",
     "creators": "Richard Poirier",
     "year": 1973,
     "resourceType": "review",
@@ -497,6 +478,132 @@
       "reception",
       "primary-reception",
       "long-read"
+    ]
+  },
+  {
+    "title": "<em>GRAVITY'S RAINBOW</em> by Thomas Pynchon",
+    "creators": "Leaf by Leaf",
+    "year": 2021,
+    "resourceType": "video",
+    "category": "audio-video",
+    "format": "YouTube video (3h 28m)",
+    "publisherOrHost": "YouTube",
+    "shortAnnotation": "A three-and-a-half-hour video survey that names its secondary sources.",
+    "url": "https://www.youtube.com/watch?v=8sERtP1W4kY",
+    "accessCategory": "open",
+    "tags": [
+      "video",
+      "long-form",
+      "literature-review",
+      "reader-companion"
+    ]
+  },
+  {
+    "title": "Slow Learners",
+    "creators": "Asher Dark, John Semley",
+    "year": 2023,
+    "resourceType": "podcast",
+    "category": "audio-video",
+    "format": "podcast season (24 episodes)",
+    "publisherOrHost": "Apple Podcasts / Spotify",
+    "shortAnnotation": "A 24-episode read-along with guest interviews from historians, critics, and scientists.",
+    "url": "https://podcasts.apple.com/us/podcast/slow-learners/id1712289025",
+    "accessCategory": "open",
+    "tags": [
+      "podcast",
+      "read-along",
+      "season-long",
+      "companion"
+    ]
+  },
+  {
+    "title": "Pynchon Pals",
+    "creators": "Patrick Fiorilli, Andrew Tillett, Duri Long",
+    "year": 2025,
+    "resourceType": "podcast",
+    "category": "audio-video",
+    "format": "podcast (ongoing)",
+    "publisherOrHost": "Podbean / Apple Podcasts",
+    "shortAnnotation": "An ongoing episode-by-episode reading of the novel.",
+    "url": "https://podcasts.apple.com/us/podcast/pynchon-pals/id1841789000",
+    "accessCategory": "open",
+    "tags": [
+      "podcast",
+      "rereading",
+      "contemporary",
+      "community"
+    ]
+  },
+  {
+    "title": "Ninety-Nine Novels: <em>Gravity's Rainbow</em> by Thomas Pynchon",
+    "creators": "Graham Foster, Simon Malpas",
+    "year": 2022,
+    "resourceType": "podcast",
+    "category": "audio-video",
+    "format": "podcast episode (57m)",
+    "publisherOrHost": "International Anthony Burgess Foundation",
+    "shortAnnotation": "A 57-minute conversation about the novel.",
+    "url": "https://podcasts.apple.com/gb/podcast/ninety-nine-novels-gravitys-rainbow-by-thomas-pynchon/id616742782?i=1000552029518",
+    "accessCategory": "open",
+    "tags": [
+      "podcast",
+      "single-episode",
+      "criticism",
+      "audio"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em> (Course Page)",
+    "creators": "Peter Galison",
+    "year": 2010,
+    "resourceType": "syllabus",
+    "category": "guides",
+    "format": "course page",
+    "publisherOrHost": "Harvard University",
+    "shortAnnotation": "A single-novel course page organised around science, wartime explanation, causality, narrative form, and philosophy.",
+    "url": "https://galison.scholars.harvard.edu/class/gravitys-rainbow",
+    "accessCategory": "open",
+    "tags": [
+      "syllabus",
+      "teaching",
+      "history-of-science",
+      "philosophy"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em>: A Crash Course",
+    "creators": "Newberry Library",
+    "year": null,
+    "resourceType": "syllabus",
+    "category": "guides",
+    "format": "public course / syllabus",
+    "publisherOrHost": "Newberry Library",
+    "shortAnnotation": "The syllabus for a public reading course.",
+    "url": "https://www.newberry.org/calendar/gravitys-rainbow",
+    "accessCategory": "open",
+    "tags": [
+      "syllabus",
+      "public-humanities",
+      "reading-plan",
+      "introductory"
+    ]
+  },
+  {
+    "title": "<em>Gravity's Rainbow</em> Group Read (r/ThomasPynchon)",
+    "creators": "r/ThomasPynchon community",
+    "year": 2020,
+    "resourceType": "community",
+    "category": "community",
+    "format": "Reddit discussion series",
+    "publisherOrHost": "Reddit",
+    "shortAnnotation": "The subreddit that hosted the 2020 structured group read and its episode threads.",
+    "url": "https://www.reddit.com/r/ThomasPynchon/comments/gx45th/",
+    "accessCategory": "open",
+    "tags": [
+      "Reddit",
+      "group-read",
+      "community",
+      "read-along"
     ]
   }
 ]
