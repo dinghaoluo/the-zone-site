@@ -14,7 +14,7 @@ const indexLinks = [
   {
     slug: 'reference',
     label: 'Reference',
-    available: false,
+    available: true,
   },
   {
     slug: 'network',
@@ -69,6 +69,11 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
               <HomepagePreview slug={link.slug} />
               <div class="contents-copy">
                 <span class="contents-label">{link.label}</span>
+                <p class="contents-description">
+                  {link.slug === 'reference' && (
+                    <>other companions (wikis, essays...) with which to read the book</>
+                  )}
+                </p>
               </div>
             </a>
           </li>
@@ -249,6 +254,21 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
   .contents-link:hover .contents-label,
   .contents-link:focus-visible .contents-label {
     color: var(--color-accent);
+  }
+
+  .contents-description {
+    display: block;
+    margin: 0;
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--color-text-dim);
+    transition: color 0.18s ease;
+  }
+
+  .contents-link--available:hover .contents-description,
+  .contents-link--available:focus-visible .contents-description {
+    color: var(--color-text-secondary);
   }
 
   .contents-pending {
