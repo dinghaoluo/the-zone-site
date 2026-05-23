@@ -1,0 +1,57 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="quote-block">
+  <blockquote class="pull-quote">
+    {label && <span class="quote-anchor-label">{label}</span>}
+    <p>&lsquo;<slot />&rsquo;</p>
+  </blockquote>
+</div>
+
+<style>
+  .quote-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .quote-anchor-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-xs);
+  }
+
+  .pull-quote {
+    margin: 0;
+    padding-left: var(--space-xl);
+    border-left: 3px solid var(--color-accent-dim);
+  }
+
+  .pull-quote p {
+    font-family: var(--font-prose);
+    font-style: italic;
+    font-size: var(--text-xl);
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 900px) {
+    .pull-quote {
+      padding-left: var(--space-md);
+    }
+
+    .pull-quote p {
+      font-size: var(--text-base);
+    }
+  }
+</style>
