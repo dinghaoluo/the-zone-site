@@ -165,7 +165,42 @@ p, li, dd, dt, blockquote {
 .wordmark {
   display: inline-flex;
   align-items: baseline;
-  column-gap: 0.35em;
+  column-gap: var(--wordmark-gap);
+}
+
+.site-page {
+  padding-bottom: 0;
+}
+
+.page-header {
+  width: min(100%, var(--measure-site));
+  margin-inline: auto;
+  padding: var(--space-xl) var(--page-gutter) var(--space-lg);
+}
+
+.page-back {
+  display: inline-block;
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  color: var(--color-text-dim);
+}
+
+.page-back:hover,
+.page-back:focus-visible {
+  color: var(--color-accent);
+}
+
+.page-title {
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--font-heading);
+  font-size: clamp(3.25rem, 7vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--color-text);
 }
 
 a {
@@ -220,6 +255,14 @@ a.link-block::after {
 @media (max-width: 48rem) {
   :root {
     --page-gutter: var(--space-md);
+  }
+
+  .page-header {
+    padding-block: var(--space-lg) var(--space-md);
+  }
+
+  .page-title {
+    font-size: clamp(3rem, 16vw, 4rem);
   }
 }
 
