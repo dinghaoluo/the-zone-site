@@ -1,0 +1,196 @@
+---
+interface Props {
+  id: string;
+  count: string;
+  ariaLabel: string;
+}
+
+const { id, count, ariaLabel } = Astro.props;
+const countId = `${id}-count`;
+---
+
+<div class="site-search" role="search" aria-label={ariaLabel} data-site-search>
+  <div class="site-search-head">
+    <label for={id}>Search</label>
+    <p id={countId} role="status" aria-live="polite" data-site-search-count>{count}</p>
+  </div>
+  <div class="site-search-input-wrap">
+    <span class="site-search-prefix" aria-hidden="true">
+      <svg viewBox="0 0 20 20" role="presentation">
+        <circle cx="8.5" cy="8.5" r="5.25" />
+        <path d="m12.4 12.4 4.1 4.1" />
+      </svg>
+    </span>
+    <input
+      id={id}
+      type="search"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder="Type to search"
+      aria-describedby={countId}
+      aria-keyshortcuts="/"
+      data-site-search-input
+    />
+    <button
+      class="site-search-clear"
+      type="button"
+      aria-label="Clear search"
+      data-site-search-clear
+      hidden
+    >
+      Clear
+    </button>
+  </div>
+</div>
+
+<script>
+  const siteSearchFields = Array.from(document.querySelectorAll<HTMLElement>('[data-site-search]'));
+
+  for (const field of siteSearchFields) {
+    const input = field.querySelector<HTMLInputElement>('[data-site-search-input]');
+    const clear = field.querySelector<HTMLButtonElement>('[data-site-search-clear]');
+    if (!input || !clear) continue;
+    const searchInput = input;
+    const clearButton = clear;
+
+    function updateClear(): void {
+      const hasQuery = searchInput.value.trim().length > 0;
+      clearButton.hidden = !hasQuery;
+      field.classList.toggle('has-query', hasQuery);
+    }
+
+    function clearSearch(): void {
+      if (!searchInput.value) return;
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+      updateClear();
+      searchInput.focus();
+    }
+
+    searchInput.addEventListener('input', updateClear);
+    searchInput.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && searchInput.value) {
+        event.preventDefault();
+        clearSearch();
+      }
+    });
+    clearButton.addEventListener('click', clearSearch);
+    updateClear();
+  }
+
+  document.addEventListener('keydown', event => {
+    const target = event.target as HTMLElement | null;
+    const typing = target?.matches('input, textarea, select, button, [contenteditable="true"]');
+    if (event.key !== '/' || typing || event.metaKey || event.ctrlKey || event.altKey) return;
+
+    const input = siteSearchFields
+      .map(field => field.querySelector<HTMLInputElement>('[data-site-search-input]'))
+      .find(candidate => candidate && candidate.getClientRects().length > 0);
+    if (!input) return;
+
+    event.preventDefault();
+    input.focus();
+  });
+</script>
+
+<style>
+  .site-search {
+    position: relative;
+    min-width: 0;
+  }
+
+  .site-search-head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .site-search-input-wrap {
+    display: flex;
+    align-items: stretch;
+    min-height: 3.1rem;
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-surface) 48%, transparent);
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+  }
+
+  .site-search-input-wrap:hover {
+    border-color: var(--color-text-dim);
+  }
+
+  .site-search-input-wrap:focus-within {
+    border-color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 0.18rem;
+  }
+
+  .site-search-prefix {
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    flex: 0 0 2.2rem;
+    color: var(--color-accent);
+  }
+
+  .site-search-prefix svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+  }
+
+  .site-search input {
+    min-width: 0;
+    flex: 1 1 auto;
+    border: 0;
+    outline: 0;
+    padding: 0.65rem 0.45rem 0.65rem 0;
+    color: var(--color-text);
+    background: transparent;
+    font: var(--text-base)/1.4 var(--font-prose);
+    appearance: none;
+  }
+
+  .site-search input::-webkit-search-cancel-button,
+  .site-search input::-webkit-search-decoration {
+    appearance: none;
+  }
+
+  .site-search input::placeholder {
+    color: var(--color-text-dim);
+  }
+
+  .site-search-clear {
+    align-self: stretch;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 0.55rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .site-search-clear:hover,
+  .site-search-clear:focus-visible {
+    color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-search-input-wrap {
+      transition-duration: 0.01ms;
+    }
+  }
+</style>
