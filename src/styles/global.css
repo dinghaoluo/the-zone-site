@@ -244,8 +244,12 @@ a.link-block::after {
 }
 
 .site-search-match {
-  color: #5ba3c9;
-  background: rgba(91, 163, 201, 0.15);
+  color: var(--site-search-match-color, var(--color-accent));
+  background: color-mix(
+    in srgb,
+    var(--site-search-match-color, var(--color-accent)) 15%,
+    transparent
+  );
   font-style: inherit;
   padding: 0 0.04em;
 }
