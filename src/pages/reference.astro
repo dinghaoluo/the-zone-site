@@ -1,6 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import SearchField from '../components/SearchField.astro';
 import references from '../data/references.json';
 import Layout from '../layouts/Layout.astro';
 
@@ -21,6 +22,7 @@ const plainText = (value: string) => value
   .replace(/<[^>]+>/g, ' ')
   .replace(/\s+/g, ' ')
   .trim();
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 
 <Layout title="References" description="Bibliography and source notes for The Zone.">
@@ -28,12 +30,20 @@ const plainText = (value: string) => value
 
   <main class="site-page reference-page" id="main-content">
     <header class="page-header reference-header">
-      <a class="page-back" href="/">&larr; The Zone</a>
+      <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
       <h1 class="page-title">References</h1>
     </header>
 
     <section class="reference-apparatus" aria-label="Reference filters">
       <div class="reference-apparatus-inner">
+        <div class="reference-search">
+          <SearchField
+            id="reference-search"
+            count={`${items.length} references`}
+            ariaLabel="Search references"
+          />
+        </div>
+
         <fieldset class="reference-category-filter">
           <legend>Browse by category</legend>
           <div class="reference-category-grid" id="reference-category-filter">
@@ -66,6 +76,11 @@ const plainText = (value: string) => value
               class="reference-entry"
               data-reference-entry
               data-category={item.category}
+              data-search-title={plainText(item.title)}
+              data-search-creators={plainText(item.creators)}
+              data-search-note={plainText(item.shortAnnotation)}
+              data-search-category={categoryLabels[item.category] ?? item.category}
+              data-search-year={item.year ?? ''}
             >
               <div class="reference-entry-meta">
                 <button
@@ -121,6 +136,13 @@ const plainText = (value: string) => value
 </Layout>
 
 <script>
+  import {
+    compactSearch,
+    highlightElementText,
+    normaliseSearch,
+    searchMatches,
+  } from '../scripts/siteSearch';
+
   const referencePage = document.querySelector<HTMLElement>('.reference-page');
 
   if (referencePage) {
@@ -131,11 +153,75 @@ const plainText = (value: string) => value
     const entryCategoryControls = Array.from(
       referencePage.querySelectorAll<HTMLButtonElement>('[data-category-filter]')
     );
+    const searchInput = referencePage.querySelector<HTMLInputElement>('[data-site-search-input]');
     const emptyReset = referencePage.querySelector<HTMLButtonElement>('#reference-empty-reset');
     const emptyState = referencePage.querySelector<HTMLElement>('#reference-empty');
+    const emptyMessage = referencePage.querySelector<HTMLElement>('#reference-empty-message');
     const referenceList = referencePage.querySelector<HTMLElement>('#reference-list');
+    const count = referencePage.querySelector<HTMLElement>('[data-site-search-count]');
+    const categoryFilter = referencePage.querySelector<HTMLElement>('#reference-category-filter');
+    const searchRecords = cards.map(card => {
+      const titleElement = card.querySelector<HTMLElement>('[data-reference-title-text]');
+      const creatorsElement = card.querySelector<HTMLElement>('[data-reference-creators-text]');
+      const noteElement = card.querySelector<HTMLElement>('[data-reference-note-text]');
+      const categoryElement = card.querySelector<HTMLElement>('[data-reference-category-text]');
+      const yearElement = card.querySelector<HTMLElement>('[data-reference-year-text]');
 
+      return {
+        card,
+        titleElement,
+        creatorsElement,
+        noteElement,
+        categoryElement,
+        yearElement,
+        title: card.dataset.searchTitle || '',
+        creators: card.dataset.searchCreators || '',
+        note: card.dataset.searchNote || '',
+        category: card.dataset.searchCategory || '',
+        year: card.dataset.searchYear || '',
+        titleHtml: titleElement?.innerHTML || '',
+        creatorsHtml: creatorsElement?.innerHTML || '',
+        noteHtml: noteElement?.innerHTML || '',
+        categoryHtml: categoryElement?.innerHTML || '',
+        yearHtml: yearElement?.innerHTML || '',
+      };
+    });
     let activeCategory = 'all';
+    let query = '';
+
+    function categoryLabel(value: string): string {
+      return categoryControls.find(control => control.dataset.value === value)
+        ?.querySelector('span')?.textContent ?? 'ALL';
+    }
+
+    function restoreReferenceMarkup(record: (typeof searchRecords)[number]): void {
+      if (record.titleElement) record.titleElement.innerHTML = record.titleHtml;
+      if (record.creatorsElement) record.creatorsElement.innerHTML = record.creatorsHtml;
+      if (record.noteElement) record.noteElement.innerHTML = record.noteHtml;
+      if (record.categoryElement) record.categoryElement.innerHTML = record.categoryHtml;
+      if (record.yearElement) record.yearElement.innerHTML = record.yearHtml;
+    }
+
+    function applyReferenceHighlights(
+      record: (typeof searchRecords)[number],
+      compactQuery: string,
+      matches: { title: boolean; creators: boolean; note: boolean; category: boolean; year: boolean }
+    ): void {
+      restoreReferenceMarkup(record);
+
+      const fields = [
+        { element: record.titleElement, matched: matches.title },
+        { element: record.creatorsElement, matched: matches.creators },
+        { element: record.noteElement, matched: matches.note },
+        { element: record.categoryElement, matched: matches.category },
+        { element: record.yearElement, matched: matches.year },
+      ];
+
+      for (const field of fields) {
+        if (!field.matched || !field.element) continue;
+        highlightElementText(field.element, compactQuery);
+      }
+    }
 
     function setCategory(value: string): void {
       activeCategory = value || 'all';
@@ -148,21 +234,71 @@ const plainText = (value: string) => value
     }
 
     function applyFilters(): void {
+      const normalisedQuery = normaliseSearch(query);
+      const compactQuery = compactSearch(normalisedQuery);
+      const hasSearch = normalisedQuery.length > 0;
       let visible = 0;
-      cards.forEach(card => {
+
+      searchRecords.forEach(record => {
+        const titleMatched = hasSearch && searchMatches(record.title, normalisedQuery, compactQuery);
+        const creatorsMatched = hasSearch && searchMatches(record.creators, normalisedQuery, compactQuery);
+        const noteMatched = hasSearch && searchMatches(record.note, normalisedQuery, compactQuery);
+        const categoryMatched = hasSearch && searchMatches(record.category, normalisedQuery, compactQuery);
+        const yearMatched = hasSearch && searchMatches(record.year, normalisedQuery, compactQuery);
         const matchesCategory = activeCategory === 'all'
-          || card.dataset.category === activeCategory;
-        card.hidden = !matchesCategory;
-        if (matchesCategory) visible += 1;
+          || record.card.dataset.category === activeCategory;
+        const matchesSearch = !hasSearch
+          || titleMatched
+          || creatorsMatched
+          || noteMatched
+          || categoryMatched
+          || yearMatched;
+        const show = matchesCategory && matchesSearch;
+
+        record.card.hidden = !show;
+        record.card.classList.toggle('is-search-hit', hasSearch && matchesSearch);
+        record.card.classList.toggle('is-search-miss', hasSearch && !matchesSearch);
+
+        if (hasSearch && matchesSearch) {
+          applyReferenceHighlights(record, compactQuery, {
+            title: titleMatched,
+            creators: creatorsMatched,
+            note: noteMatched,
+            category: categoryMatched,
+            year: yearMatched,
+          });
+        } else {
+          restoreReferenceMarkup(record);
+        }
+
+        if (show) visible += 1;
       });
-      const list = document.getElementById('reference-list');
-      if (list) list.scrollTop = 0;
+
+      const filtered = activeCategory !== 'all' || hasSearch;
+      const suffix = activeCategory === 'all' ? '' : ` in ${categoryLabel(activeCategory)}`;
+      if (count) {
+        count.textContent = filtered
+          ? `${visible} of ${cards.length} references${suffix}`
+          : `${cards.length} references`;
+      }
       if (referenceList) referenceList.hidden = visible === 0;
       if (emptyState) emptyState.hidden = visible !== 0;
+      if (emptyMessage) {
+        emptyMessage.textContent = hasSearch
+          ? `No references match ‘${query}’${suffix}.`
+          : `No references in ${categoryLabel(activeCategory)}.`;
+      }
     }
 
-    function resetFilters(): void {
+    function resetFilters(focusSearch = false): void {
+      activeCategory = 'all';
+      query = '';
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
       setCategory('all');
+      if (focusSearch) searchInput?.focus();
     }
 
     categoryControls.forEach(control => {
@@ -173,7 +309,19 @@ const plainText = (value: string) => value
       control.addEventListener('click', () => setCategory(control.dataset.categoryFilter ?? 'all'));
     });
 
-    emptyReset?.addEventListener('click', () => resetFilters());
+    searchInput?.addEventListener('input', () => {
+      query = searchInput.value.trim();
+      applyFilters();
+    });
+
+    emptyReset?.addEventListener('click', () => resetFilters(true));
+
+    categoryFilter?.addEventListener('keydown', event => {
+      if (event.key === 'Home') {
+        event.preventDefault();
+        categoryControls[0]?.focus();
+      }
+    });
 
     applyFilters();
   }
@@ -199,8 +347,14 @@ const plainText = (value: string) => value
 
   .reference-apparatus-inner {
     display: grid;
+    grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.6fr);
     gap: clamp(var(--space-lg), 5vw, var(--space-xl));
     padding-block: var(--space-lg);
+  }
+
+  .reference-search {
+    align-self: start;
+    max-width: 28rem;
   }
 
   .reference-category-filter legend {
@@ -311,37 +465,6 @@ const plainText = (value: string) => value
     border-bottom-color: var(--color-accent);
   }
 
-  .reference-empty {
-    padding: var(--space-xl) 0;
-    border-top: 1px solid var(--color-rule);
-    border-bottom: 1px solid var(--color-rule);
-  }
-
-  .reference-empty p {
-    color: var(--color-text-secondary);
-    font-family: var(--font-prose);
-    font-size: var(--text-lg);
-  }
-
-  .reference-empty-reset {
-    margin-top: var(--space-md);
-  }
-
-  @media (min-width: 56.01rem) {
-    .reference-apparatus {
-      position: sticky;
-      top: var(--nav-height, 3.25rem);
-      z-index: 20;
-    }
-  }
-
-  @media (max-width: 56rem) {
-    .reference-apparatus-inner {
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-  }
-
   .reference-list {
     border-bottom: 1px solid var(--color-rule);
   }
@@ -450,6 +573,41 @@ const plainText = (value: string) => value
     font-family: var(--font-prose);
     font-size: var(--text-base);
     line-height: 1.65;
+  }
+
+  .reference-empty {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .reference-empty p {
+    color: var(--color-text-secondary);
+    font-family: var(--font-prose);
+    font-size: var(--text-lg);
+  }
+
+  .reference-empty-reset {
+    margin-top: var(--space-md);
+  }
+
+  @media (min-width: 56.01rem) {
+    .reference-apparatus {
+      position: sticky;
+      top: var(--nav-height, 3.25rem);
+      z-index: 20;
+    }
+  }
+
+  @media (max-width: 56rem) {
+    .reference-apparatus-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .reference-search {
+      max-width: none;
+    }
   }
 
   @media (max-width: 48rem) {
