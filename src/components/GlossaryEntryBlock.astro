@@ -1,0 +1,167 @@
+---
+interface GlossaryFocusEntry {
+  id: string;
+  displayLabel: string;
+  colorVar: string;
+  chronology: { episodeId: string };
+  context: { excerpt: string; highlightedTerm: string };
+  apparatus: { explanation: string };
+  externalRefs?: Array<{ label: string; url?: string; note?: string }>;
+  relatedTerms?: string[];
+}
+import PullQuote from './PullQuote.astro';
+
+interface Props {
+  entry: GlossaryFocusEntry;
+}
+
+const { entry } = Astro.props;
+
+function splitHighlight(text: string, highlight: string) {
+  const idx = text.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
+  if (idx < 0) return { before: text, match: '', after: '' };
+
+  return {
+    before: text.slice(0, idx),
+    match: text.slice(idx, idx + highlight.length),
+    after: text.slice(idx + highlight.length),
+  };
+}
+
+function renderInline(text: string): string {
+  const escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  return escaped.replace(/\*([^*]+)\*/g, '<i>$1</i>');
+}
+
+const contextParts = splitHighlight(entry.context.excerpt, entry.context.highlightedTerm);
+const episodeLabel = entry.chronology.episodeId;
+---
+
+<section
+  class="glossary-entry"
+  data-entry-id={entry.id}
+  style={`--entry-color: var(${entry.colorVar})`}
+>
+  <header class="entry-header" id={`glossary-${entry.id}`}>
+    <p class="entry-episode">Episode {episodeLabel}</p>
+    <h2>{entry.displayLabel}</h2>
+  </header>
+
+  <PullQuote label={entry.displayLabel}>
+    {contextParts.before}{contextParts.match ? <mark>{contextParts.match}</mark> : null}{contextParts.after}
+  </PullQuote>
+
+  <div class="entry-notes">
+    <div class="entry-main-text">
+      <p set:html={renderInline(entry.apparatus.explanation)} />
+    </div>
+
+    {entry.externalRefs && entry.externalRefs.length > 0 && (
+      <section class="entry-refs">
+        <h3>Further reading</h3>
+        <ul class="entry-list">
+          {entry.externalRefs.map((ref) => (
+            <li>
+              {ref.url ? (
+                <a href={ref.url} set:html={renderInline(ref.label)} />
+              ) : (
+                <span set:html={renderInline(ref.label)} />
+              )}
+              {ref.note && <small set:html={renderInline(ref.note)} />}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</section>
+
+<style>
+  .glossary-entry {
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .glossary-entry:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .entry-header {
+    margin-bottom: var(--space-lg);
+    scroll-margin-top: calc(var(--nav-height, 3.5rem) + 2rem);
+  }
+
+  .entry-episode {
+    margin-bottom: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.95rem, 4.2vw, 3.45rem);
+    font-weight: 400;
+    line-height: 1.04;
+    color: var(--color-text);
+    letter-spacing: 0;
+  }
+
+  mark:not(.site-search-match) {
+    color: var(--entry-color);
+    background: transparent;
+    font-style: italic;
+  }
+
+  .entry-notes {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .entry-notes h3 {
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .entry-notes p {
+    font-family: var(--font-prose);
+    font-size: var(--text-prose);
+    line-height: var(--lh-prose);
+    color: var(--color-text-secondary);
+  }
+
+  .entry-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.75rem;
+    list-style: none;
+  }
+
+  .entry-list li {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+  }
+
+  .entry-list small {
+    display: block;
+    max-width: 28rem;
+    margin-top: 0.15rem;
+    color: var(--color-text-dim);
+    opacity: 0.78;
+  }
+
+  .entry-list a:focus-visible {
+    outline: 2px solid var(--entry-color);
+    outline-offset: 0.18rem;
+  }
+</style>
