@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Glossary"
+  description="Glossary for Gravity's Rainbow."
+>
+  <Nav slot="nav" />
+
+  <main class="site-page">
+    <header class="page-header">
+      <a class="page-back" href="/">&larr; The Zone</a>
+      <h1 class="page-title">Glossary</h1>
+    </header>
+
+    <section class="glossary-placeholder">
+      <p>Glossary entries will appear here.</p>
+    </section>
+  </main>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .glossary-placeholder {
+    padding: var(--space-xl) var(--page-gutter);
+    color: var(--color-text-secondary);
+    font-family: var(--font-prose);
+  }
+</style>
