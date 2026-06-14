@@ -2268,4 +2268,739 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     ],
     relatedTerms: ['orpheus-theatre', 'schwarzkommando', 'greta-erdmann', 'der-springer'],
   },
+  {
+    id: 'mrs-quoad-diseases',
+    displayLabel: 'Mrs Quoad\'s Antiquated Diseases',
+    railLabel: 'Mrs Quoad',
+    chronology: { episodeId: '1.15', sort: 115.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'suffering a series of antiquated diseases—greensickness, tetter, kibes, purples, imposthumes and almonds in the ears, most recently a touch of scurvy',
+      highlightedTerm: 'antiquated diseases',
+    },
+    apparatus: {
+      explanation:
+        'Greensickness is chlorosis, an iron-deficiency anaemia once thought to afflict adolescent girls; tetter names several skin eruptions; kibes are chilblains; purples are livid blotches beneath the skin; imposthumes are abscesses; \'almonds in the ears\' are swollen tonsils; scurvy produces bleeding under the skin. The colours run from green through red to purple, an archaic diseased spectrum that precedes Mrs Quoad\'s succession of lurid sweets. Most of the terms were obsolete by the mid-twentieth century, several deriving from medieval and early-modern medical vocabulary (imposthume from Latin *apostema*, almonds from the almond-shaped tonsils). The old nosology places Mrs Quoad outside modern time, giving her a catalogue of complaints that mid-twentieth-century clinicians had already renamed or discarded, so that Slothrop\'s visit reads like an appointment held in an earlier medical century.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V115.3-4; catalogues all seven diseases and their medical definitions.',
+      },
+    ],
+    relatedTerms: ['slothrop'],
+  },
+  {
+    id: 'old-woman-pig-stile',
+    displayLabel: 'Old Woman and the Pig (Cumulative Tale)',
+    railLabel: 'Pig / Stile',
+    chronology: { episodeId: '1.15', sort: 115.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'coercions and vast deals to be made on the order of the old woman\'s arrangement for getting her pig home over the stile',
+      highlightedTerm: 'old woman\'s arrangement',
+    },
+    apparatus: {
+      explanation:
+        'In the cumulative folktale collected in Clouston\'s *Popular Tales*, an old woman\'s pig balks at a stile, triggering a chain of ten intermediaries (dog, stick, fire, water, ox, butcher, rope, rat, cat, cow) before the pig finally leaps. Weisenburger traces the pattern to a Talmudic hymn and links the ten steps to the launch countdown, the Kabbalistic *Sephiroth*, and the ten sound-holes of Slothrop\'s Hohner harmonica. The bureaucratic chain of coercion Slothrop finds himself inside follows the same logic, since each link in the tale acts only when the next threatens it, and the offices, agents, and informants around him behave the same way once the pattern of pressures is unfolded.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V114.12-13; traces the cumulative tale and its numerological resonances.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'plechazunga'],
+  },
+  {
+    id: 'ein-volk',
+    displayLabel: 'ein Volk ein Führer',
+    chronology: { episodeId: '1.16', sort: 116 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'ein Volk ein Führer, it wants a machine of many separate parts',
+      highlightedTerm: 'ein Volk ein Führer',
+    },
+    apparatus: {
+      explanation:
+        '\'Ein Volk, ein Reich, ein Führer\' is the Nazi slogan joining one people, one state, and one leader; the novel invokes its shorter form. The war machine that Pynchon describes alongside it is distributed across companies, offices, and armies whose work continues after any individual leader disappears.',
+    },
+    externalRefs: [
+      {
+        label: 'Ein Volk, ein Reich, ein Führer',
+        url: 'https://en.wikipedia.org/wiki/Ein_Volk,_ein_Reich,_ein_F%C3%BChrer',
+        note: 'Nazi propaganda slogan promulgated from 1938.',
+      },
+    ],
+    relatedTerms: ['ig-farben'],
+  },
+  {
+    id: 'rundstedt-offensive',
+    displayLabel: 'Rundstedt offensive',
+    chronology: { episodeId: '1.16', sort: 116.05 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'The Rundstedt offensive has bogged down',
+      highlightedTerm: 'Rundstedt offensive',
+    },
+    apparatus: {
+      explanation:
+        'The Rundstedt offensive is the German counter-offensive of 16 December 1944 through late January 1945, mounted through the Ardennes forest against thinly held American lines; Allied troops came to call it the Battle of the Bulge. Field Marshal Gerd von Rundstedt, commander of German forces in the west, lent his name to the plan though Hitler and Model directed the operation. The rumour of resumed German advance runs through the Roger and Jessica Christmas scene, and the offensive delayed the Allied push towards the V-2 launch sites in Holland.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V131.11; identifies the Ardennes counter-offensive.',
+      },
+      {
+        label: 'Battle of the Bulge',
+        url: 'https://en.wikipedia.org/wiki/Battle_of_the_Bulge',
+        note: 'German Ardennes counter-offensive, 16 December 1944 to 25 January 1945.',
+      },
+    ],
+  },
+  {
+    id: 'in-dulci-jubilo',
+    displayLabel: 'In dulci jubilo',
+    chronology: { episodeId: '1.16', sort: 116.1 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'O Jesu parvule, nach dir ist mir so weh',
+      highlightedTerm: 'Jesu parvule',
+    },
+    apparatus: {
+      explanation:
+        'The macaronic carol \'In dulci jubilo\' mixes German and Latin and has traditionally been linked to a fourteenth-century vision of the Dominican mystic Heinrich Suso. Pynchon drew on a *Times* article on \'Macaronic Carols\' published on 22 December 1944, which discussed the form as demonstrating \'the unity of Christendom even at the very time of the Reformation\'. The carol was performed at London-area carolling on Saturday 23 December, the date of Roger and Jessica\'s church scene; the two languages stay interleaved in the song as war and Christmas occupy the same evening.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V129.8-16; identifies the *Times* source and Greene\'s *Early English Carols* as Pynchon\'s secondary reference.',
+      },
+      {
+        label: 'In dulci jubilo',
+        url: 'https://en.wikipedia.org/wiki/In_dulci_jubilo',
+        note: 'Fourteenth-century macaronic carol, attributed by tradition to Heinrich Suso.',
+      },
+    ],
+    relatedTerms: ['roger-mexico', 'jessica-swanlake'],
+  },
+  {
+    id: 'paradoxical-phase',
+    displayLabel: 'Paradoxical Phase',
+    chronology: { episodeId: '1.17', sort: 117.1 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'Paradoxical phase, when weak stimuli get strong responses',
+      highlightedTerm: 'Paradoxical phase',
+    },
+    apparatus: {
+      explanation:
+        'Pointsman diagnoses his own exhaustion with Pavlov\'s paradoxical phase, in which a weak stimulus produces a stronger response than a strong one as cortical capacity declines. Weisenburger notes that Pavlov used the same vocabulary to diagnose the progressive effects of his own senility, and Pointsman quotes the phase for himself just as he is designing the experiment that would isolate a reversal in Slothrop, so the diagnostic tool the laboratory was built to apply outward has begun operating inward on the researcher first.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V136.25; notes Pavlov\'s self-diagnosis habit.',
+      },
+      {
+        label: 'Transmarginal inhibition',
+        url: 'https://en.wikipedia.org/wiki/Transmarginal_inhibition',
+        note: 'Pavlov\'s account of ultraparadoxical and paradoxical phases in nervous system exhaustion.',
+      },
+    ],
+    relatedTerms: ['pointsman', 'pavlovian', 'transmarginal', 'conditioned-reflex'],
+  },
+  {
+    id: 'reichssieger-thanatz-alpdrucken',
+    displayLabel: 'Reichssieger von Thanatz Alpdrücken',
+    railLabel: 'Reichssieger',
+    chronology: { episodeId: '1.17', sort: 117.2 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'stalking Reichssieger von Thanatz Alpdrucken, that most elusive of Nazi hounds, champion Weimaraner for 1941, bearing studbook number 416832 tattooed inside his ear',
+      highlightedTerm: 'Reichssieger von Thanatz Alpdrucken',
+    },
+    apparatus: {
+      explanation:
+        'Pointsman dreams of a champion Weimaraner named Reichssieger von Thanatz Alpdrücken. *Alpdrücken* (nightmare, literally \'elf-pressing\') later titles von Göll\'s sadomasochistic film; *Thanatz*, from Greek *thanatos*, becomes the name of Miklos Thanatz. The breed name sounds Weimar, and the studbook tattoo inside the dog\'s ear runs on the same identifying procedure that the SS used to mark prisoners at Auschwitz, so that a champion pedigree and a camp inmate are catalogued by machinery that only distinguishes them by which register they end up in.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V142.32-33; traces the fragmentation of the dog\'s name into later characters and films.',
+      },
+    ],
+    relatedTerms: ['pointsman', 'alpdrucken', 'von-goll'],
+  },
+  {
+    id: 'eventyr',
+    displayLabel: 'Carroll Eventyr',
+    railLabel: 'Eventyr',
+    chronology: { episodeId: '1.18', sort: 118 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'There are problems with levels, and with Judgment, in the Tarot sense. This is part of the storm that sweeps now among them all, both sides of Death.',
+      highlightedTerm: 'Tarot',
+    },
+    apparatus: {
+      explanation:
+        'Carroll Eventyr works as a medium in the White Visitation\'s Psi Section. *Eventyr* means \'fairy tale\' or \'adventure\' in Danish and Norwegian. Through him, Peter Sachsa and the dead airman Roland Feldspath supply information that the intelligence staff treat alongside Pointsman\'s laboratory evidence.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates Eventyr\'s role in the Psi Section.',
+      },
+    ],
+    relatedTerms: ['peter-sachsa', 'pavlovian'],
+  },
+  {
+    id: 'lubeck-raid',
+    displayLabel: 'Lübeck raid (Palm Sunday, 1942)',
+    railLabel: 'Lübeck',
+    chronology: { episodeId: '1.18', sort: 118.1 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'Basher St. Blaise\'s angel, miles beyond designating, rising over Lübeck that Palm Sunday',
+      highlightedTerm: 'Lübeck',
+    },
+    apparatus: {
+      explanation:
+        'On 28 March 1942, Palm Sunday, the RAF used incendiaries against Lübeck, a lightly defended Baltic port whose medieval timber centre burned readily; the raid was among the earliest area-bombing operations of the war. Basher St Blaise and his wingman see an angel above the fire. The last V-2 struck England on 27 March 1945, almost three years later; Hitler\'s response to Lübeck had begun the \'Baedeker raids\' on historic English cities while the *Vergeltungswaffen* were still under development. Leni Pökler\'s childhood home, the novel notes elsewhere, stood beside the Trave in Lübeck.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V146.27; notes the Palm Sunday date and the three-year symmetry with the last V-2.',
+      },
+      {
+        label: 'Bombing of Lübeck in World War II',
+        url: 'https://en.wikipedia.org/wiki/Bombing_of_L%C3%BCbeck_in_World_War_II',
+        note: 'RAF raid of 28 March 1942 that destroyed much of the medieval city centre.',
+      },
+    ],
+    relatedTerms: ['eventyr', 'peter-sachsa'],
+  },
+  {
+    id: 'breaking-of-the-vessels',
+    displayLabel: 'Breaking of the Vessels',
+    railLabel: 'Vessels',
+    chronology: { episodeId: '1.18', sort: 118.2 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'Fallen sparks. Fragments of vessels broken at the Creation.',
+      highlightedTerm: 'vessels broken',
+    },
+    apparatus: {
+      explanation:
+        'In the Lurianic Kabbalah of Isaac Luria (1534-72), vessels formed to receive divine light shatter under its force, scattering sparks through creation; the *qlippoth* are the husks that entrap those sparks. Gershom Scholem, in *On the Kabbalah and Its Symbolism* (1960), describes the result: \'Nothing remains in its proper place. Everything is somewhere else.\' *Gravity\'s Rainbow* briefly promises \'a gathering back to home\', then withdraws the promise with \'there is no such message, no such home\'. The Kabbalistic frame gives the novel a vocabulary for scattering and a language for the *tikkun* that might reassemble the pieces, and the question of whether the sparks scattered by this war can still be gathered is one the novel refuses to close.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V148.37-38; cites Scholem, *On the Kabbalah*, pp. 112-13.',
+      },
+      {
+        label: 'Gershom Scholem',
+        url: 'https://en.wikipedia.org/wiki/Gershom_Scholem',
+        note: 'Scholar of Jewish mysticism (1897-1982) whose works on Kabbalah are Pynchon\'s primary source.',
+      },
+    ],
+    relatedTerms: ['qlippoth', 'preterite'],
+  },
+  {
+    id: 'norden-device',
+    displayLabel: 'Norden bombsight',
+    railLabel: 'Norden',
+    chronology: { episodeId: '1.18', sort: 118.3 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'the fussy Norden device',
+      highlightedTerm: 'Norden',
+    },
+    apparatus: {
+      explanation:
+        'Carl L. Norden developed his stabilised optical bombsight for the United States Navy in the interwar period; variants were later used widely in American heavy bombers and coupled to an autopilot during the bombing run. Publicity claimed pickle-barrel accuracy from high altitude, though cloud, wind, mechanical error, and anti-aircraft fire made combat bombing far less precise. Pynchon sets the Norden alongside the RAF\'s incendiary raid on Lübeck, so that the American faith in optical precision and the British commitment to burning a medieval city centre sit in the same episode as two answers, drawn from the same industrial tradition, to the question of how to deliver a bomb.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V151.23; notes Norden\'s \'pickle barrel\' claim and the device\'s fragility.',
+      },
+      {
+        label: 'Norden bombsight',
+        url: 'https://en.wikipedia.org/wiki/Norden_bombsight',
+        note: 'American precision bombsight used in WWII strategic bombing.',
+      },
+    ],
+    relatedTerms: ['lubeck-raid'],
+  },
+  {
+    id: 'die-frau-im-mond',
+    displayLabel: 'Die Frau im Mond',
+    chronology: { episodeId: '1.19', sort: 119 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'They saw Die Frau im Mond. Franz was amused, condescending. He picked at technical points.',
+      highlightedTerm: 'Die Frau im Mond',
+    },
+    apparatus: {
+      explanation:
+        'Hermann Oberth advised Fritz Lang on the rockets in *Die Frau im Mond* (1929), and the studio publicised plans for a real launch at the premiere. Lang used a descending numerical countdown to make the launch legible on screen, and German rocketeers later adopted the convention; claims that the Gestapo confiscated prints because the film gave away rocket secrets are repeated in film histories but remain difficult to verify. Pökler mocks the film\'s technical errors, then leaves the cinema wanting to build rockets, and takes that wish into the *Verein für Raumschiffahrt* and, eventually, into Peenemünde.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V159.33; cites Kracauer, *From Caligari to Hitler*, p. 151.',
+      },
+      {
+        label: 'Frau im Mond',
+        url: 'https://en.wikipedia.org/wiki/Frau_im_Mond',
+        note: 'Fritz Lang\'s 1929 silent film; Oberth advised on the rocket design.',
+      },
+    ],
+    relatedTerms: ['pokler', 'persistence-of-vision', 'orpheus-theatre', 'nibelungen-fritz-lang'],
+  },
+  {
+    id: 'coal-tar-theology',
+    displayLabel: 'Coal-tar theology',
+    chronology: { episodeId: '1.19', sort: 119.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'Earth\'s excrement, purged out for the ennoblement of shining steel. Passed over. We passed over the coal-tars. A thousand different molecules waited in the preterite dung.',
+      highlightedTerm: 'coal-tars',
+    },
+    apparatus: {
+      explanation:
+        'Through Peter Sachsa, Walther Rathenau\'s ghost calls coal tar \'Earth\'s excrement\'. Nineteenth-century chemists had once discarded it as a nuisance by-product of gasworks; aniline dyes, medicines, explosives, and plastics later made it the raw material of the German chemical industry that IG Farben consolidated. The passage calls this waste \'preterite\' and shows the cartel turning what was passed over into profit and weapons.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Rathenau séance and its chemistry references.',
+      },
+      {
+        label: 'Coal tar',
+        url: 'https://en.wikipedia.org/wiki/Coal_tar',
+        note: 'By-product of gasworks that became the feedstock for aniline dyes, medicines, and plastics.',
+      },
+      {
+        label: 'IG Farben',
+        url: 'https://en.wikipedia.org/wiki/IG_Farben',
+        note: 'German chemical cartel (1925-1952) built on coal-tar chemistry.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'preterite', 'benzene-kekule'],
+  },
+  {
+    id: 'rapallo-treaty',
+    displayLabel: 'Treaty of Rapallo',
+    railLabel: 'Rapallo',
+    chronology: { episodeId: '1.19', sort: 119.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'von Maltzen at the Rapallo Treaty',
+      highlightedTerm: 'Rapallo Treaty',
+    },
+    apparatus: {
+      explanation:
+        'Germany and Soviet Russia restored diplomatic relations at Rapallo in April 1922 and renounced outstanding financial and territorial claims against each other; trade and secret military cooperation followed. Baron Ago von Maltzan, head of the German Foreign Office\'s Eastern Department, helped to negotiate the treaty under Foreign Minister Walther Rathenau, and members of the far-right Organisation Consul assassinated Rathenau two months later, on 24 June 1922. Rathenau\'s ghost recalls that opening while describing the movement of German industrial capital beyond the political divisions left by the First World War.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V166.16-17; details von Maltzan\'s role and the trade implications.',
+      },
+      {
+        label: 'Treaty of Rapallo (1922)',
+        url: 'https://en.wikipedia.org/wiki/Treaty_of_Rapallo_(1922)',
+        note: 'German-Soviet treaty normalising relations after the First World War.',
+      },
+    ],
+    relatedTerms: ['rathenau', 'ig-farben', 'dawes-plan'],
+  },
+  {
+    id: 'perkin-chemistry-succession',
+    displayLabel: 'Perkin and the chemistry succession',
+    railLabel: 'Perkin',
+    chronology: { episodeId: '1.19', sort: 119.11 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'Liebig to August Wilhelm von Hofmann, to Herbert Canister to Laszlo Jamf, a direct chain, cause-and-effect',
+      highlightedTerm: 'direct chain',
+    },
+    apparatus: {
+      explanation:
+        'Pökler imagines a \'direct chain, cause-and-effect\' from Justus von Liebig through August Wilhelm von Hofmann, William Henry Perkin, Herbert Ganister, and Laszlo Jamf. Perkin discovered the aniline dye mauveine in 1856 while attempting to synthesise quinine, patented it, and built a dye works at Greenford Green; Queen Victoria wore mauve at the 1862 International Exhibition in South Kensington, helping to establish the fashion. German firms later developed the synthetic dye and pharmaceutical industries that IG Farben would consolidate, and Pökler\'s imagined succession runs through those laboratories to Jamf\'s plastics and the materials of the rocket that will carry his own work.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V166.1-9; cites Sasuly, IG Farben, and Haynes, This Chemical Age.',
+      },
+      {
+        label: 'William Henry Perkin',
+        url: 'https://en.wikipedia.org/wiki/William_Henry_Perkin',
+        note: 'English chemist (1838-1907) who synthesised mauveine, the first aniline dye.',
+      },
+    ],
+    relatedTerms: ['coal-tar-theology', 'ig-farben', 'jamf', 'benzene-kekule'],
+  },
+  {
+    id: 'vfr',
+    displayLabel: 'VfR (Verein für Raumschiffahrt)',
+    railLabel: 'VfR',
+    chronology: { episodeId: '1.19', sort: 119.2 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'What kind of Wandervögel idiocy is it to run around all night in a marsh calling yourselves the Society for Space Navigation?',
+      highlightedTerm: 'Society for Space Navigation',
+    },
+    apparatus: {
+      explanation:
+        'The *Verein für Raumschiffahrt* (Society for Space Travel) brought amateur rocketeers together in Berlin from 1927, tested liquid-fuel motors on the Raketenflugplatz, and drew Wernher von Braun in as a student before the army absorbed its most useful members. Pökler enters Pynchon\'s fictional version after seeing *Die Frau im Mond*. Leni calls it \'Wandervögel idiocy\' because its engineers discuss the stars while military money is already deciding what their rockets will become.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the VfR passages and their historical rocketeers.',
+      },
+      {
+        label: 'Verein für Raumschiffahrt',
+        url: 'https://en.wikipedia.org/wiki/Verein_f%C3%BCr_Raumschiffahrt',
+        note: 'German amateur rocket society (1927-1934).',
+      },
+    ],
+    relatedTerms: ['pokler', 'wandervogel', 'peenemunde', 'von-braun'],
+  },
+  {
+    id: 'pokler',
+    displayLabel: 'Franz Pökler',
+    railLabel: 'F. Pökler',
+    chronology: { episodeId: '1.19', sort: 119.3 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'Pökler was an extension of the Rocket, long before it was ever built.',
+      highlightedTerm: 'Pökler',
+    },
+    apparatus: {
+      explanation:
+        'Pökler enters rocketry through *Die Frau im Mond*, works under military control at Peenemünde, and continues while the state uses uncertain annual visits from Ilse to secure his obedience. He keeps treating each accommodation as temporary. At Dora, the prisoners who built the rockets show him what his technical work has required from bodies kept outside the laboratory.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Traces Pökler\'s arc across the novel and its historical sources.',
+      },
+    ],
+    relatedTerms: ['mittelwerk-dora', 'persistence-of-vision', 'gift-of-daedalus', 'zwolfkinder'],
+  },
+  {
+    id: 'rathenau',
+    displayLabel: 'Walther Rathenau (ghost)',
+    railLabel: 'Rathenau',
+    chronology: { episodeId: '1.19', sort: 119.4 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'Earth\'s excrement, purged out for the ennoblement of shining steel.',
+      highlightedTerm: 'Earth\'s excrement',
+    },
+    apparatus: {
+      explanation:
+        'Walther Rathenau (1867-1922), chairman of AEG and foreign minister of the Weimar Republic, speaks through Peter Sachsa at Leni\'s séance. Members of the far-right Organisation Consul assassinated Rathenau on 24 June 1922, two months after he signed the Treaty of Rapallo, and his double career put the corporate and political histories inside one biography; his ghost speaks from that combined position when it describes coal tar as \'Earth\'s excrement\' and turns the chemistry of dyes and explosives into a theology that runs through the state and the cartels.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Rathenau séance and provides the historical context for the assassination.',
+      },
+      {
+        label: 'Walther Rathenau',
+        url: 'https://en.wikipedia.org/wiki/Walther_Rathenau',
+        note: 'German-Jewish industrialist (1867-1922), AEG chairman, Weimar Foreign Minister.',
+      },
+    ],
+    relatedTerms: ['coal-tar-theology', 'ig-farben'],
+  },
+  {
+    id: 'peter-sachsa',
+    displayLabel: 'Peter Sachsa',
+    railLabel: 'Sachsa',
+    chronology: { episodeId: '1.19', sort: 119.5 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'Messages tonight, borne on the lights of Berlin.',
+      highlightedTerm: 'Berlin',
+    },
+    apparatus: {
+      explanation:
+        'Leni attends Peter Sachsa\'s séances in Weimar Berlin, where Walther Rathenau speaks through him. Eventyr later channels the dead Sachsa at the White Visitation, carrying Rathenau\'s voice from Leni\'s past into wartime intelligence.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Discusses the Sachsa/Eventyr channel and its ties to the séance material.',
+      },
+    ],
+    relatedTerms: ['eventyr', 'rathenau', 'coal-tar-theology'],
+  },
+  {
+    id: 'rosa-luxemburg',
+    displayLabel: 'Rosa Luxemburg',
+    railLabel: 'Rosa',
+    chronology: { episodeId: '1.19', sort: 119.6 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'The Revolution died, though Leni was only a young girl and not political, with Rosa Luxemburg.',
+      highlightedTerm: 'Rosa Luxemburg',
+    },
+    apparatus: {
+      explanation:
+        'Rosa Luxemburg (1871-1919), the Marxist writer and revolutionary who co-founded the Communist Party of Germany, opposed the war and German social democracy\'s support for it. Freikorps soldiers seized Luxemburg and Karl Liebknecht on 15 January 1919, beat and shot her, then threw her body into Berlin\'s Landwehr Canal, from which it was recovered on 31 May 1919; Leni dates the death of the German Revolution to that January and carries the loss into her arguments with Franz.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V155.7-8; details the murder and its political context.',
+      },
+      {
+        label: 'Rosa Luxemburg',
+        url: 'https://en.wikipedia.org/wiki/Rosa_Luxemburg',
+        note: 'Polish-German revolutionary (1871-1919), co-founder of the KPD.',
+      },
+    ],
+    relatedTerms: ['pokler', 'army-of-lovers'],
+  },
+  {
+    id: 'army-of-lovers',
+    displayLabel: 'An Army of Lovers Can Be Beaten',
+    railLabel: 'Army of Lovers',
+    chronology: { episodeId: '1.19', sort: 119.7 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'AN ARMY OF LOVERS CAN BE BEATEN.',
+      highlightedTerm: 'ARMY OF LOVERS',
+    },
+    apparatus: {
+      explanation:
+        'Graffiti in Berlin\'s Red districts reverses Phaedrus\'s proposal in Plato\'s *Symposium* (178d-179a) that an army made of lovers would fight bravely under one another\'s eyes. The Sacred Band of Thebes, an elite force conventionally described as 150 male couples, was destroyed at Chaeronea in 338 BCE. Leni reads the defeated version on walls that carry revolutionary and sexual politics together.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V155.12; identifies the reversal of Plato\'s Symposium.',
+      },
+      {
+        label: 'Sacred Band of Thebes',
+        url: 'https://en.wikipedia.org/wiki/Sacred_Band_of_Thebes',
+        note: 'Elite Theban unit of 150 male couples; destroyed at Chaeronea (338 BCE).',
+      },
+    ],
+    relatedTerms: ['rosa-luxemburg', 'pokler'],
+  },
+  {
+    id: 'nibelungen-fritz-lang',
+    displayLabel: 'Die Nibelungen (Fritz Lang)',
+    railLabel: 'Nibelungen',
+    chronology: { episodeId: '1.19', sort: 119.8 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'He fell asleep during Nibelungen. He missed Attila the Hun roaring in from the East.',
+      highlightedTerm: 'Nibelungen',
+    },
+    apparatus: {
+      explanation:
+        'Fritz Lang\'s 1924 silent epic comprises *Siegfried* and *Kriemhild\'s Revenge*. Franz Pökler sleeps through the second film and later remembers Attila \'sweeping in from the East\', an event that he did not see; Siegfried Kracauer describes the destruction in *Kriemhild\'s Revenge* as an ordered chain of causes and effects (*From Caligari to Hitler*, pp. 93-94), which returns in the couple\'s later argument about the *Götterdämmerung* mentality of the rocket engineers.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V159.19; cites Kracauer, *From Caligari to Hitler*, pp. 93-94.',
+      },
+      {
+        label: 'Die Nibelungen (Fritz Lang)',
+        url: 'https://en.wikipedia.org/wiki/Die_Nibelungen',
+        note: 'Two-part silent epic released in 1924.',
+      },
+    ],
+    relatedTerms: ['die-frau-im-mond', 'gotterdammerung', 'pokler'],
+  },
+  {
+    id: 'gotterdammerung',
+    displayLabel: 'Götterdämmerung mentality',
+    railLabel: 'Götterdämmerung',
+    chronology: { episodeId: '1.19', sort: 119.9 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'The Götterdämmerung mentality',
+      highlightedTerm: 'Götterdämmerung',
+    },
+    apparatus: {
+      explanation:
+        'Richard Wagner\'s *Götterdämmerung*, the fourth drama of the *Ring* cycle, ends with Valhalla burning and the old order destroyed. Leni uses the term against Franz and his colleagues to accuse them of a fascination with catastrophic endings; she reads the rocket programme, in that argument, as an engineered enactment of the same mythic collapse.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V163.37-38; identifies the Wagner reference.',
+      },
+    ],
+    relatedTerms: ['nibelungen-fritz-lang', 'pisces', 'blicero'],
+  },
+  {
+    id: 'cortex-bark',
+    displayLabel: 'Cortex / Bark',
+    chronology: { episodeId: '1.20', sort: 120.1 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'the Latin cortex translates into English as "bark," not to mention the well-known and humorous relation between dogs and trees',
+      highlightedTerm: 'cortex',
+    },
+    apparatus: {
+      explanation:
+        'Latin *cortex* means tree bark and, in anatomy, the brain\'s outer layer; with the dogs\' bark inside a Pavlovian laboratory, Pointsman\'s joke folds three senses into one word and quietly binds the conditioning apparatus to the etymology it borrows from.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Notes the Pavlovian and etymological pun.',
+      },
+    ],
+    relatedTerms: ['pointsman', 'pavlovian', 'paradoxical-phase'],
+  },
+  {
+    id: 'golliwog',
+    displayLabel: 'Golliwog',
+    chronology: { episodeId: '1.21', sort: 121.1 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'Claire got a golliwog.',
+      highlightedTerm: 'golliwog',
+    },
+    apparatus: {
+      explanation:
+        'Florence Kate Upton introduced the blackface caricature in *The Adventures of Two Dutch Dolls and a Golliwogg* (1895), drawing on a minstrel doll from her childhood. Claire receives one among the Boxing Day presents; the colonial image has become an ordinary children\'s toy beside the *Hansel and Gretel* pantomime.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V174.19; cites MacGregor, \'The Golliwog\', and the Upton source.',
+      },
+      {
+        label: 'Golliwog',
+        url: 'https://en.wikipedia.org/wiki/Golliwog',
+        note: 'Blackface doll character created by Florence Kate Upton in 1895.',
+      },
+    ],
+    relatedTerms: ['maerchen', 'herero-genocide'],
+  },
+  {
+    id: 'qlippoth',
+    displayLabel: 'Qlippoth, Shells of the Dead',
+    railLabel: 'Qlippoth',
+    chronology: { episodeId: '1.21', sort: 121.2 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'the demons known to the main sequence of Western magic as the Qlippoth, Shells of the Dead',
+      highlightedTerm: 'Qlippoth',
+    },
+    apparatus: {
+      explanation:
+        '*Qelippot* means \'shells\' or \'husks\'. In Lurianic Kabbalah, shards from the broken vessels entrap divine sparks in the material world; human observance participates in *tikkun*, their release and repair. Later occult systems organise the qlippoth as demonic powers, and Pynchon calls them \'Shells of the Dead\', bringing that language into the séance material.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V176.14-15 and cross-references V148.37-38n on the breaking of the vessels.',
+      },
+      {
+        label: 'Qliphoth',
+        url: 'https://en.wikipedia.org/wiki/Qliphoth',
+        note: 'Kabbalistic shells of impurity containing fallen divine sparks.',
+      },
+    ],
+    relatedTerms: ['breaking-of-the-vessels', 'preterite'],
+  },
+  {
+    id: 'quisling-molecules',
+    displayLabel: 'Quisling molecules',
+    railLabel: 'Quisling',
+    chronology: { episodeId: '1.21', sort: 121.3 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'Quisling molecules have shifted in latticelike ways to freeze him',
+      highlightedTerm: 'Quisling molecules',
+    },
+    apparatus: {
+      explanation:
+        'Vidkun Quisling (1887-1945) headed Norway\'s collaborationist government under German occupation, and his surname became a term for a traitor. Pynchon carries that political sense into chemistry: the \'Quisling molecules\' freeze the body from within by shifting inside its own lattice, so the collaborationist figure names a betrayal that operates at the scale of matter itself.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V176.38-39; identifies Quisling and the political personification of chemistry.',
+      },
+      {
+        label: 'Vidkun Quisling',
+        url: 'https://en.wikipedia.org/wiki/Vidkun_Quisling',
+        note: 'Norwegian collaborator (1887-1945) whose name became synonymous with treason.',
+      },
+    ],
+    relatedTerms: ['imipolex-g', 'coal-tar-theology'],
+  },
+  // part 2 episodes
 ];
