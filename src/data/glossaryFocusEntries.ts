@@ -3003,4 +3003,419 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     relatedTerms: ['imipolex-g', 'coal-tar-theology'],
   },
   // part 2 episodes
+  {
+    id: 'puritan-paranoia',
+    displayLabel: 'Puritan reflex of paranoia',
+    chronology: { episodeId: '2.01', sort: 201 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'a Puritan reflex of seeking other orders behind the visible, also known as paranoia',
+      highlightedTerm: 'Puritan reflex',
+    },
+    apparatus: {
+      explanation:
+        'Puritan election taught Slothrop\'s ancestors to read visible events for hidden signs of grace or damnation, and to sort every accident into the two categories of the saved and the passed-over. In Slothrop the theology has thinned to a habit of interpretation, so he continues to read rocket strikes, corporate arrangements, and stray encounters as coded messages from an unseen order.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Discusses the Puritan lineage as a source of Slothrop\'s paranoia.',
+      },
+    ],
+    relatedTerms: ['preterite', 'slothrop', 'poisson-distribution'],
+  },
+  {
+    id: 'casino-hermann-goering',
+    displayLabel: 'Casino Hermann Goering',
+    railLabel: 'Casino H.G.',
+    chronology: { episodeId: '2.01', sort: 201.1 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'the Casino Hermann Goering flat white and the palms in black sawtooth, hardly moving',
+      highlightedTerm: 'Casino Hermann Goering',
+    },
+    apparatus: {
+      explanation:
+        'A Messerschmitt squadron spells Hermann Goering\'s name in seashells on the roof of the fictional casino. The sign survives liberation: Slothrop gambles beneath it while Pointsman arranges the next stage of his experiment.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V181; identifies the casino as setting for Part 2\'s chance/causality tension.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'katje'],
+  },
+  {
+    id: 'octopus-grigori',
+    displayLabel: 'Octopus Grigori',
+    railLabel: 'Grigori',
+    chronology: { episodeId: '2.01', sort: 201.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Holy shit it\'s moving — an octopus? Yes it is the biggest fucking octopus Slothrop has ever seen outside of the movies',
+      highlightedTerm: 'octopus',
+    },
+    apparatus: {
+      explanation:
+        'Dr Porkyevitch conditions Grigori so that handlers can stage Katje\'s rescue on the Casino beach, giving Slothrop a plausible sequence of chance and heroism to inhabit. Waxwing later tells him, \'This really happened tonight. But that octopus didn\'t\', and the sentence turns the conditioned reflex from Pavlov\'s laboratory into a piece of operational theatre.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V186-188; identifies Porkyevitch and the staged rescue.',
+      },
+    ],
+    relatedTerms: ['katje', 'pointsman', 'pavlovian', 'blodgett-waxwing'],
+  },
+  {
+    id: 'arbella-winthrop',
+    displayLabel: 'The Arbella / Governor Winthrop',
+    railLabel: 'Arbella',
+    chronology: { episodeId: '2.02', sort: 202.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'back to 1630 when Governor Winthrop came over to America on the Arbella, flagship of a great Puritan flotilla that year',
+      highlightedTerm: 'Arbella',
+    },
+    apparatus: {
+      explanation:
+        'John Winthrop (1588-1649), governor of the Massachusetts Bay Colony, crossed the Atlantic aboard the *Arbella* in 1630 at the head of a fleet of roughly 700 colonists in eleven ships; *A Model of Christian Charity* is traditionally associated with the crossing, though its delivery aboard ship is disputed. William Pynchon travelled with the same fleet, founded Springfield, Massachusetts, in 1636, and had his *The Meritorious Price of Our Redemption* burned by Boston authorities in 1650. The novel adds a first American Slothrop as \'mess cook or something\', then runs the ships backwards across the Atlantic and carries Slothrop\'s genealogy into the Puritan settlement.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V204.1-4; identifies the Winthrop/Pynchon genealogical connection and the hysteron proteron.',
+      },
+      {
+        label: 'John Winthrop',
+        url: 'https://en.wikipedia.org/wiki/John_Winthrop',
+        note: 'First governor of Massachusetts Bay Colony (1588-1649).',
+      },
+    ],
+    relatedTerms: ['william-slothrop', 'preterite', 'puritan-paranoia'],
+  },
+  {
+    id: 'bukharin-conspiracy',
+    displayLabel: 'The Bukharin Conspiracy',
+    railLabel: 'Bukharin',
+    chronology: { episodeId: '2.02', sort: 202.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the Bukharin conspiracy',
+      highlightedTerm: 'Bukharin conspiracy',
+    },
+    apparatus: {
+      explanation:
+        'Nikolai Bukharin (1888-1938), Bolshevik theorist and author of *Imperialism and World Economy*, confessed after threats against his family during a show trial whose conspiracy charges were fabricated, and the state executed him on 15 March 1938. The New Turkic Alphabet, a Soviet programme that replaced Arabic scripts with a Latin alphabet for many Turkic languages, first convened its All-Union Central Committee in Baku in 1927, and Tchitcherine\'s brief in Central Asia is embedded in that alphabetic reform. Calling his orders part of \'the Bukharin conspiracy\' rewrites that mundane linguistic work in the paranoid vocabulary of the Great Purge.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V189.25 (Bukharin) and V339.1 (NTA); cites Winner\'s 1952 essay on alphabetic reform.',
+      },
+      {
+        label: 'Nikolai Bukharin',
+        url: 'https://en.wikipedia.org/wiki/Nikolai_Bukharin',
+        note: 'Bolshevik theorist; executed in 1938 show trial.',
+      },
+    ],
+    relatedTerms: ['tchitcherine'],
+  },
+  {
+    id: 'parabola',
+    displayLabel: 'Parabola',
+    chronology: { episodeId: '2.03', sort: 203 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'It is the parabola. They must have guessed, once or twice.',
+      highlightedTerm: 'parabola',
+    },
+    apparatus: {
+      explanation:
+        'After *Brennschluss*, an idealised projectile under constant gravity and without air resistance follows a parabola. Pynchon finds the same curve in the rocket\'s rise and impact, the Nordhausen tunnel mouth, and Slothrop\'s movement through the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Traces the parabola as structural figure across the novel.',
+      },
+      {
+        label: 'Parabola',
+        url: 'https://en.wikipedia.org/wiki/Parabola',
+        note: 'Plane curve traced by a projectile under constant gravity, ignoring air resistance.',
+      },
+      {
+        label: 'Projectile motion',
+        url: 'https://en.wikipedia.org/wiki/Projectile_motion',
+        note: 'The idealised motion whose trajectory is a parabola.',
+      },
+    ],
+    relatedTerms: ['v2-a4', 'delta-t', 'brennschluss'],
+  },
+  {
+    id: 'sol-sigil',
+    displayLabel: 'Sôl / Sigil Rune',
+    railLabel: 'Sôl',
+    chronology: { episodeId: '2.03', sort: 203.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'The Old Norse rune for \'S,\' sol, which means \'sun.\' The Old High German name for it is sigil.',
+      highlightedTerm: 'sigil',
+    },
+    apparatus: {
+      explanation:
+        'Dodson-Truck moves from a solar circle and dot, through the Norse *sól* rune, to the SS double-sig insignia that Walter Heck designed in 1929 from Guido von List\'s Armanen *Sig* rune. He reads the changing mark beside the fragmentation of European tribal forms between 350 and 600 CE; historians of runic writing describe the *Sowilō* rune and its later Armanen adaptation in more cautious terms, so the passage belongs to Dodson-Truck\'s characterisation as much as to any settled philology.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V206.24-25; cites Grimm\'s *Teutonic Mythology* 620.',
+      },
+      {
+        label: 'Sowilō',
+        url: 'https://en.wikipedia.org/wiki/Sowil%C5%8D',
+        note: 'Elder Futhark rune for \'s\', later Old Norse *sól* and Old High German *sigil*.',
+      },
+      {
+        label: 'Schutzstaffel insignia (SS-Runen)',
+        url: 'https://en.wikipedia.org/wiki/Schutzstaffel',
+        note: 'Walter Heck\'s 1929 double-sig insignia drew on Guido von List\'s Armanen \'Sig\' rune.',
+      },
+    ],
+    relatedTerms: ['blicero', 'wuotan-wutende-heer'],
+  },
+  {
+    id: 'translatio-studii',
+    displayLabel: 'Translatio Studii / Westward Empire',
+    railLabel: 'Westward Empire',
+    chronology: { episodeId: '2.03', sort: 203.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'of course Empire took its way westward, what other way was there but into those virgin sunsets to penetrate and to foul?',
+      highlightedTerm: 'Empire took its way westward',
+    },
+    apparatus: {
+      explanation:
+        'The medieval *translatio studii et imperii* moves learning and empire west from Greece and Rome into Western Europe, commonly running authority from Troy or Greece through Rome and towards a later western power. Pynchon echoes George Berkeley\'s 1752 line, \'Westward the course of empire takes its way\' (later supplying the title for Emanuel Leutze\'s 1861 mural in the US Capitol), and replaces the progressive frame with penetration and fouling.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V214.35; identifies Berkeley\'s verse and the translatio studii tradition.',
+      },
+      {
+        label: 'Translatio studii',
+        url: 'https://en.wikipedia.org/wiki/Translatio_studii',
+        note: 'Medieval historiographical figure for the westward transfer of learning.',
+      },
+      {
+        label: 'Translatio imperii',
+        url: 'https://en.wikipedia.org/wiki/Translatio_imperii',
+        note: 'Companion figure for the westward transfer of political authority.',
+      },
+    ],
+    relatedTerms: ['arbella-winthrop', 'puritan-paranoia'],
+  },
+  {
+    id: 'plasticman',
+    displayLabel: 'Plasticman',
+    chronology: { episodeId: '2.03', sort: 203.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Four-color Plasticman goes oozing out of a keyhole, around a corner and up through piping',
+      highlightedTerm: 'Plasticman',
+    },
+    apparatus: {
+      explanation:
+        'Jack Cole introduced Plastic Man in 1941, giving the comic-book hero a rubber body that could flow through a keyhole. Slothrop reads the comic as Sir Stephen Dodson-Truck arrives to teach him about rockets; the cartoon body gives Jamf\'s molecular plasticity an immediate four-colour form.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V206.37; anticipates the Imipolex G theme.',
+      },
+      {
+        label: 'Plastic Man',
+        url: 'https://en.wikipedia.org/wiki/Plastic_Man',
+        note: 'Comic-book hero created by Jack Cole for Quality Comics in 1941.',
+      },
+    ],
+    relatedTerms: ['imipolex-g', 'sol-sigil'],
+  },
+  {
+    id: 'pfau-zwei',
+    displayLabel: 'Pfau Zwei (Peacock Two)',
+    railLabel: 'Pfau Zwei',
+    chronology: { episodeId: '2.03', sort: 203.4 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'there were Germans, even SS troops, who called the rocket Der Pfau. \'Pfau Zwei.\' Ascending, programmed in a ritual of love . . . at Brennschluss it is done',
+      highlightedTerm: 'Pfau Zwei',
+    },
+    apparatus: {
+      explanation:
+        'German *Pfau* means \'peacock\'; *Pfau zwei* also plays by sound on *Vau zwei*, V-2. Katje remembers the rainbow-coloured exhaust as a peacock\'s open tail and calls the launch a \'ritual of love\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V223.19; explains the Pfau/Fau/V interlingual pun.',
+      },
+    ],
+    relatedTerms: ['v2-a4', 'brennschluss', 'katje'],
+  },
+  {
+    id: 'rain-witch',
+    displayLabel: 'Rain-witch (Wetterkatze)',
+    railLabel: 'Rain-witch',
+    chronology: { episodeId: '2.03', sort: 203.5 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Her face is as pale as her hair. A rain-witch. Her hat brim makes a chic creamy green halo around her face.',
+      highlightedTerm: 'rain-witch',
+    },
+    apparatus: {
+      explanation:
+        'Jacob Grimm records *Wetterhexe* and *Wetterkatze*, witches or cats thought to govern storms. Katje\'s pale face and green hat become a \'rain-witch\' and halo; the name also anticipates Pudding\'s invocation of Domina Nocturna.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V221.13; cites Grimm on the *wetterhexe*/*wetterkatze* tradition.',
+      },
+    ],
+    relatedTerms: ['katje', 'domina-nocturna'],
+  },
+  {
+    id: 'gorodki',
+    displayLabel: 'Gorodki',
+    chronology: { episodeId: '2.04', sort: 204.1 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'an old gorodki stick',
+      highlightedTerm: 'gorodki',
+    },
+    apparatus: {
+      explanation:
+        '*Gorodki* is a Russian throwing game in which players use a bat, the *bita*, to knock down figures assembled from wooden pins; formal rules were published in 1923, though versions of the game are much older. Ivan Pavlov played it into old age and was his institute\'s champion, as Horsley Gantt records in his introduction to *Lectures on Conditioned Reflexes*, and the *bita* on Pointsman\'s desk carries that domestic detail of Pavlov\'s recreation into the laboratory where his English successors work.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V226.33; identifies Gantt\'s description of Pavlov\'s gorodki prowess and the bita/rocket parallel.',
+      },
+      {
+        label: 'Gorodki',
+        url: 'https://en.wikipedia.org/wiki/Gorodki',
+        note: 'Russian folk sport of throwing bats at wooden pin figures.',
+      },
+    ],
+    relatedTerms: ['pavlovian', 'poisson-distribution', 'pointsman'],
+  },
+  {
+    id: 'merkabah',
+    displayLabel: 'Merkabah / Kabbalistic Ascent',
+    railLabel: 'Merkabah',
+    chronology: { episodeId: '2.04', sort: 204.2 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'I am blessed Metatron. I am keeper of the Secret. I am guardian of the Throne.',
+      highlightedTerm: 'Metatron',
+    },
+    apparatus: {
+      explanation:
+        'The *Merkabah*, or divine chariot, gives its name to an early Jewish mystical tradition of ascent through celestial palaces towards God\'s throne, beginning from Ezekiel\'s vision; *Hekhalot* texts describe ascents through seven palaces using names, seals, and passwords, with Metatron placed near the throne. Weisenburger reads Pudding\'s passage through staged antechambers as an inversion of that scheme, so that his movement towards Katje and the scripted humiliation runs downward through the same architecture the mystics climbed.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V231.24-25; details the Scholem source and the satirical inversion.',
+      },
+      {
+        label: 'Merkabah mysticism',
+        url: 'https://en.wikipedia.org/wiki/Merkabah_mysticism',
+        note: 'Jewish esoteric tradition of visionary ascent to the divine throne.',
+      },
+    ],
+    relatedTerms: ['breaking-of-the-vessels', 'qlippoth', 'pointsman'],
+  },
+  {
+    id: 'domina-nocturna',
+    displayLabel: 'Domina Nocturna',
+    chronology: { episodeId: '2.04', sort: 204.3 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'Domina Nocturna . . . shining mother and last love . . . your servant Ernest Pudding, reporting as ordered.',
+      highlightedTerm: 'Domina Nocturna',
+    },
+    apparatus: {
+      explanation:
+        'Jacob Grimm calls the *dominae nocturnae* \'night-women in the service of Dame Holda\' and collects medieval and early modern accounts of nocturnal female spirits under names that include Holda, Diana, and Herodias. Pudding addresses Katje as Domina Nocturna, \'shining mother and last love\', then reports to her as ordered; a military report becomes an invocation, joining Grimm\'s material to the Venusberg beneath Dame Venus.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V232.35; cites Grimm\'s *Teutonic Mythology* 1056.',
+      },
+    ],
+    relatedTerms: ['merkabah', 'katje', 'pointsman'],
+  },
+  {
+    id: 'sacher-masoch',
+    displayLabel: 'Sacher-Masoch / Venus in Furs',
+    railLabel: 'Sacher-Masoch',
+    chronology: { episodeId: '2.04', sort: 204.4 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'brand name is Savarin. He understands that it means to say \'Severin.\'',
+      highlightedTerm: 'Severin',
+    },
+    apparatus: {
+      explanation:
+        'Severin in Leopold von Sacher-Masoch\'s *Venus in Furs* (1870) asks Wanda to treat him as her slave and stages a portrait beneath her foot. A Savarin coffee tin in Pudding\'s antechamber turns its brand into Severin\'s name; Richard von Krafft-Ebing later coined \'masochism\' from Sacher-Masoch.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V232.6; identifies the Savarin/Severin pun.',
+      },
+      {
+        label: 'Venus in Furs',
+        url: 'https://en.wikipedia.org/wiki/Venus_in_Furs',
+        note: 'Leopold von Sacher-Masoch\'s 1870 novella, source of the term \'masochism\'.',
+      },
+    ],
+    relatedTerms: ['merkabah', 'domina-nocturna'],
+  },
 ];
