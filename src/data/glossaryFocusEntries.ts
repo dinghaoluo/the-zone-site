@@ -3418,4 +3418,765 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     ],
     relatedTerms: ['merkabah', 'domina-nocturna'],
   },
+  {
+    id: 'great-cusp',
+    displayLabel: 'The Great Cusp (Spring Equinox)',
+    railLabel: 'Great Cusp',
+    chronology: { episodeId: '2.05', sort: 205 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'The great cusp — green equinox and turning, dreaming fishes to young ram, watersleep to firewaking, bears down on us.',
+      highlightedTerm: 'great cusp',
+    },
+    apparatus: {
+      explanation:
+        'The spring equinox on 20 March 1945 moves the zodiac from Pisces to Aries, the novel\'s \'watersleep to firewaking\'. The first Ohka combat sortie followed on 21 March and Wernher von Braun turned thirty-three on 23 March; Pynchon lays the three dates in sequence, not on one day. Astrologer Marc Edmund Jones associated Aries with \'absolute freedom from social conditioning\', the phrase Pynchon later attaches to Slothrop\'s flight from Pointsman\'s design.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V236.36-37; identifies the Pisces/Aries cusp and its structural significance.',
+      },
+    ],
+    relatedTerms: ['von-braun', 'carmina-burana', 'ohka'],
+  },
+  {
+    id: 'shell-hilary-bounce',
+    displayLabel: 'Shell / Hilary Bounce',
+    chronology: { episodeId: '2.05', sort: 205.05 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Shell, with no real country, no side in any war',
+      highlightedTerm: 'Shell',
+    },
+    apparatus: {
+      explanation:
+        'Hilary Bounce wears Shell\'s gold benzene ring while briefing Slothrop at the Casino Herman Goering. The novel connects the company\'s requisitioned Hague headquarters with a V-2 guidance transmitter, then calls Shell a corporation with \'no real country, no side in any war\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Shell/V-2 connection in Part 2.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'benzene-kekule'],
+  },
+  {
+    id: 'maxwells-demon',
+    displayLabel: 'Maxwell\'s Demon',
+    chronology: { episodeId: '2.05', sort: 205.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Destruction, oh, and demons — yes, including Maxwell\'s — were there, deep in the woods',
+      highlightedTerm: 'Maxwell\'s',
+    },
+    apparatus: {
+      explanation:
+        'James Clerk Maxwell proposed the sorting demon in an 1867 letter and published it in *Theory of Heat* (1871): by opening a door for selected molecules, it appears to reduce entropy without work. Older explanations charged the demon for the light or measurement that it required; Leo Szilard connected the demon with information in 1929, and Rolf Landauer located the minimum thermodynamic cost in logically irreversible erasure in 1961. Pynchon uses the figure for systems that sort information, and for the paranoia that reads sorting as design.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V239.18-19; cites Mangel\'s essay on Maxwell\'s Demon, entropy, and cybernetics in GR.',
+      },
+      {
+        label: 'Maxwell\'s demon',
+        url: 'https://en.wikipedia.org/wiki/Maxwell%27s_demon',
+        note: 'Thought experiment in thermodynamics proposed by James Clerk Maxwell (1867).',
+      },
+    ],
+    relatedTerms: ['poisson-distribution', 'pointsman', 'pavlovian'],
+  },
+  {
+    id: 'aggregat',
+    displayLabel: 'Aggregat',
+    chronology: { episodeId: '2.05', sort: 205.15 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'He knows the number by heart, it\'s the original contract number for the A4 rocket as a whole. What\'s an \'insulation device\' doing with the Aggregat\'s contract number?',
+      highlightedTerm: 'Aggregat',
+    },
+    apparatus: {
+      explanation:
+        '*Aggregat* means \'assembly\' and names the German Army\'s rocket development series, not a serial number. The A4 became the operational weapon that propaganda renamed V-2. Slothrop finds the A4\'s original contract number attached to an \'insulation device\' inside Shell paperwork, and starts pulling the thread that leads to Imipolex G and the S-Gerät.',
+    },
+    externalRefs: [
+      {
+        label: 'Aggregat rocket series',
+        url: 'https://en.wikipedia.org/wiki/Aggregat_(rocket_family)',
+        note: 'German Army rocket development series, 1933-45.',
+      },
+    ],
+    relatedTerms: ['v2-a4', 'schwarzgeraet'],
+  },
+  {
+    id: 'imipolex-g',
+    displayLabel: 'Imipolex G',
+    chronology: { episodeId: '2.05', sort: 205.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'here\'s \'Imipolex G.\' Oh really.',
+      highlightedTerm: 'Imipolex G',
+    },
+    apparatus: {
+      explanation:
+        'Imipolex G is IG Farben\'s fictional polymer: an aromatic heterocyclic polyimide, in the novel\'s chemistry, that survives rocket temperatures and responds to physical stimulus. It lines the Schwarzgerät around Gottfried, so the corporate specification becomes an interface with his skin. Pynchon threads real polymer chemistry from the Carothers lineage into the invented compound, which Slothrop chases across the Zone under the assumption that the paperwork will finally name a substance responsible for him.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the real polymer chemistry Pynchon draws on for the fictional Imipolex G.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'schwarzgeraet', '00000', 'conditioned-reflex', 'carothers-great-synthesist'],
+  },
+  {
+    id: 'von-braun',
+    displayLabel: 'Wernher von Braun',
+    chronology: { episodeId: '2.05', sort: 205.2 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'Wernher von Braun, lately wrecked arm in a plaster cast, prepares to celebrate his 33rd birthday.',
+      highlightedTerm: 'von Braun',
+    },
+    apparatus: {
+      explanation:
+        'Wernher von Braun (1912-1977), technical director of the V-2 programme at Peenemünde, turned thirty-three on 23 March 1945 while his arm was in plaster after a car accident. On 2 May he surrendered to US troops near Reutte in Austria, after his team had evacuated south from the rocket works. He had joined the Nazi Party in 1937 and held the SS rank of *Sturmbannführer*; Operation Paperclip brought him to the United States, where he later directed NASA\'s Marshall Space Flight Center and the Saturn V programme.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V237.1-2; identifies the Christ-age parallel and Huzel\'s *Peenemünde to Canaveral* as source.',
+      },
+      {
+        label: 'Wernher von Braun',
+        url: 'https://en.wikipedia.org/wiki/Wernher_von_Braun',
+        note: 'German-American rocket engineer (1912-1977), architect of the V-2 and Saturn V.',
+      },
+    ],
+    relatedTerms: ['peenemunde', 'v2-a4', 'vfr'],
+  },
+  {
+    id: 'benzene-kekule',
+    displayLabel: 'Benzene ring / Kekulé\'s dream',
+    railLabel: 'Kekulé',
+    chronology: { episodeId: '2.05', sort: 205.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'a gold benzene ring with a formée cross in the center',
+      highlightedTerm: 'benzene ring',
+    },
+    apparatus: {
+      explanation:
+        'August Kekulé proposed benzene\'s ring structure in 1865. In an 1890 speech he recalled a reverie in which a snake seized its own tail; historians dispute how literally the late anecdote records the discovery. Hilary Bounce wears the six-membered ring as a gold IG Farben award, so the corporation\'s chemistry travels with him into the Casino.',
+    },
+    externalRefs: [
+      {
+        label: 'August Kekulé',
+        url: 'https://en.wikipedia.org/wiki/August_Kekul%C3%A9',
+        note: 'German chemist (1829-1896); ring theory of benzene, 1865.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'coal-tar-theology', 'imipolex-g'],
+  },
+  {
+    id: 'hypergolic-ignition',
+    displayLabel: 'Hypergolic Ignition',
+    chronology: { episodeId: '2.05', sort: 205.3 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'fuel waiting hypergolic ignition that will not come unless now as some junior-bureaucratic rag or May uprising of the spirit',
+      highlightedTerm: 'hypergolic ignition',
+    },
+    apparatus: {
+      explanation:
+        'A hypergolic propellant pair ignites on contact. In the V-2 steam generator, sodium permanganate catalysed the decomposition of high-test hydrogen peroxide to drive the turbopump; the main engine burned ethanol and liquid oxygen with a separate ignition. Pynchon carries the term from oil pipes primed along the Channel coast into Carl Orff\'s lyric *Totus ardeo*, \'I burn entirely\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V237.14; explains the hydrogen peroxide / sodium permanganate reaction in the V-2 turbine.',
+      },
+    ],
+    relatedTerms: ['v2-a4', 'brennschluss'],
+  },
+  {
+    id: 'cybernetic-tradition',
+    displayLabel: 'The Cybernetic Tradition',
+    railLabel: 'Cybernetics',
+    chronology: { episodeId: '2.05', sort: 205.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'young enthusiasts of the Cybernetic Tradition into Control work',
+      highlightedTerm: 'Cybernetic Tradition',
+    },
+    apparatus: {
+      explanation:
+        'The \'Paranoid Systems of History\' briefing claims that the German Inflation drove young technicians towards control work in feedback systems and servomechanisms. Norbert Wiener defined cybernetics as the study of communication and control in animals and machines, taking the word from Greek *kybernētēs*, \'steersman\'; he chose the term during work in 1947 and published *Cybernetics* the following year. The 1945 briefing therefore uses a name that did not yet exist, one of the passage\'s small anachronisms.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V238.30; notes the anachronism of the term and cites Wiener, *Cybernetics*, p. 12.',
+      },
+    ],
+    relatedTerms: ['beyond-the-zero'],
+  },
+  {
+    id: 'carmina-burana',
+    displayLabel: 'Carmina Burana / Totus Ardeo',
+    railLabel: 'Carmina Burana',
+    chronology: { episodeId: '2.05', sort: 205.4 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'to Bavarian tunesmith Carl Orff\'s lively\nTo-tus flore-o! lam amore virginali Totus ardeo',
+      highlightedTerm: 'Totus ardeo',
+    },
+    apparatus: {
+      explanation:
+        'Carl Orff\'s cantata *Carmina Burana* (premiered in Frankfurt, 1937) sets twenty-four poems from the Codex Buranus, a thirteenth-century manuscript of more than two hundred Latin, Middle High German, and Old French verses discovered at Benediktbeuern in 1803. The spring song *Tempus est iocundum* includes the line *Totus ardeo*, \'I burn entirely\'; Pynchon places it at the vernal equinox, beside oil pipes prepared to set the Channel coast alight.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V237.16-20; cites Waddell and identifies the equinox timing.',
+      },
+      {
+        label: '*Carmina Burana*',
+        url: 'https://en.wikipedia.org/wiki/Carmina_Burana',
+        note: 'Medieval manuscript containing more than two hundred poems; Carl Orff selected twenty-four for his 1935-36 cantata.',
+      },
+    ],
+    relatedTerms: ['hypergolic-ignition'],
+  },
+  {
+    id: 'bataafsche',
+    displayLabel: 'Bataafsche Petroleum Maatschappij (Shell)',
+    railLabel: 'Bataafsche',
+    chronology: { episodeId: '2.05', sort: 205.5 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'That\'s Bataafsche Petroleum Maatschappij, N.V.?',
+      highlightedTerm: 'Bataafsche',
+    },
+    apparatus: {
+      explanation:
+        'Bataafsche Petroleum Maatschappij was Royal Dutch Shell\'s Dutch operating company, and its Hague headquarters were requisitioned during the German occupation. The briefing links that building with a V-2 radio-guidance transmitter; Duncan Sandys directed British V-weapon intelligence from Shell Mex House in London, and Isaac Lubbock of Shell International had led work on a petrol-oxygen assisted-takeoff rocket for the Ministry of Supply from 1941. Between Sandys in London and the Hague transmitter under German operation, the same corporate paper trail runs through both sides of the rocket war.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V240.35; identifies the Shell/V-2 guidance connection at The Hague.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'shell-hilary-bounce', 'operation-backfire'],
+  },
+  {
+    id: 'zoot-suit-riots',
+    displayLabel: 'Zoot Suit Riots',
+    chronology: { episodeId: '2.06', sort: 206.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'wearing a white zoot suit with reet pleats and a long gold keychain',
+      highlightedTerm: 'zoot suit',
+    },
+    apparatus: {
+      explanation:
+        'In June 1943, servicemen and civilians attacked Mexican American, Black, and Filipino youths in Los Angeles while police frequently arrested the victims. A Los Angeles City Council proposal to criminalise zoot suits was drafted but never enacted. The wide-legged trousers and long coat had come out of Black jazz culture in the late 1930s; wartime rationing turned the suit\'s use of cloth into a public pretext for the attacks. Waxwing later gives Slothrop a zoot suit that belonged to Ricky Gutierrez, carrying that history into the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V249.4-5; details the 1943 riots and their racial dimensions.',
+      },
+      {
+        label: 'Zoot Suit Riots',
+        url: 'https://en.wikipedia.org/wiki/Zoot_Suit_Riots',
+        note: 'Series of racially motivated attacks in Los Angeles, June 1943.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'preterite'],
+  },
+  {
+    id: 'blodgett-waxwing',
+    displayLabel: 'Blodgett Waxwing',
+    chronology: { episodeId: '2.06', sort: 206.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        '\'This really happened tonight. But that octopus didn\'t.\'',
+      highlightedTerm: 'octopus didn\'t',
+    },
+    apparatus: {
+      explanation:
+        'Blodgett Waxwing, a black-market forger who has escaped the Caserne Mortier stockade (misspelled \'Martier\' throughout the novel), tells Slothrop that Grigori\'s attack was staged. His chess-knight card later supplies the name \'Springer\', and his documents let Slothrop move through the Zone under a sequence of paper identities. Weisenburger hears an echo of the slain waxwing in Nabokov\'s *Pale Fire*.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V246.35; identifies the Nabokov echo and the Caserne Martier stockade.',
+      },
+    ],
+    relatedTerms: ['octopus-grigori', 'zoot-suit-riots', 'der-springer', 'ricky-gutierrez'],
+  },
+  {
+    id: 'ricky-gutierrez',
+    displayLabel: 'Ricky Gutierrez',
+    chronology: { episodeId: '2.06', sort: 206.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'young Gutierrez was set upon by a carload of Anglo vigilantes from Whittier, beaten up while the L.A. police watched and called out advice, then arrested for disturbing the peace',
+      highlightedTerm: 'Gutierrez',
+    },
+    apparatus: {
+      explanation:
+        'Ricky Gutierrez owned the zoot suit that Waxwing gives Slothrop. Vigilantes from Whittier beat him in Los Angeles while police watched and called out advice; a judge then offered him jail or the Army, and he lost an arm on Saipan before returning to Los Angeles without work. Slothrop inherits the suit with no knowledge of Gutierrez, one of the anonymous transfers of clothing through which preterite histories keep circulating into the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V249.4-5; details Gutierrez\'s story and the Zoot Suit Riots context.',
+      },
+    ],
+    relatedTerms: ['zoot-suit-riots', 'blodgett-waxwing', 'preterite'],
+  },
+  {
+    id: '00000',
+    displayLabel: '00000',
+    chronology: { episodeId: '2.07', sort: 207 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'S-Gerät, 11/00000.',
+      highlightedTerm: '00000',
+    },
+    apparatus: {
+      explanation:
+        'Blicero\'s final rocket bears five zeroes and contains the S-Gerät, with Gottfried sealed inside an Imipolex G shroud. The number is a countdown that continues after zero has already arrived; its companion 00001 falls in the closing pages, over a Los Angeles cinema.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the 00000/00001 pairing and its structural function.',
+      },
+    ],
+    relatedTerms: ['v2-a4', 'brennschluss', '00001', 'orpheus-theatre', 'schwarzgeraet'],
+  },
+  {
+    id: 'ian-scuffling',
+    displayLabel: 'Ian Scuffling',
+    chronology: { episodeId: '2.07', sort: 207 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'He is now an English war correspondent named Ian Scuffling.',
+      highlightedTerm: 'Ian Scuffling',
+    },
+    apparatus: {
+      explanation:
+        'Slothrop takes the name Ian Scuffling after escaping Monte Carlo. Under it he runs errands for the Argentine anarchists between Zürich and Geneva and buys further documents from Waxwing, and the alias begins the sequence of paper identities through which the Zone eventually distributes him as Rocketman, Plechazunga, and other names less coherent than the previous one.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates Slothrop\'s alias chain through the Zone.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'rocketman', 'blodgett-waxwing'],
+  },
+  {
+    id: 'schwarzgeraet',
+    displayLabel: 'Schwarzgerät',
+    chronology: { episodeId: '2.07', sort: 207.05 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'S-Gerät, 11/00000.',
+      highlightedTerm: 'S-Gerät',
+    },
+    apparatus: {
+      explanation:
+        'The S-Gerät (*Schwarzgerät*, \'black device\') is an Imipolex G insulation section built into rocket 00000 around Gottfried. IG Farben makes the polymer, the Wehrmacht carries the contract number, and Blicero designs the installation, so the same paper trail that draws Slothrop through Shell and Farben also encloses Gottfried\'s body inside a plastic shroud at the end of it.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the S-Gerät contract chain.',
+      },
+    ],
+    relatedTerms: ['00000', 'imipolex-g', 'v2-a4'],
+  },
+  {
+    id: 'carothers-great-synthesist',
+    displayLabel: 'Carothers, The Great Synthesist',
+    railLabel: 'Carothers',
+    chronology: { episodeId: '2.07', sort: 207.1 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'du Pont and their famous employee Carothers, known as The Great Synthesist. His classic study of large molecules spanned the decade of the twenties',
+      highlightedTerm: 'Carothers',
+    },
+    apparatus: {
+      explanation:
+        'DuPont hired Wallace Hume Carothers (1896-1937) in 1928 to study linear polymers, and Pynchon places him at the historical origin of the fictional polymer lineage that ends in Imipolex G. His group developed neoprene, polyesters, and nylon 66, showing that chemists could design a material towards selected molecular properties; DuPont introduced nylon to the public in 1938, and wartime production put it into parachutes, ropes, and tyre cord. Carothers lived with severe depression and took his own life on 29 April 1937, so the founding chemist of the industrial polymer age is already dead when the war for which his materials are conscripted begins.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V249.29-30; identifies Carothers and the DuPont polymer lineage to Imipolex G.',
+      },
+      {
+        label: 'Wallace Carothers',
+        url: 'https://en.wikipedia.org/wiki/Wallace_Carothers',
+        note: 'American chemist (1896-1937), inventor of nylon and neoprene.',
+      },
+    ],
+    relatedTerms: ['imipolex-g', 'coal-tar-theology', 'perkin-chemistry-succession'],
+  },
+  {
+    id: 'sandoz-lsd',
+    displayLabel: 'Sandoz / LSD Discovery',
+    chronology: { episodeId: '2.07', sort: 207.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        '\'I\'m from Sandoz.\'\n\'Aha, Sandoz!\' cries Slothrop, and pulls out a chair for the fella.',
+      highlightedTerm: 'Sandoz',
+    },
+    apparatus: {
+      explanation:
+        'Albert Hofmann synthesised LSD-25 at Sandoz in 1938 and discovered its psychedelic effects through an accidental exposure on 16 April 1943, then a deliberate dose three days later that he recorded in his laboratory notebook, later called \'Bicycle Day\'. Pynchon places the Sandoz representative beside Ciba, Geigy, IG Farben, and the indole compounds in Slothrop\'s chemical document trail.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V250.25-27 and V261.4; traces the LSD/indole/IG Farben chemical lineage.',
+      },
+      {
+        label: 'Albert Hofmann',
+        url: 'https://en.wikipedia.org/wiki/Albert_Hofmann',
+        note: 'Swiss chemist (1906-2008) who discovered the psychedelic effects of LSD.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'coal-tar-theology', 'carothers-great-synthesist'],
+  },
+  {
+    id: 'descamisados',
+    displayLabel: 'Descamisados',
+    chronology: { episodeId: '2.07', sort: 207.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'He already has the descamisados, this will give him the Army too you see',
+      highlightedTerm: 'descamisados',
+    },
+    apparatus: {
+      explanation:
+        '*Descamisados* means \'shirtless ones\'. Opponents used the word against Juan Perón\'s working-class supporters, who took the insult as their own name. Perón (1895-1974) had served as secretary of labour and vice-president before his first presidency in 1946, and urban industrial workers made up much of the movement identified with the *descamisados*. The Argentine anarchist\'s use of the term in the novel\'s spring of 1945 comes before the demonstration of 17 October 1945 that made it famous, which Weisenburger flags as an anachronism.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V263.39; identifies the anachronism and Peronist context.',
+      },
+      {
+        label: 'Descamisados',
+        url: 'https://en.wikipedia.org/wiki/Descamisado',
+        note: 'Term for Perón\'s working-class supporters in Argentina.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'preterite'],
+  },
+  {
+    id: 'cafe-odeon',
+    displayLabel: 'Café Odeon, Zürich',
+    chronology: { episodeId: '2.07', sort: 207.4 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'He finds that he has drifted as far as the Odeon, one of the great world cafes, whose specialty is not listed anywhere',
+      highlightedTerm: 'Odeon',
+    },
+    apparatus: {
+      explanation:
+        'Café Odeon opened at Limmatquai 2 in Zürich in 1911. Its documented and reputed patrons included James Joyce, Vladimir Lenin, Leon Trotsky, Albert Einstein, and Tristan Tzara, all of whom were in wartime Zürich, though later accounts of their overlapping visits are not always reliably documented. Richard Ellmann\'s biography identifies the Odeon as one of Joyce\'s regular cafés, and Pynchon uses that historical clustering to place Slothrop in a room whose earlier occupants he cannot see.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V262.35; identifies the historical patrons and the Stoppard/Ellmann connections.',
+      },
+    ],
+    relatedTerms: ['slothrop'],
+  },
+  {
+    id: 'dulles-oss',
+    displayLabel: 'Allen Dulles / OSS',
+    chronology: { episodeId: '2.07', sort: 207.5 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Allen Dulles and his \'intelligence\' network, which operates these days under the title \'Office of Strategic Services.\'',
+      highlightedTerm: 'Dulles',
+    },
+    apparatus: {
+      explanation:
+        'Allen Welsh Dulles (1893-1969) ran the Office of Strategic Services station in Bern from 1942 to 1945 and ran informants inside Germany, including officers involved in the Sunrise negotiations for the German surrender in northern Italy. The OSS was dissolved in 1945; after the CIA was created in 1947, Dulles directed it from 1953 to 1961. Pynchon reads OSS as *oss*, a late Latin form for \'bone\', so the acronym for Dulles\'s Bern operation turns out to name the ossuary underneath its bureaucratic cover.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V268.2; identifies Dulles and the oss/bone etymology.',
+      },
+      {
+        label: 'Allen Dulles',
+        url: 'https://en.wikipedia.org/wiki/Allen_Dulles',
+        note: 'American intelligence officer (1893-1969), OSS Bern station chief, later CIA Director.',
+      },
+    ],
+    relatedTerms: ['operation-backfire', 'sol-sigil'],
+  },
+  {
+    id: 'squalidozzi',
+    displayLabel: 'Squalidozzi',
+    chronology: { episodeId: '2.07', sort: 207.6 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'In ordinary times, the center always wins. Its power grows with time, and that can\'t be reversed, not by ordinary means.',
+      highlightedTerm: 'center always wins',
+    },
+    apparatus: {
+      explanation:
+        'The Argentine anarchist Squalidozzi tells Slothrop that the war has, \'just for the moment\', wiped away Europe\'s little states. His group reads the open borders as a temporary chance for decentralisation and already expects governments to close them again; Weisenburger connects the circle to Acción Argentina.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V263.18; identifies the Argentine anarchist context and Acción Argentina.',
+      },
+    ],
+    relatedTerms: ['descamisados', 'the-zone', 'preterite'],
+  },
+  {
+    id: 'psychochemie-ag',
+    displayLabel: 'Psychochemie AG',
+    chronology: { episodeId: '2.07', sort: 207.7 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Schweitar is very tight indeed with Psychochemie AG, being one of those free-floating trouble-shooters around the Cartel',
+      highlightedTerm: 'Psychochemie AG',
+    },
+    apparatus: {
+      explanation:
+        'Laszlo Jamf worked for Psychochemie AG during Slothrop\'s infant conditioning, and its records lead Slothrop from that experiment to Imipolex G. The firm, once known as Grossli Chemical Corporation, is Pynchon\'s fictional Swiss addition to the cartel network already populated by Sandoz, Ciba, and Geigy; its papers connect the Slothrop family finances in Berkshire with the chemistry of the rocket in the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V250.23-24; traces Psychochemie AG through the Sandoz/Ciba/Geigy cartel network.',
+      },
+    ],
+    relatedTerms: ['jamf', 'sandoz-lsd', 'ig-farben', 'imipolex-g'],
+  },
+  {
+    id: 'whitsun',
+    displayLabel: 'Whitsun (Pentecost)',
+    chronology: { episodeId: '2.08', sort: 208 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Mr. Pointsman has decided to spend Whitsun by the sea. Feeling a bit megalo these days',
+      highlightedTerm: 'Whitsun',
+    },
+    apparatus: {
+      explanation:
+        'Whitsun, or Pentecost, fell on 20 May 1945, seven Sundays after Easter and twelve days after VE Day; the name has long been associated with the white garments of baptism. Part 2 closes as Pointsman hears voices at Brighton and feels \'a bit megalo\', which Weisenburger reads as a mock descent of the Holy Spirit on Pavlov\'s would-be disciple.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V269.26; identifies the liturgical calendar structuring Part 2.',
+      },
+    ],
+    relatedTerms: ['pointsman', 'blavatsky-theosophy', 'v-e-day'],
+  },
+  {
+    id: 'blavatsky-theosophy',
+    displayLabel: 'Blavatsky / Theosophical Society',
+    railLabel: 'Blavatsky',
+    chronology: { episodeId: '2.08', sort: 208.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the Blavatskian wing of Psi Section, who were off on a White Lotos Day pilgrimage to 19 Avenue Road, St. John\'s Wood',
+      highlightedTerm: 'Blavatskian',
+    },
+    apparatus: {
+      explanation:
+        'Helena Petrovna Blavatsky (1831-1891) co-founded the Theosophical Society in 1875 and died at 19 Avenue Road, St John\'s Wood, on 8 May 1891; her *Isis Unveiled* (1877) and *The Secret Doctrine* (1888) drew Hindu and Buddhist sources into Western esotericism. The Society commemorates her death annually as White Lotus Day. White Visitation staff make their pilgrimage on the same date in 1945, which is also VE Day, Harry Truman\'s birthday, and Thomas Pynchon\'s eighth birthday.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V269.33-35; identifies the VE Day / Blavatsky death / Pynchon birthday triple coincidence.',
+      },
+      {
+        label: 'Helena Blavatsky',
+        url: 'https://en.wikipedia.org/wiki/Helena_Blavatsky',
+        note: 'Russian occultist (1831-1891), founder of the Theosophical Society.',
+      },
+    ],
+    relatedTerms: ['ouspenskian', 'white-visitation'],
+  },
+  {
+    id: 'godels-theorem',
+    displayLabel: 'Gödel\'s Theorem / Murphy\'s Law',
+    railLabel: 'Gödel',
+    chronology: { episodeId: '2.08', sort: 208.2 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'Murphy\'s Law, that brash Irish proletarian restatement of Godel\'s Theorem',
+      highlightedTerm: 'Godel\'s Theorem',
+    },
+    apparatus: {
+      explanation:
+        'Kurt Gödel proved in 1931 that any consistent, effectively axiomatised formal system capable of elementary arithmetic contains statements it cannot prove, and cannot prove its own consistency; his paper, *Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I*, closed Hilbert\'s programme for complete and consistent formal foundations. Pynchon sets that limit beside Murphy\'s Law: after everything has been taken care of, something will still go wrong or supply a surprise. Weisenburger also places 1931 beside Pudding\'s failed catalogue of European political outcomes, drafted in the same year.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V275.25-26; connects Gödel to the novel\'s representations of closed versus open fields.',
+      },
+      {
+        label: 'Gödel\'s incompleteness theorems',
+        url: 'https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems',
+        note: 'Kurt Gödel\'s 1931 proof of limits on completeness and consistency in formal systems.',
+      },
+    ],
+    relatedTerms: ['maxwells-demon', 'pointsman'],
+  },
+  {
+    id: 'operation-backfire',
+    displayLabel: 'Operation Backfire / SPOG',
+    railLabel: 'Backfire',
+    chronology: { episodeId: '2.08', sort: 208.3 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'Special Projectiles Operations Group (SPOG), as an adjunct of the British rocket-scavenging effort, Operation Backfire, which is based out of Cuxhaven',
+      highlightedTerm: 'Operation Backfire',
+    },
+    apparatus: {
+      explanation:
+        'The Combined Chiefs of Staff created the Special Projectiles Operations Group in 1944 to exploit German weapons research. Operation Backfire assembled and launched three captured V-2s at Cuxhaven on 2, 4, and 15 October 1945, and the launches were documented on film; Project Hermes carried captured rockets and parts to White Sands, New Mexico. James McGovern\'s *Crossbow and Overcast* (1964) records the transfer programme.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V272.32-34; identifies SPOG, CIOS, and McGovern\'s Crossbow and Overcast as source.',
+      },
+      {
+        label: 'Operation Backfire',
+        url: 'https://en.wikipedia.org/wiki/Operation_Backfire_(WWII)',
+        note: 'British effort to reconstruct and launch captured V-2 rockets at Cuxhaven, October 1945.',
+      },
+    ],
+    relatedTerms: ['von-braun', 'v2-a4', 'peenemunde', 'dulles-oss'],
+  },
+  {
+    id: 'mindless-pleasures',
+    displayLabel: 'Mindless Pleasures',
+    chronology: { episodeId: '2.08', sort: 208.4 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'the two gumshoes become so infected with the prevailing fondness out here for mindless pleasures',
+      highlightedTerm: 'mindless pleasures',
+    },
+    apparatus: {
+      explanation:
+        '*Mindless Pleasures* was an early working title for *Gravity\'s Rainbow*, and the phrase survives in the novel when Perdoo and Speed stop tracking Slothrop and drift through Brighton\'s restaurant gardens; they abandon Pointsman\'s programme for the pleasures named by the working title.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V270.23; identifies the phrase as GR\'s original working title.',
+      },
+    ],
+    relatedTerms: ['pointsman', 'the-zone'],
+  },
+  {
+    id: 'gazza-ladra',
+    displayLabel: 'La Gazza Ladra (Rossini)',
+    railLabel: 'Gazza Ladra',
+    chronology: { episodeId: '2.08', sort: 208.5 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'An organ grinder plays Rossini\'s overture to La Gazza Ladra (which, as we shall see later, in Berlin, marks a high point in music which everybody ignored, preferring Beethoven)',
+      highlightedTerm: 'La Gazza Ladra',
+    },
+    apparatus: {
+      explanation:
+        'An organ grinder plays the overture to Rossini\'s *La gazza ladra* (1817) at Brighton without its snare drums or brass. The narrator promises to return to Rossini in Berlin, where Säure and Gustav will argue him against Beethoven.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V273.37-41; identifies the Beethoven/Rossini opposition seeded here.',
+      },
+      {
+        label: '*La gazza ladra*',
+        url: 'https://en.wikipedia.org/wiki/La_gazza_ladra',
+        note: 'Rossini\'s 1817 opera semiseria, \'The Thieving Magpie\'.',
+      },
+    ],
+    relatedTerms: ['beethoven-rossini', 'saure-bummer'],
+  },
+  // part 3 episodes
 ];
