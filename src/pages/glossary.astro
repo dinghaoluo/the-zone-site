@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import GlossaryScrollApparatus from '../components/GlossaryScrollApparatus.astro';
+import { glossaryFocusEntries } from '../data/glossaryFocusEntries';
 ---
 
 <Layout
@@ -16,18 +18,8 @@ import Footer from '../components/Footer.astro';
       <h1 class="page-title">Glossary</h1>
     </header>
 
-    <section class="glossary-placeholder">
-      <p>Glossary entries will appear here.</p>
-    </section>
+    <GlossaryScrollApparatus entries={glossaryFocusEntries} />
   </main>
 
   <Footer slot="footer" />
 </Layout>
-
-<style>
-  .glossary-placeholder {
-    padding: var(--space-xl) var(--page-gutter);
-    color: var(--color-text-secondary);
-    font-family: var(--font-prose);
-  }
-</style>

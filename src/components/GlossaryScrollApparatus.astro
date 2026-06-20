@@ -1,0 +1,456 @@
+---
+import type { GlossaryFocusEntry } from '../data/glossaryFocusEntries';
+import GlossaryEntryBlock from './GlossaryEntryBlock.astro';
+import GlossaryLexicalRail from './GlossaryLexicalRail.astro';
+import SearchField from './SearchField.astro';
+
+interface Props {
+  entries: GlossaryFocusEntry[];
+}
+
+const { entries } = Astro.props;
+const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronology.sort);
+---
+
+<section class="glossary-scroll-layout" data-glossary-scroll>
+  <aside class="glossary-rail-shell" aria-label="Glossary index">
+    <div class="glossary-search-slot">
+      <SearchField
+        id="glossary-search"
+        count={`${sortedEntries.length} terms`}
+        ariaLabel="Search glossary"
+      />
+    </div>
+    <GlossaryLexicalRail entries={sortedEntries} />
+  </aside>
+
+  <div class="glossary-entry-stack" role="region" aria-label="Glossary entries">
+    <p class="glossary-search-empty" data-glossary-search-empty hidden>No matching terms.</p>
+    {sortedEntries.map((entry) => <GlossaryEntryBlock entry={entry} />)}
+  </div>
+</section>
+
+<script>
+  import {
+    compactSearch,
+    highlightElementText,
+    normaliseSearch,
+    searchMatches,
+  } from '../scripts/siteSearch';
+
+  const layout = document.querySelector('[data-glossary-scroll]') as HTMLElement | null;
+
+  if (layout) {
+    const entries = Array.from(layout.querySelectorAll<HTMLElement>('.glossary-entry'));
+    const terms = Array.from(layout.querySelectorAll<HTMLAnchorElement>('.rail-term'));
+    const railShell = layout.querySelector<HTMLElement>('.glossary-rail-shell');
+    const railWindow = layout.querySelector<HTMLElement>('.glossary-rail-window');
+    const railList = layout.querySelector<HTMLElement>('.glossary-rail-list');
+    const searchInput = layout.querySelector<HTMLInputElement>('[data-site-search-input]');
+    const searchCount = layout.querySelector<HTMLElement>('[data-site-search-count]');
+    const searchEmpty = layout.querySelector<HTMLElement>('[data-glossary-search-empty]');
+    const termById = new Map(terms.map((term) => [term.dataset.entryId || '', term]));
+    const entryById = new Map(entries.map((entry) => [entry.dataset.entryId || '', entry]));
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobileLayout = window.matchMedia('(max-width: 900px)');
+    const searchRecords = entries.map((entry) => {
+      const id = entry.dataset.entryId || '';
+      const titleElement = entry.querySelector<HTMLHeadingElement>('h2');
+      const quoteElement = entry.querySelector<HTMLParagraphElement>('.pull-quote p');
+      return {
+        entry,
+        id,
+        title: entry.dataset.searchTitle || '',
+        quote: entry.dataset.searchQuote || '',
+        copy: entry.dataset.searchCopy || '',
+        term: termById.get(id) || null,
+        titleElement,
+        quoteElement,
+        titleHtml: titleElement?.innerHTML || '',
+        quoteHtml: quoteElement?.innerHTML || '',
+      };
+    });
+
+    let activeId = entries[0]?.dataset.entryId || '';
+    let activeRaf = 0;
+    let railRaf = 0;
+    let pendingRailTargetId = '';
+    let pendingRailTargetTimeout = 0;
+
+    function updateRailHeight(): void {
+      if (!railShell) return;
+      layout?.style.setProperty('--glossary-rail-height', `${railShell.getBoundingClientRect().height}px`);
+    }
+
+    updateRailHeight();
+    if (railShell && 'ResizeObserver' in window) {
+      new ResizeObserver(updateRailHeight).observe(railShell);
+    }
+
+    function clamp(value: number, min: number, max: number): number {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function restoreEntryMarkup(record: (typeof searchRecords)[number]): void {
+      if (record.titleElement) record.titleElement.innerHTML = record.titleHtml;
+      if (record.quoteElement) record.quoteElement.innerHTML = record.quoteHtml;
+    }
+
+    function applyEntryHighlights(
+      record: (typeof searchRecords)[number],
+      compactQuery: string,
+      titleMatched: boolean,
+      quoteMatched: boolean
+    ): void {
+      restoreEntryMarkup(record);
+
+      if (titleMatched && record.titleElement) {
+        highlightElementText(record.titleElement, compactQuery);
+      }
+
+      if (quoteMatched && record.quoteElement) {
+        highlightElementText(record.quoteElement, compactQuery);
+      }
+    }
+
+    function visibleEntries(): HTMLElement[] {
+      return entries.filter((entry) => !entry.hidden);
+    }
+
+    function clearActive(): void {
+      activeId = '';
+
+      for (const entry of entries) {
+        entry.classList.remove('is-active', 'is-muted');
+      }
+
+      for (const term of terms) {
+        term.classList.remove('is-active');
+        term.removeAttribute('aria-current');
+      }
+    }
+
+    function centreRailTerm(id: string): void {
+      if (!railShell || !railList) return;
+      const activeTerm = termById.get(id);
+      if (!activeTerm || activeTerm.closest('li')?.hidden) return;
+
+      if (railRaf) cancelAnimationFrame(railRaf);
+      railRaf = requestAnimationFrame(() => {
+        railRaf = 0;
+
+        if (mobileLayout.matches) {
+          if (railWindow) {
+            const target = clamp(
+              activeTerm.offsetLeft + activeTerm.offsetWidth / 2 - railWindow.clientWidth / 2,
+              0,
+              Math.max(0, railWindow.scrollWidth - railWindow.clientWidth)
+            );
+            railWindow.scrollTo({
+              left: target,
+              behavior: 'auto',
+            });
+          }
+          railList.style.transform = '';
+          return;
+        }
+
+        const itemCentre = activeTerm.offsetTop + activeTerm.offsetHeight / 2;
+        const shellCentre = railShell.clientHeight * 0.5;
+        const listHeight = railList.scrollHeight;
+        const shellHeight = railShell.clientHeight;
+        const minOffset = Math.min(0, shellHeight - listHeight);
+        const target = clamp(shellCentre - itemCentre, minOffset, 0);
+
+        railList.style.transform = `translate3d(0, ${target}px, 0)`;
+      });
+    }
+
+    function setActive(id: string): void {
+      const selectedEntry = entryById.get(id);
+      if (!id || !selectedEntry || selectedEntry.hidden) return;
+      activeId = id;
+
+      for (const entry of entries) {
+        const isActive = entry.dataset.entryId === id;
+        entry.classList.toggle('is-active', isActive);
+        entry.classList.toggle('is-muted', !isActive);
+      }
+
+      for (const term of terms) {
+        const isActive = term.dataset.entryId === id;
+        term.classList.toggle('is-active', isActive);
+        if (isActive) {
+          term.setAttribute('aria-current', 'location');
+        } else {
+          term.removeAttribute('aria-current');
+        }
+      }
+
+      centreRailTerm(id);
+    }
+
+    function holdRailTarget(id: string): void {
+      pendingRailTargetId = id;
+      if (pendingRailTargetTimeout) window.clearTimeout(pendingRailTargetTimeout);
+      pendingRailTargetTimeout = window.setTimeout(
+        () => {
+          pendingRailTargetId = '';
+          chooseClosestEntry();
+        },
+        reducedMotion.matches ? 120 : 2400
+      );
+    }
+
+    function chooseClosestEntry(): void {
+      if (activeRaf) return;
+
+      activeRaf = requestAnimationFrame(() => {
+        activeRaf = 0;
+        const candidates = visibleEntries();
+        if (candidates.length === 0) {
+          clearActive();
+          return;
+        }
+
+        const activationLine = window.innerHeight * (mobileLayout.matches ? 0.28 : 0.38);
+        let closest = candidates[0];
+        let closestDistance = Number.POSITIVE_INFINITY;
+        let lastPassed = candidates[0];
+
+        for (const entry of candidates) {
+          const rect = entry.getBoundingClientRect();
+          const distance = Math.abs(rect.top - activationLine);
+          if (distance < closestDistance) {
+            closest = entry;
+            closestDistance = distance;
+          }
+          if (rect.top <= activationLine && rect.bottom > 0) {
+            lastPassed = entry;
+          }
+        }
+
+        if (
+          pendingRailTargetId &&
+          entryById.has(pendingRailTargetId) &&
+          !entryById.get(pendingRailTargetId)?.hidden &&
+          window.location.hash === `#glossary-${pendingRailTargetId}`
+        ) {
+          if (!termById.get(pendingRailTargetId)?.classList.contains('is-active')) {
+            setActive(pendingRailTargetId);
+          }
+          return;
+        }
+
+        const nextId = (lastPassed || closest)?.dataset.entryId || activeId;
+        if (nextId !== activeId || !termById.get(nextId)?.classList.contains('is-active')) {
+          setActive(nextId);
+        }
+      });
+    }
+
+    function queueActiveUpdate(): void {
+      chooseClosestEntry();
+    }
+
+    function queueLayoutUpdate(): void {
+      chooseClosestEntry();
+      centreRailTerm(activeId);
+    }
+
+    function applySearch(): void {
+      const query = normaliseSearch(searchInput?.value || '');
+      const compactQuery = compactSearch(query);
+      const hasQuery = query.length > 0;
+      const matchedEntries: HTMLElement[] = [];
+
+      for (const record of searchRecords) {
+        const titleMatched = hasQuery && searchMatches(record.title, query, compactQuery);
+        const quoteMatched = hasQuery && searchMatches(record.quote, query, compactQuery);
+        const copyMatched = hasQuery && searchMatches(record.copy, query, compactQuery);
+        const isMatch = !hasQuery || titleMatched || quoteMatched || copyMatched;
+        const listItem = record.term?.closest('li') || null;
+
+        record.entry.hidden = hasQuery && !isMatch;
+        record.entry.classList.toggle('is-search-hit', hasQuery && isMatch);
+        record.entry.classList.toggle('is-search-miss', hasQuery && !isMatch);
+
+        if (listItem) listItem.hidden = hasQuery && !isMatch;
+        if (record.term) {
+          record.term.classList.toggle('is-search-hit', hasQuery && isMatch);
+          record.term.classList.toggle('is-search-miss', hasQuery && !isMatch);
+        }
+
+        if (hasQuery && isMatch) {
+          applyEntryHighlights(record, compactQuery, titleMatched, quoteMatched);
+        } else {
+          restoreEntryMarkup(record);
+        }
+
+        if (isMatch) matchedEntries.push(record.entry);
+      }
+
+      layout?.classList.toggle('is-searching', hasQuery);
+      if (searchCount) {
+        searchCount.textContent = hasQuery
+          ? `${matchedEntries.length} of ${entries.length} terms`
+          : `${entries.length} terms`;
+      }
+      if (searchEmpty) searchEmpty.hidden = !hasQuery || matchedEntries.length > 0;
+
+      if (!hasQuery) {
+        queueLayoutUpdate();
+        return;
+      }
+
+      pendingRailTargetId = '';
+
+      if (matchedEntries.length === 0) {
+        clearActive();
+        return;
+      }
+
+      const activeEntry = activeId ? entryById.get(activeId) : null;
+      const nextEntry = activeEntry && !activeEntry.hidden ? activeEntry : matchedEntries[0];
+      const nextId = nextEntry.dataset.entryId || '';
+      setActive(nextId);
+      centreRailTerm(nextId);
+    }
+
+    const observer = new IntersectionObserver(
+      () => {
+        chooseClosestEntry();
+      },
+      {
+        root: null,
+        rootMargin: '-40% 0px -45% 0px',
+        threshold: [0, 0.01, 0.25, 0.5, 0.75],
+      }
+    );
+
+    for (const entry of entries) observer.observe(entry);
+
+    window.addEventListener('scroll', queueActiveUpdate, { passive: true });
+    window.addEventListener('resize', queueLayoutUpdate);
+
+    if ('fonts' in document) {
+      document.fonts.ready.then(queueLayoutUpdate).catch(() => {});
+    }
+
+    for (const term of terms) {
+      term.addEventListener('click', () => {
+        const id = term.dataset.entryId;
+        if (id) {
+          holdRailTarget(id);
+          setActive(id);
+        }
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applySearch);
+    }
+
+    mobileLayout.addEventListener('change', () => {
+      if (railWindow) railWindow.scrollLeft = 0;
+      queueLayoutUpdate();
+    });
+
+    setActive(activeId);
+    queueLayoutUpdate();
+  }
+</script>
+
+<style>
+  .glossary-scroll-layout {
+    display: grid;
+    grid-template-columns: minmax(12rem, 18rem) minmax(0, 48rem);
+    gap: clamp(var(--space-lg), 6vw, var(--space-3xl));
+    align-items: start;
+    width: min(100%, var(--measure-site));
+    margin: 0 auto;
+    padding: 0 var(--page-gutter) var(--space-xl);
+  }
+
+  .glossary-rail-shell {
+    position: sticky;
+    top: calc(var(--nav-height, 3.5rem) + var(--space-lg));
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: var(--space-md);
+    height: min(72vh, 40rem);
+    min-width: 0;
+    align-self: start;
+  }
+
+  .glossary-search-slot {
+    display: grid;
+    gap: var(--space-sm);
+    min-width: 0;
+  }
+
+  .glossary-entry-stack {
+    min-width: 0;
+  }
+
+  .glossary-search-empty {
+    margin: var(--space-xl) 0;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+  }
+
+  .glossary-scroll-layout.is-searching :global(.rail-term.is-search-hit:not(.is-active)) {
+    color: var(--color-text-secondary);
+    opacity: 0.72;
+  }
+
+  .glossary-scroll-layout.is-searching :global(.rail-term.is-active) {
+    opacity: 1;
+  }
+
+  .glossary-scroll-layout :global(.site-search-match) {
+    --site-search-match-color: var(--entry-color);
+  }
+
+  @media (max-width: 900px) {
+    .glossary-scroll-layout {
+      display: block;
+      max-width: 100%;
+      padding: 0 0 var(--space-xl);
+    }
+
+    .glossary-rail-shell {
+      position: sticky;
+      top: var(--nav-height, 3.5rem);
+      z-index: 12;
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: var(--space-xs);
+      height: auto;
+      padding: var(--space-sm) 0 0;
+      background: var(--color-bg);
+      border-top: 1px solid var(--color-border-subtle);
+      border-bottom: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+    }
+
+    .glossary-search-slot {
+      margin: 0 var(--page-gutter);
+    }
+
+    .glossary-entry-stack {
+      padding: 0 var(--page-gutter);
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+
+  }
+</style>

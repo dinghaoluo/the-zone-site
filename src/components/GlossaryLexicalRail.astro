@@ -1,0 +1,135 @@
+---
+import type { GlossaryFocusEntry } from '../data/glossaryFocusEntries';
+
+interface Props {
+  entries: GlossaryFocusEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<nav class="glossary-rail" aria-label="Glossary term index">
+  <div class="glossary-rail-window">
+    <ol class="glossary-rail-list" role="list">
+      {entries.map((entry) => (
+        <li>
+          <a
+            class="rail-term"
+            href={`#glossary-${entry.id}`}
+            data-entry-id={entry.id}
+            style={`--entry-color: var(${entry.colorVar})`}
+          >
+            {entry.railLabel || entry.displayLabel}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .glossary-rail {
+    height: 100%;
+    min-width: 0;
+    font-family: var(--font-heading);
+  }
+
+  .glossary-rail-window {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  }
+
+  .glossary-rail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 42% 0;
+    margin: 0;
+    font-family: inherit;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .rail-term {
+    display: inline-block;
+    padding: 0.1rem 0.05rem;
+    font-family: inherit;
+    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    line-height: 1.15;
+    color: var(--color-text-dim);
+    opacity: 0.62;
+    transition:
+      color 0.22s ease,
+      opacity 0.22s ease;
+  }
+
+  .rail-term:hover {
+    color: var(--color-text-secondary);
+    opacity: 0.82;
+  }
+
+  .rail-term.is-active {
+    color: var(--entry-color);
+    opacity: 1;
+    font-weight: 400;
+  }
+
+  .rail-term:focus-visible {
+    outline: 2px solid var(--entry-color);
+    outline-offset: 0.22rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glossary-rail-list,
+    .rail-term {
+      transition: none;
+    }
+
+  }
+
+  @media (max-width: 900px) {
+    .glossary-rail {
+      height: auto;
+    }
+
+    .glossary-rail-window {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to right, transparent 0, black 1rem, black calc(100% - 1.5rem), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 1rem, black calc(100% - 1.5rem), transparent 100%);
+    }
+
+    .glossary-rail-window::-webkit-scrollbar {
+      display: none;
+    }
+
+    .glossary-rail-list {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.2rem;
+      width: max-content;
+      padding: 0 1.25rem;
+      transform: none !important;
+      transition: none;
+    }
+
+    .rail-term {
+      font-size: clamp(1.12rem, 4.4vw, 1.4rem);
+      line-height: 1;
+      min-height: 2.9rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.22rem;
+      white-space: nowrap;
+      opacity: 0.62;
+    }
+
+    .rail-term.is-active {
+      opacity: 1;
+    }
+  }
+</style>
