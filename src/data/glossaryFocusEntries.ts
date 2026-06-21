@@ -334,7 +334,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Provides the rocketry context for Brennschluss and tracks its recurrence.',
       },
     ],
-    relatedTerms: ['v2-a4', '00000', '00001'],
+    relatedTerms: ['v2-a4', '00000'],
   },
   {
     id: 'v2-a4',
@@ -366,7 +366,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'History and technical description of the A4/V-2.',
       },
     ],
-    relatedTerms: ['brennschluss', '00000', '00001'],
+    relatedTerms: ['brennschluss', '00000'],
   },
   {
     id: 'banana-breakfast',
@@ -451,7 +451,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Chaplin\'s 1940 satire featuring \'Adenoid Hynkel.\'',
       },
     ],
-    relatedTerms: ['pirate-prentice', 'orpheus-theatre'],
+    relatedTerms: ['pirate-prentice'],
   },
   {
     id: 'shaef',
@@ -1307,7 +1307,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Character annotations across Parts 1, 3, and 4.',
       },
     ],
-    relatedTerms: ['poisson-distribution', 'jessica-swanlake', 'fuck-the-war', 'thermidor'],
+    relatedTerms: ['poisson-distribution', 'jessica-swanlake', 'fuck-the-war'],
   },
   {
     id: 'monte-carlo-fallacy',
@@ -1385,7 +1385,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V60.20; identifies Parkhill\'s pulp-fiction Kenosha Kid.',
       },
     ],
-    relatedTerms: ['sodium-amytal', 'shit-from-shinola', 'slothrop'],
+    relatedTerms: ['sodium-amytal', 'slothrop'],
   },
   {
     id: 'sodium-amytal',
@@ -1472,7 +1472,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German chemical conglomerate, 1925-45.',
       },
     ],
-    relatedTerms: ['imipolex-g', 'mittelwerk-dora', 'coal-tar-theology', 'phoebus-cartel', 'united-fruit', 'sandoz-lsd'],
+    relatedTerms: ['imipolex-g', 'mittelwerk-dora', 'coal-tar-theology', 'sandoz-lsd'],
   },
   {
     id: 'kryptosam',
@@ -1602,7 +1602,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V75.12; discusses the historical Herero soldiers (Offizierburschen und Polizeidiener) who served in German military units in South-West Africa before and after the 1904 genocide.',
       },
     ],
-    relatedTerms: ['sudwest', 'enzian', '00001', 'operation-black-wing', 'herero-genocide'],
+    relatedTerms: ['sudwest', 'enzian', 'operation-black-wing', 'herero-genocide'],
   },
   {
     id: 'ypres-passchendaele',
@@ -2158,7 +2158,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Source of the name: the wanderer brings back from the mountain rim \'a word he has earned, pure: the yellow and blue gentian.\'',
       },
     ],
-    relatedTerms: ['sudwest', 'schwarzkommando', '00001', 'ndjambi-karunga'],
+    relatedTerms: ['sudwest', 'schwarzkommando', 'ndjambi-karunga'],
   },
   {
     id: 'in-hoc-signo-vinces',
@@ -2266,7 +2266,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Traces von Göll\'s appearances across the Zone episodes.',
       },
     ],
-    relatedTerms: ['orpheus-theatre', 'schwarzkommando', 'greta-erdmann', 'der-springer'],
+    relatedTerms: ['schwarzkommando', 'greta-erdmann', 'der-springer'],
   },
   {
     id: 'mrs-quoad-diseases',
@@ -2314,7 +2314,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V114.12-13; traces the cumulative tale and its numerological resonances.',
       },
     ],
-    relatedTerms: ['slothrop', 'plechazunga'],
+    relatedTerms: ['slothrop'],
   },
   {
     id: 'ein-volk',
@@ -2583,7 +2583,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Fritz Lang\'s 1929 silent film; Oberth advised on the rocket design.',
       },
     ],
-    relatedTerms: ['pokler', 'persistence-of-vision', 'orpheus-theatre', 'nibelungen-fritz-lang'],
+    relatedTerms: ['pokler', 'persistence-of-vision', 'nibelungen-fritz-lang'],
   },
   {
     id: 'coal-tar-theology',
@@ -2703,7 +2703,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German amateur rocket society (1927-1934).',
       },
     ],
-    relatedTerms: ['pokler', 'wandervogel', 'peenemunde', 'von-braun'],
+    relatedTerms: ['pokler', 'wandervogel', 'von-braun'],
   },
   {
     id: 'pokler',
@@ -3163,7 +3163,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'The idealised motion whose trajectory is a parabola.',
       },
     ],
-    relatedTerms: ['v2-a4', 'delta-t', 'brennschluss'],
+    relatedTerms: ['v2-a4', 'brennschluss'],
   },
   {
     id: 'sol-sigil',
@@ -3440,7 +3440,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V236.36-37; identifies the Pisces/Aries cusp and its structural significance.',
       },
     ],
-    relatedTerms: ['von-braun', 'carmina-burana', 'ohka'],
+    relatedTerms: ['von-braun', 'carmina-burana'],
   },
   {
     id: 'shell-hilary-bounce',
@@ -3565,7 +3565,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German-American rocket engineer (1912-1977), architect of the V-2 and Saturn V.',
       },
     ],
-    relatedTerms: ['peenemunde', 'v2-a4', 'vfr'],
+    relatedTerms: ['v2-a4', 'vfr'],
   },
   {
     id: 'benzene-kekule',
@@ -3786,7 +3786,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the 00000/00001 pairing and its structural function.',
       },
     ],
-    relatedTerms: ['v2-a4', 'brennschluss', '00001', 'orpheus-theatre', 'schwarzgeraet'],
+    relatedTerms: ['v2-a4', 'brennschluss', 'schwarzgeraet'],
   },
   {
     id: 'ian-scuffling',
@@ -4124,7 +4124,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'British effort to reconstruct and launch captured V-2 rockets at Cuxhaven, October 1945.',
       },
     ],
-    relatedTerms: ['von-braun', 'v2-a4', 'peenemunde', 'dulles-oss'],
+    relatedTerms: ['von-braun', 'v2-a4', 'dulles-oss'],
   },
   {
     id: 'mindless-pleasures',
@@ -4223,7 +4223,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the Schwarz- compound naming pattern across the novel.',
       },
     ],
-    relatedTerms: ['slothrop', 'rocketman', 'plechazunga', 'schwarzkommando'],
+    relatedTerms: ['slothrop', 'rocketman', 'schwarzkommando'],
   },
   {
     id: 'eis-heiligen',
@@ -4453,7 +4453,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Identifies Ombindi and the tribal-suicide faction inside the Schwarzkommando.',
       },
     ],
-    relatedTerms: ['enzian', '00001', 'schwarzkommando'],
+    relatedTerms: ['enzian', 'schwarzkommando'],
   },
   {
     id: 'pervitin',
@@ -4696,7 +4696,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Glosses the Potsdam raid and the Rocketman costume.',
       },
     ],
-    relatedTerms: ['slothrop', 'schwarzknabe', 'plechazunga'],
+    relatedTerms: ['slothrop', 'schwarzknabe'],
   },
   {
     id: 'saure-bummer',
@@ -4915,7 +4915,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Introduces Greta Erdmann and her filmography.',
       },
     ],
-    relatedTerms: ['von-goll', 'bianca', 'orpheus-theatre', 'alpdrucken'],
+    relatedTerms: ['von-goll', 'bianca', 'alpdrucken'],
   },
   {
     id: 'zwolfkinder',
@@ -4985,7 +4985,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V400.25; attributes the term proverbially to Prussian troops under Bismarck during the wars of 1864, 1866, and 1870-71.',
       },
     ],
-    relatedTerms: ['pokler', 'peenemunde', 'fuhrer-principle'],
+    relatedTerms: ['pokler', 'fuhrer-principle'],
   },
   {
     id: 'persistence-of-vision',
@@ -5008,7 +5008,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Older, partly discredited account of the visual mechanism behind motion pictures.',
       },
     ],
-    relatedTerms: ['pokler', 'die-frau-im-mond', 'zwolfkinder', 'caligari-gloves', 'der-mude-tod'],
+    relatedTerms: ['pokler', 'die-frau-im-mond', 'zwolfkinder', 'caligari-gloves'],
   },
   {
     id: 'gift-of-daedalus',
@@ -5187,7 +5187,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German physicist (1875-1953), founder of modern aerodynamics.',
       },
     ],
-    relatedTerms: ['v2-a4', 'peenemunde'],
+    relatedTerms: ['v2-a4'],
   },
   {
     id: 'anubis',
@@ -5210,7 +5210,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Egyptian god of embalming and guide of souls to the afterlife.',
       },
     ],
-    relatedTerms: ['greta-erdmann', 'bianca', 'orpheus-theatre'],
+    relatedTerms: ['greta-erdmann', 'bianca'],
   },
   {
     id: 'wozzeck',
@@ -5286,7 +5286,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V472.20-21; notes that Orpheus was allowed to bring Eurydice from Hades provided he did not look back.',
       },
     ],
-    relatedTerms: ['orpheus-theatre', 'bianca', 'alpdrucken', 'greta-erdmann'],
+    relatedTerms: ['bianca', 'alpdrucken', 'greta-erdmann'],
   },
   {
     id: 'shekinah',
