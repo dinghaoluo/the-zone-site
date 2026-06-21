@@ -4179,4 +4179,1165 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     relatedTerms: ['beethoven-rossini', 'saure-bummer'],
   },
   // part 3 episodes
+  {
+    id: 'the-zone',
+    displayLabel: 'The Zone',
+    chronology: { episodeId: '3.01', sort: 300 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Signs will find him here in the Zone, and ancestors will reassert themselves.',
+      highlightedTerm: 'the Zone',
+    },
+    apparatus: {
+      explanation:
+        'After the German surrender, jurisdictions overlap and names go unstable across occupied territory; the Zone is Pynchon\'s name for that condition. Part 3 wanders through rocket debris, black markets, and displaced-persons camps before the same ground hardens into Cold War borders, so the Zone is both a historical few months in 1945 and a figure for what a map briefly cannot hold.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Zone as a historical and structural setting for Part 3.',
+      },
+    ],
+    relatedTerms: ['forget-frontiers', 'slothrop', 'schwarzkommando', 'eis-heiligen'],
+  },
+  {
+    id: 'schwarzknabe',
+    displayLabel: 'Schwarzknabe',
+    chronology: { episodeId: '3.01', sort: 301.05 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Across from "Schwarzknabe," now',
+      highlightedTerm: 'Schwarzknabe',
+    },
+    apparatus: {
+      explanation:
+        'The dossier first sets *Schwarzknabe*, roughly \'black boy\', beside the initials T.S.; it later becomes one of Slothrop\'s Zone identities. The word gathers him into the novel\'s Schwarz-compounds before he has met the Schwarzkommando or heard of the Schwarzgerät.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Schwarz- compound naming pattern across the novel.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'rocketman', 'plechazunga', 'schwarzkommando'],
+  },
+  {
+    id: 'eis-heiligen',
+    displayLabel: 'Eis-Heiligen (Ice Saints)',
+    railLabel: 'Eis-Heiligen',
+    chronology: { episodeId: '3.01', sort: 301.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the days of the Eis-Heiligen — St. Pancratius, St. Servatius, St. Bonifacius, die kalte Sophie',
+      highlightedTerm: 'Eis-Heiligen',
+    },
+    apparatus: {
+      explanation:
+        'The Ice Saints, Mamertus, Pancras, Servatius, and Boniface, occupy feast days from 11 to 14 May; Cold Sophie follows on 15 May. Central European farmers linked the dates with a last frost and protected orchards with smoky fires; the *Eisheiligen* tradition varies by region and folds saints\' days into a recurrent meteorological risk. Pynchon uses the calendar to place Slothrop\'s arrival in the Zone in mid-May 1945.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V281.1-2; identifies the Ice Saints and their meteorological significance.',
+      },
+      {
+        label: 'Ice Saints',
+        url: 'https://en.wikipedia.org/wiki/Ice_Saints',
+        note: 'Central European folk tradition of a late-May frost linked to saints\' feast days.',
+      },
+    ],
+    relatedTerms: ['the-zone', 'slothrop'],
+  },
+  {
+    id: 'tchitcherine',
+    displayLabel: 'Vaslav Tchitcherine',
+    chronology: { episodeId: '3.01', sort: 301.3 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'In and out of all the vibrant flesh moves the mad scavenger Tchitcherine.',
+      highlightedTerm: 'Tchitcherine',
+    },
+    apparatus: {
+      explanation:
+        'Vaslav Tchitcherine, a Soviet intelligence officer, knows that Enzian is his half-brother and pursues him through the Zone. In 4.11, Geli\'s spell on the Brocken lets the two men pass on a road without recognition, and the pursuit ends without the confrontation Tchitcherine wanted. His name echoes Georgy Chicherin, Soviet Commissar for Foreign Affairs from 1918 to 1930.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates Tchitcherine\'s biography and the Chicherin echo.',
+      },
+    ],
+    relatedTerms: ['enzian', 'geli-tripping', 'kirghiz-light', 'nta-new-turkic-alphabet', 'ajtys-singing-duel'],
+  },
+  {
+    id: 'brocken',
+    displayLabel: 'Brocken',
+    chronology: { episodeId: '3.01', sort: 301.4 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Have you been up to the Brocken yet?',
+      highlightedTerm: 'Brocken',
+    },
+    apparatus: {
+      explanation:
+        'The Brocken is the highest peak in the Harz Mountains and the site of the Walpurgis Night witches\' gathering in Goethe\'s *Faust*; Goethe climbed it in December 1777. A *Life* article of 28 May 1945 described the Walpurgis bonfire on the Brocken and its appropriation by the Hitler Youth from 1933 onwards. Slothrop and Geli reach the summit at dawn in 3.04, and the scene sets his family\'s Salem inheritance beside her Central European witchcraft, which the novel keeps in the same frame without deciding between them.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V293.17; cites the *Life* magazine source for the Brocken details.',
+      },
+      {
+        label: 'Brocken',
+        url: 'https://en.wikipedia.org/wiki/Brocken',
+        note: 'Highest peak in the Harz Mountains; site of the Walpurgis Night legends.',
+      },
+    ],
+    relatedTerms: ['geli-tripping', 'slothrop'],
+  },
+  {
+    id: 'forget-frontiers',
+    displayLabel: 'Forget frontiers now',
+    chronology: { episodeId: '3.01', sort: 301.5 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Forget frontiers now. Forget subdivisions. There aren\'t any.',
+      highlightedTerm: 'Forget frontiers',
+    },
+    apparatus: {
+      explanation:
+        'Part 3 opens with a shortening sequence: three commands, then two, then one, until only \'Forget frontiers now\' remains. The same collapse of borders that lets Slothrop drift free of PISCES also lets the cartels move across the ruined map without regulation, so the Zone\'s provisional lawlessness works for the runaway and for the corporations pursuing him on more or less equal terms.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the opening rhetorical figure of Part 3.',
+      },
+    ],
+    relatedTerms: ['the-zone', 'slothrop'],
+  },
+  {
+    id: 'raketen-stadt',
+    displayLabel: 'Raketen-Stadt',
+    chronology: { episodeId: '3.02', sort: 302 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'the barrier-glow of the Raketen-Stadt',
+      highlightedTerm: 'Raketen-Stadt',
+    },
+    apparatus: {
+      explanation:
+        '*Raketen-Stadt* means \'Rocket City\'. It first appears as a tourist fantasy in the salt mines, then returns in 4.06 with routes that admit some people and exclude others; the postwar city inherits the rocket programme\'s divisions.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Raketen-Stadt figure across Parts 3 and 4.',
+      },
+    ],
+    relatedTerms: ['preterite', 'v2-a4'],
+  },
+  {
+    id: 'tannhauserism',
+    displayLabel: 'Tannhauserism',
+    chronology: { episodeId: '3.02', sort: 302.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'There is that not-so-rare personality disorder known as Tannhauserism. Some of us love to be taken under mountains',
+      highlightedTerm: 'Tannhauserism',
+    },
+    apparatus: {
+      explanation:
+        'Pynchon coins \'Tannhäuserism\' from the medieval singer who leaves Venusberg for absolution in Rome, is refused by the pope, and returns underground. Jacob Grimm records the legend in *Deutsche Mythologie*, Wagner gives it its best-known operatic form in *Tannhäuser* (1845), and Denis de Rougemont reads it through a love-death dialectic in *Love in the Western World* (1939). Slothrop attaches the name to \'the comfort of a closed place, where everyone is in complete agreement about Death\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V299.13-14; cites Grimm\'s *Teutonic Mythology* on the Tannhäuser legend.',
+      },
+      {
+        label: 'Tannhäuser legend',
+        url: 'https://en.wikipedia.org/wiki/Tannh%C3%A4user',
+        note: 'Medieval German minnesinger whose legend fuses erotic transgression with religious pilgrimage.',
+      },
+    ],
+    relatedTerms: ['blicero', 'domina-nocturna', 'alpdrucken'],
+  },
+  {
+    id: 'ovatjimba',
+    displayLabel: 'Ovatjimba',
+    chronology: { episodeId: '3.03', sort: 303.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Among the Ovatjimba, the poorest of the Hereros',
+      highlightedTerm: 'Ovatjimba',
+    },
+    apparatus: {
+      explanation:
+        'The Ovatjimba were the poorest of the Herero speakers of south-west Africa, an itinerant population that Pynchon renames the Aardvark People. Their aardvark-hole tradition gives the Schwarzkommando their *Erdschweinhöhle* in the Zone, so the burrows beneath the Mittelwerk tunnels arrive with a much older Herero history attached.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Identifies the Ovatjimba as the impoverished, mobile Herero group Pynchon renames the Aardvark People.',
+      },
+    ],
+    relatedTerms: ['enzian', 'ndjambi-karunga', 'ombindi-empty-ones'],
+  },
+  {
+    id: 'schwarze-besatzung',
+    displayLabel: 'Schwarze Besatzung am Rhein',
+    railLabel: 'Schwarze Besatzung',
+    chronology: { episodeId: '3.03', sort: 303.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Germans still remember the occupation of the Rhineland 20 years ago by French colonial units, and the posters screaming SCHWARZE BESATZUNG AM RHEIN!',
+      highlightedTerm: 'SCHWARZE BESATZUNG AM RHEIN',
+    },
+    apparatus: {
+      explanation:
+        '*Schwarze Besatzung am Rhein*, \'Black Occupation on the Rhine\', was the racist German name for the French colonial troops stationed among occupation forces in the Rhineland after 1918. France drew those units from North and West Africa; a pamphlet and film campaign, including *Die Schwarze Schmach* (1921), circulated fabricated claims of sexual violence against German women and turned the presence of Black soldiers on German soil into a national panic. In the Zone, the same racial anxiety returns as rumour, this time about the Schwarzkommando, and the earlier campaign is the frame the German characters carry into the encounter.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V327.34; identifies the Rhineland occupation and racist propaganda context.',
+      },
+      {
+        label: 'Rhineland occupation (Black Horror)',
+        url: 'https://en.wikipedia.org/wiki/Occupation_of_the_Rhineland#%22Black_Horror_on_the_Rhine%22',
+        note: 'Racist propaganda campaign against French colonial troops stationed in the Rhineland after WWI.',
+      },
+    ],
+    relatedTerms: ['schwarzkommando', 'herero-genocide', 'enzian'],
+  },
+  {
+    id: 'ombindi-empty-ones',
+    displayLabel: 'Ombindi / Empty Ones',
+    railLabel: 'Empty Ones',
+    chronology: { episodeId: '3.03', sort: 303.2 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'in the Erdschweinhöhle, the Empty Ones each carry one knotless strip of leather',
+      highlightedTerm: 'Empty Ones',
+    },
+    apparatus: {
+      explanation:
+        'Ombindi\'s Empty Ones treat voluntary extinction as the completion of Germany\'s Herero genocide. They carry knotless leather strips and refuse to reproduce; Enzian rejects the programme and builds the counter-rocket as a wager on Herero survival in the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Identifies Ombindi and the tribal-suicide faction inside the Schwarzkommando.',
+      },
+    ],
+    relatedTerms: ['enzian', '00001', 'schwarzkommando'],
+  },
+  {
+    id: 'pervitin',
+    displayLabel: 'Pervitin',
+    chronology: { episodeId: '3.03', sort: 303.2 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Enzian grabs his kit, swallows two Pervitins for the road',
+      highlightedTerm: 'Pervitins',
+    },
+    apparatus: {
+      explanation:
+        'Pervitin was Temmler Pharmaceuticals\' trade name for methamphetamine hydrochloride, introduced in 1938 and issued to Wehrmacht troops as a fatigue-suppressant during the 1940 campaign. It was sold without prescription until German authorities restricted it in 1941, though military distribution continued through the war. Enzian swallows two Pervitins on the road, taking a German military drug into the Zone he now crosses as a Herero commander.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V328.25; identifies Pervitin as Temmler\'s methamphetamine.',
+      },
+      {
+        label: 'Pervitin',
+        url: 'https://en.wikipedia.org/wiki/Methamphetamine#History',
+        note: 'Methamphetamine trade name used by the Wehrmacht as a fatigue-suppressor.',
+      },
+    ],
+    relatedTerms: ['enzian', 'ig-farben'],
+  },
+  {
+    id: 'erdschweinhohle',
+    displayLabel: 'Erdschweinhöhle',
+    chronology: { episodeId: '3.03', sort: 303.3 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Around here they are known collectively as the Erdschweinhöhle.',
+      highlightedTerm: 'Erdschweinhöhle',
+    },
+    apparatus: {
+      explanation:
+        '*Erdschweinhöhle* means \'aardvark hole\'. The Schwarzkommando name their underground network after the Ovatjimba aardvark tradition, and the burrow repeats the concealed layout of the Mittelwerk; German rocketry and its African counter-programme occupy the same kind of tunnel.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Glosses the Erdschweinhöhle name via the Ovatjimba aardvark tradition.',
+      },
+    ],
+    relatedTerms: ['schwarzkommando', 'enzian', 'mittelwerk-dora'],
+  },
+  {
+    id: 'geli-tripping',
+    displayLabel: 'Geli Tripping',
+    chronology: { episodeId: '3.04', sort: 304 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the apprentice witch Geli Tripping',
+      highlightedTerm: 'Geli Tripping',
+    },
+    apparatus: {
+      explanation:
+        'Geli is a young witch descended from Amy Sprue. She meets Slothrop on the Brocken, and in 4.11 casts the spell that prevents Tchitcherine from recognising Enzian as his half-brother. Her witchcraft is a kind of knowledge that Pointsman will not enter in a laboratory record and Tchitcherine will not enter in a dossier.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Introduces Geli and her Brocken witchcraft.',
+      },
+    ],
+    relatedTerms: ['tchitcherine', 'brocken'],
+  },
+  {
+    id: 'sus-per-coll',
+    displayLabel: 'Sus. per Coll.',
+    chronology: { episodeId: '3.04', sort: 304.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'one of the last to join the sus. per coll. crowd',
+      highlightedTerm: 'sus. per coll.',
+    },
+    apparatus: {
+      explanation:
+        'The legal abbreviation *sus. per coll.* expands to Latin *suspendatur per collum*, \'let him or her be hanged by the neck\'; English and colonial court records used it for a sentence of hanging. Pynchon puts the phrase beside Amy Sprue, a fictional \'genuine Salem Witch\' in Slothrop\'s family tree. The gloss does not establish a family link between Amy and the historical William Pynchon or the accused women Margaret Jones and Mary Parsons.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V329.23; identifies the legal abbreviation and the Salem-trial reference.',
+      },
+    ],
+    relatedTerms: ['brocken', 'preterite'],
+  },
+  {
+    id: 'kirghiz-light',
+    displayLabel: 'Kirghiz Light',
+    chronology: { episodeId: '3.05', sort: 305 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'After seeing the Kirghiz Light',
+      highlightedTerm: 'Kirghiz Light',
+    },
+    apparatus: {
+      explanation:
+        'Tchitcherine encounters the Kirghiz Light after his New Turkic Alphabet posting in Central Asia, and the revelation passes through him without recognition. The file records that he saw it; his later pursuit of a remembered transcendence suggests he did not know what he had seen.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Glosses the Kirghiz Light passage and Tchitcherine\'s Central Asian episode.',
+      },
+    ],
+    relatedTerms: ['tchitcherine'],
+  },
+  {
+    id: 'apparatchik',
+    displayLabel: 'Apparatchik',
+    chronology: { episodeId: '3.05', sort: 305.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'was reproduced by some eager apparatchik and stashed in Tchitcherine\'s own dossier.',
+      highlightedTerm: 'apparatchik',
+    },
+    apparatus: {
+      explanation:
+        'An *apparatchik* is a functionary of a party or administrative apparatus, from Russian *apparat*. In Tchitcherine\'s case one eager official copies a report into his own dossier, and Pynchon lets the reader watch a nameless clerk hand him the paperwork that will follow him for the rest of the novel.',
+    },
+    externalRefs: [
+      {
+        label: 'Apparatchik',
+        url: 'https://en.wikipedia.org/wiki/Apparatchik',
+        note: 'Soviet party functionary; a member of the administrative apparatus.',
+      },
+    ],
+    relatedTerms: ['tchitcherine', 'enzian', 'sudwest'],
+  },
+  {
+    id: 'nta-new-turkic-alphabet',
+    displayLabel: 'New Turkic Alphabet (NTA)',
+    railLabel: 'NTA',
+    chronology: { episodeId: '3.05', sort: 305.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'all agents — though none thought of it this way — representing the NTA (New Turkic Alphabet) in uncommonly alien country',
+      highlightedTerm: 'NTA',
+    },
+    apparatus: {
+      explanation:
+        'The New Turkic Alphabet, or *Yañalif*, used a Latin alphabet of thirty-three letters (later thirty-four) to replace Arabic scripts for many Soviet Turkic languages. Local reformers and Soviet planners supported Latinisation for different combinations of literacy, secularisation, and political integration; Thomas G. Winner\'s *The Oral Art and Literature of the Kazakhs of Russian Central Asia* (1958) is Weisenburger\'s identified source. Soviet policy replaced the Latin alphabets with Cyrillic between 1938 and 1940, separating another generation from the preceding written system. Tchitcherine is posted with the commission that carries the new Latin letters into Kazakh villages, where the same evening the agents also encounter the *ajtys*.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V339.1; cites Winner\'s study of Kazakh oral literature.',
+      },
+    ],
+    relatedTerms: ['tchitcherine', 'kirghiz-light', 'ajtys-singing-duel'],
+  },
+  {
+    id: 'ajtys-singing-duel',
+    displayLabel: 'Ajtys (Singing-Duel)',
+    railLabel: 'Ajtys',
+    chronology: { episodeId: '3.05', sort: 305.2 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'It is an ajtys — a singing-duel. The boy and girl stand in the eye of the village',
+      highlightedTerm: 'ajtys',
+    },
+    apparatus: {
+      explanation:
+        'An *ajtys* is a Kazakh improvised verse contest between *aqyns*, commonly accompanied by the dombra, a long-necked lute, or the shamanic bowed qobyz. Pynchon makes this one a courtship exchange between a boy and a girl in the eye of the village, and stages it beside the alphabet commission so the reader can hear how much of the sung reply the new Latin letters would fail to capture.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V356.10; cites Winner on the ajtys and aqyn traditions.',
+      },
+    ],
+    relatedTerms: ['nta-new-turkic-alphabet', 'tchitcherine', 'kirghiz-light'],
+  },
+  {
+    id: 'heisenberg-uncertainty',
+    displayLabel: 'Heisenberg Uncertainty Principle',
+    railLabel: 'Heisenberg',
+    chronology: { episodeId: '3.05', sort: 305.3 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'We seem up against a dilemma built into Nature, much like the Heisenberg situation',
+      highlightedTerm: 'Heisenberg',
+    },
+    apparatus: {
+      explanation:
+        'Werner Heisenberg\'s uncertainty relation places an intrinsic lower bound on the joint spreads of position and momentum, ΔxΔp ≥ ℏ/2. The relation does not arise simply because a measurement disturbs the particle; the modern formulation follows from the non-commuting operators for position and momentum. Heisenberg published the paper in 1927 and received the 1932 Nobel Prize in Physics. Pynchon uses the physical limit as an analogy for opiate addiction, where a doctor cannot lower pain without also lowering the patient\'s tolerance for pain, so relief and desire behave like conjugate variables.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V348.21; follows the analogy between the uncertainty relation and the inability to vary drug relief independently of desire.',
+      },
+      {
+        label: 'Uncertainty principle',
+        url: 'https://en.wikipedia.org/wiki/Uncertainty_principle',
+        note: 'Heisenberg\'s 1927 principle of quantum mechanics.',
+      },
+    ],
+    relatedTerms: ['maxwells-demon', 'godels-theorem', 'pointsman'],
+  },
+  {
+    id: 'rocketman',
+    displayLabel: 'Rocketman',
+    chronology: { episodeId: '3.06', sort: 306.01 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'given up for good on Rocketman here',
+      highlightedTerm: 'Rocketman',
+    },
+    apparatus: {
+      explanation:
+        'Slothrop becomes Rocketman in a horned Wagnerian helmet and green velvet cape during the Potsdam hashish raid, cutting a comic-book American through German military rubble. He gives the name up after the raid and continues under other disguises, though the persona keeps returning as a rumour in the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Glosses the Potsdam raid and the Rocketman costume.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'schwarzknabe', 'plechazunga'],
+  },
+  {
+    id: 'saure-bummer',
+    displayLabel: 'Säure Bummer',
+    railLabel: 'Säure',
+    chronology: { episodeId: '3.06', sort: 306.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Säure Bummer gazing around',
+      highlightedTerm: 'Säure',
+    },
+    apparatus: {
+      explanation:
+        'Säure Bummer is a Berlin hashish dealer and Rossini partisan; *Säure* means \'acid\'. He hires Slothrop for the Potsdam raid, then argues with Gustav over Rossini and Beethoven while the drugs move through the city.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Introduces Säure Bummer and the Beethoven/Rossini debate.',
+      },
+    ],
+    relatedTerms: ['pirate-prentice', 'bodine'],
+  },
+  {
+    id: 'william-slothrop',
+    displayLabel: 'William Slothrop',
+    chronology: { episodeId: '3.06', sort: 306.15 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'maybe not the same thing William Slothrop . . . meant when he said \'sin.\'',
+      highlightedTerm: 'William Slothrop',
+    },
+    apparatus: {
+      explanation:
+        'William Slothrop, Tyrone\'s ancestor, writes *On Preterition*, arguing that those passed over by grace possess a holiness of their own. Massachusetts authorities burn the tract and the family\'s standing declines; Tyrone inherits the history of the rejected argument as his own name begins to scatter across the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Traces William Slothrop\'s fictional Puritan tract on preterition.',
+      },
+    ],
+    relatedTerms: ['preterite', 'slothrop', 'arbella-winthrop'],
+  },
+  {
+    id: 'bodine',
+    displayLabel: 'Seaman Bodine',
+    railLabel: 'Bodine',
+    chronology: { episodeId: '3.06', sort: 306.4 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'The singer is Seaman Bodine',
+      highlightedTerm: 'Seaman Bodine',
+    },
+    apparatus: {
+      explanation:
+        'Seaman Bodine, whose name recurs across Pynchon\'s fiction from *V.* onwards, is Säure\'s contact and later joins the Counterforce. Here he sings \'My Doper\'s Cadenza\' while Slothrop prepares for the Potsdam raid.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Bodine\'s appearance and his recurrence across Pynchon\'s fiction.',
+      },
+    ],
+    relatedTerms: ['saure-bummer', 'slothrop'],
+  },
+  {
+    id: 'der-springer',
+    displayLabel: 'Der Springer (The Chess Knight)',
+    railLabel: 'Springer',
+    chronology: { episodeId: '3.07', sort: 307.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'He is the knight who leaps perpetually — across the chessboard of the Zone',
+      highlightedTerm: 'knight',
+    },
+    apparatus: {
+      explanation:
+        '*Springer* is German for the chess knight, the piece that crosses the board by an angled leap and passes over intervening pieces. Gerhardt von Göll adopts the name as his own movements cut across the Zone. Weisenburger also hears Ludwig der Springer (c. 1042-1123), Count of Thuringia, who according to legend escaped Giebichenstein castle by leaping into the Saale and earned the epithet \'the Leaper\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V376.26; identifies the chess and historical Springer references.',
+      },
+    ],
+    relatedTerms: ['von-goll', 'the-zone', 'rocketman'],
+  },
+  {
+    id: 'caligari-gloves',
+    displayLabel: 'Caligari\'s Gloves',
+    railLabel: 'Caligari',
+    chronology: { episodeId: '3.08', sort: 308.1 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'sporting the Caligari gloves which now enjoy a summer vogue in the Zone: bone white, except for the four lines in deep violet fanning up each gloveback',
+      highlightedTerm: 'Caligari gloves',
+    },
+    apparatus: {
+      explanation:
+        'The bone-white gloves with four violet lines fanning up each back reproduce the painted visual world of Robert Wiene\'s *The Cabinet of Dr. Caligari* (1920). Siegfried Kracauer, writing in American exile in *From Caligari to Hitler* (1947), read Caligari\'s command over the somnambulist Cesare as a Weimar image of obedience to authority; his psychological history of Weimar cinema remains contested. Pynchon brings the image back as a summer fashion in the postwar Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V385.1; cites Kracauer on the Caligari/authority dynamic.',
+      },
+      {
+        label: '*The Cabinet of Dr. Caligari*',
+        url: 'https://en.wikipedia.org/wiki/The_Cabinet_of_Dr._Caligari',
+        note: 'Robert Wiene\'s 1920 German expressionist film.',
+      },
+    ],
+    relatedTerms: ['die-frau-im-mond', 'nibelungen-fritz-lang', 'persistence-of-vision'],
+  },
+  {
+    id: 'black-words',
+    displayLabel: 'Black-words (Schwarz-Compounds)',
+    railLabel: 'Black-words',
+    chronology: { episodeId: '3.09', sort: 309.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'he did talk about the Schwarzgerät. And he also coupled "schwarz-" with some strange nouns, in the German fragments that came through. Blackwoman, Blackrocket, Blackdream',
+      highlightedTerm: 'Blackwoman, Blackrocket, Blackdream',
+    },
+    apparatus: {
+      explanation:
+        'Tchitcherine finds *schwarz-* joined to Blackwoman, Blackrocket, and Blackdream in Slothrop\'s sodium amytal transcript. German compound formation permits nouns to be strung together into long *Komposita*; the transcript turns that capacity into \'the insanely, endlessly diddling play of a chemist whose molecules are words\'. Tchitcherine cannot decide whether the *schwarz-* words share \'a single root\' or come from ordinary German name-making, and either reading connects Slothrop to the Schwarzgerät and Schwarzkommando before he knows them.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Sodium Amytal transcript and the recurring \'Black\' motif.',
+      },
+    ],
+    relatedTerms: ['schwarzgeraet', 'schwarzkommando', 'enzian', 'sodium-amytal'],
+  },
+  {
+    id: 'tsagi-assignment',
+    displayLabel: 'TsAGI Assignment',
+    railLabel: 'TsAGI',
+    chronology: { episodeId: '3.09', sort: 309.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'reporting, if and when, direct to Malenkov\'s special committee under the Council of People\'s Commissars (the TsAGI assignment being more or less a cover)',
+      highlightedTerm: 'TsAGI',
+    },
+    apparatus: {
+      explanation:
+        'TsAGI, the Central Aerohydrodynamic Institute, was founded in Moscow in 1918 for aerodynamics research, wind-tunnel testing, and aircraft design. Pynchon makes it Tchitcherine\'s nominal employer in the Zone: the posting covers a direct line to Georgy Malenkov\'s special committee on captured German technology, and leaves him outside the Allied technical-intelligence groups that share the territory.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates Tchitcherine\'s intelligence affiliations in the Zone.',
+      },
+    ],
+    relatedTerms: ['tchitcherine', 'slothrop'],
+  },
+  {
+    id: 'bianca',
+    displayLabel: 'Bianca',
+    chronology: { episodeId: '3.10', sort: 310 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Looking for her daughter, Bianca',
+      highlightedTerm: 'Bianca',
+    },
+    apparatus: {
+      explanation:
+        'Bianca is Greta Erdmann\'s young daughter aboard the *Anubis*. Slothrop sexually abuses her below deck and then leaves her; she disappears, and her fate remains unresolved. Part 4 opens with Greta searching for her.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Tracks Bianca\'s appearances and the *Anubis* episodes.',
+      },
+    ],
+    relatedTerms: ['greta-erdmann', 'anubis'],
+  },
+  {
+    id: 'greta-erdmann',
+    displayLabel: 'Margherita Erdmann (Greta)',
+    railLabel: 'Greta',
+    chronology: { episodeId: '3.10', sort: 310.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'he comes to meet Margherita Erdmann',
+      highlightedTerm: 'Margherita Erdmann',
+    },
+    apparatus: {
+      explanation:
+        'Margherita \'Greta\' Erdmann is an actor whose remembered life mixes expressionist horror, propaganda, and pornography with films that may never have existed. On the *Anubis*, those screen accounts enter her testimony about her own body and her search for Bianca.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Introduces Greta Erdmann and her filmography.',
+      },
+    ],
+    relatedTerms: ['von-goll', 'bianca', 'orpheus-theatre', 'alpdrucken'],
+  },
+  {
+    id: 'zwolfkinder',
+    displayLabel: 'Zwölfkinder',
+    chronology: { episodeId: '3.11', sort: 311.01 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'love something like the persistence of vision, for They have used it to create for him the moving image of a daughter.',
+      highlightedTerm: 'daughter',
+    },
+    apparatus: {
+      explanation:
+        'At this fictional Baltic children\'s resort, Pökler is permitted one summer visit each year with a girl presented as his daughter Ilse. The uncertainty over whether the child is the same one from year to year keeps him building rockets at Peenemünde, and the annual visits are the discrete stills from which the State assembles his \'moving image of a daughter\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Glosses Zwölfkinder as the invented Baltic resort of Pökler\'s annual visits.',
+      },
+    ],
+    relatedTerms: ['pokler', 'persistence-of-vision', 'alpdrucken'],
+  },
+  {
+    id: 'alpdrucken',
+    displayLabel: 'Alpdrücken',
+    chronology: { episodeId: '3.11', sort: 311.05 },
+    colorVar: plotlineColorVars.P08,
+    context: {
+      excerpt:
+        'stalking Reichssieger von Thanatz Alpdrücken, that most elusive of Nazi hounds.',
+      highlightedTerm: 'Alpdrücken',
+    },
+    apparatus: {
+      explanation:
+        '*Alpdrücken* means the pressure of a nightmare, the weight of an incubus on a sleeper\'s chest. The name joins the Weimaraner in 1.17, \'Reichssieger von Thanatz *Alpdrücken*\', to von Göll\'s fictional horror film in 3.11; Pökler leaves the cinema aroused by Greta Erdmann\'s on-screen rape, goes home to Leni, and Ilse is conceived that night, which is how the nightmare enters the family\'s paternity.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Traces *Alpdrücken* across its dog, film, and paternity references.',
+      },
+    ],
+    relatedTerms: ['pokler', 'persistence-of-vision', 'zwolfkinder'],
+  },
+  {
+    id: 'kadavergehorsamkeit',
+    displayLabel: 'Kadavergehorsamkeit (Corpse Obedience)',
+    railLabel: 'Kadavergehorsamkeit',
+    chronology: { episodeId: '3.11', sort: 311.1 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'Kadavergehorsamkeit, a beautiful word he can no longer imagine in any voice but hers',
+      highlightedTerm: 'Kadavergehorsamkeit',
+    },
+    apparatus: {
+      explanation:
+        '*Kadavergehorsamkeit* means \'corpse obedience\', submission as complete as a dead body\'s. The phrase follows the Jesuit comparison of obedience with a corpse, *perinde ac cadaver*; later German polemic, in Bismarckian Prussia and after, applied it to unthinking military and bureaucratic submission. Leni gives Pökler the word for his compliance, and he continues to hear its beauty in her voice while he works for Peenemünde.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V400.25; attributes the term proverbially to Prussian troops under Bismarck during the wars of 1864, 1866, and 1870-71.',
+      },
+    ],
+    relatedTerms: ['pokler', 'peenemunde', 'fuhrer-principle'],
+  },
+  {
+    id: 'persistence-of-vision',
+    displayLabel: 'persistence of vision',
+    chronology: { episodeId: '3.11', sort: 311.3 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'love something like the persistence of vision, for They have used it to create for him the moving image of a daughter.',
+      highlightedTerm: 'persistence of vision',
+    },
+    apparatus: {
+      explanation:
+        'Pynchon uses the older phrase \'persistence of vision\' for Pökler\'s annual meetings with Ilse: the separate summer visits become \'the moving image of a daughter\'. The phrase names retinal afterimages, which do not by themselves explain cinema; apparent motion depends on later perceptual processing that joins successive stills. The metaphor is precise for Pökler\'s situation, since he is asked to accept a sequence of stills as continuous fatherhood.',
+    },
+    externalRefs: [
+      {
+        label: 'Persistence of vision',
+        url: 'https://en.wikipedia.org/wiki/Persistence_of_vision',
+        note: 'Older, partly discredited account of the visual mechanism behind motion pictures.',
+      },
+    ],
+    relatedTerms: ['pokler', 'die-frau-im-mond', 'zwolfkinder', 'caligari-gloves', 'der-mude-tod'],
+  },
+  {
+    id: 'gift-of-daedalus',
+    displayLabel: 'gift of Daedalus',
+    chronology: { episodeId: '3.11', sort: 311.4 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'the gift of Daedalus that allowed him to put as much labyrinth as required between himself and the inconveniences of caring.',
+      highlightedTerm: 'gift of Daedalus',
+    },
+    apparatus: {
+      explanation:
+        'Daedalus built both the Minotaur\'s labyrinth and the wings that carried him and Icarus out of it. Pökler\'s \'gift of Daedalus\' lets him place as much technical labyrinth as necessary between his work and \'the inconveniences of caring\', and Pynchon has him use his engineering training to build the interior partitions with the same care he brings to the rocket.',
+    },
+    externalRefs: [
+      {
+        label: 'Daedalus',
+        url: 'https://en.wikipedia.org/wiki/Daedalus',
+        note: 'Greek craftsman who built the Cretan labyrinth and the wings for himself and Icarus.',
+      },
+    ],
+    relatedTerms: ['pokler', 'mittelwerk-dora'],
+  },
+  {
+    id: 'mittelwerk-dora',
+    displayLabel: 'Mittelwerk / Dora',
+    chronology: { episodeId: '3.11', sort: 311.5 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'Back at the Mittelwerke he tried, and kept trying, to get into the Dora camp',
+      highlightedTerm: 'Mittelwerke',
+    },
+    apparatus: {
+      explanation:
+        'Mittelwerk was the underground armaments factory in the Kohnstein tunnels near Nordhausen; the nearby Dora camp, later the centre of the Mittelbau camp system, supplied its forced labour. From 1943 to 1945 the plant produced V-1s and V-2s in former storage tunnels, and about 20,000 prisoners died across the Mittelbau system through executions, starvation, disease, brutal labour, and evacuation marches. Pökler enters the tunnels after liberation and finds the bodies of the workers who built the rockets he designed, so his labyrinth and the camp are shown to be the same set of galleries.',
+    },
+    externalRefs: [
+      {
+        label: 'KZ Mittelbau-Dora Memorial',
+        url: 'https://www.dora.de/en/',
+        note: 'Official memorial site.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'pokler', 'parabola'],
+  },
+  {
+    id: 'nordhausen',
+    displayLabel: 'Nordhausen',
+    chronology: { episodeId: '3.11', sort: 311.6 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'All his vacuums, his labyrinths, had been the other side of this.',
+      highlightedTerm: 'this',
+    },
+    apparatus: {
+      explanation:
+        'Nordhausen is the town beside the Kohnstein tunnels and the Mittelbau-Dora camp system, and the name Allied observers used for the underground works they entered in April 1945. Pökler arrives among the prisoners\' bodies and understands that all his \'vacuums\' and \'labyrinths\' had been \'the other side of this\'.',
+    },
+    externalRefs: [
+      {
+        label: 'Mittelbau-Dora concentration camp',
+        url: 'https://en.wikipedia.org/wiki/Mittelbau-Dora_concentration_camp',
+        note: 'The Nordhausen camp complex that supplied labour for V-weapon production.',
+      },
+    ],
+    relatedTerms: ['mittelwerk-dora', 'pokler', 'gift-of-daedalus'],
+  },
+  {
+    id: 'beethoven-rossini',
+    displayLabel: 'Beethoven vs. Rossini',
+    railLabel: 'Beethoven / Rossini',
+    chronology: { episodeId: '3.12', sort: 312.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Gustav is a composer. For months he has been carrying on a raging debate with Saure over who is better, Beethoven or Rossini.',
+      highlightedTerm: 'Beethoven or Rossini',
+    },
+    apparatus: {
+      explanation:
+        'Gustav gives Beethoven the \'German dialectic\', whose expanding scale terminates in dodecaphonic democracy; Säure defends Rossini as a musician of pleasure and the body. Weisenburger reads the argument through Stendhal\'s *Life of Rossini* (1823) and Norman O. Brown\'s *Life Against Death* (1959), where disciplined sublimation is opposed to unrepressed play, and the two hashish-cellar antagonists divide along that axis.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V440.4; cites Stendhal and Norman O. Brown on the Beethoven/Rossini opposition.',
+      },
+    ],
+    relatedTerms: ['saure-bummer', 'carmina-burana'],
+  },
+  {
+    id: 'horst-wessel-lied',
+    displayLabel: 'Horst-Wessel-Lied',
+    railLabel: 'Horst Wessel',
+    chronology: { episodeId: '3.12', sort: 312.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'they are his country\'s versions of the Horst Wessel Song',
+      highlightedTerm: 'Horst Wessel Song',
+    },
+    apparatus: {
+      explanation:
+        'Joseph Goebbels turned the Berlin SA member Horst Wessel (1907-1930) into a Nazi martyr after the Communist Party member Albrecht Höhler shot him on 14 January 1930; Wessel died on 23 February, and the motives behind the shooting remain contested. His lyrics became the *Horst-Wessel-Lied*, played after 1933 with the *Deutschlandlied* at state occasions; competing accounts derive the melody from an older folk tune, a Salvation Army hymn, or a Communist workers\' song. When Slothrop hears American patriotic songs in this passage, Pynchon marks them as the American counterparts to the *Lied*, which unsettles the neat wartime opposition.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V443.2; gives one account of the melody\'s origin and notes the America/Germany parallel.',
+      },
+      {
+        label: '*Horst-Wessel-Lied*',
+        url: 'https://en.wikipedia.org/wiki/Horst-Wessel-Lied',
+        note: 'Nazi anthem whose melody has several disputed antecedents.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'the-zone'],
+  },
+  {
+    id: 'wannsee-conference',
+    displayLabel: 'Wannsee',
+    chronology: { episodeId: '3.12', sort: 312.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'One Sunday out at Wannsee, an armada of sails all bent the same way, patiently, dreamlike into the wind',
+      highlightedTerm: 'Wannsee',
+    },
+    apparatus: {
+      explanation:
+        'On 20 January 1942, fifteen officials met at the villa at Am Grossen Wannsee 56-58 to coordinate deportation and mass murder under the \'Final Solution\'; Reinhard Heydrich chaired the meeting, and Adolf Eichmann took the minutes that survived in a copy recovered in 1947. Pynchon later puts Slothrop in the same lakeside suburb among sailboats, children in soldier hats, and Sunday visitors, and the reader who knows the postcode notices that the leisure scene occupies the ground where the administrative meeting took place.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V446.16-17; identifies the Wannsee Conference connection to the leisure scene.',
+      },
+      {
+        label: 'Wannsee Conference',
+        url: 'https://en.wikipedia.org/wiki/Wannsee_Conference',
+        note: 'January 1942 meeting that coordinated the administrative apparatus of the Holocaust.',
+      },
+    ],
+    relatedTerms: ['the-zone', 'slothrop'],
+  },
+  {
+    id: 'prandtl-boundary-layer',
+    displayLabel: 'Prandtl Boundary Layer',
+    railLabel: 'Prandtl',
+    chronology: { episodeId: '3.13', sort: 313.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'it was the year Ludwig Prandtl proposed the boundary layer, which really got aerodynamics into business',
+      highlightedTerm: 'boundary layer',
+    },
+    apparatus: {
+      explanation:
+        'Ludwig Prandtl (1875-1953) presented his boundary-layer paper at the Third International Congress of Mathematicians in Heidelberg in 1904. The theory isolated the thin region beside a surface where viscosity dominates: under the no-slip condition, fluid velocity matches the surface at the wall and approaches the outer flow across the boundary layer, reconciling low-viscosity flow equations with the drag observed on real bodies. The method made practical lift and drag calculations possible at Peenemünde. Pynchon pairs 1904 with cocaine\'s removal from Coca-Cola, though commercial histories usually date that change to 1903.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V452.8; identifies Prandtl\'s 1904 paper and its significance for rocket aerodynamics.',
+      },
+      {
+        label: 'Ludwig Prandtl',
+        url: 'https://en.wikipedia.org/wiki/Ludwig_Prandtl',
+        note: 'German physicist (1875-1953), founder of modern aerodynamics.',
+      },
+    ],
+    relatedTerms: ['v2-a4', 'peenemunde'],
+  },
+  {
+    id: 'anubis',
+    displayLabel: 'Anubis (ship)',
+    chronology: { episodeId: '3.14', sort: 314.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'owner of the Anubis here',
+      highlightedTerm: 'Anubis',
+    },
+    apparatus: {
+      explanation:
+        'The ship takes its name from the Egyptian jackal-headed god of embalming and the dead. Between 3.14 and 3.18 it carries Greta, Bianca, Slothrop, and Thanatz across the Baltic and up the Oder, and its cabins host the orgy sequences alongside Thanatz\'s testimony about the 00000 launch on the Lüneburg Heath.',
+    },
+    externalRefs: [
+      {
+        label: 'Anubis',
+        url: 'https://en.wikipedia.org/wiki/Anubis',
+        note: 'Egyptian god of embalming and guide of souls to the afterlife.',
+      },
+    ],
+    relatedTerms: ['greta-erdmann', 'bianca', 'orpheus-theatre'],
+  },
+  {
+    id: 'wozzeck',
+    displayLabel: 'Wozzeck (Alban Berg)',
+    railLabel: 'Wozzeck',
+    chronology: { episodeId: '3.14', sort: 314.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'He\'d begun to talk the way the captain in Wozzeck sings, his voice breaking suddenly up into the higher registers of hysteria.',
+      highlightedTerm: 'Wozzeck',
+    },
+    apparatus: {
+      explanation:
+        'Alban Berg\'s *Wozzeck*, based on Georg Büchner\'s unfinished play *Woyzeck*, follows a common soldier subjected to medical experiments who murders his lover Marie and then drowns. Berg composed the opera from 1914 to 1922, and it premiered in Berlin on 14 December 1925; Büchner (1813-1837) took the play from Johann Christian Woyzeck, executed in Leipzig in 1824 after a prolonged argument over his sanity. Blicero\'s voice breaking suddenly into a higher register recalls the Captain\'s *Sprechstimme*, and Gottfried occupies the experimental body in Pynchon\'s version.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V465.18; identifies the *Wozzeck*/Gottfried structural parallel.',
+      },
+      {
+        label: '*Wozzeck* (opera)',
+        url: 'https://en.wikipedia.org/wiki/Wozzeck',
+        note: 'Alban Berg\'s 1925 atonal opera based on Büchner\'s play about a soldier\'s destruction.',
+      },
+    ],
+    relatedTerms: ['blicero', 'gottfried', 'erwartung'],
+  },
+  {
+    id: 'thanatz',
+    displayLabel: 'Miklos Thanatz',
+    railLabel: 'Thanatz',
+    chronology: { episodeId: '3.14', sort: 314.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Slothrop meets Miklos Thanatz, full beard, eyebrows feathering out like trailing edges',
+      highlightedTerm: 'Thanatz',
+    },
+    apparatus: {
+      explanation:
+        'Miklós Thanatz carries the name of Thanatos, the Greek personification of death. It first appears in 1.17 inside the imaginary Weimaraner\'s pedigree, \'Reichssieger von Thanatz *Alpdrücken*\', and then attaches to the man who survives to describe the 00000 launch on the Lüneburg Heath.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V461.32; cites Grimm, *Teutonic Mythology*, 840-41 on Thanatos and the Valkyries.',
+      },
+    ],
+    relatedTerms: ['00000', 'reichssieger-thanatz-alpdrucken', 'anubis'],
+  },
+  {
+    id: 'eurydice-obsession',
+    displayLabel: 'Eurydice-obsession',
+    chronology: { episodeId: '3.15', sort: 315.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'there is this Eurydice-obsession, this bringing back out of . . . though how much easier just to leave her there',
+      highlightedTerm: 'Eurydice-obsession',
+    },
+    apparatus: {
+      explanation:
+        'Aboard the *Anubis*, Slothrop names the wish to bring Bianca back from darkness a \'Eurydice-obsession\', after Orpheus\'s failed recovery of his wife from Hades on the condition that he not look back. Slothrop also feels the counter-temptation to leave her there and accept a \'reasonable facsimile\', so Pynchon uses the myth to stage a very Pynchonian problem about substitute bodies and copies of the beloved.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V472.20-21; notes that Orpheus was allowed to bring Eurydice from Hades provided he did not look back.',
+      },
+    ],
+    relatedTerms: ['orpheus-theatre', 'bianca', 'alpdrucken', 'greta-erdmann'],
+  },
+  {
+    id: 'shekinah',
+    displayLabel: 'Shekinah',
+    chronology: { episodeId: '3.16', sort: 316.1 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'I am the Shekhinah, queen, daughter, bride, and mother of God. And I will take you back, you fragment of smashed vessel',
+      highlightedTerm: 'Shekhinah',
+    },
+    apparatus: {
+      explanation:
+        'The Shekinah (Hebrew *Shekhinah*, \'dwelling\') is the feminine, immanent presence of God in Kabbalistic theology, identified with Malkhut, the last and lowest of the ten *Sephiroth*, and exiled among Israel after the Temple\'s destruction. In Lurianic Kabbalah, Isaac Luria (1534-1572) taught in Safed that the divine feminine was scattered among the *qlippoth*, husks, and could be restored only through *tikkun*, repair. Greta Erdmann speaks in her voice: \'I will take you back, you fragment of smashed vessel.\' The fragment belongs to *shevirat ha-kelim*, the breaking of the vessels whose scattered divine light awaits gathering.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V478.14-17; draws on Scholem\'s Kabbalistic sources for the Shekinah and exile theology.',
+      },
+      {
+        label: 'Shekhinah',
+        url: 'https://en.wikipedia.org/wiki/Shekhinah',
+        note: 'The dwelling or settling of the divine presence in Jewish theology.',
+      },
+    ],
+    relatedTerms: ['breaking-of-the-vessels', 'qlippoth', 'greta-erdmann'],
+  },
+  {
+    id: 'ensign-morituri',
+    displayLabel: 'Ensign Morituri',
+    railLabel: 'Morituri',
+    chronology: { episodeId: '3.16', sort: 316.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'a bright set of teeth, beaming out of a dark hatchway . . . Ensign Morituri',
+      highlightedTerm: 'Morituri',
+    },
+    apparatus: {
+      explanation:
+        'Ensign Morituri, an ex-kamikaze trainee, carries the Roman gladiatorial greeting *morituri te salutant*, \'those who are about to die salute thee\', recorded by Suetonius in his account of Claudius\'s mock naval battle on Lake Fucinus in 52 CE; Conrad\'s Marlow quotes the phrase in *Heart of Darkness* on visiting the Company offices. Morituri appears aboard the *Anubis* to attend Greta Erdmann, and his thoughts on \'radioactivity\' carry an irony that only the reader in 1973 can supply, since the scene takes place a few weeks before the atomic bombing of Hiroshima on 6 August 1945.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V473.3-4; identifies the gladiatorial and Conradian sources.',
+      },
+    ],
+    relatedTerms: ['anubis', 'greta-erdmann'],
+  },
 ];
