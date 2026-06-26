@@ -2314,7 +2314,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V114.12-13; traces the cumulative tale and its numerological resonances.',
       },
     ],
-    relatedTerms: ['slothrop'],
+    relatedTerms: ['slothrop', 'plechazunga'],
   },
   {
     id: 'ein-volk',
@@ -2703,7 +2703,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German amateur rocket society (1927-1934).',
       },
     ],
-    relatedTerms: ['pokler', 'wandervogel', 'von-braun'],
+    relatedTerms: ['pokler', 'wandervogel', 'peenemunde', 'von-braun'],
   },
   {
     id: 'pokler',
@@ -3565,7 +3565,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German-American rocket engineer (1912-1977), architect of the V-2 and Saturn V.',
       },
     ],
-    relatedTerms: ['v2-a4', 'vfr'],
+    relatedTerms: ['peenemunde', 'v2-a4', 'vfr'],
   },
   {
     id: 'benzene-kekule',
@@ -4124,7 +4124,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'British effort to reconstruct and launch captured V-2 rockets at Cuxhaven, October 1945.',
       },
     ],
-    relatedTerms: ['von-braun', 'v2-a4', 'dulles-oss'],
+    relatedTerms: ['von-braun', 'v2-a4', 'peenemunde', 'dulles-oss'],
   },
   {
     id: 'mindless-pleasures',
@@ -4223,7 +4223,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the Schwarz- compound naming pattern across the novel.',
       },
     ],
-    relatedTerms: ['slothrop', 'rocketman', 'schwarzkommando'],
+    relatedTerms: ['slothrop', 'rocketman', 'plechazunga', 'schwarzkommando'],
   },
   {
     id: 'eis-heiligen',
@@ -4696,7 +4696,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Glosses the Potsdam raid and the Rocketman costume.',
       },
     ],
-    relatedTerms: ['slothrop', 'schwarzknabe'],
+    relatedTerms: ['slothrop', 'schwarzknabe', 'plechazunga'],
   },
   {
     id: 'saure-bummer',
@@ -4985,7 +4985,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V400.25; attributes the term proverbially to Prussian troops under Bismarck during the wars of 1864, 1866, and 1870-71.',
       },
     ],
-    relatedTerms: ['pokler', 'fuhrer-principle'],
+    relatedTerms: ['pokler', 'peenemunde', 'fuhrer-principle'],
   },
   {
     id: 'persistence-of-vision',
@@ -5008,7 +5008,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Older, partly discredited account of the visual mechanism behind motion pictures.',
       },
     ],
-    relatedTerms: ['pokler', 'die-frau-im-mond', 'zwolfkinder', 'caligari-gloves'],
+    relatedTerms: ['pokler', 'die-frau-im-mond', 'zwolfkinder', 'caligari-gloves', 'der-mude-tod'],
   },
   {
     id: 'gift-of-daedalus',
@@ -5187,7 +5187,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German physicist (1875-1953), founder of modern aerodynamics.',
       },
     ],
-    relatedTerms: ['v2-a4'],
+    relatedTerms: ['v2-a4', 'peenemunde'],
   },
   {
     id: 'anubis',
@@ -5340,4 +5340,856 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     ],
     relatedTerms: ['anubis', 'greta-erdmann'],
   },
+  {
+    id: 'croix-mystique',
+    displayLabel: 'Croix Mystique',
+    chronology: { episodeId: '3.17', sort: 317.1 },
+    colorVar: plotlineColorVars.P08,
+    context: {
+      excerpt:
+        'Thanatz would sit with her lying across his knees, and read the scars down her back, as a gypsy reads a palm. Life-scar, heart-scar. Croix mystique. What fortunes and fantasies!',
+      highlightedTerm: 'Croix mystique',
+    },
+    apparatus: {
+      explanation:
+        'In palmistry, the *croix mystique* is a cross formed between the head and heart lines, held in occult tradition to signify clairvoyant power and contact with the Other Side. Thanatz reads Greta Erdmann\'s whipping scars as if they were palm lines, so that Blicero\'s sadism appears to prophesy her escape. The phrase first appears in Part 1 as \'a croix mystique on the palm of Europe,\' where the map of the war becomes a palm to be read; Weisenburger annotates the term as symbolic of mediumistic ability and of death.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V16.15-16 and V484.25; identifies the palmistry term and its associations with death.',
+      },
+    ],
+    relatedTerms: ['greta-erdmann', 'blicero', 'tannhauserism'],
+  },
+  {
+    id: 'jugend-herauf',
+    displayLabel: 'Jugend Herauf! / Juden Heraus!',
+    railLabel: 'Jugend Herauf',
+    chronology: { episodeId: '3.17', sort: 317.2 },
+    colorVar: plotlineColorVars.P08,
+    context: {
+      excerpt:
+        'Jugend Herauf! (a lighthearted pun, of course, on the then popular phrase "Juden heraus!")',
+      highlightedTerm: 'Jugend Herauf!',
+    },
+    apparatus: {
+      explanation:
+        'Greta Erdmann\'s Weimar-era comedy casts her as \'the dizzy debutante Lotte Lüstig,\' drifting downriver in a bathtub with Max Schlepzig. The title, \'Youth, arise!,\' differs by a single consonant from *Juden heraus!* (\'Jews, get out!\'), a slogan that ran through nineteenth-century German antisemitic agitation and was formalised under Nazi policy in the 1930s. The narrator calls the near-homophone \'a lighthearted pun, of course\'; the film industry plays with a phrase that the state will soon use in earnest.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the film title and its antisemitic pun.',
+      },
+    ],
+    relatedTerms: ['greta-erdmann', 'alpdrucken', 'persistence-of-vision'],
+  },
+  {
+    id: 'corposants',
+    displayLabel: 'Corposants (St. Elmo\'s Fire)',
+    railLabel: 'Corposants',
+    chronology: { episodeId: '3.18', sort: 318.1 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'Corposants have begun to flicker now in the rigging. The storm yanks at rope and cable, the cloudy night goes white and loud, in huge spasms.',
+      highlightedTerm: 'Corposants',
+    },
+    apparatus: {
+      explanation:
+        'From the Latin *corpus sanctum* (\'holy body\'), corposants are the luminous plasma discharges known as St Elmo\'s fire, produced when an electrical field ionises the air around pointed objects such as ships\' masts. They flicker in the rigging of the Anubis during the storm in which Slothrop loses Bianca. Sailors have long read the discharge as the sign of Erasmus of Formia, patron of Mediterranean seafarers, whose name the Italian *sant\'elmo* preserves, and the etymology arrives in the *Anubis* rigging just as Slothrop is losing the last person he could still recognise.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V489.6; from Latin \'holy bodies\', i.e. St. Elmo\'s fire.',
+      },
+      {
+        label: 'St. Elmo\'s fire',
+        url: 'https://en.wikipedia.org/wiki/St._Elmo%27s_fire',
+        note: 'The atmospheric electrical discharge historically observed around ships\' masts.',
+      },
+    ],
+    relatedTerms: ['anubis', 'bianca'],
+  },
+  {
+    id: 'iron-guard',
+    displayLabel: 'Iron Guard (Long Live Death)',
+    railLabel: 'Iron Guard',
+    chronology: { episodeId: '3.18', sort: 318.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the Iron Guard on the radio screaming Long Live Death, and the bodies of Jews and Leftists hung on the hooks of the city slaughter-houses',
+      highlightedTerm: 'Iron Guard',
+    },
+    apparatus: {
+      explanation:
+        'Aboard the Anubis, Countess Bibescu dreams of Bucharest in January 1941, when Romania\'s fascist Iron Guard (Garda de Fier, also called the Legion of the Archangel Michael) launched a coup and pogrom in which Jews and Leftists were murdered, some with their bodies hung on hooks in the municipal slaughterhouse. \'Long Live Death\' (*Trăiască Moartea*) was a rallying cry among European fascist movements, echoing the Spanish Legion\'s *Viva la muerte*, made notorious by José Millán-Astray in the 1930s. The Countess remembers industrial meat-hooks while travelling on a pleasure ship full of escaped fascists, and the January 1941 pogrom sits inside her memory as an image of the *Anubis* passenger list projected sixteen years forward.',
+    },
+    externalRefs: [
+      {
+        label: 'Iron Guard',
+        url: 'https://en.wikipedia.org/wiki/Iron_Guard',
+        note: 'Background on the Romanian fascist movement and the January 1941 Bucharest pogrom.',
+      },
+    ],
+    relatedTerms: ['anubis', 'the-league-iasi'],
+  },
+  {
+    id: 'rocket-noon',
+    displayLabel: 'Rocket Noon',
+    chronology: { episodeId: '3.19', sort: 319.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'The exact clock time, which varies through the year, is known as Rocket Noon . . . and the sound that must at that moment fill the air for its devout can only be compared with a noontime siren the whole town believes in',
+      highlightedTerm: 'Rocket Noon',
+    },
+    apparatus: {
+      explanation:
+        'As Slothrop approaches Peenemünde, all shadows align with the east-northeast bearing along which test rockets were fired out to sea. This is \'Rocket Noon,\' a liturgical hour for the rocket\'s \'devout,\' complete with a noontime siren \'the whole town believes in.\' Weisenburger connects the passage to the noon firing of the 00000 on Lüneburg Heath, so that the Peenemünde alignment Slothrop notices in the sunlight and the final launch he never witnesses share the same east-northeast solar geometry.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V500.40; links Rocket Noon to the Evil Hour and the noon firing of 00000.',
+      },
+    ],
+    relatedTerms: ['peenemunde', '00000', 'parabola'],
+  },
+  {
+    id: 'stations-of-the-cross-peene',
+    displayLabel: 'Stations of the Cross (Peenemünde)',
+    railLabel: 'Stations / Peenemünde',
+    chronology: { episodeId: '3.19', sort: 319.2 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'the concrete masses of the test stands, stations of the cross, VI, V, III, IV, II, IX, VIII, I, finally the Rocket\'s own, from which it stood and flew at last, VII and X',
+      highlightedTerm: 'stations of the cross',
+    },
+    apparatus: {
+      explanation:
+        'Närrisch names the Peenemünde test stands as Stations of the Cross, numbering them out of liturgical order as the boat passes: VI, V, III, IV, II, IX, VIII, I, and finally VII and X. The concrete ruins become markers on the rocket\'s *via dolorosa*; Test Stands VII and X, from which the A4 flew, occupy the places of crucifixion and entombment. Närrisch\'s out-of-order numbering keeps the liturgy incomplete, and the boat\'s own path along the ruined stands becomes the fourteenth station he does not name.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Peenemünde test-stand sequence and its liturgical associations.',
+      },
+    ],
+    relatedTerms: ['peenemunde', 'rocket-noon', 'v2-a4', 'brennschluss'],
+  },
+  {
+    id: 'bicycle-rider-fool',
+    displayLabel: 'The Bicycle Rider in the Sky (The Fool)',
+    railLabel: 'Bicycle Rider',
+    chronology: { episodeId: '3.19', sort: 319.3 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'the Bicycle Rider in the Sky, the black and fatal Edwardian silhouette on the luminous breast of sky . . . In the Tarot he is known as The Fool, but around the Zone here they call him Slick',
+      highlightedTerm: 'Bicycle Rider in the Sky',
+    },
+    apparatus: {
+      explanation:
+        'At Peenemünde the Bicycle Rider in the Sky looms over Rocket Noon. Locally called \'Slick,\' he is the Fool of the Major Arcana, the unnumbered zero who steps towards a cliff. Slothrop likewise moves through the Zone without portfolio and will soon lose even the continuity of a single identity. The \'Edwardian silhouette\' places the Fool a generation before the war, so the figure standing over Peenemünde carries the century\'s earlier innocence into a landscape that is about to disperse the man beneath him.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Bicycle Rider / Fool figure at Peenemünde.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'rocket-noon', 'peenemunde'],
+  },
+  {
+    id: 'der-mude-tod',
+    displayLabel: 'Der müde Tod (Fritz Lang)',
+    railLabel: 'Der müde Tod',
+    chronology: { episodeId: '3.20', sort: 320.1 },
+    colorVar: plotlineColorVars.P08,
+    context: {
+      excerpt:
+        'Narrisch hasn\'t been to a movie since Der Mude Tod.',
+      highlightedTerm: 'Der Mude Tod',
+    },
+    apparatus: {
+      explanation:
+        'In Fritz Lang\'s *Der müde Tod* (1921, English title *Destiny*), a woman bargains with Death to save her lover through three historical settings, a Muslim city, Renaissance Venice, and imperial China, and fails each time before choosing to die with him. Närrisch has not been to a film since seeing it and \'has forgotten its ending, the last Rilke-elegiac shot of weary Death leading the two lovers away hand in hand through the forget-me-nots.\' Kracauer reads the film in *From Caligari to Hitler* as an example of the Weimar fascination with fate and submission; its failed rescues recur in Gottfried\'s death and in Slothrop\'s failures to save anyone in the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V516.22; provides Kracauer\'s synopsis and the Rilke-elegy connection.',
+      },
+      {
+        label: '*Der müde Tod*',
+        url: 'https://en.wikipedia.org/wiki/Destiny_(1921_film)',
+        note: 'Fritz Lang\'s 1921 film about a woman\'s failed bargain with Death.',
+      },
+    ],
+    relatedTerms: ['nibelungen-fritz-lang', 'die-frau-im-mond', 'caligari-gloves'],
+  },
+  {
+    id: 'institute-rabe',
+    displayLabel: 'Institut Rabe (Raketenbau und Entwicklung)',
+    railLabel: 'Institut Rabe',
+    chronology: { episodeId: '3.20', sort: 320.2 },
+    colorVar: plotlineColorVars.P04,
+    context: {
+      excerpt:
+        'could\'ve gone east with the Institute Rabe, or west to America and $6 a day',
+      highlightedTerm: 'Institute Rabe',
+    },
+    apparatus: {
+      explanation:
+        'RABE (*Raketenbau und Entwicklung*, rocket manufacture and development) was a Soviet-run facility at Bleicherode, near Nordhausen in central Germany, established in the summer of 1945 to exploit captured V-2 expertise. German engineers were recruited with wages and, in 1946, relocated to the Soviet Union, most to the steppes of Kyrgyzstan, in the deportation operation known as Osoaviakhim. In the passage, a rocket engineer can go east with RABE or west to America for \'$6 a day\'; the same technical labour crosses the new political boundary in either direction, and James McGovern\'s *Crossbow and Overcast* documents the Bleicherode facility under Soviet control.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V516.30; identifies RABE at Bleicherode and the Soviet recruitment programme.',
+      },
+      {
+        label: 'Operation Osoaviakhim',
+        url: 'https://en.wikipedia.org/wiki/Operation_Osoaviakhim',
+        note: 'The 22 October 1946 Soviet operation that deported German specialists including RABE engineers.',
+      },
+    ],
+    relatedTerms: ['operation-backfire', 'von-braun', 'peenemunde'],
+  },
+  {
+    id: 'jamf-olfabriken',
+    displayLabel: 'Jamf Ölfabriken Werke AG',
+    railLabel: 'Ölfabriken',
+    chronology: { episodeId: '3.21', sort: 321.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'this ex-refinery, Jamf Ölfabriken Werke AG, is not a ruin at all. It is in perfect working order. Only waiting for the right connections to be set up, to be switched on',
+      highlightedTerm: 'Jamf Ölfabriken Werke AG',
+    },
+    apparatus: {
+      explanation:
+        'Enzian rides into a slag-heap refinery named for Laszlo Jamf and finds that it is \'not a ruin at all\' but \'in perfect working order,\' waiting for \'the right connections to be set up.\' Its apparent bombing damage looks like a rearrangement \'both sides had always agreed on.\' Jamf\'s name attaches his academic chemistry to industrial production; Enzian begins to suspect that the refinery survived because the companies behind the war expected to use it afterwards, the wartime destruction having been targeted around the plant one side wanted the other to preserve.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V520.15; identifies the fictional Jamf Oil Works Incorporated.',
+      },
+    ],
+    relatedTerms: ['jamf', 'ig-farben', 'enzian', 'imipolex-g', 'pervitin'],
+  },
+  {
+    id: 'kabbalists-zone',
+    displayLabel: 'Kabbalists of the Zone',
+    chronology: { episodeId: '3.21', sort: 321.2 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'we are supposed to be the Kabbalists out here, say that\'s our real Destiny, to be the scholar-magicians of the Zone, with somewhere in it a Text, to be picked to pieces, annotated, explicated, and masturbated till it\'s all squeezed limp',
+      highlightedTerm: 'Kabbalists',
+    },
+    apparatus: {
+      explanation:
+        'Enzian calls the Schwarzkommando \'scholar-magicians\' whose task in the Zone is to find and interpret a sacred Text. They first take the Rocket for \'our Torah,\' until its \'symmetries, its latencies, the cuteness of it\' begin to look like a seduction that has kept them from another Text in the dark. Kabbalah\'s textual foundations, the *Sefer Yetzirah*, the *Bahir*, and the *Zohar*, treat scripture as carrying several simultaneous levels of meaning; Pynchon uses that exegetical model for texts whose surfaces repeatedly open onto other readings, and Enzian\'s phrasing makes obsessive interpretation masturbatory, so the most inviting object may itself be the decoy.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Schwarzkommando\'s Kabbalist self-description and its ten-stage motif.',
+      },
+    ],
+    relatedTerms: ['enzian', 'schwarzkommando', 'breaking-of-the-vessels', 'shekinah', 'merkabah'],
+  },
+  {
+    id: 'restore-us',
+    displayLabel: 'Restore us to our Earth',
+    railLabel: 'Restore us',
+    chronology: { episodeId: '3.22', sort: 322.2 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Somewhere, among the wastes of the World, is the key that will bring us back, restore us to our Earth and to our freedom.',
+      highlightedTerm: 'restore us to our Earth',
+    },
+    apparatus: {
+      explanation:
+        'The Schwarzkommando search the Zone\'s rubble for something that will \'restore us to our Earth and to our freedom.\' Their Earth is Südwest, the homeland taken under German colonial rule from 1884; the object that promises return is the 00001, built from the coloniser\'s rocket. The promised restoration therefore carries the machinery of the dispossession inside it.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Schwarzkommando \'restore us\' motif.',
+      },
+    ],
+    relatedTerms: ['enzian', 'schwarzkommando', 'sudwest'],
+  },
+  {
+    id: 'peenemunde',
+    displayLabel: 'Peenemünde',
+    chronology: { episodeId: '3.22', sort: 322.3 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'I know what my voice sounds like, heard it at Peenemünde years ago on Weissmann\'s Dictaphone.',
+      highlightedTerm: 'Peenemünde',
+    },
+    apparatus: {
+      explanation:
+        'The A4 was developed at the Heeresversuchsanstalt (Army Research Centre) Peenemünde on the Baltic island of Usedom, in operation from 1937 to 1945. The RAF bombed the site in Operation Hydra in August 1943, after which production moved underground to the Mittelwerk near Nordhausen. Pökler worked there, Blicero commanded there, and Weissmann recorded Enzian\'s voice there on a Dictaphone; the same site joins the engineer, the colonial officer, the colonised man, and the weapon that will carry their histories into the Zone.',
+    },
+    externalRefs: [
+      {
+        label: 'Peenemünde',
+        url: 'https://en.wikipedia.org/wiki/Peenem%C3%BCnde',
+        note: 'The German Army Research Centre on Usedom, active 1937-45; site of A4/V-2 development.',
+      },
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Peenemünde references throughout the novel.',
+      },
+    ],
+    relatedTerms: ['mittelwerk-dora', 'v2-a4', 'pokler'],
+  },
+  {
+    id: 'oxyrhynchus-papyrus',
+    displayLabel: 'Oxyrhynchus Papyrus (Gospel of Thomas)',
+    railLabel: 'Oxyrhynchus',
+    chronology: { episodeId: '3.23', sort: 323.1 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'Dear Mom, I put a couple of people in Hell today . . . (Oxyrhynchus papyrus number classified)',
+      highlightedTerm: 'Oxyrhynchus papyrus',
+    },
+    apparatus: {
+      explanation:
+        'The episode\'s epigraph invents a letter home from the child Jesus, who cheerfully reports that he has put people in Hell, then marks its Oxyrhynchus papyrus number \'classified.\' Archaeologists working near the Egyptian city of Oxyrhynchus have recovered thousands of textual fragments since 1896; papyri 1, 654, and 655 contain sayings that also appear in the Coptic *Gospel of Thomas* found at Nag Hammadi, and a separate apocryphal Infancy Gospel narrates miracles of Jesus\'s boyhood, including inflicting death on those who thwart him. The \'classified\' stamp attached to a papyrus number puts apocryphal scripture behind the same access controls as the intelligence dossiers, so the epigraph\'s joke is that the child Jesus\'s cruelty has been assigned a security caveat before it can reach the reader.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V537.1-4; identifies the Oxyrhynchus papyri, the Gospel of Thomas, and the Infancy narrative background.',
+      },
+      {
+        label: 'Oxyrhynchus Papyri',
+        url: 'https://en.wikipedia.org/wiki/Oxyrhynchus_Papyri',
+        note: 'Overview of the archaeological find and its significance for early Christian textual scholarship.',
+      },
+    ],
+    relatedTerms: ['qlippoth', 'shekinah', 'pirate-prentice'],
+  },
+  {
+    id: 'beaverboard-row',
+    displayLabel: 'Beaverboard Row',
+    chronology: { episodeId: '3.23', sort: 323.2 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'Beaverboard Row, as it is known: comprising the offices of all the Committees, with the name of each stenciled above the doorway—A4 . . . IG . . . OIL FIRMS . . . LOBOTOMY . . . SELF-DEFENSE . . . HERESY',
+      highlightedTerm: 'Beaverboard Row',
+    },
+    apparatus: {
+      explanation:
+        'At the afterlife Convention, Pirate finds pressed-board cubicles labelled A4, IG, Oil Firms, Lobotomy, Self-Defence, and Heresy. Beaverboard is cheap fibreboard panelling, a conspicuously mundane material for an institution of the dead. The committees have carried wartime filing habits across the border that was supposed to classify them.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the afterlife Convention passage.',
+      },
+    ],
+    relatedTerms: ['pirate-prentice', 'ig-farben', 'v2-a4'],
+  },
+  {
+    id: 'teilhard-de-chardin',
+    displayLabel: 'Teilhard de Chardin (Critical Mass)',
+    railLabel: 'Teilhard',
+    chronology: { episodeId: '3.24', sort: 324.1 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'a Jesuit here to act in that capacity, here to preach, like his colleague Teilhard de Chardin, against return',
+      highlightedTerm: 'Teilhard de Chardin',
+    },
+    apparatus: {
+      explanation:
+        'Father Rapier preaches \'against return\' at the afterlife Convention: once technical control reaches a sufficient density of connections, \'the chances for freedom are over for good.\' Pierre Teilhard de Chardin (1881-1955), the Jesuit palaeontologist and philosopher, proposed in *The Phenomenon of Man* that material evolution tends towards an \'omega point\' of spiritual convergence, a work suppressed by the Church during his lifetime and published only after his death. Rapier reads that convergence as the moment when control becomes irreversible, and calls the threshold \'Critical Mass,\' borrowing a nuclear-physics term still classified in 1945.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V539.12; identifies Teilhard and the \'omega point\' concept.',
+      },
+      {
+        label: 'Pierre Teilhard de Chardin',
+        url: 'https://en.wikipedia.org/wiki/Pierre_Teilhard_de_Chardin',
+        note: 'Life, works, and the synthesis of evolution and Christianity.',
+      },
+    ],
+    relatedTerms: ['pirate-prentice', 'they-them', 'process'],
+  },
+  {
+    id: 'on-preterition',
+    displayLabel: 'On Preterition (William Slothrop\'s Tract)',
+    railLabel: 'On Preterition',
+    chronology: { episodeId: '3.25', sort: 325.1 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'He wrote a long tract about it presently, called On Preterition. It had to be published in England, and is among the first books to\'ve been not only banned but also ceremonially burned in Boston.',
+      highlightedTerm: 'On Preterition',
+    },
+    apparatus: {
+      explanation:
+        'William Slothrop\'s fictional *On Preterition* extends holiness to \'the many God passes over when he chooses a few.\' Judas Iscariot stands to these Preterite as Jesus stands to the Elect, and William argues that love must include both. Pynchon gives the tract the publication history of his own ancestor William Pynchon (1590-1662), founder of Springfield, Massachusetts, whose *The Meritorious Price of Our Redemption* (1650) was condemned by the Massachusetts General Court for challenging orthodox Puritan atonement doctrine and ordered burned on Boston Common; only four copies are known to survive.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V555; identifies William Pynchon\'s historical tract and the rarity of surviving copies.',
+      },
+      {
+        label: 'William Pynchon (colonist)',
+        url: 'https://en.wikipedia.org/wiki/William_Pynchon',
+        note: 'The author\'s ancestor and founder of Springfield, Massachusetts, whose theological tract was publicly burned.',
+      },
+    ],
+    relatedTerms: ['preterite', 'william-slothrop', 'puritan-paranoia'],
+  },
+  {
+    id: 'volkerwanderung',
+    displayLabel: 'Völkerwanderung (Nationalities on the Move)',
+    railLabel: 'Völkerwanderung',
+    chronology: { episodeId: '3.25', sort: 325.2 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'The Nationalities are on the move. It is a great frontierless streaming out here. Volksdeutsch from across the Oder, moved out by the Poles and headed for the camp at Rostock',
+      highlightedTerm: 'Nationalities are on the move',
+    },
+    apparatus: {
+      explanation:
+        'Volksdeutsch, Poles, Estonians, Letts, Lithuanians, Sudetens, Czechs, Slovaks, Croats, Serbs, Macedonians, Magyars, Circassians, Bulgars, and Romani people stream across the Zone in one long sentence. *Völkerwanderung* means \'migration of peoples,\' the name first given to the fourth-to-sixth-century movements that ended the Western Roman Empire. Pynchon repurposes it for the postwar displacement of 1945, when an estimated twelve million Germans were expelled from Eastern Europe and millions of other Europeans criss-crossed the former Reich\'s territory carrying \'pressed-board panelling, violins in weathered black cases, handfuls of hundred-year-old agates.\'',
+    },
+    externalRefs: [
+      {
+        label: '*Völkerwanderung*',
+        url: 'https://en.wikipedia.org/wiki/Migration_Period',
+        note: 'The historical migration period; Pynchon repurposes the term for the 1945 displacement of peoples.',
+      },
+    ],
+    relatedTerms: ['the-zone', 'preterite', 'forget-frontiers'],
+  },
+  {
+    id: 'kezvh-mandala',
+    displayLabel: 'KEZVH Mandala',
+    chronology: { episodeId: '3.26', sort: 326.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'The Schwarzkommando mandala: KEZVH. . . . "Klar," touching each letter, "Entlüftung, these are the female letters. North letters."',
+      highlightedTerm: 'KEZVH',
+    },
+    apparatus: {
+      explanation:
+        'Andreas arranges the five letters of the A4 firing sequence (Klar, Entlüftung, Zündung, Vorstufe, Hauptstufe) as a mandala modelled on a Herero village. Klar and Entlüftung are female, connected with birth and breath; Zündung and Vorstufe are male, connected with fire and building; Hauptstufe occupies the centre where the sacred cattle were penned in the traditional *onganda*. The rocket countdown has been rebuilt as the compass, gendered space, and social order of a Herero compound, so the machine that killed the Herero\'s grandparents is now being read as a diagram of Herero life.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V560-563; discusses the mandala as a cross-like symbol of redemptive sacrifice.',
+      },
+    ],
+    relatedTerms: ['schwarzkommando', 'enzian', 'v2-a4', 'erdschweinhohle', 'ndjambi-karunga'],
+  },
+  {
+    id: 'von-trotha-aggregat',
+    displayLabel: 'Von Trotha\'s Army and the Aggregat',
+    railLabel: 'Von Trotha',
+    chronology: { episodeId: '3.26', sort: 326.2 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'we had been passed over by von Trotha\'s army so that we would find the Aggregat',
+      highlightedTerm: 'von Trotha\'s army',
+    },
+    apparatus: {
+      explanation:
+        'Andreas believes that von Trotha\'s army \'passed over\' the surviving Herero so that their descendants would find the Aggregat. Generalleutnant Lothar von Trotha commanded the German forces in South-West Africa during the Herero and Nama genocide of 1904-08; his *Vernichtungsbefehl* of October 1904 explicitly ordered the killing or expulsion of the entire Herero people, and survivors were driven into the Omaheke Desert or interned in concentration camps. Andreas\'s theology turns survival from accident into mission and makes the rocket the purpose of a genocide committed by the people who built it; the machine explains why anyone survived, and the murder authorises the machine.',
+    },
+    externalRefs: [
+      {
+        label: 'Herero and Nama genocide',
+        url: 'https://en.wikipedia.org/wiki/Herero_and_Nama_genocide',
+        note: 'Von Trotha\'s extermination order and the Herero genocide of 1904-08.',
+      },
+    ],
+    relatedTerms: ['herero-genocide', 'enzian', 'schwarzkommando', 'preterite', 'kezvh-mandala'],
+  },
+  {
+    id: 'ig-raketen',
+    displayLabel: 'IG Raketen (Rocketstate)',
+    railLabel: 'IG Raketen',
+    chronology: { episodeId: '3.27', sort: 327.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'a State begins to take form in the stateless German night, a State that spans oceans and surface politics, sovereign as the International or the Church of Rome, and the Rocket is its soul. IG Raketen.',
+      highlightedTerm: 'IG Raketen',
+    },
+    apparatus: {
+      explanation:
+        'Tchitcherine sees a \'Rocketstate\' taking form across oceans and national politics, organised like IG Farben and \'sovereign as the International or the Church of Rome.\' The name \'IG Raketen\' makes the rocket both the cartel\'s product and its soul. He knows that he will \'never get further than the edge of this meta-cartel\', which is to say that the pursuit can only follow a border he cannot cross, since the cartel arrangements he is tracking were designed to keep operating on both sides of whichever state won the war.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates Tchitcherine\'s perception of the \'Rocketstate\' and its cartel structure.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'tchitcherine', 'jamf-olfabriken', 'they-them'],
+  },
+  {
+    id: 'standard-oil-farben',
+    displayLabel: 'Standard Oil / IG Farben',
+    railLabel: 'Standard/IG',
+    chronology: { episodeId: '3.27', sort: 327.2 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'Dillon, Reed . . . Standard Awl . . . shit.',
+      highlightedTerm: 'Standard',
+    },
+    apparatus: {
+      explanation:
+        'IG Farben\'s coal-hydrogenation patents threatened Standard Oil of New Jersey\'s European petroleum interests during the 1920s. Their subsequent agreements divided patents and markets, covering synthetic fuel and rubber; wartime investigators later argued that these arrangements delayed American synthetic-rubber production while German plants were already producing Buna. The passage names \'Dillon, Reed\' and \'Standard Awl\' as Tchitcherine approaches the financial edge of IG Raketen; Brigadier General William Draper, formerly of Dillon, Read, ran the U.S. Army\'s Economics Division in occupied Germany after the war, and James Stewart Martin\'s *All Honorable Men* (1950) describes an attempt to recover cartel records at Bad Sachsa, a few miles from the Brocken.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V565.11; cites Sasuly, *IG Farben*, ch. 9.',
+      },
+    ],
+    relatedTerms: ['ig-raketen', 'imipolex-g'],
+  },
+  {
+    id: 'plechazunga',
+    displayLabel: 'Plechazunga',
+    chronology: { episodeId: '3.28', sort: 328 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the story of Plechazunga, the Pig-Hero',
+      highlightedTerm: 'Plechazunga',
+    },
+    apparatus: {
+      explanation:
+        'Slothrop wears a pig costume for a village festival and chases a real pig through the streets as Plechazunga, the Pig-Hero, a Northern German thunder-god who is said to have driven off a Viking raid with a lightning bolt. Earlier costumes made him Rocketman and then Schwarzknabe; this one places him among the swine of William Slothrop\'s tract, the passed-over creatures driven squealing to the end of the pike. After Plechazunga, his names and appearances become harder to join into one person.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Plechazunga festival and the Northern German thunder-god.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'rocketman', 'schwarzknabe', 'william-slothrop'],
+  },
+  {
+    id: 'himmel-und-holle',
+    displayLabel: 'Himmel und Hölle',
+    chronology: { episodeId: '3.28', sort: 328.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'children with hair like hay are playing Himmel and Hölle, jumping village pavements',
+      highlightedTerm: 'Himmel and Hölle',
+    },
+    apparatus: {
+      explanation:
+        '*Himmel und Hölle* (Heaven and Hell) is a German children\'s hopscotch played on a cross-shaped board of ten squares. Players begin at *Erde* (Earth), cross the numbered spaces, pass *Hölle* at the ninth, and reach *Himmel* at the tenth. Weisenburger places the board beside the rocket countdown, the ten Kabbalistic *Sephiroth*, and the ten sound-holes of Slothrop\'s Hohner harmonica; each promises a route through ten stages, though their directions and destinations differ.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V567.24-25; identifies the ten-stage motif and its parallels across the novel.',
+      },
+    ],
+    relatedTerms: ['kabbalists-zone', 'kezvh-mandala'],
+  },
+  {
+    id: 'mabuse-rothwang',
+    displayLabel: 'Mabuse der Spieler / Rothwang',
+    railLabel: 'Mabuse / Rothwang',
+    chronology: { episodeId: '3.29', sort: 329.1 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'Metropolitan inventor Rothwang, King Attila, Mabuse der Spieler, Prof.-Dr. Laszlo Jamf, all their yearnings aimed the same way, toward a form of death that could be demonstrated to hold joy and defiance',
+      highlightedTerm: 'Mabuse der Spieler',
+    },
+    apparatus: {
+      explanation:
+        'Rudolf Klein-Rogge played Mabuse, the inventor Rothwang in *Metropolis*, and King Attila in Fritz Lang\'s *Die Nibelungen*; Pynchon adds Laszlo Jamf to the sequence as though he were another role. Rothwang creates the robot Maria to incite the workers and give the city\'s rulers a pretext to crush them, while Mabuse controls people and markets from behind disguises. Their \'yearnings aimed the same way, toward a form of death that could be demonstrated to hold joy and defiance.\' Kracauer reads Mabuse as a figure for Hugo Stinnes and Weimar-era behind-the-scenes financial manipulation, and Rothwang as the split consciousness of modern Germany, nostalgic mystic and ruthless technician at once; by inserting Jamf into Klein-Rogge\'s role-list, Pynchon lets the Weimar screen\'s mystic-technician and behind-the-scenes-financier composite carry across into the chemistry that will produce the Imipolex sheath at Peenemünde.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V578-579; identifies Klein-Rogge\'s roles and the Kracauer reading of *Metropolis*.',
+      },
+      {
+        label: '*Dr. Mabuse, der Spieler* (1922)',
+        url: 'https://en.wikipedia.org/wiki/Dr._Mabuse_the_Gambler',
+        note: 'Fritz Lang\'s film on the master criminal as allegory for Weimar-era financial manipulation.',
+      },
+    ],
+    relatedTerms: ['pokler', 'nibelungen-fritz-lang', 'caligari-gloves', 'der-mude-tod', 'jamf'],
+  },
+  {
+    id: 'si-n-bond',
+    displayLabel: 'Si-N (silicon-nitrogen bond)',
+    railLabel: 'Si-N',
+    chronology: { episodeId: '3.29', sort: 329.2 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        '"move beyond life, toward the inorganic. Here is no frailty, no mortality—here is Strength, and the Timeless." Then . . . he wrote, in enormous letters, Si—N.',
+      highlightedTerm: 'Si—N',
+    },
+    apparatus: {
+      explanation:
+        'Jamf ends his lecture by writing Si-N in enormous letters after telling the students to \'move beyond life, toward the inorganic.\' Silicon-nitrogen polymers, or polysilazanes, convert on heating into thermally stable silicon nitride ceramics; Jamf turns that route from polymer to heat-resistant inorganic material into a promise of the \'Strength, and the Timeless\' that chemistry might manufacture outside carbon-based mortality. Outside, the students sing *Semper sit in flores* (\'may he always be in flower\'); organic bloom continues while Jamf lectures against it.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates Jamf\'s final lecture; notes the connection to the Stickstoff Syndikat and IG Farben.',
+      },
+    ],
+    relatedTerms: ['jamf', 'imipolex-g', 'coal-tar-theology', 'benzene-kekule', 'pokler'],
+  },
+  {
+    id: 'illuminati-weishaupt',
+    displayLabel: 'The Illuminati',
+    chronology: { episodeId: '3.30', sort: 330.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the U.S.A. was and still is a gigantic Masonic plot under the ultimate control of the group known as the Illuminati',
+      highlightedTerm: 'Illuminati',
+    },
+    apparatus: {
+      explanation:
+        'Adam Weishaupt (1748-1830), professor of canon law at Ingolstadt, founded the Bavarian Illuminati in 1776, drawing members from Masonic circles before the Bavarian government suppressed the order in 1785. Lyle Bland reads the eye above the unfinished pyramid on the Great Seal, added to the American dollar bill in 1935 at the initiative of Henry Wallace and Franklin Roosevelt, as evidence that the United States remains under its control. The narrator can look at the emblem and \'begin to believe the story, a little\'; the qualification leaves the conspiracy unproved while Bland\'s actual international financial connections remain quite substantial.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V587.29; traces Weishaupt\'s order and its connection to Francis Bacon\'s New Atlantis.',
+      },
+      {
+        label: 'Illuminati',
+        url: 'https://en.wikipedia.org/wiki/Illuminati',
+        note: 'Secret society founded in Bavaria in 1776 by Adam Weishaupt.',
+      },
+    ],
+    relatedTerms: ['they-them', 'ig-farben'],
+  },
+  {
+    id: 'michael-faraday',
+    displayLabel: 'Michael Faraday',
+    chronology: { episodeId: '3.30', sort: 330.15 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'portrait of Michael Faraday',
+      highlightedTerm: 'Michael Faraday',
+    },
+    apparatus: {
+      explanation:
+        'Michael Faraday (1791-1867), the British experimental physicist and chemist, discovered electromagnetic induction, formulated the laws of electrolysis, and gave the modern electrical grid its physical basis. The passage places his portrait in the Tate Gallery in London, where Tantivy Mucker-Maffick once studied it during a Folies-Bergères pinball hallucination that opens onto Lyle Bland\'s dealings, and prepares Byron the Bulb\'s argument in the next section that the electrical world runs on Faraday\'s laws and Phoebus\'s constraints at once.',
+    },
+    externalRefs: [
+      {
+        label: 'Michael Faraday',
+        url: 'https://en.wikipedia.org/wiki/Michael_Faraday',
+        note: 'British physicist and chemist (1791-1867) whose work on induction underlies modern electrical technology.',
+      },
+    ],
+    relatedTerms: ['illuminati-weishaupt'],
+  },
+  {
+    id: 'veiled-prophet',
+    displayLabel: 'Veiled Prophet',
+    chronology: { episodeId: '3.30', sort: 330.2 },
+    colorVar: plotlineColorVars.P08,
+    context: {
+      excerpt:
+        'the annual Veiled Prophet Ball',
+      highlightedTerm: 'Veiled Prophet',
+    },
+    apparatus: {
+      explanation:
+        'St Louis civic leaders founded the Veiled Prophet Organisation in 1878, taking the name from Thomas Moore\'s poem *Lalla Rookh* (1817). Its annual ball presented young women from the city\'s wealthy white families and remained a fixture of local high society well into the twentieth century, provoking protests over its secretive and racially exclusive character from the 1960s onwards. Albert Pike\'s *Morals and Dogma* describes Moses as having \'re-veiled\' occult knowledge at the Thirty-Second Degree of Masonry; Weisenburger sets that degree beside Part 3\'s thirty-two episodes, though the parallel is his interpretation of the count and not an identification the text makes.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V582.28-29; cites Albert Pike on the Masonic \'Veiled Prophet\' and notes the 32-episode / 32nd-Degree parallel.',
+      },
+    ],
+    relatedTerms: ['preterite'],
+  },
+  {
+    id: 'eisenkrote',
+    displayLabel: 'Eisenkröte (Iron Toad)',
+    chronology: { episodeId: '3.31', sort: 331.1 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'the notorious Eisenkröte, known throughout the Zone as the ultimate test of manhood, before which bemedaled and brevetted Krautkillers . . . all have been known to shrink, swoon, chicken out, and on occasion vomit',
+      highlightedTerm: 'Eisenkröte',
+    },
+    apparatus: {
+      explanation:
+        'The Eisenkröte (\'Iron Toad\') is a thousand-warted sculpture at the bottom of a urinal in Putzi\'s establishment, \'hooked up to the European Grid through a rheostat.\' An operator or automatic timer sends unpredictable voltage back through the urine stream. Slothrop\'s \'treacherous ladder of salts and acids\' connects his body to \'Mother Ground, the great, the planetary pool of electrons\'; a test of manhood becomes unwilling electrical communion, and Weisenburger cross-references the moment with the earlier \'Toad-in-the-Hole\' at V80.17.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Cross-references the Eisenkröte at V603.40-41 with the \'Toad-in-the-Hole\' at V80.17.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'raketen-stadt', 'bodine'],
+  },
+  {
+    id: 'solange-leni',
+    displayLabel: 'Solange (Leni Pökler)',
+    chronology: { episodeId: '3.31', sort: 331.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'This is Solange. She\'s a masseuse.',
+      highlightedTerm: 'Solange',
+    },
+    apparatus: {
+      explanation:
+        'Leni Pökler returns under the name Solange while Slothrop is hiding in a coat cupboard. He sleeps beside her and dreams of Bianca; she dreams of Ilse, \'lost through the Zone\' on a train. Greta and Bianca, Leni and Ilse are two mothers and two missing daughters, joined here by dreams that neither sleeper shares with the other. Leni\'s wing-like shoulders also recall Katje and Luba, women whom the novel gives the outlines of birds.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V603.8 and V610.3-5; identifies the paired Greta/Bianca and Leni/Ilse structures.',
+      },
+    ],
+    relatedTerms: ['pokler', 'greta-erdmann'],
+  },
+  {
+    id: 'martin-fierro',
+    displayLabel: 'Martín Fierro',
+    chronology: { episodeId: '3.32', sort: 332.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'there is of course a perfectly rational explanation, but Tchitcherine has never read Martin Fierro',
+      highlightedTerm: 'Martin Fierro',
+    },
+    apparatus: {
+      explanation:
+        'Tchitcherine finds something for which *Martín Fierro* would give \'a perfectly rational explanation,\' except that he has never read José Hernández\'s gaucho epic. The poem was published in two parts, *El Gaucho Martín Fierro* (1872) and *La Vuelta de Martín Fierro* (1879), and follows a gaucho conscripted into frontier military service, his desertion, his life among indigenous peoples, and his eventual return; Squalidozzi and the Argentine exiles carry it through the Zone, but it cannot explain anything to the character who now needs it, so the poem\'s rational account is made available to the reader over Tchitcherine\'s shoulder and withheld from Tchitcherine himself.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the *Martín Fierro* references across the novel.',
+      },
+      {
+        label: '*Martín Fierro*',
+        url: 'https://en.wikipedia.org/wiki/Mart%C3%ADn_Fierro',
+        note: 'Argentina\'s national gaucho epic by José Hernández (1872-79).',
+      },
+    ],
+    relatedTerms: ['squalidozzi', 'tchitcherine'],
+  },
+  {
+    id: 'hund-stadt',
+    displayLabel: 'Hund-Stadt (Dog City)',
+    chronology: { episodeId: '3.32', sort: 332.2 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'One village in Mecklenburg has been taken over by army dogs . . . Bodies of neighbouring villagers and eager sociologists litter all the approaches to the Hund-Stadt. Nobody can get near it.',
+      highlightedTerm: 'Hund-Stadt',
+    },
+    apparatus: {
+      explanation:
+        'Conditioned army dogs seize a Mecklenburg village after their trainers are killed or lost, continuing to \'kill on sight any human except the one who trained him.\' They raid cattle, loot supply depots, and repel expeditions, though nobody knows whether their settlement has \'loves, loyalties, jealousies.\' A few \'pensive heretics\' wonder whether \'kill-the-stranger was born in them\' or came from an \'extra-canine source.\' The conditioning survives its human authors and begins to look like the dogs\' own social order.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V614.12-18; glosses Hund-Stadt as \'Dog City\'.',
+      },
+    ],
+    relatedTerms: ['pavlovian', 'conditioned-reflex', 'pointsman', 'the-zone'],
+  },
+  {
+    id: 'ex-africa',
+    displayLabel: 'Ex Africa Semper Aliquid Novi',
+    railLabel: 'Ex Africa',
+    chronology: { episodeId: '3.32', sort: 332.3 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'ex Africa semper aliquid novi, they\'re just so big, so strong',
+      highlightedTerm: 'ex Africa semper aliquid novi',
+    },
+    apparatus: {
+      explanation:
+        'A Firm operative uses the Latin tag \'always something new out of Africa\' while discussing behavioural experiments on African subjects before the methods are tried on domestic \'target groups.\' The phrase derives from Pliny the Elder\'s *Natural History* (VIII.17.42), *semper aliquid novi Africam adferre*, and passed into European proverbial usage as a marker of Africa as a source of the marvellous and strange, a framing that underwrote centuries of colonial exploitation disguised as scientific curiosity. The operative expects the Americans to watch \'how we do with our lovely black animals\' before \'trying it on their own\'; postwar intelligence inherits the categories and sequence of colonial experiment.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V616.4-5; identifies the Latin phrase.',
+      },
+    ],
+    relatedTerms: ['pointsman', 'pavlovian', 'herero-genocide'],
+  },
+  // part 4 episodes
 ];
