@@ -334,7 +334,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Provides the rocketry context for Brennschluss and tracks its recurrence.',
       },
     ],
-    relatedTerms: ['v2-a4', '00000'],
+    relatedTerms: ['v2-a4', '00000', '00001'],
   },
   {
     id: 'v2-a4',
@@ -366,7 +366,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'History and technical description of the A4/V-2.',
       },
     ],
-    relatedTerms: ['brennschluss', '00000'],
+    relatedTerms: ['brennschluss', '00000', '00001'],
   },
   {
     id: 'banana-breakfast',
@@ -451,7 +451,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Chaplin\'s 1940 satire featuring \'Adenoid Hynkel.\'',
       },
     ],
-    relatedTerms: ['pirate-prentice'],
+    relatedTerms: ['pirate-prentice', 'orpheus-theatre'],
   },
   {
     id: 'shaef',
@@ -1307,7 +1307,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Character annotations across Parts 1, 3, and 4.',
       },
     ],
-    relatedTerms: ['poisson-distribution', 'jessica-swanlake', 'fuck-the-war'],
+    relatedTerms: ['poisson-distribution', 'jessica-swanlake', 'fuck-the-war', 'thermidor'],
   },
   {
     id: 'monte-carlo-fallacy',
@@ -1385,7 +1385,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V60.20; identifies Parkhill\'s pulp-fiction Kenosha Kid.',
       },
     ],
-    relatedTerms: ['sodium-amytal', 'slothrop'],
+    relatedTerms: ['sodium-amytal', 'shit-from-shinola', 'slothrop'],
   },
   {
     id: 'sodium-amytal',
@@ -1472,7 +1472,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'German chemical conglomerate, 1925-45.',
       },
     ],
-    relatedTerms: ['imipolex-g', 'mittelwerk-dora', 'coal-tar-theology', 'sandoz-lsd'],
+    relatedTerms: ['imipolex-g', 'mittelwerk-dora', 'coal-tar-theology', 'phoebus-cartel', 'united-fruit', 'sandoz-lsd'],
   },
   {
     id: 'kryptosam',
@@ -1602,7 +1602,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V75.12; discusses the historical Herero soldiers (Offizierburschen und Polizeidiener) who served in German military units in South-West Africa before and after the 1904 genocide.',
       },
     ],
-    relatedTerms: ['sudwest', 'enzian', 'operation-black-wing', 'herero-genocide'],
+    relatedTerms: ['sudwest', 'enzian', '00001', 'operation-black-wing', 'herero-genocide'],
   },
   {
     id: 'ypres-passchendaele',
@@ -2158,7 +2158,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Source of the name: the wanderer brings back from the mountain rim \'a word he has earned, pure: the yellow and blue gentian.\'',
       },
     ],
-    relatedTerms: ['sudwest', 'schwarzkommando', 'ndjambi-karunga'],
+    relatedTerms: ['sudwest', 'schwarzkommando', '00001', 'ndjambi-karunga'],
   },
   {
     id: 'in-hoc-signo-vinces',
@@ -2266,7 +2266,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Traces von Göll\'s appearances across the Zone episodes.',
       },
     ],
-    relatedTerms: ['schwarzkommando', 'greta-erdmann', 'der-springer'],
+    relatedTerms: ['orpheus-theatre', 'schwarzkommando', 'greta-erdmann', 'der-springer'],
   },
   {
     id: 'mrs-quoad-diseases',
@@ -2583,7 +2583,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Fritz Lang\'s 1929 silent film; Oberth advised on the rocket design.',
       },
     ],
-    relatedTerms: ['pokler', 'persistence-of-vision', 'nibelungen-fritz-lang'],
+    relatedTerms: ['pokler', 'persistence-of-vision', 'orpheus-theatre', 'nibelungen-fritz-lang'],
   },
   {
     id: 'coal-tar-theology',
@@ -3163,7 +3163,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'The idealised motion whose trajectory is a parabola.',
       },
     ],
-    relatedTerms: ['v2-a4', 'brennschluss'],
+    relatedTerms: ['v2-a4', 'delta-t', 'brennschluss'],
   },
   {
     id: 'sol-sigil',
@@ -3440,7 +3440,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V236.36-37; identifies the Pisces/Aries cusp and its structural significance.',
       },
     ],
-    relatedTerms: ['von-braun', 'carmina-burana'],
+    relatedTerms: ['von-braun', 'carmina-burana', 'ohka'],
   },
   {
     id: 'shell-hilary-bounce',
@@ -3786,7 +3786,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the 00000/00001 pairing and its structural function.',
       },
     ],
-    relatedTerms: ['v2-a4', 'brennschluss', 'schwarzgeraet'],
+    relatedTerms: ['v2-a4', 'brennschluss', '00001', 'orpheus-theatre', 'schwarzgeraet'],
   },
   {
     id: 'ian-scuffling',
@@ -4453,7 +4453,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Identifies Ombindi and the tribal-suicide faction inside the Schwarzkommando.',
       },
     ],
-    relatedTerms: ['enzian', 'schwarzkommando'],
+    relatedTerms: ['enzian', '00001', 'schwarzkommando'],
   },
   {
     id: 'pervitin',
@@ -4915,7 +4915,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Introduces Greta Erdmann and her filmography.',
       },
     ],
-    relatedTerms: ['von-goll', 'bianca', 'alpdrucken'],
+    relatedTerms: ['von-goll', 'bianca', 'orpheus-theatre', 'alpdrucken'],
   },
   {
     id: 'zwolfkinder',
@@ -5210,7 +5210,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Egyptian god of embalming and guide of souls to the afterlife.',
       },
     ],
-    relatedTerms: ['greta-erdmann', 'bianca'],
+    relatedTerms: ['greta-erdmann', 'bianca', 'orpheus-theatre'],
   },
   {
     id: 'wozzeck',
@@ -5286,7 +5286,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V472.20-21; notes that Orpheus was allowed to bring Eurydice from Hades provided he did not look back.',
       },
     ],
-    relatedTerms: ['bianca', 'alpdrucken', 'greta-erdmann'],
+    relatedTerms: ['orpheus-theatre', 'bianca', 'alpdrucken', 'greta-erdmann'],
   },
   {
     id: 'shekinah',
@@ -5461,7 +5461,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V500.40; links Rocket Noon to the Evil Hour and the noon firing of 00000.',
       },
     ],
-    relatedTerms: ['peenemunde', '00000', 'parabola'],
+    relatedTerms: ['peenemunde', '00000', 'parabola', 'luneburg-heath'],
   },
   {
     id: 'stations-of-the-cross-peene',
@@ -5509,7 +5509,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the Bicycle Rider / Fool figure at Peenemünde.',
       },
     ],
-    relatedTerms: ['slothrop', 'rocket-noon', 'peenemunde'],
+    relatedTerms: ['slothrop', 'rocket-noon', 'weissmanns-tarot', 'peenemunde'],
   },
   {
     id: 'der-mude-tod',
@@ -5638,7 +5638,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the Schwarzkommando \'restore us\' motif.',
       },
     ],
-    relatedTerms: ['enzian', 'schwarzkommando', 'sudwest'],
+    relatedTerms: ['enzian', 'schwarzkommando', '00001', 'sudwest'],
   },
   {
     id: 'peenemunde',
@@ -6045,7 +6045,7 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'British physicist and chemist (1791-1867) whose work on induction underlies modern electrical technology.',
       },
     ],
-    relatedTerms: ['illuminati-weishaupt'],
+    relatedTerms: ['phoebus-cartel', 'byron-the-bulb', 'illuminati-weishaupt'],
   },
   {
     id: 'veiled-prophet',
@@ -6192,4 +6192,783 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     relatedTerms: ['pointsman', 'pavlovian', 'herero-genocide'],
   },
   // part 4 episodes
+  {
+    id: 'heiligenschein',
+    displayLabel: 'Heiligenschein',
+    chronology: { episodeId: '4.01', sort: 401.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'the Magician, his own moving Heiligenschein rippling infrared to ultraviolet in spectral rings around his shadow over the dewy grass',
+      highlightedTerm: 'Heiligenschein',
+    },
+    apparatus: {
+      explanation:
+        'German for \'saint\'s halo,\' and also the name of a measurable optical phenomenon: light diffracting through dewdrops produces a luminescence around the shadow of an observer\'s head. The Heiligenschein appears at Slothrop\'s crossroads transformation at the opening of Part 4. Its rings run \'infrared to ultraviolet,\' taking in the invisible at both ends of the spectrum, and the figure inside them is identified as the Magician, the tarot card opposed to the Fool. The physical explanation (dew, diffraction, an observer\'s own shadow) and the tarot identification (the Magician opposed to the Fool) sit on top of one another without either dissolving the other, and Slothrop\'s crossroads figure remains at once a measurable atmospheric effect and a claimed sacral appearance.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V625.18; glosses as saint\'s halo and optical luminescence.',
+      },
+      {
+        label: 'Heiligenschein',
+        url: 'https://en.wikipedia.org/wiki/Heiligenschein',
+        note: 'The atmospheric optical phenomenon produced by dewdrops.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'bicycle-rider-fool', 'weissmanns-tarot'],
+  },
+  {
+    id: 'mandrake-root',
+    displayLabel: 'Mandrake Root (Alraun)',
+    chronology: { episodeId: '4.01', sort: 401.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'drips to earth at the exact center of the crossroad where, in the workings of the night, it changes into a mandrake root',
+      highlightedTerm: 'mandrake root',
+    },
+    apparatus: {
+      explanation:
+        'At the crossroads where Slothrop undergoes his occult transformation, his seed \'drips to earth\' and becomes a mandrake root. Grimm\'s *Teutonic Mythology* (1202-03) reproduces the folklore of the *Alraun*: a mandrake grows under the gallows of a hanged hereditary thief who has preserved his chastity; dug up by a black dog, it shrieks so dismally that the dog falls dead; thereafter it reveals future and secret things, doubles coins, and passes to the youngest son. The forked root of *Mandragora officinarum* has been associated with magic since antiquity because it resembles a human figure. Slothrop occupies each position in Grimm\'s sequence, first the hanged man, then the seed under the gallows, and finally the magical root.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V625.17; reproduces Grimm\'s full account of the *Alraun*.',
+      },
+    ],
+    relatedTerms: ['slothrop', 'heiligenschein', 'bicycle-rider-fool'],
+  },
+  {
+    id: 'werewolf-stencils',
+    displayLabel: 'Werewolf Stencils',
+    chronology: { episodeId: '4.01', sort: 401.3 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Werewolf stencils of the dark man with the high shoulders and the Homburg hat, an official slogan: WILLST DU V-2, DANN ARBEITE',
+      highlightedTerm: 'Werewolf stencils',
+    },
+    apparatus: {
+      explanation:
+        'The Werwolf movement was a Nazi underground network organised in autumn 1944, publicly proclaimed by Goebbels on 1 April 1945, and told to fight after Germany\'s surrender. Its stencil, \'WILLST DU V-2, DANN ARBEITE\' (\'If you want V-2, then work!\'), echoes *Arbeit macht frei* without depending on a false V-2/*frei* homophone. Actual stay-behind operations after capitulation were minimal, but the stencils on Zone walls outlive the government that authorised them, and their imperative to work for the V-2 remains legible after the state that wanted the V-2 has dissolved. A Time article of 16 April 1945 quoted their song: \'Lily the werewolf is my name; ... I bite, I eat, I am not tame.\'',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V624.1; identifies the Werwolf movement and connects its work slogan with *Arbeit macht frei*.',
+      },
+      {
+        label: 'Werwolf (Nazi guerrilla movement)',
+        url: 'https://en.wikipedia.org/wiki/Werwolf',
+        note: 'Background on the Nazi stay-behind sabotage network formed in 1944-45.',
+      },
+    ],
+    relatedTerms: ['the-zone', 'v2-a4', 'slothrop'],
+  },
+  {
+    id: 'thief-of-bagdad',
+    displayLabel: 'Douglas Fairbanks (Thief of Bagdad)',
+    railLabel: 'Thief of Bagdad',
+    chronology: { episodeId: '4.02', sort: 402.05 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'aficionados of the chase scene, those who cannot look at the Taj Mahal, the Uffizi, the Statue of Liberty... Douglas Fairbanks scampering across that moon minaret',
+      highlightedTerm: 'Douglas Fairbanks scampering across that moon minaret',
+    },
+    apparatus: {
+      explanation:
+        'Douglas Fairbanks (1883-1939) played the swashbuckling hero of *The Thief of Bagdad* (1924), Raoul Walsh\'s lavish silent fantasy in which he vaults across rooftops, rides a magic rope, and rescues the princess of a fabulist Baghdad. Pynchon\'s \'aficionados of the chase scene\' cannot look at the Taj Mahal, the Uffizi, or the Statue of Liberty without seeing Fairbanks scamper across the moon minaret; the film cliché intervenes in whatever monument the eye tries to see, and the chase-scene aesthetic that Slothrop is now living has one of its earliest examples in silent Hollywood adventure.',
+    },
+    externalRefs: [
+      {
+        label: '*The Thief of Bagdad* (1924)',
+        url: 'https://en.wikipedia.org/wiki/The_Thief_of_Bagdad_(1924_film)',
+        note: 'Raoul Walsh\'s silent fantasy starring Douglas Fairbanks; source of the moon-minaret chase image.',
+      },
+    ],
+    relatedTerms: ['slothrop'],
+  },
+  {
+    id: 'sabbatai-zvi',
+    displayLabel: 'Sabbatai Zvi',
+    chronology: { episodeId: '4.02', sort: 402.1 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'find deeper forms of renunciation, deeper than Sabbatai Zvi\'s apostasy before the Sublime Porte',
+      highlightedTerm: 'Sabbatai Zvi',
+    },
+    apparatus: {
+      explanation:
+        'Sabbatai Zvi (1626-1676), the son of a Smyrna poulterer, was declared the Jewish Messiah by Nathan of Gaza in 1665 and gathered followers across the Ottoman Empire and Europe through Kabbalistic readings of the Torah. After Ottoman authorities arrested him in 1666, he converted to Islam before Sultan Mehmed IV under threat of death. The conversion shattered the movement but did not end it; a sect of \'believers,\' the Dönmeh, also converted and persisted in Thessaloniki into the twentieth century.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V639.18-19; identifies Sabbatai Zvi\'s apostasy.',
+      },
+      {
+        label: 'Sabbatai Zevi',
+        url: 'https://en.wikipedia.org/wiki/Sabbatai_Zevi',
+        note: 'Jewish false messiah (1626-1676) who apostasised before the Ottoman sultan.',
+      },
+    ],
+    relatedTerms: ['breaking-of-the-vessels', 'qlippoth', 'blicero'],
+  },
+  {
+    id: 'phoebus-cartel',
+    displayLabel: 'Phoebus Cartel',
+    chronology: { episodeId: '4.03', sort: 403.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        '\'Phoebus,\' the international light-bulb cartel, headquartered in Switzerland. Run pretty much by International GE, Osram, and Associated Electrical Industries of Britain',
+      highlightedTerm: 'Phoebus',
+    },
+    apparatus: {
+      explanation:
+        'Phoebus S.A. Compagnie Industrielle pour le Développement de l\'Éclairage was established in Geneva in December 1924 from an earlier syndicate. Its members, including Osram, Siemens, Philips, and International General Electric, fixed prices and standardised bulb life at 1,000 hours, down from earlier designs that lasted 2,500. In Byron\'s story, the cartel persecutes a lightbulb that refuses to burn out on schedule; the cartel\'s international operation broke down with the outbreak of war in 1939, though accounts differ over its formal dissolution.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V649.15; cites Levy\'s *Industrial Germany* on the cartel\'s structure.',
+      },
+      {
+        label: 'Phoebus cartel',
+        url: 'https://en.wikipedia.org/wiki/Phoebus_cartel',
+        note: 'International cartel that controlled lightbulb lifespans and prices from 1924 until the outbreak of war in 1939.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'they-them', 'seele-filament'],
+  },
+  {
+    id: 'byron-the-bulb',
+    displayLabel: 'Byron the Bulb',
+    chronology: { episodeId: '4.03', sort: 403.15 },
+    colorVar: '--color-accent',
+    context: {
+      excerpt:
+        'a gong sounds along the ice and stone corridors of the Phoebus headquarters',
+      highlightedTerm: 'Phoebus',
+    },
+    apparatus: {
+      explanation:
+        'Byron is a sentient lightbulb who refuses the planned obsolescence imposed by the Phoebus cartel. Signed in Geneva in December 1924 and controlling an estimated ninety per cent of global lightbulb production through Osram, Siemens, Philips, and General Electric\'s international subsidiary, Phoebus fixed prices and shortened bulb life to 1,000 hours. Byron will not burn out on that schedule; the object has acquired a will of his own, and the cartel spends the rest of his story trying to arrange his destruction through the electrical grid he cannot leave.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V649.15; cites Levy, *Industrial Germany*, on the Phoebus cartel\'s control of 90% of world production.',
+      },
+    ],
+    relatedTerms: ['ig-raketen', 'preterite'],
+  },
+  {
+    id: 'seele-filament',
+    displayLabel: 'Seele (Filament / Soul)',
+    railLabel: 'Seele',
+    chronology: { episodeId: '4.03', sort: 403.2 },
+    colorVar: plotlineColorVars.P06,
+    context: {
+      excerpt:
+        'his soul (Seek, as the core of the earlier carbon filament was known in Germany)',
+      highlightedTerm: 'Seek',
+    },
+    apparatus: {
+      explanation:
+        'In technical German, *die Seele* (\'the soul\') designates the core of an object: the bore of a gun barrel, the heart of an electrical cable, or the carbon filament of a lightbulb. Pynchon renders it as \'Seek,\' an anglicised approximation, so that Byron\'s filament is his soul. Phoebus\'s engineered lifespan for filaments therefore governs the same interior term the language uses for soul, and Byron\'s refusal to burn out on schedule reads at once as an engineering deviation and as a small theological revolt against the cartel that owns the word.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V654.38-39; explains the Seele/soul/filament pun.',
+      },
+    ],
+    relatedTerms: ['phoebus-cartel', 'coal-tar-theology'],
+  },
+  {
+    id: 'kalahari-white-woman',
+    displayLabel: 'Kalahari Rock Painting (White Woman)',
+    railLabel: 'White Woman',
+    chronology: { episodeId: '4.04', sort: 404.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Enzian came after a while to think of her as the great Kalahari rock painting of the White Woman, white from the waist down, carrying bow and arrows, trailed by her black handmaiden',
+      highlightedTerm: 'White Woman',
+    },
+    apparatus: {
+      explanation:
+        'Enzian imagines Katje as the \'White Woman\' of the Kalahari rock paintings, a pale figure carrying bow and arrows and trailed by a dark handmaiden. Katje takes the white master\'s place in the image, and even Enzian\'s desire for her arrives through colonial iconography. The painting itself is an archaeological puzzle; the figure is \'white from the waist down,\' and the colour is almost all that is known about her.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V658.26-27; traces the image to Parrinder\'s African Mythology.',
+      },
+    ],
+    relatedTerms: ['enzian', 'katje', 'herero-genocide'],
+  },
+  {
+    id: 'of-course-it-happened',
+    displayLabel: 'Of course it happened',
+    chronology: { episodeId: '4.05', sort: 405 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'Of course it happened. Of course it didn\'t happen.',
+      highlightedTerm: 'Of course it happened',
+    },
+    apparatus: {
+      explanation:
+        'The 00000 firing both happened and did not happen. Gottfried\'s sacrifice sits at a point where no narrative in the novel\'s own grammar can carry it forward, so Pynchon marks the launch with a paired assertion and negation and leaves the reader inside a scene that will not resolve into either witness or denial.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V667.',
+      },
+    ],
+    relatedTerms: ['00000', 'orpheus-theatre'],
+  },
+  {
+    id: 'united-fruit',
+    displayLabel: 'United Fruit Company',
+    chronology: { episodeId: '4.06', sort: 406.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'whoever it is that\'s been wantonly disregarding United Fruit\'s radio commercials',
+      highlightedTerm: 'United Fruit',
+    },
+    apparatus: {
+      explanation:
+        'Minor C. Keith and Andrew Preston formed United Fruit in 1899 by merging the Tropical Trading and Transport Company with the Boston Fruit Company; the corporation accumulated plantations, railways, ports, telegraph lines, and political power across Central America. Pynchon\'s narrator calls it \'the IG Farben of Central America,\' and the radio commercials work as cover for labour exploitation and colonial dominion. Its postwar interventions included lobbying the Eisenhower administration for the 1954 CIA coup against Jacobo Árbenz in Guatemala (Operation PBSUCCESS), with Allen Dulles at the CIA and John Foster Dulles at State both holding financial ties to the company; the \'banana republic\' epithet, coined by O. Henry in *Cabbages and Kings* (1904), was already in circulation for exactly the configuration of plantation, railway concession, and pliant government that United Fruit spent the twentieth century maintaining.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V678.26; identifies United Fruit as \'the IG Farben of Central America.\'',
+      },
+      {
+        label: 'United Fruit Company',
+        url: 'https://en.wikipedia.org/wiki/United_Fruit_Company',
+        note: 'American corporation (1899-1970) that dominated Central American agriculture and politics.',
+      },
+    ],
+    relatedTerms: ['ig-farben', 'dulles-oss', 'phoebus-cartel'],
+  },
+  {
+    id: 'glozing-neuters',
+    displayLabel: 'The Glozing Neuters',
+    chronology: { episodeId: '4.06', sort: 406.1 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Those whom the old Puritan sermons denounced as "the glozing neuters of the world"',
+      highlightedTerm: 'glozing neuters',
+    },
+    apparatus: {
+      explanation:
+        'Thomas Hooker (1586-1647), Puritan minister and founder of the Connecticut Colony, places the glozing neuters in his sermon *The Soules Implantation into the Natural Olive* (1637) between \'open enemies to Christ\' and \'fawning hypocrites\'; they are \'like lukewarm water\' that \'goes against the stomacke.\' To \'gloze,\' the OED tells us, is to veil a true meaning with specious comments. David Seed identified Hooker as the source. Pynchon answers him with a plea for the uncommitted, \'When\'s the last time you felt intensely lukewarm? eh?\'; the preterite, on the novel\'s argument, occupy exactly this middle ground that both Hooker\'s Puritan schema and the wartime demand for allegiance would eliminate, and the passage\'s tenderness for lukewarmness pushes back against several centuries of theology treating indecision as the worse sin.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V677.1-2; credits David Seed for identifying the Hooker source.',
+      },
+    ],
+    relatedTerms: ['preterite', 'on-preterition'],
+  },
+  {
+    id: 'shit-from-shinola',
+    displayLabel: 'Shit from Shinola',
+    chronology: { episodeId: '4.06', sort: 406.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Shinola shoeshine polish happens to be the color of Shit.',
+      highlightedTerm: 'Shinola',
+    },
+    apparatus: {
+      explanation:
+        'The American idiom \'cannot tell shit from Shinola\' turns on the brown polish\'s colour. In 4.06, the failed distinction spreads from waste and product into preterite and elect, and then into the passage\'s tangled racial, commodity, and toilet imagery.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V688; glosses the Shinola idiom in the coal-tar theology passage.',
+      },
+    ],
+    relatedTerms: ['kenosha-kid', 'preterite', 'coal-tar-theology'],
+  },
+  {
+    id: 'ohka',
+    displayLabel: 'Ohka (Cherry Blossom)',
+    chronology: { episodeId: '4.06', sort: 406.2 },
+    colorVar: plotlineColorVars.P01,
+    context: {
+      excerpt:
+        'Ichizo flies an Ohka device, which is a long bomb, actually, with a cockpit for Ichizo to sit in, stub wings, rocket propulsion',
+      highlightedTerm: 'Ohka',
+    },
+    apparatus: {
+      explanation:
+        'The Ohka (\'Cherry Blossom\') was a Japanese rocket-propelled suicide bomb built from wood and fabric, with a pilot\'s cockpit and no landing gear. Its first, failed sortie took place on 21 March 1945, near the spring equinox. The novel places the 00000 pre-launch scenes and firing in spring 1945 but gives no precise date, so the parallel between Ichizo in his Ohka cockpit and Gottfried inside the Schwarzgerät capsule operates through seasonal and ritual overlap, with Weisenburger noting the equinox correspondence as one of several date-cluster resonances the final episodes leave for the reader to draw together.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V690.27-28; discusses the spring equinox association.',
+      },
+      {
+        label: 'Yokosuka MXY-7 Ohka',
+        url: 'https://en.wikipedia.org/wiki/Yokosuka_MXY-7_Ohka',
+        note: 'Japanese rocket-propelled human-guided kamikaze weapon.',
+      },
+    ],
+    relatedTerms: ['gottfried', 'blicero', '00000'],
+  },
+  {
+    id: 'oneirine-theophosphate',
+    displayLabel: 'Oneirine Theophosphate',
+    chronology: { episodeId: '4.07', sort: 407.1 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'Oneirine theophosphate is one way around the problem. (Tchitcherine: "You mean thiophosphate, don\'t you?" . . . Wimpe: "I mean theophosphate, Vaslav," indicating the Presence of God.)',
+      highlightedTerm: 'Oneirine theophosphate',
+    },
+    apparatus: {
+      explanation:
+        'Tchitcherine, hearing Wimpe describe the compound, corrects the spelling to \'thiophosphate\' (sulphur-based), but Wimpe insists on \'theophosphate\' from Greek *theos*, \'indicating the Presence of God,\' and the mispronounced consonant is where the theology enters the pharmacology. Its hallucinations are \'so ordinary, so conventional\' that they are called \'the dullest hallucinations known to psychopharmacology\'; the same ordinary themes recur across subjects with enough consistency to earn the name \'haunting.\' Under Oneirine, \'the presence of the dead, journeys by the same route where one person will set out later but arrive earlier\' cease to appear strange.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V702.9; distinguishes theophosphate (God) from thiophosphate (sulphur).',
+      },
+    ],
+    relatedTerms: ['tchitcherine', 'sandoz-lsd', 'pervitin'],
+  },
+  {
+    id: 'everything-connected',
+    displayLabel: 'Everything Is Connected',
+    chronology: { episodeId: '4.07', sort: 407.2 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'the discovery that everything is connected, everything in the Creation, a secondary illumination—not yet blindingly One, but at least connected',
+      highlightedTerm: 'everything is connected',
+    },
+    apparatus: {
+      explanation:
+        'The narrator calls Oneirine-induced paranoia \'the onset, the leading edge, of the discovery that everything is connected.\' The illumination stays \'secondary\' and \'not yet blindingly One,\' so paranoid connectedness in the novel functions as a partial and pharmacologically compromised approach to mystical unity, an epistemology whose access route runs through a compound synthesised for the purpose and whose ceiling is the connectedness itself, with the unity that Christian and Kabbalist mystics reached for held one step further off.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V703; the paranoia-connection passage.',
+      },
+    ],
+    relatedTerms: ['oneirine-theophosphate', 'tchitcherine', 'they-them'],
+  },
+  {
+    id: 'thermidor',
+    displayLabel: 'Thermidor',
+    chronology: { episodeId: '4.08', sort: 408.1 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'dreaming for a minute here of the sweaty evenings of Thermidor: the failed Counterforce, the glamorous ex-rebels',
+      highlightedTerm: 'Thermidor',
+    },
+    apparatus: {
+      explanation:
+        'On 9 Thermidor Year II (27 July 1794), Robespierre was arrested without a trial and, the following day, guillotined; the Terror ended in the same manoeuvre. \'Thermidor\' has since named the conservative phase that follows revolutionary upheaval. Roger Mexico, drugged and dreaming, sees the same fate approaching the Counterforce, \'the glamorous ex-rebels, half-suspected but still enjoying official immunity and sly love... doomed pet freaks,\' a formation in which the former insurgents are permitted survival on condition that they perform their earlier rebellion as spectacle for the powers they once opposed, and the phrase \'pet freaks\' does most of the work in placing them as household ornaments kept for the amusement of the very powers they once tried to overthrow, no longer read as political threats at all.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V713.10; identifies the Thermidorian parallel for the Counterforce\'s failure.',
+      },
+      {
+        label: 'Thermidorian Reaction',
+        url: 'https://en.wikipedia.org/wiki/Thermidorian_Reaction',
+        note: 'Conservative phase ending the radical French Revolution (July 1794).',
+      },
+    ],
+    relatedTerms: ['roger-mexico', 'pirate-prentice'],
+  },
+  {
+    id: 'utgarthaloki-dinner',
+    displayLabel: 'Utgarthaloki Dinner',
+    chronology: { episodeId: '4.08', sort: 408.1 },
+    colorVar: plotlineColorVars.P05,
+    context: {
+      excerpt:
+        'at the home of Stefan Utgarthaloki, an ex-member of management at the Krupp works',
+      highlightedTerm: 'Utgarthaloki',
+    },
+    apparatus: {
+      explanation:
+        'Stefan Utgarthaloki is named for the Norse trickster-giant in Snorri Sturluson\'s *Gylfaginning*, who hosts Thor at a feast of rigged contests. Roger and Bodine reprise the myth as a Counterforce gross-out session at a Krupp dinner party, escalating disgusting images until Frau Utgarthaloki flees. Where Thor in Snorri\'s tale loses each rigged contest without knowing the giant has staged them, Roger and Bodine take the same visitor\'s position at a Krupp table with fuller information about how the game is rigged, and their escalating menu of vomit and phlegm imagery secures a small parodic reversal within a mythic frame that keeps its structural weight against the guest.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V709.39; reproduces the Sturluson episode and identifies the structural parody.',
+      },
+    ],
+    relatedTerms: ['roger-mexico'],
+  },
+  {
+    id: 'kingdom-of-death',
+    displayLabel: 'Kingdom of Death (Subsequent Sin)',
+    railLabel: 'Kingdom of Death',
+    chronology: { episodeId: '4.09', sort: 409.1 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'America was the edge of the World. A message for Europe, continent-sized, inescapable. Europe had found the site for its Kingdom of Death, that special Death the West had invented.',
+      highlightedTerm: 'Kingdom of Death',
+    },
+    apparatus: {
+      explanation:
+        'Blicero tells Gottfried that America was \'the edge of the World,\' a continent-sized message that Europe could read only as the site for its Kingdom of Death. He distinguishes Subsequent Sin from Original Sin, \'the latest name for that is Modern Analysis,\' while Subsequent Sin, what follows from the use of that knowledge, \'is harder to atone for.\' Imperial expansion and technical development, in his account, unfold from the same theology, so the rocket that will consume Gottfried belongs to a sequence stretching back through the ships that consumed the American shore and the guns that consumed its inhabitants, each stage of the sequence claiming legitimacy from the technical and territorial success of the stage before it.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V722.29-32; identifies this as one of the novel\'s touchstones on colonial dominion.',
+      },
+    ],
+    relatedTerms: ['blicero', 'gottfried', 'coal-tar-theology', 'preterite'],
+  },
+  {
+    id: '00001',
+    displayLabel: '00001',
+    chronology: { episodeId: '4.10', sort: 410 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'a covered wagon containing the warhead section of the 00001',
+      highlightedTerm: '00001',
+    },
+    apparatus: {
+      explanation:
+        'Enzian\'s counter-rocket is assembled from Zone scrap. The Schwarzkommando may fire it, worship it, or ride it into collective suicide; the novel never settles their intention. Its serial number follows Blicero\'s, so the Schwarzkommando\'s project inherits the numbering of the imperial weapon they were conscripted to build, an inheritance the novel presents without resolving whether it constitutes liberation, repetition, or a third possibility the numbering cannot express.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the Schwarzkommando\'s rocket assembly in Part 4.',
+      },
+    ],
+    relatedTerms: ['00000', 'schwarzkommando', 'enzian'],
+  },
+  {
+    id: 'catharism',
+    displayLabel: 'Catharism',
+    chronology: { episodeId: '4.10', sort: 410.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'full of Cathar horror at the practice of imprisoning souls in the bodies of newborns',
+      highlightedTerm: 'Cathar',
+    },
+    apparatus: {
+      explanation:
+        'From Greek *katharos* (pure), the Cathars flourished in Languedoc during the twelfth and thirteenth centuries with a dualist theology that treated spirit as trapped in matter; Cathar \'perfects\' renounced sex, meat, and property. Pope Innocent III launched the Albigensian Crusade in 1209 to devastate the Cathar strongholds, and inquisitions completed the suppression through the fourteenth century. Denis de Rougemont, in *Love in the Western World* (1939), argues that Cathar ideas survived in troubadour poetry and the Tristan and Tannhäuser stories, a reading that later medievalists have largely qualified but which supplies Enzian\'s horror at souls imprisoned in newborn bodies with its transmission line into the twentieth century, and de Rougemont is the likeliest single source for Pynchon\'s Cathar vocabulary throughout Part 4.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V732.22-24; cites de Rougemont on Cathar survival in troubadour culture.',
+      },
+      {
+        label: 'Catharism',
+        url: 'https://en.wikipedia.org/wiki/Catharism',
+        note: 'Medieval Christian dualist movement persecuted by crusade and inquisition.',
+      },
+    ],
+    relatedTerms: ['tannhauserism', 'enzian', 'preterite'],
+  },
+  {
+    id: 'stretchfoot',
+    displayLabel: 'Stretchfoot (Streckefuss)',
+    railLabel: 'Stretchfoot',
+    chronology: { episodeId: '4.11', sort: 411.1 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Take me, Stretchfoot, what keeps you? Nothing worse than these days. You will be like gentle sleep.',
+      highlightedTerm: 'Stretchfoot',
+    },
+    apparatus: {
+      explanation:
+        'Graffiti in a culvert addresses Lord Death by his German folk-name, *Streckefuss* or *Streckebein*, the \'leg-stretcher\' who stretches out the limbs of the dying; Grimm\'s *Teutonic Mythology* (852) provides the source. The plea, signed \'Private Rudolf Effig, 12.iv.45\' (twenty-six days before VE Day), addresses death with the intimacy of a lover late for a rendezvous. \'Dominus Blicero\' also translates as Lord Death, so Private Effig\'s prayer reaches, without his knowing it, the same figure who presides over Gottfried\'s launch elsewhere in the book, and Streckefuss is one of several folk-names by which the novel\'s minor characters call on a deity the reader has already met under other titles.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V733.26; traces *Streckefuss* to Grimm\'s *Teutonic Mythology*.',
+      },
+    ],
+    relatedTerms: ['blicero', 'gottfried', 'der-kinderofen'],
+  },
+  {
+    id: 'geraet-hangman',
+    displayLabel: 'GE_RÄT_ (Hangman Game)',
+    chronology: { episodeId: '4.11', sort: 411.2 },
+    colorVar: plotlineColorVars.P07,
+    context: {
+      excerpt:
+        'a game of hangman in which the mystery word was never filled in: GE_RAT_ and the hanged body visible almost at the other end of the culvert',
+      highlightedTerm: 'GE_RAT_',
+    },
+    apparatus: {
+      explanation:
+        'An unfinished game of hangman is scrawled in the same culvert as the Stretchfoot graffito. The mystery word is almost certainly *Gerät* (device), as in Schwarzgerät, though Weisenburger also proposes \'generator,\' perhaps the LOX generator used in A4 engineering. The word cannot be completed and the hanged body is already drawn; a children\'s gallows, the hanged man of the tarot, and the mandrake root under the gallows occupy the same graffito.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V734.2; identifies the mystery word as likely *Gerät* or \'generator\'.',
+      },
+    ],
+    relatedTerms: ['schwarzgeraet', 'stretchfoot', 'blicero', 'mandrake-root'],
+  },
+  {
+    id: 'terrenity',
+    displayLabel: 'Terrenity',
+    chronology: { episodeId: '4.11', sort: 411.3 },
+    colorVar: plotlineColorVars.P03,
+    context: {
+      excerpt:
+        'Trees creak in sorrow for the engineered wound through their terrain, their terrenity or earth-hood.',
+      highlightedTerm: 'terrenity',
+    },
+    apparatus: {
+      explanation:
+        'Pynchon builds *terrenity* from Latin *terrenus* (\'of the earth\') by analogy with *serenus* and serenity: \'earthliness\' or \'earth-hood.\' The word appears as trees mourn the road cut through them. English names the quality of being serene but has no equivalent for belonging to the earth, so Pynchon makes one at the point where the ground is engineered, wounded, and paved.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V733.24; glosses as \'earthliness\' from Latin *terrenus*.',
+      },
+    ],
+    relatedTerms: ['tchitcherine', 'the-zone'],
+  },
+  {
+    id: 'orpheus-theatre',
+    displayLabel: 'Orpheus Theatre',
+    chronology: { episodeId: '4.12', sort: 412 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'absolutely and forever without sound, reaches its last unmeasurable gap above the roof of this old theatre, the last delta-t',
+      highlightedTerm: 'old theatre',
+    },
+    apparatus: {
+      explanation:
+        'The final scene takes place in a Los Angeles picture house named for Orpheus. The film breaks off, the screen goes white, and a rocket is about to arrive. Orpheus promises a return from death that the novel withholds, and the picture house named for him becomes the site where the projected image (light thrown upward against a screen) and the rocket\'s parabolic descent share the same architecture, each arc suspended just before its completion in a way that lets the final page hold the ending open.',
+    },
+    externalRefs: [
+      {
+        label: 'Gručić Grmuša, \'Cinematic *Gravity\'s Rainbow*\'',
+        note: 'Open-access article on cinema as a technological force in the novel.',
+      },
+    ],
+    relatedTerms: ['00000', '00001', 'delta-t'],
+  },
+  {
+    id: 'delta-t',
+    displayLabel: 'Delta-t',
+    chronology: { episodeId: '4.12', sort: 412.1 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'absolutely and forever without sound, reaches its last unmeasurable gap above the roof of this old theatre, the last delta-t',
+      highlightedTerm: 'delta-t',
+    },
+    apparatus: {
+      explanation:
+        'Δt denotes a finite interval of time. The rocket reaches \'its last unmeasurable gap\' above the Orpheus Theatre within a final interval that the narrative never completes, and the ending arrests the parabola at the point where calculus would ordinarily let Δt approach zero, leaving the reader inside the interval itself with the moment of impact held offscreen.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates the final delta-t and the incomplete parabola.',
+      },
+    ],
+    relatedTerms: ['orpheus-theatre', '00000', 'parabola'],
+  },
+  {
+    id: 'weissmanns-tarot',
+    displayLabel: 'Weissmann\'s Tarot',
+    chronology: { episodeId: '4.12', sort: 412.1 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'If you\'re wondering where he\'s gone, look among the successful academics, the Presidential advisers, the token intellectuals who sit on boards of directors',
+      highlightedTerm: 'Presidential advisers',
+    },
+    apparatus: {
+      explanation:
+        'The ten-card Celtic-method reading in the passage follows Arthur Edward Waite\'s *Pictorial Key to the Tarot* (1910); the significator is the Knight of Swords, the Grail quester Galahad. The spread includes the Tower (ruin and pride\'s chastisement), the Queen of Swords (\'female sadness, absence, sterility\'), and the World (emigration and new beginnings); the penultimate Two of Swords points towards \'conformity, equipoise, and business.\' Weisenburger reads Weissmann\'s postwar fate through Dornberger on the Bell Helicopter board, von Braun at NASA, and Wegener at Yale, historical continuations of Peenemünde personnel that let the tarot\'s cards be mapped onto the Operation Paperclip trajectory Blicero would have taken had his career followed the ordinary path of German rocket engineers into American corporate and academic institutions.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V746.30 (pp. 373-376); provides complete card-by-card analysis of the Celtic spread.',
+      },
+    ],
+    relatedTerms: ['blicero', 'von-braun', 'operation-backfire'],
+  },
+  {
+    id: 'order-golden-dawn',
+    displayLabel: 'Order of the Golden Dawn',
+    railLabel: 'Golden Dawn',
+    chronology: { episodeId: '4.12', sort: 412.2 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'Members of the Order of the Golden Dawn believe The Tower represents victory over splendor, and avenging force',
+      highlightedTerm: 'Order of the Golden Dawn',
+    },
+    apparatus: {
+      explanation:
+        'MacGregor Mathers, William Wynn Westcott, and William Robert Woodman founded this Christian Kabbalist secret society in 1887, drawing on Rosicrucian and Kabbalist sources and on cipher manuscripts of doubtful provenance (Mathers claimed clairvoyant correspondence with a \'Fraulein Sprengel\'). W. B. Yeats joined in 1890 and reached the fifth of seven initiatory \'Elements.\' In Part 4, the Golden Dawn supplies the scheme for Weissmann\'s tarot: the Tower card\'s path connects Netzach (victory) with Hod (splendour) on the Kabbalistic Tree of Life. The order dissolved around 1903 amid internal quarrels; Aleister Crowley\'s breakaway groups and Israel Regardie\'s published rituals carried its practices into twentieth-century occultism, so by the time Weissmann\'s spread is dealt the Golden Dawn\'s Tower reading has already become one item in the syncretic inventory the novel keeps drawing from, an inventory running through the Illuminati, the Templars, and the Rosicrucians into modern societies whose personnel overlap with the cartels and intelligence services elsewhere in the book.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V747.38; identifies the Golden Dawn\'s Tower interpretation and Tree of Life mapping.',
+      },
+      {
+        label: 'Hermetic Order of the Golden Dawn',
+        url: 'https://en.wikipedia.org/wiki/Hermetic_Order_of_the_Golden_Dawn',
+        note: 'Victorian occult society (1887-c.1903) that systematised Western ceremonial magic.',
+      },
+    ],
+    relatedTerms: ['weissmanns-tarot', 'blavatsky-theosophy', 'illuminati-weishaupt'],
+  },
+  {
+    id: 'hand-of-glory',
+    displayLabel: 'Hand of Glory',
+    chronology: { episodeId: '4.12', sort: 412.3 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'the Hand of Glory, which second-story men use to light their way into your home: a candle in a dead man\'s hand',
+      highlightedTerm: 'Hand of Glory',
+    },
+    apparatus: {
+      explanation:
+        'A. E. Waite\'s *Book of Black Magic and of Pacts* gives the recipe: take a hand from a hanged criminal, drain and dry it, then combine it with wax into a candle. Folklore says the light paralyses everyone nearby while a thief enters the house. The novel places that frozen household beside the power of \'Them,\' the paralysing candle is an emblem for the way the sleeping occupants cannot wake to their own dispossession, and the same grimoire vocabulary extends to a glove described as the female counterpart, drawn from the same folkloric lineage of preserved body parts turned into charms.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V750.33; cites Waite\'s *Book of Black Magic and of Pacts* on the ritual preparation.',
+      },
+      {
+        label: 'Hand of Glory',
+        url: 'https://en.wikipedia.org/wiki/Hand_of_Glory',
+        note: 'Occult artefact made from a hanged man\'s hand, used in European folklore as a thief\'s charm.',
+      },
+    ],
+    relatedTerms: ['order-golden-dawn', 'weissmanns-tarot'],
+  },
+  {
+    id: 'ghost-dance',
+    displayLabel: 'Ghost Dance / Tonto\'s Ghost Shirt',
+    railLabel: 'Ghost Dance',
+    chronology: { episodeId: '4.12', sort: 412.4 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'Tonto, God willing, will put on the ghost shirt and find some cold fire to hunker down by to sharpen his knife',
+      highlightedTerm: 'ghost shirt',
+    },
+    apparatus: {
+      explanation:
+        'Wovoka (c. 1856-1932), also called Jack Wilson, a Paiute mystic, experienced his prophetic vision during the solar eclipse of 1 January 1889: whites would vanish, the dead would return, and the tribes would regain an abundant land. He instructed followers to \'not hurt anybody or do harm to anyone,\' and the ghost shirt worn in the accompanying dance was said to be bulletproof. As the movement spread among the recently defeated Lakota, military anxiety culminated in the massacre of Big Foot\'s band at Wounded Knee on 29 December 1890, where a Hotchkiss gun (the same brand as Ichizo\'s weapon in the kamikaze episode) was fired into the camp. Pynchon leaves Tonto with the ghost shirt after the Lone Ranger finds his \'young friend, innocent Dan, swinging from a tree limb by a broken neck,\' equipping the Indigenous sidekick with the doctrinally pacifist garment and a knife at once, and the passage does not settle whether the knife will be used or whether the shirt is bulletproof in a fictional world where Wounded Knee has already supplied one historical answer.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V752.10; identifies the Ghost Dance and Wounded Knee connection.',
+      },
+      {
+        label: 'Ghost Dance',
+        url: 'https://en.wikipedia.org/wiki/Ghost_Dance',
+        note: 'Millenarian movement among Native American peoples (1889-1890).',
+      },
+    ],
+    relatedTerms: ['preterite', 'ohka'],
+  },
+  {
+    id: 'luneburg-heath',
+    displayLabel: 'Lüneburg Heath',
+    chronology: { episodeId: '4.12', sort: 412.5 },
+    colorVar: plotlineColorVars.P02,
+    context: {
+      excerpt:
+        'The heathen Germans who lived here sacrificed horses once, in their old ceremonies. Later the horse\'s role changed from holy offering to servant of power.',
+      highlightedTerm: 'heathen Germans',
+    },
+    apparatus: {
+      explanation:
+        'The final rocket is launched from the heathland of Lower Saxony, some 7,400 square kilometres of sandy, nutrient-poor soil supporting mainly heather (*Calluna vulgaris*) and giving the landscape its purple-green colouring. The German military surrendered to Field Marshal Montgomery here on 4 May 1945, three days before VE Day. Weisenburger draws on Baedeker and Frances Yates for older layers: Romani people may have made their first European home on the Heath in 1417, perhaps bringing tarot divination, and a supposed 1586 meeting of the kings of Navarre and Denmark, Elizabeth I, and several princes would have founded an evangelical league and, later accounts claimed, Rosicrucianism. The \'great change kneading, turning, stirring\' the Heath, in the novel\'s phrase, folds these older ritual layers into the industrial ceremony being prepared for Gottfried, so that the ground receiving the 00000 has already been designated for sacrificial use across several centuries of religious, esoteric, and political history.',
+    },
+    externalRefs: [
+      {
+        label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
+        url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
+        note: 'Annotates at V737.17; cites Baedeker and Yates on the Heath\'s esoteric history.',
+      },
+      {
+        label: 'Lüneburg Heath',
+        url: 'https://en.wikipedia.org/wiki/L%C3%BCneburg_Heath',
+        note: 'Heathland in Lower Saxony, site of the German surrender (May 1945) and the novel\'s final launch.',
+      },
+    ],
+    relatedTerms: ['blicero', '00000', 'gottfried'],
+  },
 ];
