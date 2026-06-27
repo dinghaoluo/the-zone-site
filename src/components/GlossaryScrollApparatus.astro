@@ -26,7 +26,7 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
 
   <div class="glossary-entry-stack" role="region" aria-label="Glossary entries">
     <p class="glossary-search-empty" data-glossary-search-empty hidden>No matching terms.</p>
-    {sortedEntries.map((entry) => <GlossaryEntryBlock entry={entry} />)}
+    {sortedEntries.map((entry) => <GlossaryEntryBlock entry={entry} entries={sortedEntries} />)}
   </div>
 </section>
 

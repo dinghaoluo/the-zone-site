@@ -1,21 +1,13 @@
 ---
-interface GlossaryFocusEntry {
-  id: string;
-  displayLabel: string;
-  colorVar: string;
-  chronology: { episodeId: string };
-  context: { excerpt: string; highlightedTerm: string };
-  apparatus: { explanation: string };
-  externalRefs?: Array<{ label: string; url?: string; note?: string }>;
-  relatedTerms?: string[];
-}
+import type { GlossaryFocusEntry } from '../data/glossaryFocusEntries';
 import PullQuote from './PullQuote.astro';
 
 interface Props {
   entry: GlossaryFocusEntry;
+  entries: GlossaryFocusEntry[];
 }
 
-const { entry } = Astro.props;
+const { entry, entries } = Astro.props;
 
 function splitHighlight(text: string, highlight: string) {
   const idx = text.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
@@ -37,12 +29,20 @@ function renderInline(text: string): string {
 }
 
 const contextParts = splitHighlight(entry.context.excerpt, entry.context.highlightedTerm);
+const labelById = new Map(entries.map((item) => [item.id, item.displayLabel]));
 const episodeLabel = entry.chronology.episodeId;
+const searchCopy = [
+  entry.apparatus.explanation,
+  ...(entry.externalRefs?.flatMap((ref) => [ref.label, ref.note || '']) || []),
+].filter(Boolean).join(' ');
 ---
 
 <section
   class="glossary-entry"
   data-entry-id={entry.id}
+  data-search-title={`${entry.displayLabel} ${entry.railLabel || ''} ${entry.context.highlightedTerm}`}
+  data-search-quote={entry.context.excerpt}
+  data-search-copy={searchCopy}
   style={`--entry-color: var(${entry.colorVar})`}
 >
   <header class="entry-header" id={`glossary-${entry.id}`}>
@@ -76,6 +76,17 @@ const episodeLabel = entry.chronology.episodeId;
         </ul>
       </section>
     )}
+
+    {entry.relatedTerms && entry.relatedTerms.length > 0 && (
+      <section class="entry-related">
+        <h3>Related terms</h3>
+        <ul class="related-list">
+          {entry.relatedTerms.map((termId) => (
+            <li><a href={`#glossary-${termId}`}>{labelById.get(termId) || termId}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
   </div>
 </section>
 
@@ -83,10 +94,16 @@ const episodeLabel = entry.chronology.episodeId;
   .glossary-entry {
     padding: var(--space-2xl) 0;
     border-top: 1px solid var(--color-rule);
+    opacity: 1;
+    transition: opacity 0.25s ease;
   }
 
   .glossary-entry:last-child {
     border-bottom: 1px solid var(--color-rule);
+  }
+
+  .glossary-entry.is-muted {
+    opacity: 0.3;
   }
 
   .entry-header {
@@ -112,6 +129,10 @@ const episodeLabel = entry.chronology.episodeId;
     letter-spacing: 0;
   }
 
+  .glossary-entry.is-active h2 {
+    color: var(--entry-color);
+  }
+
   mark:not(.site-search-match) {
     color: var(--entry-color);
     background: transparent;
@@ -132,6 +153,31 @@ const episodeLabel = entry.chronology.episodeId;
     color: var(--color-text-dim);
   }
 
+  .entry-apparatus {
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: var(--space-sm);
+  }
+
+  .entry-apparatus summary {
+    width: max-content;
+    max-width: 100%;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    cursor: pointer;
+  }
+
+  .entry-apparatus summary:hover,
+  .entry-apparatus summary:focus-visible {
+    color: var(--entry-color);
+  }
+
+  .entry-apparatus-body {
+    display: grid;
+    gap: var(--space-lg);
+    padding-top: var(--space-lg);
+  }
+
   .entry-notes p {
     font-family: var(--font-prose);
     font-size: var(--text-prose);
@@ -139,14 +185,16 @@ const episodeLabel = entry.chronology.episodeId;
     color: var(--color-text-secondary);
   }
 
-  .entry-list {
+  .entry-list,
+  .related-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.45rem 0.75rem;
     list-style: none;
   }
 
-  .entry-list li {
+  .entry-list li,
+  .related-list li {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-dim);
@@ -160,8 +208,52 @@ const episodeLabel = entry.chronology.episodeId;
     opacity: 0.78;
   }
 
-  .entry-list a:focus-visible {
+  .related-list a {
+    color: var(--color-text-dim);
+    text-decoration: none;
+  }
+
+  .related-list a:hover {
+    color: var(--entry-color);
+  }
+
+  .entry-list a:focus-visible,
+  .related-list a:focus-visible {
     outline: 2px solid var(--entry-color);
     outline-offset: 0.18rem;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glossary-entry {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .glossary-entry {
+      padding: var(--space-xl) 0;
+      opacity: 1;
+    }
+
+    .glossary-entry.is-muted {
+      opacity: 0.44;
+    }
+
+    .entry-header {
+      scroll-margin-top: calc(
+        var(--nav-height, 3.5rem) +
+        var(--glossary-rail-height, 3.6rem) +
+        var(--space-sm)
+      );
+    }
+
+    .entry-episode {
+      font-size: 0.68rem;
+    }
+
+    h2 {
+      font-size: clamp(1.85rem, 10vw, 2.85rem);
+    }
+  }
+
 </style>
