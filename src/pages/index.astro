@@ -9,7 +9,7 @@ const indexLinks = [
   {
     slug: 'glossary',
     label: 'Glossary',
-    available: false,
+    available: true,
   },
   {
     slug: 'reference',
@@ -70,7 +70,9 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
               <div class="contents-copy">
                 <span class="contents-label">{link.label}</span>
                 <p class="contents-description">
-                  {link.slug === 'reference' && (
+                  {link.slug === 'glossary' ? (
+                    <>scroll through or search for critical terms in <em>Gravity's Rainbow</em></>
+                  ) : (
                     <>other companions (wikis, essays...) with which to read the book</>
                   )}
                 </p>
