@@ -10,6 +10,21 @@ interface Props {
 
 const { entries } = Astro.props;
 const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronology.sort);
+const episodeGroups = new Map<string, { episodeId: string; targetId: string }[]>();
+const seenEpisodes = new Set<string>();
+
+for (const entry of sortedEntries) {
+  const episodeId = entry.chronology.episodeId;
+  if (seenEpisodes.has(episodeId)) continue;
+
+  seenEpisodes.add(episodeId);
+  const part = episodeId.split('.')[0];
+  const group = episodeGroups.get(part) || [];
+  group.push({ episodeId, targetId: entry.id });
+  episodeGroups.set(part, group);
+}
+
+const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, episodes }));
 ---
 
 <section class="glossary-scroll-layout" data-glossary-scroll>
@@ -20,6 +35,20 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
         count={`${sortedEntries.length} terms`}
         ariaLabel="Search glossary"
       />
+      <div class="glossary-episode-jump">
+        <label for="glossary-episode-jump">Episode</label>
+        <select id="glossary-episode-jump" data-glossary-episode-jump>
+          <option value="">Jump to...</option>
+          {episodeParts.map(({ part, episodes }) => (
+            <optgroup label={`Part ${part}`}>
+              {episodes.map(({ episodeId, targetId }) => (
+                <option value={targetId}>{episodeId}</option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+        <p class="glossary-episode-status" aria-live="polite" aria-atomic="true" data-glossary-episode-status></p>
+      </div>
     </div>
     <GlossaryLexicalRail entries={sortedEntries} />
   </aside>
@@ -49,6 +78,8 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
     const searchInput = layout.querySelector<HTMLInputElement>('[data-site-search-input]');
     const searchCount = layout.querySelector<HTMLElement>('[data-site-search-count]');
     const searchEmpty = layout.querySelector<HTMLElement>('[data-glossary-search-empty]');
+    const episodeJump = layout.querySelector<HTMLSelectElement>('[data-glossary-episode-jump]');
+    const episodeStatus = layout.querySelector<HTMLElement>('[data-glossary-episode-status]');
     const termById = new Map(terms.map((term) => [term.dataset.entryId || '', term]));
     const entryById = new Map(entries.map((entry) => [entry.dataset.entryId || '', entry]));
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -148,7 +179,8 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
             );
             railWindow.scrollTo({
               left: target,
-              behavior: 'auto',
+
+              behavior: 'auto', // Safari stutters during scripted horizontal scrolling.
             });
           }
           railList.style.transform = '';
@@ -200,6 +232,21 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
         },
         reducedMotion.matches ? 120 : 2400
       );
+    }
+
+    function jumpToEntry(id: string): void {
+      const targetHash = `#glossary-${id}`;
+      if (window.location.hash !== targetHash) {
+        termById.get(id)?.click();
+        return;
+      }
+
+      holdRailTarget(id);
+      setActive(id);
+      document.getElementById(`glossary-${id}`)?.scrollIntoView({
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        block: 'start',
+      });
     }
 
     function chooseClosestEntry(): void {
@@ -351,6 +398,25 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
       searchInput.addEventListener('input', applySearch);
     }
 
+    episodeJump?.addEventListener('change', () => {
+      const id = episodeJump.value;
+      if (!id) return;
+      const episodeId = episodeJump.selectedOptions[0]?.textContent?.trim() || '';
+      const title = entryById.get(id)?.querySelector('h2')?.textContent?.trim() || '';
+      const clearedSearch = Boolean(searchInput?.value);
+
+      if (clearedSearch && searchInput) {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      jumpToEntry(id);
+      if (episodeStatus) {
+        episodeStatus.textContent = `${clearedSearch ? 'Search cleared. ' : ''}Episode ${episodeId}, ${title}.`;
+      }
+      episodeJump.value = '';
+    });
+
     mobileLayout.addEventListener('change', () => {
       if (railWindow) railWindow.scrollLeft = 0;
       queueLayoutUpdate();
@@ -387,6 +453,82 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
     display: grid;
     gap: var(--space-sm);
     min-width: 0;
+  }
+
+  .glossary-episode-jump {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .glossary-episode-jump label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .glossary-episode-jump::after {
+    content: '▾';
+    position: absolute;
+    top: 50%;
+    right: 0.7rem;
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .glossary-episode-jump select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.35rem;
+    padding: 0.3rem 2rem 0.3rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    background: color-mix(in srgb, var(--color-surface) 32%, transparent);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition:
+      border-color 0.18s ease,
+      background-color 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .glossary-episode-jump select:hover {
+    border-color: var(--color-text-dim);
+    color: var(--color-text);
+  }
+
+  .glossary-episode-jump select:focus-visible {
+    border-color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 0.18rem;
+  }
+
+  .glossary-episode-jump:focus-within::after {
+    color: var(--color-accent);
+  }
+
+  .glossary-episode-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .glossary-entry-stack {
@@ -450,6 +592,10 @@ const sortedEntries = [...entries].sort((a, b) => a.chronology.sort - b.chronolo
   @media (prefers-reduced-motion: reduce) {
     :global(html) {
       scroll-behavior: auto;
+    }
+
+    .glossary-episode-jump select {
+      transition: none;
     }
 
   }
