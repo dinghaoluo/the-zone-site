@@ -3,10 +3,13 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "description": "A visual companion to Gravity's Rainbow (1973)",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run"
   },
   "dependencies": {
     "astro": "^5.7.10"
@@ -14,6 +17,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@types/node": "^26.1.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^4.1.5"
   }
 }
