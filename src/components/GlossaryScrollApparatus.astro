@@ -1,5 +1,6 @@
 ---
 import type { GlossaryFocusEntry } from '../data/glossaryFocusEntries';
+import BackToTop from './BackToTop.astro';
 import GlossaryEntryBlock from './GlossaryEntryBlock.astro';
 import GlossaryLexicalRail from './GlossaryLexicalRail.astro';
 import SearchField from './SearchField.astro';
@@ -57,6 +58,8 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     <p class="glossary-search-empty" data-glossary-search-empty hidden>No matching terms.</p>
     {sortedEntries.map((entry) => <GlossaryEntryBlock entry={entry} entries={sortedEntries} />)}
   </div>
+
+  <BackToTop />
 </section>
 
 <script>
