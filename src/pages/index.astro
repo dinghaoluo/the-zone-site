@@ -1,9 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import HomepagePreview from '../components/HomepagePreview.astro';
+import Nav from '../components/Nav.astro';
 import StructuralPreview from '../components/StructuralPreview.astro';
+import Layout from '../layouts/Layout.astro';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+const sitePath = (path: string) => `${base}/${path.replace(/^\//, '')}`;
 
 const indexLinks = [
   {
@@ -61,27 +64,25 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   <nav id="contents" class="contents" aria-label="Site sections">
     <p class="contents-intro">Despite all its unintelligible digressions, its great many technical terms in languages other than English, its historical documentary and reflections... reading <i>Gravity's Rainbow</i> is still one of those once-in-a-lifetime experiences.<br><br>Coming to Pynchon's 1940s Europe at a stage when my own life involves looking at the cross-talk between countless neurones has made me appreciate greatly the raw chaotic power of Pynchon's prose. Its encyclopaedic reputation and the ability to keep its hundreds of characters in its grasp sure are impressive, but browsing through Reddit and Substack, I have a feeling that these tags frequently turn people away from this masterpiece, frequently persuade people that 'one should <i>prepare</i> for <i>Gravity's Rainbow</i>', whilst the best part of the reading experience may be to lose oneself in all the chaos, digression, and confusion.<br><br>That being said, external guidance did help me a great deal with reading this admittedly difficult novel. This site is my attempt to provide a visual reading companion to my second favourite book of all time. And I hope, just as I found great happiness in understanding the <i>Brennschluss</i> calculation after reading Niklas Riewald's <a href="https://niklasriewald.com/category/gravitys-rainbow/" target="_blank" rel="noopener">'The math behind <i>Gravity's Rainbow</i>'</a>, other readers can do the same as they scroll through <i>The Zone</i>.</p>
-    {availableLinks.length > 0 && (
-      <ul class="contents-list contents-list--available" role="list">
-        {availableLinks.map((link) => (
-          <li>
-            <a class="contents-entry contents-link contents-link--available" href={`/${link.slug}/`}>
-              <HomepagePreview slug={link.slug} />
-              <div class="contents-copy">
-                <span class="contents-label">{link.label}</span>
-                <p class="contents-description">
-                  {link.slug === 'glossary' ? (
-                    <>scroll through or search for critical terms in <em>Gravity's Rainbow</em></>
-                  ) : (
-                    <>other companions (wikis, essays...) with which to read the book</>
-                  )}
-                </p>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+    <ul class="contents-list contents-list--available" role="list">
+      {availableLinks.map((link) => (
+        <li>
+          <a class="contents-entry contents-link contents-link--available" href={sitePath(`${link.slug}/`)}>
+            <HomepagePreview slug={link.slug} />
+            <div class="contents-copy">
+              <span class="contents-label">{link.label}</span>
+              <p class="contents-description">
+                {link.slug === 'glossary' ? (
+                  <>scroll through or search for critical terms in <em>Gravity's Rainbow</em></>
+                ) : (
+                  <>other companions (wikis, essays...) with which to read the book</>
+                )}
+              </p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
     <p class="contents-pending-heading" id="coming-soon-title" role="heading" aria-level="2"><em>coming soon...</em></p>
     <ul class="contents-list contents-list--pending" role="list" aria-labelledby="coming-soon-title">
       {pendingLinks.map((link) => (
@@ -228,6 +229,16 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     text-align: left;
   }
 
+  .contents-description {
+    display: block;
+    margin: 0;
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--color-text-dim);
+    transition: color 0.18s ease;
+  }
+
   .contents-label {
     font-family: var(--font-heading);
     font-size: 1.2rem;
@@ -256,16 +267,6 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
   .contents-link:hover .contents-label,
   .contents-link:focus-visible .contents-label {
     color: var(--color-accent);
-  }
-
-  .contents-description {
-    display: block;
-    margin: 0;
-    font-family: var(--font-prose);
-    font-size: var(--text-sm);
-    line-height: 1.45;
-    color: var(--color-text-dim);
-    transition: color 0.18s ease;
   }
 
   .contents-link--available:hover .contents-description,
@@ -340,6 +341,12 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     }
   }
 
+  @media (min-width: 72rem) {
+    .contents-description {
+      white-space: nowrap;
+    }
+  }
+
   @media (max-width: 30rem) {
     .hero-title {
       font-size: 4rem;
@@ -355,4 +362,11 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
       font-size: 3.4rem;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contents-list .contents-link {
+      transform: none;
+    }
+  }
+
 </style>

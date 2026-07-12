@@ -1,9 +1,11 @@
 ---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+const sitePath = (path: string) => `${base}/${path.replace(/^\//, '')}`;
 const pathname = Astro.url.pathname;
 
 const links = [
-  { href: '/glossary/', label: 'Glossary' },
-  { href: '/reference/', label: 'Reference' },
+  { href: sitePath('glossary/'), label: 'Glossary' },
+  { href: sitePath('reference/'), label: 'Reference' },
 ];
 
 function isActive(href: string): boolean {
@@ -13,7 +15,7 @@ function isActive(href: string): boolean {
 
 <nav class="nav" aria-label="Primary">
   <div class="nav-inner container">
-    <a class="nav-brand wordmark" href="/" aria-label="The Zone">
+    <a class="nav-brand wordmark" href={`${base}/`} aria-label="The Zone">
       <span>The</span><span>Zone</span>
     </a>
     <div class="nav-right">
@@ -57,11 +59,7 @@ function isActive(href: string): boolean {
         current === 'dark' ? 'Use light theme' : 'Use dark theme'
       );
     }
-
-    const stored = localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark') {
-      document.documentElement.dataset.theme = stored;
-    }
+    updateLabels();
 
     toggle.addEventListener('click', () => {
       const current = document.documentElement.dataset.theme || 'dark';
@@ -70,7 +68,164 @@ function isActive(href: string): boolean {
       localStorage.setItem('theme', next);
       updateLabels();
     });
+  }
 
-    updateLabels();
+  if (nav) {
+    const ro = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const h = entry.borderBoxSize?.[0]?.blockSize ?? entry.target.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--nav-height', `${h}px`);
+      }
+    });
+    ro.observe(nav);
   }
 </script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-nav-bg);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--measure-site);
+    min-height: 3.25rem;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+  }
+
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0;
+    color: var(--color-text);
+  }
+
+  .nav-brand::after {
+    display: none;
+  }
+
+  .nav-brand:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.4rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-figure);
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--color-text-dim);
+    letter-spacing: 0;
+    transition: color 0.2s ease;
+    padding: 0.4rem 0;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--color-text-secondary);
+  }
+
+  .nav-links a.active {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 640px) {
+    .nav-inner {
+      display: flex;
+      width: 100%;
+      max-width: none;
+      min-height: 3.15rem;
+      gap: 0.65rem;
+      padding-inline: var(--space-md);
+    }
+
+    .nav-brand {
+      flex-shrink: 0;
+      margin-right: auto;
+      font-size: 0.96rem;
+      line-height: 1;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .theme-toggle {
+      font-size: 0.8rem;
+      padding: 0;
+      min-height: 44px;
+      min-width: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-right {
+      flex: 0 0 auto;
+      min-width: 0;
+      gap: 0.3rem;
+    }
+
+    .nav-links {
+      gap: clamp(0.5rem, 2.6vw, 0.75rem);
+    }
+
+    .nav-links a {
+      font-size: 0.84rem;
+      white-space: nowrap;
+      min-height: 44px;
+      padding: 0;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    font-family: var(--font-figure);
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0;
+    color: var(--color-text-dim);
+    transition: color 0.2s;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .theme-sep {
+    color: var(--color-border);
+    margin: 0 0.15rem;
+  }
+
+  .theme-label {
+    opacity: 0.4;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .theme-label.active {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+</style>

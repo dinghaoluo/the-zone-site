@@ -4,6 +4,8 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import GlossaryScrollApparatus from '../components/GlossaryScrollApparatus.astro';
 import { glossaryFocusEntries } from '../data/glossaryFocusEntries';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 
 <Layout
@@ -14,7 +16,7 @@ import { glossaryFocusEntries } from '../data/glossaryFocusEntries';
 
   <main class="site-page">
     <header class="page-header">
-      <a class="page-back" href="/">&larr; The Zone</a>
+      <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
       <h1 class="page-title">Glossary</h1>
     </header>
 
