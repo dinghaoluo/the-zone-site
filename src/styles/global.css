@@ -147,6 +147,60 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.site-search-match {
+  color: var(--site-search-match-color, var(--color-accent));
+  background: color-mix(
+    in srgb,
+    var(--site-search-match-color, var(--color-accent)) 15%,
+    transparent
+  );
+  font-style: inherit;
+  padding: 0 0.04em;
+}
+
+a {
+  position: relative;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+a:hover::after,
+a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+a.link-block::after {
+  display: none;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 0.25rem;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   line-height: var(--lh-heading);
@@ -205,70 +259,6 @@ p, li, dd, dt, blockquote {
   color: var(--color-text);
 }
 
-a {
-  position: relative;
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 1.5px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-}
-
-a:hover {
-  color: var(--color-accent-hover);
-}
-
-a:hover::after,
-a:focus-visible::after {
-  transform: scaleX(1);
-}
-
-a.link-block::after {
-  display: none;
-}
-
-::selection {
-  background: var(--color-accent);
-  color: var(--color-bg);
-}
-
-.site-search-match {
-  color: var(--site-search-match-color, var(--color-accent));
-  background: color-mix(
-    in srgb,
-    var(--site-search-match-color, var(--color-accent)) 15%,
-    transparent
-  );
-  font-style: inherit;
-  padding: 0 0.04em;
-}
-
-:focus-visible {
-  outline: 1px solid var(--color-accent);
-  outline-offset: 0.25rem;
-}
-
-em {
-  font-style: italic;
-}
-
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--page-gutter);
-}
-
 @media (max-width: 48rem) {
   :root {
     --page-gutter: var(--space-md);
@@ -283,8 +273,25 @@ em {
   }
 }
 
+em {
+  font-style: italic;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
 @media (max-width: 30rem) {
   html { font-size: 14px; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  [data-ep] {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(196, 163, 90, 0.15);
+  }
 }
 
 .h-scroll-fade {

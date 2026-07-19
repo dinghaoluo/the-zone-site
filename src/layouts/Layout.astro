@@ -4,27 +4,116 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'A visual companion to Gravity\'s Rainbow (1973).' } = Astro.props;
+const {
+  title,
+  description = 'A visual companion to Gravity\'s Rainbow (1973).',
+} = Astro.props;
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
+const documentTitle = title === 'Home' ? 'The Zone' : `${title} · The Zone`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title === 'Home' ? 'The Zone' : `${title} · The Zone`}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
-    <link rel="icon" href="/zone-favicon-dark.svg" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="/zone-favicon-light.svg" media="(prefers-color-scheme: light)" />
-    <link rel="stylesheet" href="/fonts.css" />
+    <link rel="icon" type="image/svg+xml" href={`${base}zone-favicon-light.svg`} media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href={`${base}zone-favicon-dark.svg`} media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href={`${base}zone-favicon-light.svg`} />
+    <link rel="stylesheet" href={`${base}fonts.css`} />
+
+    <title>{documentTitle}</title>
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var sys = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = stored || sys;
+      })();
+    </script>
   </head>
   <body>
     <slot name="nav" />
     <slot />
     <slot name="footer" />
+
+    <script>
+      document.querySelectorAll('.h-scroll-fade').forEach(outer => {
+        const scroller = outer.querySelector('.h-scroll-fade__scroller') as HTMLElement | null;
+        if (!scroller) return;
+
+        function updateFades() {
+          const sl = scroller!.scrollLeft;
+          const maxSl = scroller!.scrollWidth - scroller!.clientWidth;
+          const scrollable = maxSl > 2;
+          const atLeft = sl <= 2;
+          const atRight = !scrollable || sl >= maxSl - 2;
+          outer.classList.toggle('can-scroll', scrollable);
+          outer.classList.toggle('is-at-left', atLeft);
+          outer.classList.toggle('is-at-right', atRight);
+          outer.classList.toggle('can-scroll-right', scrollable && sl < maxSl - 2);
+          outer.classList.toggle('can-scroll-left', scrollable && sl > 2);
+        }
+        updateFades();
+        scroller.addEventListener('scroll', updateFades, { passive: true });
+        window.addEventListener('resize', updateFades);
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(updateFades).observe(scroller);
+        }
+
+        const DRAG_THRESHOLD = 4;
+        let isDragging = false;
+        let hasMoved = false;
+        let startX = 0;
+        let startScroll = 0;
+        let capturedPointerId: number | null = null;
+
+        scroller.addEventListener('pointerdown', (e: PointerEvent) => {
+          if (e.pointerType === 'touch') return;
+          if (scroller!.scrollWidth <= scroller!.clientWidth + 2) return;
+          isDragging = true;
+          hasMoved = false;
+          startX = e.clientX;
+          startScroll = scroller!.scrollLeft;
+          scroller!.classList.add('can-drag');
+        });
+
+        scroller.addEventListener('pointermove', (e: PointerEvent) => {
+          if (!isDragging) return;
+          const dx = e.clientX - startX;
+          if (!hasMoved && Math.abs(dx) < DRAG_THRESHOLD) return;
+          if (!hasMoved) {
+            hasMoved = true;
+            capturedPointerId = e.pointerId;
+            scroller!.setPointerCapture(e.pointerId);
+            scroller!.classList.add('is-dragging');
+            outer.classList.add('is-dragging');
+          }
+          scroller!.scrollLeft = startScroll - dx;
+          updateFades();
+        });
+
+        const endDrag = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          scroller!.classList.remove('is-dragging', 'can-drag');
+          outer.classList.remove('is-dragging');
+          if (capturedPointerId !== null && scroller!.hasPointerCapture(capturedPointerId)) {
+            scroller!.releasePointerCapture(capturedPointerId);
+          }
+          capturedPointerId = null;
+          if (hasMoved) {
+            scroller!.addEventListener('click', (e) => e.stopPropagation(), { once: true, capture: true });
+          }
+          updateFades();
+        };
+        scroller.addEventListener('pointerup', endDrag);
+        scroller.addEventListener('pointercancel', endDrag);
+        scroller.addEventListener('lostpointercapture', endDrag);
+      });
+    </script>
   </body>
 </html>
 
-<style>
-  @import '../styles/global.css';
-</style>
+<style is:global>
+  @import "../styles/global.css";
