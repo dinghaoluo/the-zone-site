@@ -27,8 +27,7 @@ const documentTitle = title === 'Home' ? 'The Zone' : `${title} · The Zone`;
     <script is:inline>
       (function() {
         var stored = localStorage.getItem('theme');
-        var sys = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        document.documentElement.dataset.theme = stored || sys;
+        document.documentElement.dataset.theme = stored || 'dark';
       })();
     </script>
   </head>
