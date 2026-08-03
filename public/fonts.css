@@ -15,33 +15,49 @@
 }
 
 @font-face {
-  font-family: "Reforma 2018";
-  src: url("fonts/reforma2018-gris-ro.ttf") format("truetype");
+  font-family: "Piazzolla";
+  src: url("fonts/piazzolla/Piazzolla-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Reforma 2018";
-  src: url("fonts/reforma2018-gris-italica-ro.ttf") format("truetype");
+  font-family: "Piazzolla";
+  src: url("fonts/piazzolla/Piazzolla-Italic.woff2") format("woff2");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Reforma 2018";
-  src: url("fonts/reforma2018-negra-ro.ttf") format("truetype");
+  font-family: "Piazzolla";
+  src: url("fonts/piazzolla/Piazzolla-Bold.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Reforma 2018";
-  src: url("fonts/reforma2018-negra-italica-ro.ttf") format("truetype");
+  font-family: "Piazzolla";
+  src: url("fonts/piazzolla/Piazzolla-BoldItalic.woff2") format("woff2");
   font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("fonts/newsreader/Newsreader-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("fonts/newsreader/Newsreader-Italic-Variable.woff2") format("woff2");
+  font-weight: 200 800;
   font-style: italic;
   font-display: swap;
 }

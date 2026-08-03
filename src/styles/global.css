@@ -1,9 +1,9 @@
 :root {
   --font-display: "Major Mono Display", monospace;
   --font-heading: "Faculty Glyphic", "Georgia", serif;
-  --font-prose: "Reforma 2018", "Georgia", "Times New Roman", serif;
+  --font-prose: "Piazzolla", "Georgia", "Times New Roman", serif;
   --font-figure: var(--font-prose);
-  --font-subtitle: var(--font-prose);
+  --font-subtitle: "Newsreader", "Georgia", "Times New Roman", serif;
   --font-body: var(--font-prose);
   --font-mono: "Mononoki", "Fira Code", monospace;
 
