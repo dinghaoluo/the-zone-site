@@ -27,7 +27,7 @@ function isActive(href: string): boolean {
               class:list={[{ active: isActive(href) }]}
               aria-current={isActive(href) ? 'page' : undefined}
             >
-              {label}
+              [ {label} ]
             </a>
           </li>
         ))}
