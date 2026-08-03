@@ -53,24 +53,34 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 <Layout title="Home" description="A visual companion to Gravity's Rainbow (1973).">
   <Nav slot="nav" />
 
-  <section class="hero" aria-labelledby="home-title">
-    <div class="hero-inner">
-      <h1 id="home-title" class="hero-title wordmark"><span>The</span><span>Zone</span></h1>
-      <p class="hero-description">
-        a visual companion to <em>Gravity's Rainbow</em> (1973)
-      </p>
+  <div class="opening">
+    <div class="opening-inner">
+      <div class="opening-frame">
+        <section class="hero" aria-labelledby="home-title">
+          <div class="hero-inner">
+            <h1 id="home-title" class="hero-title wordmark"><span>The</span><span>Zone</span></h1>
+            <p class="hero-description">
+              a visual companion to <i>Gravity's Rainbow</i>
+            </p>
+          </div>
+        </section>
+
+        <div class="opening-intro">
+          <p class="contents-intro">Despite all its unintelligible digressions, its great many technical terms in languages other than English, its historical documentary and reflections... reading <i>Gravity's Rainbow</i> is still one of those once-in-a-lifetime experiences. Coming to Pynchon's 1940s Europe at a stage when my own life involves looking at the cross-talk between countless neurones has made me appreciate greatly the raw chaotic power of Pynchon's prose. Its <a href="https://ebin.pub/mindful-pleasures-essays-on-thomas-pynchon-0316522317.html" target="_blank" rel="noopener">encyclopaedic</a> reputation sure is impressive, but it frequently persuades people that 'one should <i>prepare</i> for <i>Gravity's Rainbow</i>', when the best part of the reading experience may be to lose oneself in all the chaos, digression, and confusion.</p>
+          <p class="contents-intro">That being said, external guidance did help me a great deal with reading this admittedly difficult novel. This site is my attempt to provide a visual reading companion to my second favourite book of all time. And I hope, just as I found great happiness in understanding the <i>Brennschluss</i> calculation after reading Niklas Riewald's <a href="https://niklasriewald.com/category/gravitys-rainbow/" target="_blank" rel="noopener">'The math behind <i>Gravity's Rainbow</i>'</a>, other readers can do the same as they scroll through <i>The Zone</i>.</p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
   <nav id="contents" class="contents" aria-label="Site sections">
-    <p class="contents-intro">Despite all its unintelligible digressions, its great many technical terms in languages other than English, its historical documentary and reflections... reading <i>Gravity's Rainbow</i> is still one of those once-in-a-lifetime experiences.<br><br>Coming to Pynchon's 1940s Europe at a stage when my own life involves looking at the cross-talk between countless neurones has made me appreciate greatly the raw chaotic power of Pynchon's prose. Its encyclopaedic reputation and the ability to keep its hundreds of characters in its grasp sure are impressive, but browsing through Reddit and Substack, I have a feeling that these tags frequently turn people away from this masterpiece, frequently persuade people that 'one should <i>prepare</i> for <i>Gravity's Rainbow</i>', whilst the best part of the reading experience may be to lose oneself in all the chaos, digression, and confusion.<br><br>That being said, external guidance did help me a great deal with reading this admittedly difficult novel. This site is my attempt to provide a visual reading companion to my second favourite book of all time. And I hope, just as I found great happiness in understanding the <i>Brennschluss</i> calculation after reading Niklas Riewald's <a href="https://niklasriewald.com/category/gravitys-rainbow/" target="_blank" rel="noopener">'The math behind <i>Gravity's Rainbow</i>'</a>, other readers can do the same as they scroll through <i>The Zone</i>.</p>
     <ul class="contents-list contents-list--available" role="list">
       {availableLinks.map((link) => (
         <li>
           <a class="contents-entry contents-link contents-link--available" href={sitePath(`${link.slug}/`)}>
             <HomepagePreview slug={link.slug} />
             <div class="contents-copy">
-              <span class="contents-label">{link.label}</span>
+              <span class="contents-label">[ {link.label} ]</span>
               <p class="contents-description">
                 {link.slug === 'glossary' ? (
                   <>scroll through or search for critical terms in <em>Gravity's Rainbow</em></>
@@ -88,7 +98,7 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
       {pendingLinks.map((link) => (
         <li>
           <div class="contents-entry contents-pending" aria-disabled="true">
-            <span class="contents-label">{link.label}</span>
+            <span class="contents-label">[ {link.label} ]</span>
             <HomepagePreview slug={link.slug} />
           </div>
         </li>
@@ -104,56 +114,99 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     </div>
   </section>
 
+  <section class="acknowledgements" aria-labelledby="acknowledgements-title">
+    <div class="acknowledgements-inner">
+      <h2 id="acknowledgements-title" class="acknowledgements-title"><em>acknowledgements</em></h2>
+      <p class="acknowledgements-body">
+        This site would not have existed without Christian Swinehart's <a href="https://www.reddit.com/r/davidfosterwallace/comments/1sifhu5/introducing_infinite_digest_a_series_of_data/" target="_blank" rel="noopener">Reddit post</a> on <a href="https://samizdat.co/digest/" target="_blank" rel="noopener">Infinite Digest</a>, whose visualisations of <i>Infinite Jest</i> showed me what a book's structure looks like from above.
+      </p>
+      <p class="acknowledgements-body">
+        For the reading of <i>Gravity's Rainbow</i> itself, I owe a great deal to the <a href="https://gravitys-rainbow.pynchonwiki.com/" target="_blank" rel="noopener">Pynchon Wiki</a>, the wonderful community at <a href="https://www.reddit.com/r/ThomasPynchon/" target="_blank" rel="noopener">r/ThomasPynchon</a>, the <a href="https://redcircle.com/shows/pynchon-pals" target="_blank" rel="noopener">Pynchon Pals</a> podcast, Steven Weisenburger's <a href="https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/" target="_blank" rel="noopener"><i>A Gravity's Rainbow Companion</i></a>, the <a href="http://www.johnsemley.com/" target="_blank" rel="noopener">writing of John Semley</a>, and Edward Mendelson's essays on Pynchon.
+      </p>
+      <p class="acknowledgements-body">
+        The site is set in Major Mono Display for display type, Faculty Glyphic for headings, Newsreader for ledes, Piazzolla for prose, and Mononoki for monospace.
+      </p>
+    </div>
+  </section>
+
   <Footer slot="footer" />
 </Layout>
 
 <style>
-  .hero-inner,
+  .opening-inner,
   .contents {
-    --homepage-gutter: clamp(4rem, 22vw, 22rem);
+    --homepage-reading: 40rem;
     width: min(100%, var(--measure-site));
     margin: 0 auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  .opening-frame {
+    position: relative;
+    width: min(100%, var(--homepage-reading));
+    margin-inline: auto;
   }
 
   .hero-inner {
-    padding: var(--space-xl) var(--homepage-gutter) var(--space-lg);
+    padding-block: var(--space-xl) var(--space-lg);
+  }
+
+  .hero-title,
+  .hero-description {
+    width: 100%;
   }
 
   .hero-title {
+    display: flex;
     font-family: var(--font-display);
     font-size: 6.25rem;
     font-weight: 400;
     line-height: 0.9;
     letter-spacing: 0;
-    margin-left: -0.12em;
+    transform: translateX(-0.12em);
     color: var(--color-text);
   }
 
   .hero-description {
-    max-width: 44rem;
-    margin-top: var(--space-sm);
+    margin-top: var(--space-md);
     font-family: var(--font-subtitle);
-    font-size: var(--text-xl);
-    line-height: 1.35;
-    color: var(--color-text-secondary);
-  }
-
-  .hero-description em {
+    font-size: 1.55rem;
+    font-weight: 450;
+    font-optical-sizing: auto;
+    line-height: 1.2;
     color: var(--color-text);
   }
 
+  .opening-intro::before {
+    content: '\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1';
+    display: block;
+    width: 100%;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-family: var(--font-prose);
+    font-size: 0.85rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: var(--color-text-dim);
+  }
+
   .contents {
-    padding: var(--space-lg) var(--homepage-gutter) var(--space-2xl);
+    padding-block: var(--space-xl) var(--space-2xl);
     scroll-margin-top: calc(var(--nav-height, 3.5rem) + var(--space-md));
   }
 
   .contents-intro {
-    max-width: 44rem;
+    max-width: var(--homepage-reading);
     font-family: var(--font-prose);
-    font-size: var(--text-base);
-    line-height: 1.6;
+    font-size: var(--text-prose);
+    line-height: var(--lh-prose);
     color: var(--color-text-secondary);
     text-align: left;
+    margin-inline: auto;
+  }
+
+  .contents-intro + .contents-intro {
+    margin-top: var(--space-sm);
   }
 
   .contents-list {
@@ -167,13 +220,17 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
   }
 
   .contents-list--pending {
-    grid-template-columns: repeat(5, minmax(0, 6.5rem));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: min(100%, var(--homepage-reading));
     column-gap: 0.75rem;
     margin-top: var(--space-md);
+    margin-inline: auto;
   }
 
   .contents-pending-heading {
+    width: min(100%, var(--homepage-reading));
     margin-top: var(--space-xl);
+    margin-inline: auto;
     font-family: var(--font-prose);
     font-size: var(--text-base);
     font-weight: 400;
@@ -183,8 +240,10 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   .contents-list--available {
     grid-template-columns: minmax(0, 1fr);
-    width: 100%;
+    width: min(100%, var(--homepage-reading));
     row-gap: var(--space-lg);
+    margin-top: 0;
+    margin-inline: auto;
   }
 
   .contents-list > li {
@@ -246,6 +305,36 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     text-align: left;
   }
 
+  .contents-link--available .contents-label {
+    position: relative;
+    display: inline-block;
+  }
+
+  .contents-link--available .contents-label::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.25s ease;
+  }
+
+  .contents-link--available:hover .contents-label::after,
+  .contents-link--available:focus .contents-label::after,
+  .contents-link--available:active .contents-label::after,
+  .contents-link--available:focus-visible .contents-label::after {
+    clip-path: inset(0);
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .contents-link--available .contents-label::after {
+      clip-path: inset(0);
+    }
+  }
+
   .contents-link {
     position: relative;
     transition: color 0.18s ease;
@@ -284,6 +373,50 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     opacity: 0.78;
   }
 
+  .acknowledgements {
+    padding: 0 var(--page-gutter) var(--space-2xl);
+  }
+
+  .acknowledgements-inner {
+    width: min(100%, var(--measure-site));
+    margin: 0 auto;
+  }
+
+  .acknowledgements-inner::before {
+    content: '\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1';
+    display: block;
+    width: min(100%, var(--homepage-reading, 40rem));
+    margin: var(--space-md) auto var(--space-sm);
+    font-family: var(--font-prose);
+    font-size: 0.85rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: var(--color-text-dim);
+  }
+
+  .acknowledgements-title {
+    width: min(100%, var(--homepage-reading, 40rem));
+    margin: 0 auto var(--space-sm);
+    font-family: var(--font-prose);
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--color-text-dim);
+  }
+
+  .acknowledgements-body {
+    width: min(100%, calc(var(--homepage-reading, 40rem) * 2 / 3));
+    margin-right: auto;
+    margin-left: max(0px, calc((100% - var(--homepage-reading, 40rem)) / 2));
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .acknowledgements-body + .acknowledgements-body {
+    margin-top: var(--space-sm);
+  }
+
   .episode-field {
     padding: 0 var(--page-gutter) var(--space-2xl);
   }
@@ -300,9 +433,12 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
   }
 
   @media (max-width: 48rem) {
-    .hero-inner,
-    .contents {
-      --homepage-gutter: var(--page-gutter);
+    .contents-link--available .contents-label::after {
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .contents-link--available .contents-label {
+      text-decoration: none;
     }
 
     .contents {
@@ -313,10 +449,19 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
       font-size: 4.5rem;
     }
 
+    .hero-description {
+      font-size: 1.35rem;
+    }
+
     .contents-list {
       width: 100%;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem 1rem;
+    }
+
+    .contents-list--available,
+    .contents-list--pending {
+      width: min(100%, var(--homepage-reading));
     }
 
     .contents-list--available {
