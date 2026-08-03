@@ -425,6 +425,40 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
       queueLayoutUpdate();
     });
 
+    // Hide search/episode-jump on scroll-down, show on scroll-up (mobile only)
+    const searchSlot = layout.querySelector<HTMLElement>('.glossary-search-slot');
+    let lastScrollY = window.scrollY;
+    let anchorY = window.scrollY;
+    let scrollDir: 'up' | 'down' = 'up';
+    const SCROLL_THRESHOLD = 30;
+
+    function applyScrollDir(dir: 'up' | 'down'): void {
+      const hide = dir === 'down';
+      railShell?.classList.toggle('is-scroll-down', hide);
+      searchSlot?.classList.toggle('is-scroll-down', hide);
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!mobileLayout.matches) return;
+      const y = window.scrollY;
+      if (scrollDir === 'down') {
+        if (y > anchorY) anchorY = y;
+        if (y < anchorY - SCROLL_THRESHOLD) {
+          scrollDir = 'up';
+          anchorY = y;
+          applyScrollDir('up');
+        }
+      } else {
+        if (y < anchorY) anchorY = y;
+        if (y > anchorY + SCROLL_THRESHOLD) {
+          scrollDir = 'down';
+          anchorY = y;
+          applyScrollDir('down');
+        }
+      }
+      lastScrollY = y;
+    }, { passive: true });
+
     setActive(activeId);
     queueLayoutUpdate();
   }
@@ -467,7 +501,7 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
   }
 
   .glossary-episode-jump label {
-    font-family: var(--font-mono);
+    font-family: var(--font-prose);
     font-size: 0.68rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -496,8 +530,8 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     border-radius: 0;
     background: color-mix(in srgb, var(--color-surface) 32%, transparent);
     color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-family: var(--font-prose);
+    font-size: 0.82rem;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -580,10 +614,26 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
       border-top: 1px solid var(--color-border-subtle);
       border-bottom: 1px solid var(--color-border-subtle);
       overflow: hidden;
+      transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), gap 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glossary-rail-shell.is-scroll-down {
+      padding-top: 0;
+      gap: 0;
     }
 
     .glossary-search-slot {
       margin: 0 var(--page-gutter);
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      max-height: 10rem;
+      opacity: 1;
+      overflow: hidden;
+    }
+
+    .glossary-search-slot.is-scroll-down {
+      max-height: 0;
+      opacity: 0;
+      margin-block: 0;
     }
 
     .glossary-entry-stack {

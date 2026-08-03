@@ -8,7 +8,6 @@ const { label } = Astro.props;
 
 <div class="quote-block">
   <blockquote class="pull-quote">
-    {label && <span class="quote-anchor-label">{label}</span>}
     <p>&lsquo;<slot />&rsquo;</p>
   </blockquote>
 </div>
@@ -21,19 +20,9 @@ const { label } = Astro.props;
     margin-bottom: var(--space-lg);
   }
 
-  .quote-anchor-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-text-dim);
-    margin-bottom: var(--space-xs);
-  }
-
   .pull-quote {
     margin: 0;
-    padding-left: var(--space-xl);
+    padding-left: var(--space-lg);
     border-left: 3px solid var(--color-accent-dim);
   }
 
