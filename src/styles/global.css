@@ -7,14 +7,15 @@
   --font-body: var(--font-prose);
   --font-mono: "Mononoki", "Fira Code", monospace;
 
-  --text-prose: 1.18rem;
-  --lh-prose: 1.85;
+  --text-prose: 1.15rem;
+  --lh-prose: 1.65;
 
   --text-xs: 0.85rem;
-  --text-sm: 0.9rem;
+  --text-sm: 0.96rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.3125rem;
+  --text-subtitle: 1.45rem;
 
   --text-h1: clamp(2.8rem, 5.5vw, 4rem);
   --text-h2: clamp(1.8rem, 3.5vw, 2.4rem);
@@ -43,20 +44,20 @@
 }
 
 :root, [data-theme="dark"] {
-  --color-bg: #0b0b0f;
-  --color-surface: #111116;
-  --color-border: #1e1e28;
-  --color-border-subtle: #18181f;
-  --color-rule: #1a1a24;
-  --color-nav-bg: #0b0b0f;
+  --color-bg: #111416;
+  --color-surface: #171b1d;
+  --color-border: #2a3133;
+  --color-border-subtle: #202628;
+  --color-rule: #252d30;
+  --color-nav-bg: #111416;
 
-  --color-text: #d4d2c8;
-  --color-text-secondary: #a09e92;
-  --color-text-dim: #817f72;
+  --color-text: #e1e3de;
+  --color-text-secondary: #afb6b3;
+  --color-text-dim: #87918d;
 
-  --color-accent: #c4a35a;
-  --color-accent-hover: #d4b36a;
-  --color-accent-dim: #927a45;
+  --color-accent: #cf8a73;
+  --color-accent-hover: #e0a48e;
+  --color-accent-dim: #9b6d5d;
 
   --color-part-1: #6b8caa;
   --color-part-2: #8a7ba5;
@@ -83,20 +84,20 @@
 }
 
 [data-theme="light"] {
-  --color-bg: #f0ece4;
-  --color-surface: #e8e4db;
-  --color-border: #ccc8be;
-  --color-border-subtle: #d8d4ca;
-  --color-rule: #d0ccc2;
-  --color-nav-bg: #f0ece4;
+  --color-bg: #f2f2ed;
+  --color-surface: #e9ebe7;
+  --color-border: #cfd3d0;
+  --color-border-subtle: #dde0dc;
+  --color-rule: #d7dad7;
+  --color-nav-bg: #f2f2ed;
 
-  --color-text: #2a2824;
-  --color-text-secondary: #4a4840;
-  --color-text-dim: #6a6860;
+  --color-text: #2c3133;
+  --color-text-secondary: #5d6465;
+  --color-text-dim: #7b8180;
 
-  --color-accent: #756033;
-  --color-accent-hover: #6a5530;
-  --color-accent-dim: #766847;
+  --color-accent: #96513e;
+  --color-accent-hover: #763e30;
+  --color-accent-dim: #8f6b60;
 
   --color-part-1: #4a6a88;
   --color-part-2: #6a5b85;
@@ -290,7 +291,7 @@ em {
 @media (hover: none) and (pointer: coarse) {
   [data-ep] {
     cursor: pointer;
-    -webkit-tap-highlight-color: rgba(196, 163, 90, 0.15);
+    -webkit-tap-highlight-color: rgba(150, 81, 62, 0.15);
   }
 }
 
