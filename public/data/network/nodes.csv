@@ -1,0 +1,131 @@
+id,short_name,x,y,community_id,community_label,community_colour,weighted_degree,degree,betweenness_centrality,eigenvector_centrality,closeness_centrality,total_mentions,episode_count,dominant_plotline,plotline_count,label_tier,display_radius
+Tyrone Slothrop,Slothrop,0.01215,0.21135,1,The Zone Squad,#c9654f,23.8735,121,0.827842,0.51515,0.081052,1176,46,slothrop_zone_quest,10,1,1.0
+Weissmann / Blicero,Blicero,2.00136,-1.09155,3,The Rocket,#537545,8.7914,89,0.125969,0.240713,0.074608,176,22,rocket_system_backstory,8,1,0.6068
+Ned Pointsman,Pointsman,-1.75964,1.61803,2,London Counterforce,#3a7a8a,8.7384,83,0.240795,0.258977,0.076815,181,20,counterforce_science_london,8,1,0.605
+Roger Mexico,Roger,-1.86542,1.59893,2,London Counterforce,#3a7a8a,8.3367,67,0.128169,0.227239,0.073488,272,18,counterforce_science_london,5,1,0.5909
+Enzian,Enzian,2.03003,-1.35986,3,The Rocket,#537545,7.7601,75,0.124516,0.230061,0.074662,146,23,schwarzkommando_zone_line,6,1,0.5701
+Gerhardt von Göll,von Göll,0.29919,0.00916,1,The Zone Squad,#c9654f,7.4431,86,0.031714,0.22875,0.076233,151,20,slothrop_zone_quest,8,1,0.5584
+Tchitcherine,Tchitcherine,1.85722,-1.22217,3,The Rocket,#537545,6.5822,51,0.049903,0.218872,0.075134,189,18,tchitcherine_zone_line,4,1,0.5251
+Katje Borgesius,Katje,-0.07341,0.11182,1,The Zone Squad,#c9654f,6.4855,81,0.043241,0.207801,0.075372,115,19,slothrop_london_transition,8,1,0.5212
+Laszlo Jamf,Jamf,-1.76971,-1.5318,4,Peenemünde,#846c48,6.4199,86,0.031613,0.173329,0.073002,73,22,rocket_system_backstory,9,1,0.5186
+Pirate Prentice,Pirate,-1.89459,1.72326,2,London Counterforce,#3a7a8a,5.6815,75,0.008115,0.163856,0.070222,155,18,late_zone_afterlives,7,1,0.4878
+Jessica Swanlake,Jessica,-1.81173,1.55597,2,London Counterforce,#3a7a8a,5.2493,48,8.1e-05,0.151059,0.070386,95,11,counterforce_science_london,3,1,0.4689
+Marvy,Marvy,1.79778,-1.24662,3,The Rocket,#537545,4.5855,52,0.001211,0.16387,0.073605,76,12,slothrop_zone_quest,4,1,0.4383
+Seaman Bodine,Bodine,0.29673,0.29157,1,The Zone Squad,#c9654f,4.0061,64,0.015908,0.121013,0.072035,98,9,late_zone_afterlives,4,1,0.4096
+Thanatz,Thanatz,2.17781,-0.88111,3,The Rocket,#537545,3.4636,60,0.0,0.108338,0.066824,68,12,rocket_endgame,6,1,0.3809
+Gottfried,Gottfried,1.97954,-0.80167,3,The Rocket,#537545,3.2525,44,0.0,0.101975,0.067469,48,7,rocket_endgame,4,1,0.3691
+Ernest Pudding,Pudding,-1.75375,1.67176,2,London Counterforce,#3a7a8a,3.2174,53,0.0,0.09789,0.068273,47,10,counterforce_science_london,3,2,0.3671
+Greta Erdmann,Greta,0.333,0.26883,1,The Zone Squad,#c9654f,3.2098,56,0.0,0.107405,0.069597,39,12,anubis_bad_karma_detour,5,2,0.3667
+Margherita Erdmann,Margherita,0.28286,0.15176,1,The Zone Squad,#c9654f,3.1896,37,0.0,0.13241,0.074046,52,10,anubis_bad_karma_detour,4,2,0.3655
+Tantivy Mucker-Maffick,Tantivy,-0.23796,0.17052,1,The Zone Squad,#c9654f,3.1597,46,0.000242,0.148694,0.075965,88,9,slothrop_london_transition,4,2,0.3638
+Teddy Bloat,Bloat,-0.43026,0.16704,1,The Zone Squad,#c9654f,2.8718,41,0.0129,0.115493,0.072667,65,9,slothrop_london_transition,3,2,0.3468
+Clive Mossmoon,Clive Mossmoon,-1.71994,1.69912,2,London Counterforce,#3a7a8a,2.6921,52,6.1e-05,0.073231,0.058015,19,8,counterforce_science_london,3,2,0.3358
+Andreas Orukambe,Orukambe,2.18633,-1.44332,3,The Rocket,#537545,2.6517,35,0.0,0.081137,0.066399,28,8,schwarzkommando_zone_line,5,2,0.3333
+Geli Tripping,Geli,1.69059,-1.03068,3,The Rocket,#537545,2.5627,38,0.0,0.097471,0.067763,45,8,slothrop_zone_quest,4,2,0.3276
+Peter Sachsa,Peter Sachsa,-2.2987,1.73757,2,London Counterforce,#3a7a8a,2.4896,56,0.014696,0.042871,0.053354,38,8,slothrop_london_transition,6,2,0.3229
+Franz Pökler,Pökler,-1.59782,-1.6958,4,Peenemünde,#846c48,2.4507,43,0.003513,0.069198,0.063951,148,9,rocket_system_backstory,5,1,0.3204
+Max Schlepzig,Max Schlepzig,0.38803,0.25961,1,The Zone Squad,#c9654f,2.4334,45,0.0,0.085095,0.066881,24,11,slothrop_zone_quest,5,2,0.3193
+Jerome / Jeremy,Jerome / Jeremy,-1.84838,1.47031,2,London Counterforce,#3a7a8a,2.3729,33,0.0,0.060503,0.064849,39,7,late_zone_afterlives,3,2,0.3153
+Carroll Eventyr,Eventyr,-2.08539,1.70271,2,London Counterforce,#3a7a8a,2.2638,40,0.004401,0.046487,0.053576,29,6,counterforce_science_london,3,2,0.3079
+Osbie Feel,Osbie,0.02748,-0.16264,1,The Zone Squad,#c9654f,2.1762,41,0.0,0.065952,0.056931,34,5,rocket_system_backstory,4,2,0.3019
+Blodgett Waxwing,Waxwing,-0.18467,-0.12874,1,The Zone Squad,#c9654f,2.1231,48,0.0,0.065448,0.06559,24,7,slothrop_london_transition,4,2,0.2982
+Gustav,Gustav,0.24884,0.19017,1,The Zone Squad,#c9654f,2.1072,43,0.0,0.069165,0.06381,30,5,slothrop_zone_quest,3,2,0.2971
+Stephen Dodson-Truck,Stephen Dodson-Truck,-2.04908,1.93492,2,London Counterforce,#3a7a8a,2.0015,49,0.0,0.057817,0.061297,38,6,slothrop_london_transition,3,2,0.2895
+Edwin Treacle,Edwin Treacle,-1.85899,1.83107,2,London Counterforce,#3a7a8a,1.9966,37,0.001575,0.046318,0.051247,15,5,counterforce_science_london,2,2,0.2892
+Géza Rózsavölgyi,Géza Rózsavölgyi,-1.67719,1.7101,2,London Counterforce,#3a7a8a,1.9542,49,0.0,0.057033,0.058292,22,5,late_zone_afterlives,2,2,0.2861
+Ludwig,Ludwig,2.35196,-1.20502,3,The Rocket,#537545,1.9485,35,0.0,0.065381,0.063334,23,6,slothrop_zone_quest,3,2,0.2857
+Dr. Rollo Groast,Dr. Rollo Groast,-1.92318,1.79636,2,London Counterforce,#3a7a8a,1.8702,34,0.000969,0.039613,0.047924,12,6,counterforce_science_london,2,3,0.2799
+Otto,Otto,0.49791,-0.14635,1,The Zone Squad,#c9654f,1.8338,29,0.0,0.072,0.066833,51,3,slothrop_zone_quest,2,3,0.2772
+Emil Säure Bummer,Säure,0.43732,0.201,1,The Zone Squad,#c9654f,1.8175,61,0.0,0.048625,0.053269,14,11,slothrop_zone_quest,2,3,0.2759
+Lyle Bland,Lyle Bland,-1.57233,-1.36275,4,Peenemünde,#846c48,1.8004,41,0.015504,0.050261,0.058083,63,7,late_zone_afterlives,3,3,0.2746
+Krupp,Krupp,2.16105,-1.586,3,The Rocket,#537545,1.7459,51,0.0,0.036847,0.050816,11,7,late_zone_afterlives,5,3,0.2704
+Leni Pökler,Leni,-2.00244,-1.81361,4,Peenemünde,#846c48,1.7244,42,0.029554,0.028075,0.054099,78,5,rocket_system_backstory,4,3,0.2688
+Webley Silvernail,Webley Silvernail,-1.66323,1.91079,2,London Counterforce,#3a7a8a,1.7059,42,6.1e-05,0.044751,0.052362,11,6,counterforce_science_london,4,3,0.2673
+Dr. Kevin Spectro,Spectro,-1.93501,1.41508,2,London Counterforce,#3a7a8a,1.6951,16,0.0,0.072728,0.067926,26,4,counterforce_science_london,1,3,0.2665
+Frau Gnahb,Frau Gnahb,0.48621,-0.02858,1,The Zone Squad,#c9654f,1.6667,41,0.0,0.054199,0.059323,28,5,slothrop_zone_quest,3,3,0.2642
+Thomas Gwenhidwy,Thomas Gwenhidwy,-1.83246,1.41168,2,London Counterforce,#3a7a8a,1.6232,30,0.0,0.055467,0.06716,31,5,counterforce_science_london,2,3,0.2608
+Chiclitz,Chiclitz,1.8288,-1.4797,3,The Rocket,#537545,1.6034,19,0.0,0.068706,0.062252,20,3,slothrop_zone_quest,2,3,0.2592
+Pavel,Pavel,2.46717,-1.44786,3,The Rocket,#537545,1.5509,28,0.0,0.044464,0.054707,13,4,schwarzkommando_zone_line,3,3,0.2549
+Horst Achtfaden,Horst Achtfaden,1.99298,-1.71774,3,The Rocket,#537545,1.532,40,0.015504,0.034272,0.056558,21,5,rocket_system_backstory,4,3,0.2533
+Darlene,Darlene,-0.49819,0.51315,1,The Zone Squad,#c9654f,1.3856,32,4e-05,0.051508,0.067138,21,4,slothrop_london_transition,3,3,0.2409
+Nora Dodson-Truck,Nora,-2.18453,1.83662,2,London Counterforce,#3a7a8a,1.341,32,4e-05,0.026003,0.041592,17,3,slothrop_london_transition,3,3,0.237
+Milton Gloaming,Milton Gloaming,-2.00372,1.54057,2,London Counterforce,#3a7a8a,1.3277,31,0.0,0.038956,0.051036,17,4,late_zone_afterlives,2,3,0.2358
+Myron Grunton,Myron Grunton,-1.5883,1.83774,2,London Counterforce,#3a7a8a,1.3109,32,0.0,0.038851,0.050749,9,5,counterforce_science_london,2,3,0.2343
+Allen Lamplighter,Allen Lamplighter,-2.10716,1.58861,2,London Counterforce,#3a7a8a,1.1731,24,0.000121,0.02482,0.046578,7,3,counterforce_science_london,1,3,0.2217
+Roland,Roland,-2.23651,1.50861,2,London Counterforce,#3a7a8a,1.1701,23,0.0,0.036501,0.05443,16,4,counterforce_science_london,3,3,0.2214
+Graciela Imago Portales,Graciela,0.13841,-0.38501,1,The Zone Squad,#c9654f,1.1696,26,0.0,0.03426,0.058478,10,3,rocket_system_backstory,3,3,0.2213
+Ilse Pökler,Ilse Pökler,-1.75887,-1.93029,4,Peenemünde,#846c48,1.1496,18,0.000242,0.018253,0.048128,42,3,rocket_system_backstory,2,3,0.2194
+Hogan,Hogan,-0.08177,0.39566,1,The Zone Squad,#c9654f,1.1023,56,0.0,0.026857,0.043923,9,7,slothrop_london_transition,4,3,0.2149
+Procalowski,Procalowski,0.23095,-0.16974,1,The Zone Squad,#c9654f,1.0981,23,0.0,0.050343,0.063673,8,3,schwarzkommando_zone_line,3,3,0.2145
+Magda,Magda,0.61943,0.37777,1,The Zone Squad,#c9654f,1.0887,29,0.0,0.037863,0.054949,16,3,slothrop_zone_quest,2,3,0.2135
+Dr. Aaron Throwster,Dr. Aaron Throwster,-1.74862,1.9641,2,London Counterforce,#3a7a8a,1.0503,29,0.0,0.024573,0.037649,5,4,counterforce_science_london,2,3,0.2097
+Quoad,Quoad,-0.51084,0.67581,1,The Zone Squad,#c9654f,1.0271,21,4e-05,0.041393,0.065209,18,2,slothrop_london_transition,2,3,0.2074
+Kurt Mondaugen,Kurt Mondaugen,-1.88713,-1.72981,4,Peenemünde,#846c48,1.0234,41,0.0,0.017917,0.041083,25,5,rocket_system_backstory,3,3,0.207
+William Slothrop,William Slothrop,0.0935,0.50911,1,The Zone Squad,#c9654f,1.0191,28,0.0,0.040499,0.061531,15,4,slothrop_zone_quest,3,3,0.2066
+Hilary Bounce,Bounce,-0.56375,0.05862,1,The Zone Squad,#c9654f,1.0089,20,6.1e-05,0.042442,0.065956,20,3,slothrop_london_transition,1,3,0.2056
+Vaslav,Vaslav,1.43008,-1.19907,3,The Rocket,#537545,1.0042,17,0.0,0.037856,0.06086,12,3,tchitcherine_zone_line,3,3,0.2051
+Sir Marcus Scammony,Sir Marcus Scammony,2.12991,-1.05116,3,The Rocket,#537545,0.9713,20,0.0,0.034248,0.047446,6,2,tchitcherine_zone_line,2,3,0.2017
+Reverend Paul de la Nuit,Reverend Paul de la Nuit,-1.91738,1.93081,2,London Counterforce,#3a7a8a,0.9005,22,0.0,0.020669,0.043414,5,3,counterforce_science_london,1,3,0.1942
+Beláustegui,Beláustegui,0.3159,-0.45843,1,The Zone Squad,#c9654f,0.8905,14,0.0,0.025949,0.06015,10,2,rocket_system_backstory,2,3,0.1931
+Broderick Slothrop,Broderick,0.37719,0.47811,1,The Zone Squad,#c9654f,0.876,35,0.0,0.023582,0.042632,7,5,slothrop_zone_quest,2,3,0.1916
+Dzabajev,Dzabajev,1.57104,-1.53249,3,The Rocket,#537545,0.8736,13,0.0,0.036022,0.054007,6,3,tchitcherine_zone_line,1,3,0.1913
+Penelope,Penelope,-1.59901,1.42081,2,London Counterforce,#3a7a8a,0.8732,22,8.1e-05,0.017384,0.050771,5,2,slothrop_london_transition,2,3,0.1912
+Maria (Christian's sister),Maria (Christian's sister),2.59268,-1.53057,3,The Rocket,#537545,0.8575,23,0.0,0.019926,0.047361,4,3,schwarzkommando_zone_line,2,3,0.1895
+Sigmund (Bad Karma companion),Sigmund (Bad Karma companion),0.29669,0.44871,1,The Zone Squad,#c9654f,0.8369,10,0.0,0.040587,0.062744,16,2,anubis_bad_karma_detour,1,3,0.1872
+Joseph Ombindi,Joseph Ombindi,2.48701,-1.25153,3,The Rocket,#537545,0.7775,20,0.0,0.020323,0.04664,5,4,schwarzkommando_zone_line,2,3,0.1805
+Richard M. Zhlubb,Richard M. Zhlubb,2.27483,-0.4668,3,The Rocket,#537545,0.7475,20,0.0,0.024718,0.04558,10,1,rocket_endgame,1,3,0.1769
+Frans van der Groov,van der Groov,0.20365,-0.17179,1,The Zone Squad,#c9654f,0.7254,25,0.0,0.020997,0.039361,4,3,late_zone_afterlives,2,3,0.1743
+G. M. B. Haftung,Haftung,0.82397,-0.11311,1,The Zone Squad,#c9654f,0.7059,19,0.0,0.022015,0.044597,14,2,slothrop_zone_quest,1,3,0.1719
+Andre Omnopon,Andre Omnopon,-1.88728,1.15031,2,London Counterforce,#3a7a8a,0.7026,28,0.0,0.016196,0.032295,6,2,late_zone_afterlives,2,3,0.1716
+Charles,Charles,2.25903,-1.86359,3,The Rocket,#537545,0.6883,11,0.0,0.016277,0.050448,6,2,rocket_system_backstory,2,3,0.1698
+Drohne,Drohne,1.97675,-0.52636,3,The Rocket,#537545,0.6829,8,0.0,0.020546,0.052103,7,1,anubis_bad_karma_detour,1,3,0.1691
+Claire,Claire,-1.96979,1.38697,2,London Counterforce,#3a7a8a,0.6667,5,0.0,0.012786,0.049506,4,1,slothrop_london_transition,1,3,0.1671
+Generaldirektor Smaragd,Generaldirektor Smaragd,-1.89239,-2.14964,4,Peenemünde,#846c48,0.6554,15,0.0,0.009689,0.03505,7,2,rocket_system_backstory,2,3,0.1657
+Mrs. Elizabeth Slothrop,Mrs. Elizabeth Slothrop,-1.66686,1.30378,2,London Counterforce,#3a7a8a,0.6438,11,0.0,0.012534,0.044608,4,2,slothrop_london_transition,1,3,0.1642
+Tamara,Tamara,-0.43567,-0.24507,1,The Zone Squad,#c9654f,0.6341,16,0.0,0.028975,0.061486,11,2,slothrop_london_transition,1,3,0.163
+Dr. Porkyevitch,Dr. Porkyevitch,-1.60171,1.58151,2,London Counterforce,#3a7a8a,0.6274,21,0.0,0.019715,0.039115,5,3,slothrop_london_transition,2,3,0.1621
+Myrtle,Myrtle,0.40216,0.69355,1,The Zone Squad,#c9654f,0.6125,17,0.0,0.020467,0.052907,12,1,late_zone_afterlives,1,3,0.1602
+Malcolm / Red (Roseland shoeshine boy),Malcolm / Red (Roseland shoeshine boy),-0.12979,0.76069,1,The Zone Squad,#c9654f,0.6125,20,0.0,0.014959,0.04666,7,2,slothrop_london_transition,2,3,0.1602
+Dromond,Dromond,-2.10235,1.30762,2,London Counterforce,#3a7a8a,0.6106,13,0.0,0.017762,0.039437,4,2,counterforce_science_london,1,3,0.1599
+Dennis Joint,Dennis Joint,-1.44335,1.67322,2,London Counterforce,#3a7a8a,0.6087,19,0.0,0.020161,0.037037,6,1,counterforce_science_london,1,3,0.1597
+Zhdaev,Zhdaev,0.80362,-0.31209,1,The Zone Squad,#c9654f,0.5957,19,0.0,0.017299,0.03836,10,2,slothrop_zone_quest,1,3,0.158
+Felix,Felix,0.75919,0.08122,1,The Zone Squad,#c9654f,0.5866,16,0.0,0.018362,0.036592,10,2,slothrop_zone_quest,2,3,0.1567
+Bert Fibel,Bert Fibel,2.48519,-1.89927,3,The Rocket,#537545,0.5864,29,0.0,0.011347,0.028625,3,3,late_zone_afterlives,2,3,0.1567
+Maximilian,Maximilian,0.28267,0.77923,1,The Zone Squad,#c9654f,0.575,17,0.0,0.016844,0.0474,9,1,late_zone_afterlives,1,3,0.1552
+Schnorp,Schnorp,1.30101,-0.84455,3,The Rocket,#537545,0.5745,7,0.0,0.031316,0.060369,22,1,slothrop_zone_quest,1,3,0.1551
+St. John Bladdery,St. John Bladdery,2.56546,1.58049,5,Afterlives,#c19a22,0.5732,14,0.0,0.017028,0.043344,14,1,late_zone_afterlives,1,3,0.155
+Steve Edelman,Steve Edelman,2.58216,-0.72805,3,The Rocket,#537545,0.5707,24,0.0,0.014535,0.028469,4,2,rocket_endgame,2,3,0.1546
+Floyd Perdoo,Floyd Perdoo,-1.45027,1.80917,2,London Counterforce,#3a7a8a,0.5652,19,0.0,0.017669,0.033338,5,1,counterforce_science_london,1,3,0.1539
+Walter Asch,Walter Asch,-2.16558,1.94907,2,London Counterforce,#3a7a8a,0.5625,13,0.0,0.007374,0.029694,3,1,counterforce_science_london,1,3,0.1535
+Sammy Hilbert-Spaess,Sammy Hilbert-Spaess,-2.37964,2.05394,2,London Counterforce,#3a7a8a,0.5369,15,0.0,0.013803,0.044598,9,2,slothrop_london_transition,2,3,0.15
+Mario Schweitar,Mario Schweitar,-0.62649,-0.14714,1,The Zone Squad,#c9654f,0.5307,24,0.0,0.014043,0.036936,8,2,slothrop_london_transition,2,3,0.1491
+Mindy Bloth,Mindy Bloth,2.55967,-0.39631,3,The Rocket,#537545,0.5253,20,0.0,0.013904,0.027381,4,1,rocket_endgame,1,3,0.1483
+Villard Dumpster,Villard Dumpster,-0.73767,0.21819,1,The Zone Squad,#c9654f,0.5171,18,0.0,0.01264,0.041224,7,2,slothrop_london_transition,1,3,0.1472
+Glimpf,Glimpf,1.13155,-1.3013,3,The Rocket,#537545,0.5156,13,0.0,0.029408,0.058351,21,2,slothrop_zone_quest,1,3,0.147
+Whappo,Whappo,-0.51536,0.74783,1,The Zone Squad,#c9654f,0.5088,7,0.0,0.017837,0.055117,10,2,slothrop_london_transition,1,3,0.146
+Alfonso Tracy,Alfonso Tracy,-1.34272,-1.32648,4,Peenemünde,#846c48,0.5043,22,0.0,0.009439,0.042825,12,2,late_zone_afterlives,2,3,0.1453
+Spontoon,Spontoon,2.05057,1.77485,5,Afterlives,#c19a22,0.4968,14,0.0,0.01317,0.036472,10,1,late_zone_afterlives,1,3,0.1443
+Mitchell Prettyplace,Mitchell Prettyplace,-1.43524,1.97921,2,London Counterforce,#3a7a8a,0.4842,26,0.0,0.011984,0.022492,3,2,counterforce_science_london,2,3,0.1424
+Albert Krypton,Albert Krypton,1.86145,1.35921,5,Afterlives,#c19a22,0.4713,14,0.0,0.012183,0.034338,9,1,late_zone_afterlives,1,3,0.1405
+Manuela,Manuela,2.30649,1.20745,5,Afterlives,#c19a22,0.4713,14,0.0,0.012183,0.034338,9,1,late_zone_afterlives,1,3,0.1405
+Michele,Michele,-0.5397,-0.21792,1,The Zone Squad,#c9654f,0.4678,9,0.0,0.015408,0.045624,5,2,slothrop_london_transition,1,3,0.14
+Semyavin,Semyavin,-0.73212,-0.3366,1,The Zone Squad,#c9654f,0.439,15,0.0,0.012007,0.036687,8,1,slothrop_london_transition,1,3,0.1356
+Crutchfield,Crutchfield,-0.42666,0.89002,1,The Zone Squad,#c9654f,0.4333,4,0.0,0.015677,0.052976,9,1,slothrop_london_transition,1,3,0.1347
+Eddie Pensiero,Eddie Pensiero,-1.70767,-1.16861,4,Peenemünde,#846c48,0.425,8,0.0,0.008224,0.046397,23,1,late_zone_afterlives,1,3,0.1334
+Sheila,Sheila,2.35767,-2.2287,3,The Rocket,#537545,0.4242,7,0.0,0.007672,0.041343,3,1,rocket_system_backstory,1,3,0.1333
+Mickey Rooney,Mickey Rooney,0.80862,0.31373,1,The Zone Squad,#c9654f,0.4176,15,0.0,0.016991,0.04233,8,2,slothrop_zone_quest,1,3,0.1323
+Richard Hirsch,Richard Hirsch,-2.25239,-1.9727,4,Peenemünde,#846c48,0.4127,8,0.0,0.003038,0.032664,5,1,rocket_system_backstory,1,3,0.1315
+Hilde,Hilde,0.99536,-0.34734,1,The Zone Squad,#c9654f,0.3957,12,0.0,0.011123,0.031607,7,1,slothrop_zone_quest,1,3,0.1287
+Sandra,Sandra,1.40549,2.15437,5,Afterlives,#c19a22,0.3654,28,0.0,0.007205,0.01937,3,2,late_zone_afterlives,1,3,0.1237
+Marjorie,Marjorie,0.07351,1.00634,1,The Zone Squad,#c9654f,0.3491,23,0.0,0.010034,0.026725,3,2,slothrop_london_transition,2,3,0.1209
+"Birdbury, Pharmacist","Birdbury, Pharmacist",2.41316,2.14258,5,Afterlives,#c19a22,0.3185,14,0.0,0.008096,0.023283,5,1,late_zone_afterlives,1,3,0.1155
+Jenny (2.07 scene),Jenny,-0.95291,-0.33334,1,The Zone Squad,#c9654f,0.2683,15,0.0,0.005826,0.019032,3,1,slothrop_london_transition,1,3,0.106
+Lord Blatherard Osmo,Lord Osmo,-0.52486,-0.51846,1,The Zone Squad,#c9654f,0.2553,3,0.0,0.00563,0.039686,4,1,pirate_opening_london,1,3,0.1034
+Ghislaine,Ghislaine,-0.94559,0.37665,1,The Zone Squad,#c9654f,0.2433,8,0.0,0.008841,0.02797,5,2,slothrop_london_transition,1,3,0.1009
+Fritz (Pig-Hero assistant),Fritz (Pig-Hero assistant),-1.25674,-2.00409,4,Peenemünde,#846c48,0.2162,8,0.0,0.007086,0.027278,3,1,slothrop_zone_quest,1,3,0.0952
+Catherine (Slothrop girl),Catherine (Slothrop girl),-1.17944,1.83462,2,London Counterforce,#3a7a8a,0.2065,19,0.0,0.004754,0.009785,1,1,counterforce_science_london,1,3,0.093
+Austin Quoad,Austin Quoad,-0.83628,0.84315,1,The Zone Squad,#c9654f,0.1887,4,0.0,0.006659,0.033531,3,1,slothrop_london_transition,1,3,0.0889
+Chu Piang,Chu Piang,1.20624,-2.01668,3,The Rocket,#537545,0.163,4,0.0,0.006832,0.035294,6,1,tchitcherine_zone_line,1,3,0.0826
+Jewel,Jewel,-1.18913,0.26682,1,The Zone Squad,#c9654f,0.1533,8,0.0,0.005023,0.017458,3,1,slothrop_london_transition,1,3,0.0801
+Walter Thiel,Walter Thiel,-2.28402,-1.70645,4,Peenemünde,#846c48,0.0797,8,0.0,0.001711,0.009623,3,1,rocket_system_backstory,1,3,0.0578
+Walter (Sachsa party guest),Walter (Sachsa party guest),-2.95518,2.18348,2,London Counterforce,#3a7a8a,0.0667,11,0.0,0.00166,0.005709,1,1,slothrop_london_transition,1,3,0.0528

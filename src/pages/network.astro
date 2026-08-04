@@ -1,0 +1,387 @@
+---
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import NetworkAtlas from '../components/NetworkAtlas.astro';
+import Layout from '../layouts/Layout.astro';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+---
+
+<Layout title="Network" description="Character co-presence in Gravity's Rainbow.">
+  <Nav slot="nav" />
+
+  <div class="network-backdrop" id="network-backdrop" aria-hidden="true">
+    <svg class="backdrop-graph" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice">
+      <g class="graph-edges">
+        <line x1="145" y1="175" x2="88" y2="128" />
+        <line x1="145" y1="175" x2="68" y2="198" />
+        <line x1="145" y1="175" x2="108" y2="255" />
+        <line x1="145" y1="175" x2="198" y2="118" />
+        <line x1="145" y1="175" x2="205" y2="232" />
+        <line x1="145" y1="175" x2="175" y2="298" />
+        <line x1="88" y1="128" x2="198" y2="118" />
+        <line x1="68" y1="198" x2="108" y2="255" />
+        <line x1="108" y1="255" x2="175" y2="298" />
+        <line x1="198" y1="118" x2="205" y2="232" />
+        <line x1="88" y1="128" x2="48" y2="78" />
+        <line x1="68" y1="198" x2="30" y2="245" />
+        <line x1="418" y1="98" x2="348" y2="58" />
+        <line x1="418" y1="98" x2="368" y2="148" />
+        <line x1="418" y1="98" x2="458" y2="48" />
+        <line x1="418" y1="98" x2="498" y2="118" />
+        <line x1="418" y1="98" x2="438" y2="168" />
+        <line x1="348" y1="58" x2="458" y2="48" />
+        <line x1="368" y1="148" x2="438" y2="168" />
+        <line x1="498" y1="118" x2="458" y2="48" />
+        <line x1="348" y1="58" x2="298" y2="38" />
+        <line x1="498" y1="118" x2="558" y2="78" />
+        <line x1="518" y1="298" x2="448" y2="268" />
+        <line x1="518" y1="298" x2="468" y2="348" />
+        <line x1="518" y1="298" x2="578" y2="338" />
+        <line x1="518" y1="298" x2="588" y2="268" />
+        <line x1="518" y1="298" x2="498" y2="368" />
+        <line x1="448" y1="268" x2="468" y2="348" />
+        <line x1="578" y1="338" x2="588" y2="268" />
+        <line x1="578" y1="338" x2="498" y2="368" />
+        <line x1="448" y1="268" x2="398" y2="318" />
+        <line x1="788" y1="168" x2="728" y2="118" />
+        <line x1="788" y1="168" x2="738" y2="218" />
+        <line x1="788" y1="168" x2="848" y2="118" />
+        <line x1="788" y1="168" x2="858" y2="208" />
+        <line x1="788" y1="168" x2="828" y2="268" />
+        <line x1="728" y1="118" x2="848" y2="118" />
+        <line x1="738" y1="218" x2="828" y2="268" />
+        <line x1="858" y1="208" x2="828" y2="268" />
+        <line x1="848" y1="118" x2="908" y2="88" />
+        <line x1="858" y1="208" x2="928" y2="228" />
+        <line x1="878" y1="328" x2="918" y2="358" />
+        <line x1="878" y1="328" x2="848" y2="368" />
+        <line x1="918" y1="358" x2="848" y2="368" />
+        <line x1="205" y1="232" x2="368" y2="148" />
+        <line x1="198" y1="118" x2="348" y2="58" />
+        <line x1="438" y1="168" x2="448" y2="268" />
+        <line x1="498" y1="118" x2="588" y2="268" />
+        <line x1="558" y1="78" x2="728" y2="118" />
+        <line x1="588" y1="268" x2="738" y2="218" />
+        <line x1="828" y1="268" x2="878" y2="328" />
+        <line x1="175" y1="298" x2="398" y2="318" />
+      </g>
+      <g class="graph-nodes">
+        <circle class="node node--a" cx="145" cy="175" r="9">
+          <animate attributeName="cx" values="145;149;141;145" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="175;171;179;175" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="88" cy="128" r="4.5">
+          <animate attributeName="cx" values="88;90;86;88" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="128;126;130;128" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="68" cy="198" r="3.5">
+          <animate attributeName="cx" values="68;69;67;68" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="198;197;199;198" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="108" cy="255" r="4">
+          <animate attributeName="cx" values="108;110;106;108" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="255;253;257;255" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="198" cy="118" r="5.5">
+          <animate attributeName="cx" values="198;200;196;198" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="118;116;120;118" dur="26s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="205" cy="232" r="4">
+          <animate attributeName="cx" values="205;207;203;205" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="232;230;234;232" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="175" cy="298" r="3.5">
+          <animate attributeName="cx" values="175;176;174;175" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="298;297;299;298" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="48" cy="78" r="3">
+          <animate attributeName="cx" values="48;49;47;48" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="78;77;79;78" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--a" cx="30" cy="245" r="2.5">
+          <animate attributeName="cx" values="30;31;29;30" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="245;244;246;245" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="418" cy="98" r="8.5">
+          <animate attributeName="cx" values="418;421;415;418" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="98;95;101;98" dur="26s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="348" cy="58" r="4.5">
+          <animate attributeName="cx" values="348;350;346;348" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="58;56;60;58" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="368" cy="148" r="4">
+          <animate attributeName="cx" values="368;370;366;368" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="148;146;150;148" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="458" cy="48" r="5">
+          <animate attributeName="cx" values="458;460;456;458" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="48;46;50;48" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="498" cy="118" r="4.5">
+          <animate attributeName="cx" values="498;500;496;498" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="118;116;120;118" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="438" cy="168" r="3.5">
+          <animate attributeName="cx" values="438;439;437;438" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="168;167;169;168" dur="26s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="298" cy="38" r="2.5">
+          <animate attributeName="cx" values="298;299;297;298" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="38;37;39;38" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--b" cx="558" cy="78" r="3">
+          <animate attributeName="cx" values="558;559;557;558" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="78;77;79;78" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="518" cy="298" r="8">
+          <animate attributeName="cx" values="518;521;515;518" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="298;295;301;298" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="448" cy="268" r="4.5">
+          <animate attributeName="cx" values="448;450;446;448" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="268;266;270;268" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="468" cy="348" r="3.5">
+          <animate attributeName="cx" values="468;469;467;468" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="348;347;349;348" dur="26s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="578" cy="338" r="4">
+          <animate attributeName="cx" values="578;580;576;578" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="338;336;340;338" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="588" cy="268" r="5">
+          <animate attributeName="cx" values="588;590;586;588" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="268;266;270;268" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="498" cy="368" r="3">
+          <animate attributeName="cx" values="498;499;497;498" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="368;367;369;368" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--c" cx="398" cy="318" r="3">
+          <animate attributeName="cx" values="398;399;397;398" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="318;317;319;318" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="788" cy="168" r="8">
+          <animate attributeName="cx" values="788;791;785;788" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="168;165;171;168" dur="26s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="728" cy="118" r="4.5">
+          <animate attributeName="cx" values="728;730;726;728" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="118;116;120;118" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="738" cy="218" r="4">
+          <animate attributeName="cx" values="738;740;736;738" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="218;216;220;218" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="848" cy="118" r="5">
+          <animate attributeName="cx" values="848;850;846;848" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="118;116;120;118" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="858" cy="208" r="4">
+          <animate attributeName="cx" values="858;860;856;858" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="208;206;210;208" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="828" cy="268" r="4.5">
+          <animate attributeName="cx" values="828;830;826;828" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="268;266;270;268" dur="26s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="908" cy="88" r="3">
+          <animate attributeName="cx" values="908;909;907;908" dur="17s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="88;87;89;88" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--d" cx="928" cy="228" r="3">
+          <animate attributeName="cx" values="928;929;927;928" dur="19s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="228;227;229;228" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--e" cx="878" cy="328" r="4.5">
+          <animate attributeName="cx" values="878;880;876;878" dur="21s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="328;326;330;328" dur="22s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--e" cx="918" cy="358" r="3.5">
+          <animate attributeName="cx" values="918;919;917;918" dur="23s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="358;357;359;358" dur="24s" repeatCount="indefinite" />
+        </circle>
+        <circle class="node node--e" cx="848" cy="368" r="3">
+          <animate attributeName="cx" values="848;849;847;848" dur="25s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="368;367;369;368" dur="26s" repeatCount="indefinite" />
+        </circle>
+      </g>
+    </svg>
+  </div>
+
+  <main class="site-page network-page" id="main-content">
+    <header class="page-header network-header">
+      <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
+      <h1 class="page-title">Network</h1>
+    </header>
+
+    <div class="network-lede">
+      <p>PLACEHOLDER</p>
+    </div>
+
+    <figure class="plot-plate" aria-label="Character co-presence network">
+      <NetworkAtlas />
+    </figure>
+
+  </main>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .network-backdrop {
+    position: fixed;
+    top: var(--nav-height, 3.5rem);
+    left: 0;
+    right: 0;
+    height: 60vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.09;
+    transition: opacity 0.1s linear;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 50%, transparent 100%);
+  }
+
+  .backdrop-graph {
+    width: 100%;
+    height: 100%;
+  }
+
+  .graph-edges line {
+    stroke: var(--color-text-dim);
+    stroke-width: 0.8;
+    opacity: 0.5;
+  }
+
+  .graph-nodes .node {
+    stroke-width: 1.4;
+    fill: var(--color-text-dim);
+    stroke: var(--color-text-dim);
+  }
+
+  .node--a { stroke: var(--network-quest); fill: var(--network-quest); }
+  .node--b { stroke: var(--network-counterforce); fill: var(--network-counterforce); }
+  .node--c { stroke: var(--network-rocket); fill: var(--network-rocket); }
+  .node--d { stroke: var(--network-pokler); fill: var(--network-pokler); }
+  .node--e { stroke: var(--network-afterlives); fill: var(--network-afterlives); }
+
+  .network-page {
+    position: relative;
+    z-index: 1;
+    width: min(92%, 90rem);
+    margin: 0 auto;
+  }
+
+  .network-header {
+    padding-block: var(--space-lg) var(--space-md);
+    padding-inline: var(--page-gutter);
+    max-width: var(--measure-site);
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .network-header .page-back {
+    text-align: left;
+  }
+
+  .network-header .page-title {
+    width: auto;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .network-lede {
+    max-width: var(--measure-reading);
+    margin-inline: auto;
+    padding-bottom: var(--space-xl);
+    font-family: var(--font-subtitle);
+    font-size: var(--text-lg);
+    line-height: var(--lh-prose);
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+
+  .plot-plate {
+    margin: 0;
+    padding: 0;
+  }
+
+  .network-section {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: var(--space-xl);
+    align-items: start;
+    margin-top: var(--space-2xl);
+    padding-left: var(--space-xl);
+  }
+
+  .section-prose {
+    max-width: 32rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-prose p {
+    font-family: var(--font-prose);
+    font-size: var(--text-prose);
+    line-height: var(--lh-prose);
+    color: var(--color-text-secondary);
+  }
+
+  .section-chart {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  @media (max-width: 64rem) {
+    .network-section {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .network-backdrop {
+      opacity: 0.14;
+    }
+
+    .graph-nodes .node animate {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const backdrop = document.getElementById('network-backdrop');
+  if (backdrop) {
+    const fadeStart = 80;
+    const fadeEnd = 400;
+    let ticking = false;
+
+    function updateOpacity() {
+      const scrollY = window.scrollY;
+      let opacity = 0.09;
+      if (scrollY > fadeStart) {
+        const progress = Math.min((scrollY - fadeStart) / (fadeEnd - fadeStart), 1);
+        opacity = 0.09 * (1 - progress);
+      }
+      backdrop!.style.opacity = String(opacity);
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateOpacity);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+</script>
