@@ -217,8 +217,30 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       <h1 class="page-title">Network</h1>
     </header>
 
-    <div class="network-lede">
-      <p>PLACEHOLDER</p>
+    <div class="network-lede" data-network-lede data-lede-variant="marginal">
+      <div class="lede-copy">
+        <p class="prose-copy">In typical Pynchon fashion, paranoia pervades <i>Gravity's Rainbow</i>: <span class="lede-term-pair" data-lede-anchor="puritan"><a href={`${base}/glossary/#glossary-puritan-paranoia`} data-lede-term-copy>Slothrop's Puritan reflex</a><button class="lede-term" type="button" data-lede-trigger data-quote="a Puritan reflex of seeking other orders behind the visible, also known as paranoia" data-episode="2.01" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>Slothrop's Puritan reflex</button></span> seems to infect everything that he touches, turning pure coincidences into conspitorial structures. Nothing unusual, though, since <span class="lede-term-pair" data-lede-anchor="conditioning"><span data-lede-term-copy>Pavlovian psychology</span><button class="lede-term" type="button" data-lede-trigger data-quote="No effect without cause, and a clear train of linkages." data-episode="1.13" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>Pavlovian psychology</button></span> has long ago taught us that associations are the backbones of human understanding and memory. Such is the way that the novel expands around associations, conditioning, drawing seemingly far-fetched (<i>who knows?</i>) connections between our little paranoia agents, who all oscillate between the <span class="lede-term-pair" data-lede-anchor="anti-paranoia"><span data-lede-term-copy>fear that nothing relates</span><button class="lede-term" type="button" data-lede-trigger data-quote="anti-paranoia, where nothing is connected to anything" data-episode="3.12" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>fear that nothing relates</button></span> and the <span class="lede-term-pair" data-lede-anchor="everything"><span data-lede-term-copy>suspicion that everything does</span><button class="lede-term" type="button" data-lede-trigger data-quote="the discovery that everything is connected, everything in the Creation" data-episode="4.07" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>suspicion that everything does</button></span>. So, what better way to analyse <i>Gravity's Rainbow</i> than looking at these networks between characters, names, and words?</p>
+        <p class="prose-copy">This, of course, has been done countless times before: <a href="https://thomaspynchon.com/rocket-power-gravitys-rainbow-reviewed-by-richard-poirier-1973/" target="_blank" rel="noopener">Richard Poirier</a> already traced these networks in his 1973 review; <a href="https://doi.org/10.1177/096394700301200102" target="_blank" rel="noopener">Luc Herman, Robert Hogenraad, and Wim van Mierlo</a> (2003) measured chapter-level word covariation; <a href="https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/" target="_blank" rel="noopener">Martin Paul Eve</a> (2015) mapped frequent terms and the connections between them; <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler</a> (2016) combined social-network analysis with word frequency, keyness, and topic modelling.</p>
+        <p class="prose-copy">On this page, therefore, I provide my own attempt to present the novel's various webs in interactive form.</p>
+      </div>
+      <aside class="lede-notes" aria-label="Quoted passages from Gravity's Rainbow" data-lede-notes>
+        <blockquote class="lede-note" data-lede-note="puritan">
+          <p>‘a Puritan reflex of seeking other orders behind the visible’ <span class="lede-note-episode">(2.01)</span></p>
+        </blockquote>
+        <blockquote class="lede-note" data-lede-note="conditioning">
+          <p>‘No effect without cause, and a clear train of linkages.’ <span class="lede-note-episode">(1.13)</span></p>
+        </blockquote>
+        <blockquote class="lede-note" data-lede-note="anti-paranoia">
+          <p>‘anti-paranoia, where nothing is connected to anything’ <span class="lede-note-episode">(3.12)</span></p>
+        </blockquote>
+        <blockquote class="lede-note" data-lede-note="everything">
+          <p>‘the discovery that everything is connected’ <span class="lede-note-episode">(4.07)</span></p>
+        </blockquote>
+      </aside>
+      <aside class="lede-tooltip" id="network-lede-tooltip" role="tooltip" aria-hidden="true" data-lede-tooltip>
+        <span class="lede-tooltip-quote" data-lede-tooltip-quote></span>
+        <span class="lede-tooltip-episode" data-lede-tooltip-episode></span>
+      </aside>
     </div>
 
     <figure class="plot-plate" aria-label="Character co-presence network">
@@ -294,14 +316,165 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   }
 
   .network-lede {
-    max-width: var(--measure-reading);
+    position: relative;
     margin-inline: auto;
-    padding-bottom: var(--space-xl);
-    font-family: var(--font-subtitle);
-    font-size: var(--text-lg);
-    line-height: var(--lh-prose);
+    padding-bottom: calc(var(--space-xl) + var(--lede-notes-overflow, 0px));
+    text-align: left;
+  }
+
+  .network-lede[data-lede-variant='marginal'] {
+    display: grid;
+    grid-template-columns:
+      minmax(8rem, 17rem)
+      minmax(33.05rem, 38.56rem)
+      minmax(15rem, 21rem);
+    column-gap: clamp(0.735rem, 1.26vw, 1.26rem);
+    justify-content: center;
+    width: min(100%, 86rem);
+  }
+
+  .network-lede[data-lede-variant='marginal'] .lede-copy {
+    grid-column: 2;
+  }
+
+  .network-lede[data-lede-variant='tooltip'] {
+    width: min(100%, 47.74rem);
+  }
+
+  .lede-notes {
+    display: grid;
+    grid-column: 3;
+    grid-auto-rows: max-content;
+    gap: var(--space-md);
+    padding-block: 0.35rem 0.6rem;
+    align-self: stretch;
+    align-content: space-between;
+  }
+
+  .lede-note {
+    margin: 0;
+    padding-left: 0.85rem;
+    border-left: 1px solid var(--color-accent-dim);
+    border-left: 1px solid color-mix(in srgb, var(--color-accent-dim) 68%, transparent);
+  }
+
+  .lede-note p {
+    font-family: var(--font-prose);
+    font-size: 0.86rem;
+    font-style: italic;
+    line-height: 1.38;
     color: var(--color-text-secondary);
-    text-align: center;
+    text-indent: -0.35em;
+  }
+
+  .lede-note-episode {
+    display: inline-block;
+    margin-left: 0.18em;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-dim);
+    font-style: normal;
+    text-indent: 0;
+  }
+
+  .lede-term {
+    appearance: none;
+    display: inline;
+    margin: 0;
+    padding: 0 0.04em;
+    border: 0;
+    border-bottom: 1px dotted var(--color-accent-dim);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    cursor: pointer;
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+
+  .lede-term[hidden],
+  [data-lede-term-copy][hidden],
+  .lede-notes[hidden] {
+    display: none;
+  }
+
+  .lede-term:hover,
+  .lede-term:focus-visible,
+  .lede-term[aria-expanded='true'] {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .lede-term:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 0.15em;
+  }
+
+  .lede-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 110;
+    width: min(24rem, calc(100vw - 1.5rem));
+    max-height: 22rem;
+    max-height: min(45dvh, 22rem);
+    margin: 0;
+    padding: 0.9rem 1rem 0.95rem;
+    overflow-y: auto;
+    border: 1px solid var(--color-border-subtle);
+    border-left: 2px solid var(--color-accent-dim);
+    background: var(--color-surface);
+    box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 0.22);
+    color: var(--color-text-secondary);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(0.35rem) scale(0.985);
+    transform-origin: bottom center;
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease,
+      visibility 0s linear 150ms;
+  }
+
+  .lede-tooltip[data-placement='below'] {
+    transform: translateY(-0.35rem) scale(0.985);
+    transform-origin: top center;
+  }
+
+  .lede-tooltip[data-placement='dock'] {
+    transform: translateY(0.5rem) scale(0.985);
+    transform-origin: bottom center;
+  }
+
+  .lede-tooltip.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .lede-tooltip-quote {
+    font-family: var(--font-prose);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .lede-tooltip-episode {
+    display: inline-block;
+    margin-left: 0.28em;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-style: normal;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-dim);
   }
 
   .plot-plate {
@@ -309,42 +482,44 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     padding: 0;
   }
 
-  .network-section {
-    display: grid;
-    grid-template-columns: 1fr 1.8fr;
-    gap: var(--space-xl);
-    align-items: start;
-    margin-top: var(--space-2xl);
-    padding-left: var(--space-xl);
+
+  @media (min-width: 66.01rem) {
+    .lede-notes.is-anchored {
+      position: relative;
+      display: block;
+      padding: 0;
+    }
+
+    .lede-notes.is-anchored .lede-note {
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+    }
   }
 
-  .section-prose {
-    max-width: 32rem;
+  @media (max-width: 66rem) {
+    .network-lede[data-lede-variant='marginal'] {
+      display: block;
+      width: min(100%, 44.06rem);
+    }
+
+    .lede-notes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md) 1.5rem;
+      margin-top: var(--space-lg);
+      padding: 0;
+    }
   }
 
-  .section-title {
-    font-family: var(--font-heading);
-    font-size: var(--text-h3);
-    margin-bottom: var(--space-md);
-  }
 
-  .section-prose p {
-    font-family: var(--font-prose);
-    font-size: var(--text-prose);
-    line-height: var(--lh-prose);
-    color: var(--color-text-secondary);
-  }
-
-  .section-chart {
-    margin: 0;
-    padding: 0;
-    min-width: 0;
-    overflow: visible;
-  }
-
-  @media (max-width: 64rem) {
-    .network-section {
+  @media (max-width: 36rem) {
+    .lede-notes {
       grid-template-columns: 1fr;
+      margin-top: 1.5rem;
+    }
+
+    .lede-note {
+      margin-left: clamp(0.75rem, 5vw, 1.5rem);
     }
   }
 
@@ -356,10 +531,258 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     .graph-nodes .node animate {
       display: none;
     }
+
+    .lede-term,
+    .lede-tooltip {
+      transition: none;
+    }
+
+    .lede-tooltip,
+    .lede-tooltip[data-placement='below'],
+    .lede-tooltip[data-placement='dock'] {
+      transform: none;
+    }
   }
 </style>
 
 <script>
+  const networkLede = document.querySelector<HTMLElement>('[data-network-lede]');
+  const requestedLedeVariant = new URLSearchParams(window.location.search).get('lede');
+  const activeLedeVariant = requestedLedeVariant === 'tooltip' ? 'tooltip' : 'marginal';
+  const ledeNotes = document.querySelector<HTMLElement>('[data-lede-notes]');
+  const ledeTermPairs = Array.from(document.querySelectorAll<HTMLElement>('.lede-term-pair'));
+  const tooltipVariantActive = activeLedeVariant === 'tooltip';
+
+  if (networkLede) networkLede.dataset.ledeVariant = activeLedeVariant;
+  if (ledeNotes) ledeNotes.hidden = tooltipVariantActive;
+  ledeTermPairs.forEach((pair) => {
+    const plainTerm = pair.querySelector<HTMLElement>('[data-lede-term-copy]');
+    const tooltipTerm = pair.querySelector<HTMLButtonElement>('[data-lede-trigger]');
+    if (plainTerm) plainTerm.hidden = tooltipVariantActive;
+    if (tooltipTerm) tooltipTerm.hidden = !tooltipVariantActive;
+  });
+
+  const ledeCopy = document.querySelector<HTMLElement>('.lede-copy');
+  const ledeAnchors = Array.from(document.querySelectorAll<HTMLElement>('[data-lede-anchor]'));
+  const ledeMarginNotes = Array.from(document.querySelectorAll<HTMLElement>('[data-lede-note]'));
+  const ledeNotesDesktop = window.matchMedia('(min-width: 66.01rem)');
+  let ledeNotesFrame = 0;
+
+  function positionLedeMarginNotes() {
+    if (!networkLede || !ledeNotes || tooltipVariantActive || !ledeNotesDesktop.matches) {
+      ledeNotes?.classList.remove('is-anchored');
+      ledeNotes?.style.removeProperty('visibility');
+      ledeMarginNotes.forEach((note) => note.style.removeProperty('top'));
+      networkLede?.style.removeProperty('--lede-notes-overflow');
+      return;
+    }
+
+    ledeNotes.style.visibility = 'hidden';
+    ledeNotes.classList.add('is-anchored');
+    ledeMarginNotes.forEach((note) => {
+      note.style.top = '0';
+    });
+
+    const notesRect = ledeNotes.getBoundingClientRect();
+    let nextTop = 0;
+
+    ledeMarginNotes.forEach((note) => {
+      const anchor = ledeAnchors.find(
+        (candidate) => candidate.dataset.ledeAnchor === note.dataset.ledeNote,
+      );
+      if (!anchor) return;
+
+      const anchorRect = anchor.getClientRects()[0] ?? anchor.getBoundingClientRect();
+      const desiredTop = Math.max(0, anchorRect.top - notesRect.top);
+      const top = Math.max(desiredTop, nextTop);
+      note.style.top = `${top}px`;
+      nextTop = top + note.offsetHeight + 10;
+    });
+
+    const overflow = Math.max(0, nextTop - 10 - ledeNotes.clientHeight);
+    networkLede.style.setProperty('--lede-notes-overflow', `${overflow}px`);
+    ledeNotes.style.removeProperty('visibility');
+  }
+
+  function queueLedeMarginNotesPosition() {
+    window.cancelAnimationFrame(ledeNotesFrame);
+    ledeNotesFrame = window.requestAnimationFrame(positionLedeMarginNotes);
+  }
+
+  queueLedeMarginNotesPosition();
+  document.fonts.ready.then(queueLedeMarginNotesPosition);
+  ledeNotesDesktop.addEventListener('change', queueLedeMarginNotesPosition);
+  if (ledeCopy && 'ResizeObserver' in window) {
+    const observer = new ResizeObserver(queueLedeMarginNotesPosition);
+    observer.observe(ledeCopy);
+  }
+
+  const ledeTooltip = document.querySelector<HTMLElement>('[data-lede-tooltip]');
+  const ledeTooltipQuote = document.querySelector<HTMLElement>('[data-lede-tooltip-quote]');
+  const ledeTooltipEpisode = document.querySelector<HTMLElement>('[data-lede-tooltip-episode]');
+  const ledeTriggers = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lede-trigger]'));
+  let activeLedeTrigger: HTMLButtonElement | null = null;
+  let ledeTooltipPinned = false;
+  let suppressLedeTooltipFocus = false;
+  let ledeTooltipCloseTimer: number | undefined;
+  let ledeTooltipFrame = 0;
+
+  function clearLedeTooltipTimer() {
+    if (ledeTooltipCloseTimer !== undefined) {
+      window.clearTimeout(ledeTooltipCloseTimer);
+      ledeTooltipCloseTimer = undefined;
+    }
+  }
+
+  function positionLedeTooltip() {
+    if (!activeLedeTrigger || !ledeTooltip?.classList.contains('is-open')) return;
+
+    const gutter = 12;
+    const gap = 10;
+    const navBottom = document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().bottom ?? 0;
+    const topGutter = Math.max(gutter, navBottom + 8);
+    ledeTooltip.style.right = 'auto';
+    ledeTooltip.style.bottom = 'auto';
+    ledeTooltip.style.width = '';
+    ledeTooltip.dataset.placement = 'above';
+
+    const triggerRect = activeLedeTrigger.getBoundingClientRect();
+    const tooltipWidth = ledeTooltip.offsetWidth;
+    const tooltipHeight = ledeTooltip.offsetHeight;
+    const above = triggerRect.top - tooltipHeight - gap;
+    const below = triggerRect.bottom + gap;
+    const fitsAbove = above >= topGutter;
+    const fitsBelow = below + tooltipHeight <= window.innerHeight - gutter;
+
+    if (!fitsAbove && !fitsBelow) {
+      ledeTooltip.dataset.placement = 'dock';
+      ledeTooltip.style.left = `${gutter}px`;
+      ledeTooltip.style.right = `${gutter}px`;
+      ledeTooltip.style.top = 'auto';
+      ledeTooltip.style.bottom = `${gutter}px`;
+      ledeTooltip.style.bottom = `calc(${gutter}px + env(safe-area-inset-bottom))`;
+      ledeTooltip.style.width = 'auto';
+      return;
+    }
+
+    const left = Math.max(
+      gutter,
+      Math.min(
+        triggerRect.left + triggerRect.width / 2 - tooltipWidth / 2,
+        window.innerWidth - tooltipWidth - gutter,
+      ),
+    );
+
+    ledeTooltip.style.left = `${left}px`;
+    if (fitsAbove) {
+      ledeTooltip.style.top = `${above}px`;
+    } else {
+      ledeTooltip.dataset.placement = 'below';
+      ledeTooltip.style.top = `${below}px`;
+    }
+  }
+
+  function queueLedeTooltipPosition() {
+    window.cancelAnimationFrame(ledeTooltipFrame);
+    ledeTooltipFrame = window.requestAnimationFrame(positionLedeTooltip);
+  }
+
+  function openLedeTooltip(trigger: HTMLButtonElement, pinned: boolean) {
+    if (!ledeTooltip || !ledeTooltipQuote || !ledeTooltipEpisode) return;
+    clearLedeTooltipTimer();
+
+    if (activeLedeTrigger && activeLedeTrigger !== trigger) {
+      activeLedeTrigger.setAttribute('aria-expanded', 'false');
+      activeLedeTrigger.removeAttribute('aria-describedby');
+    }
+
+    activeLedeTrigger = trigger;
+    ledeTooltipPinned = pinned;
+    ledeTooltipQuote.textContent = `‘${trigger.dataset.quote ?? ''}’`;
+    ledeTooltipEpisode.textContent = `(${trigger.dataset.episode ?? ''})`;
+    trigger.setAttribute('aria-expanded', 'true');
+    trigger.setAttribute('aria-describedby', ledeTooltip.id);
+    ledeTooltip.setAttribute('aria-hidden', 'false');
+    ledeTooltip.classList.add('is-open');
+    queueLedeTooltipPosition();
+  }
+
+  function closeLedeTooltip(restoreFocus = false) {
+    if (!activeLedeTrigger || !ledeTooltip) return;
+    clearLedeTooltipTimer();
+
+    const previousTrigger = activeLedeTrigger;
+    previousTrigger.setAttribute('aria-expanded', 'false');
+    previousTrigger.removeAttribute('aria-describedby');
+    activeLedeTrigger = null;
+    ledeTooltipPinned = false;
+    ledeTooltip.setAttribute('aria-hidden', 'true');
+    ledeTooltip.classList.remove('is-open');
+    if (restoreFocus) {
+      suppressLedeTooltipFocus = true;
+      previousTrigger.focus();
+      window.requestAnimationFrame(() => {
+        suppressLedeTooltipFocus = false;
+      });
+    }
+  }
+
+  function scheduleLedeTooltipClose() {
+    clearLedeTooltipTimer();
+    ledeTooltipCloseTimer = window.setTimeout(() => {
+      const triggerHasFocus = document.activeElement === activeLedeTrigger;
+      const tooltipIsHovered = ledeTooltip?.matches(':hover') ?? false;
+      if (!ledeTooltipPinned && !triggerHasFocus && !tooltipIsHovered) closeLedeTooltip();
+    }, 140);
+  }
+
+  ledeTriggers.forEach((trigger) => {
+    trigger.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'touch') openLedeTooltip(trigger, false);
+    });
+
+    trigger.addEventListener('pointerleave', (event) => {
+      if (event.pointerType !== 'touch') scheduleLedeTooltipClose();
+    });
+
+    trigger.addEventListener('focus', () => {
+      if (suppressLedeTooltipFocus) return;
+      openLedeTooltip(trigger, false);
+    });
+    trigger.addEventListener('blur', () => {
+      if (!ledeTooltipPinned) scheduleLedeTooltipClose();
+    });
+
+    trigger.addEventListener('click', () => {
+      if (activeLedeTrigger === trigger && ledeTooltipPinned) closeLedeTooltip();
+      else openLedeTooltip(trigger, true);
+    });
+  });
+
+  ledeTooltip?.addEventListener('pointerenter', clearLedeTooltipTimer);
+  ledeTooltip?.addEventListener('pointerleave', scheduleLedeTooltipClose);
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!activeLedeTrigger || !ledeTooltip) return;
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!activeLedeTrigger.contains(target) && !ledeTooltip.contains(target)) closeLedeTooltip();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !activeLedeTrigger) return;
+    event.preventDefault();
+    closeLedeTooltip(true);
+  });
+
+  window.addEventListener('scroll', () => {
+    if (activeLedeTrigger) queueLedeTooltipPosition();
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    queueLedeMarginNotesPosition();
+    if (activeLedeTrigger) queueLedeTooltipPosition();
+  });
+
   const backdrop = document.getElementById('network-backdrop');
   if (backdrop) {
     const fadeStart = 80;

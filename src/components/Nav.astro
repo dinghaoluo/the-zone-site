@@ -4,6 +4,7 @@ const sitePath = (path: string) => `${base}/${path.replace(/^\//, '')}`;
 const pathname = Astro.url.pathname;
 
 const links = [
+  { href: sitePath('network/'), label: 'Network' },
   { href: sitePath('glossary/'), label: 'Glossary' },
   { href: sitePath('reference/'), label: 'Reference' },
 ];

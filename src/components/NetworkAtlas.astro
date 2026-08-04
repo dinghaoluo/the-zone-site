@@ -27,6 +27,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 </div>
 
 <script>
+  import { scalePlotLabels } from '../lib/plotLabels';
   import * as d3 from 'd3';
 
   const canvas = document.getElementById('atlas-canvas')!;
@@ -128,13 +129,14 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     const labelNodes = simNodes.filter(n => n.tier <= 2);
     const labels = gLabels.selectAll<SVGTextElement, SimNode>('text')
       .data(labelNodes).join('text')
+      .attr('class', 'plot-label')
       .attr('x', d => d.sx + rS(d.radius) - 18)
       .attr('y', d => d.sy + 10)
       .text(d => d.name)
       .attr('fill', d => d.tier === 1 ? 'var(--color-text)' : 'var(--color-text-dim)')
-      .attr('font-family', 'var(--font-prose)')
-      .attr('font-size', d => d.tier === 1 ? '22px' : '16px')
-      .attr('font-weight', '500')
+      .attr('font-family', 'var(--plot-label-font)')
+      .attr('font-size', '14px')
+      .attr('font-weight', 'var(--plot-label-weight)')
       .attr('dominant-baseline', 'middle')
       .attr('pointer-events', 'none')
       .attr('opacity', d => d.tier === 1 ? 1 : 0);
@@ -170,7 +172,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       noteEl.innerHTML = '<p class="note-placeholder">hover over a node to inspect</p><p class="note-placeholder">click on a node to lock in</p>';
       hoverLabel.attr('opacity', 0);
       highlightRing.attr('opacity', 0);
-      labels.attr('fill', d => d.tier === 1 ? 'var(--color-text)' : 'var(--color-text-dim)').attr('font-weight', '500');
+      labels.attr('fill', d => d.tier === 1 ? 'var(--color-text)' : 'var(--color-text-dim)').attr('font-weight', 'var(--plot-label-weight)');
     }
 
     function render() {
@@ -211,11 +213,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
     // Hover label for nodes without a permanent label
     const hoverLabel = svg.append('text')
-      .attr('class', 'hover-label')
+      .attr('class', 'hover-label plot-label')
       .attr('fill', 'var(--color-text)')
-      .attr('font-family', 'var(--font-prose)')
-      .attr('font-size', '18px')
-      .attr('font-weight', '500')
+      .attr('font-family', 'var(--plot-label-font)')
+      .attr('font-size', '14px')
+      .attr('font-weight', 'var(--plot-label-weight)')
       .attr('dominant-baseline', 'middle')
       .attr('pointer-events', 'none')
       .attr('opacity', 0);
@@ -229,7 +231,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       labels.transition(t)
         .attr('opacity', d => d.id === id ? 1 : (nb.has(d.id) && d.tier <= 2 ? 0.9 : 0))
         .attr('fill', d => d.id === id ? n.colour : (d.tier === 1 ? 'var(--color-text)' : 'var(--color-text-dim)'))
-        .attr('font-weight', d => d.id === id ? '700' : '500');
+        .attr('font-weight', d => d.id === id ? '700' : 'var(--plot-label-weight)');
 
       // Highlight ring around hovered node
       highlightRing
@@ -286,6 +288,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       keyEl.appendChild(row);
     }
 
+    const svgNode = svg.node() as SVGSVGElement;
+    const updateLabelScale = () => scalePlotLabels(svgNode);
+    updateLabelScale();
+    new ResizeObserver(updateLabelScale).observe(canvas);
+
     render();
   }).catch(err => {
     console.error('Atlas failed:', err);
@@ -294,7 +301,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 </script>
 
 <style>
-  .atlas-plate { width: 100%; }
+  .atlas-plate {
+    width: 100%;
+    font-family: var(--plot-label-font);
+    font-size: var(--plot-label-size);
+    font-weight: var(--plot-label-weight);
+    letter-spacing: var(--plot-label-letter-spacing);
+  }
 
   .atlas-bar {
     display: flex;
@@ -303,8 +316,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-bottom: var(--space-md);
-    font-family: var(--font-prose);
-    font-size: var(--text-sm);
   }
 
   .atlas-parts {
@@ -326,7 +337,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     color: var(--color-text-dim);
     cursor: pointer;
     padding: 0.25rem 0.6rem;
-    border-radius: 3px;
+    border-radius: 0;
     transition: color 0.15s, border-color 0.15s;
   }
 
@@ -358,9 +369,14 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     gap: var(--space-md);
   }
 
+  .sidebar-note :global(.note-placeholder),
+  .sidebar-note :global(.note-community),
+  .sidebar-note :global(.note-stats),
+  .sidebar-note :global(.note-rel) {
+    font-size: var(--plot-label-size);
+  }
+
   .sidebar-note :global(.note-placeholder) {
-    font-family: var(--font-prose);
-    font-size: var(--text-sm);
     font-style: italic;
     color: var(--color-text-dim);
   }
@@ -372,16 +388,12 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   }
 
   .sidebar-note :global(.note-community) {
-    font-family: var(--font-prose);
-    font-size: var(--text-sm);
     font-style: italic;
     color: var(--color-text-dim);
     margin-top: 0.2rem;
   }
 
   .sidebar-note :global(.note-stats) {
-    font-family: var(--font-prose);
-    font-size: var(--text-xs);
     color: var(--color-text-dim);
     margin-top: 0.15rem;
   }
@@ -396,8 +408,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .sidebar-note :global(.note-rel) {
     display: flex;
     justify-content: space-between;
-    font-family: var(--font-prose);
-    font-size: var(--text-xs);
     color: var(--color-text-dim);
   }
 
@@ -425,8 +435,8 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .sidebar-key :global(.key-row.active .key-label) { color: var(--color-accent); }
 
   .sidebar-key :global(.key-swatch) { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .sidebar-key :global(.key-label) { font-family: var(--font-prose); font-size: var(--text-xs); color: var(--color-text-secondary); flex: 1; transition: color 0.15s; }
-  .sidebar-key :global(.key-count) { font-family: var(--font-prose); font-size: var(--text-xs); color: var(--color-text-dim); }
+  .sidebar-key :global(.key-label) { color: var(--color-text-secondary); flex: 1; transition: color 0.15s; }
+  .sidebar-key :global(.key-count) { color: var(--color-text-dim); }
 
   @media (max-width: 64rem) {
     .atlas-body { flex-direction: column; }
