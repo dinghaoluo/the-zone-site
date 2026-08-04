@@ -177,34 +177,28 @@ a {
   position: relative;
   color: var(--color-accent);
   text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 2px;
-  background: currentColor;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.25s ease;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 calc(100% - 0.08em);
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: color 0.2s ease, background-size 0.25s ease;
 }
 
 a:hover {
   color: var(--color-accent-hover);
 }
 
-a:hover::after,
-a:focus::after,
-a:active::after,
-a:focus-visible::after {
-  clip-path: inset(0);
+a:hover,
+a:focus,
+a:active,
+a:focus-visible {
+  background-size: 100% 2px;
 }
 
-a.link-block::after {
-  display: none;
+a.link-block {
+  background-image: none;
 }
 
 :focus-visible {
@@ -236,6 +230,10 @@ p, li, dd, dt, blockquote {
   line-height: var(--lh-prose);
   letter-spacing: 0;
   color: var(--color-text-secondary);
+}
+
+.prose-copy + .prose-copy {
+  margin-top: var(--space-sm);
 }
 
 .plot-label {
@@ -287,6 +285,7 @@ p, li, dd, dt, blockquote {
 
 @media (max-width: 48rem) {
   p a {
+    background-image: none;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.14em;

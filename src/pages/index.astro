@@ -2,6 +2,7 @@
 import Footer from '../components/Footer.astro';
 import HomepagePreview from '../components/HomepagePreview.astro';
 import Nav from '../components/Nav.astro';
+import Notch from '../components/Notch.astro';
 import StructuralPreview from '../components/StructuralPreview.astro';
 import Layout from '../layouts/Layout.astro';
 
@@ -9,6 +10,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 const sitePath = (path: string) => `${base}/${path.replace(/^\//, '')}`;
 
 const indexLinks = [
+  {
+    slug: 'network',
+    label: 'Network',
+    available: true,
+  },
   {
     slug: 'glossary',
     label: 'Glossary',
@@ -18,11 +24,6 @@ const indexLinks = [
     slug: 'reference',
     label: 'Reference',
     available: true,
-  },
-  {
-    slug: 'network',
-    label: 'Network',
-    available: false,
   },
   {
     slug: 'episodes',
@@ -66,8 +67,9 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
         </section>
 
         <div class="opening-intro">
-          <p class="contents-intro">Despite all its unintelligible digressions, its great many technical terms in languages other than English, its historical documentary and reflections... reading <i>Gravity's Rainbow</i> is still one of those once-in-a-lifetime experiences. Coming to Pynchon's 1940s Europe at a stage when my own life involves looking at the cross-talk between countless neurones has made me appreciate greatly the raw chaotic power of Pynchon's prose. Its <a href="https://ebin.pub/mindful-pleasures-essays-on-thomas-pynchon-0316522317.html" target="_blank" rel="noopener">encyclopaedic</a> reputation sure is impressive, but it frequently persuades people that 'one should <i>prepare</i> for <i>Gravity's Rainbow</i>', when the best part of the reading experience may be to lose oneself in all the chaos, digression, and confusion.</p>
-          <p class="contents-intro">That being said, external guidance did help me a great deal with reading this admittedly difficult novel. This site is my attempt to provide a visual reading companion to my second favourite book of all time. And I hope, just as I found great happiness in understanding the <i>Brennschluss</i> calculation after reading Niklas Riewald's <a href="https://niklasriewald.com/category/gravitys-rainbow/" target="_blank" rel="noopener">'The math behind <i>Gravity's Rainbow</i>'</a>, other readers can do the same as they scroll through <i>The Zone</i>.</p>
+          <Notch />
+          <p class="contents-intro prose-copy">Despite all its '<a href="https://www.nytimes.com/1974/05/08/archives/pulitzer-jurors-his-third-novel.html" target="_blank" rel="noopener">unreadable</a>' digressions, its great many technical terms in different languages, its historical documentary and reflections... reading <i>Gravity's Rainbow</i> is still one of those once-in-a-lifetime experiences. For me, coming to Pynchon's 1940s paranoid Europe at a stage when my own life involves looking at the cross-talk between countless neurones has made me appreciate (as well as dread) greatly the raw chaotic power of Pynchon's prose: its <a href="https://ebin.pub/mindful-pleasures-essays-on-thomas-pynchon-0316522317.html" target="_blank" rel="noopener">encyclopaedic</a> reputation sure is impressive, but it also frequently scares readers away, persuading people that 'one should <i>prepare</i> for <i>Gravity's Rainbow</i>', when the best part of the reading experience might be to lose oneself in all the chaos, digression, and confusion.</p>
+          <p class="contents-intro prose-copy">That being said, external guidance did help me a great deal with reading this (at times) impenetrable novel. This site is my attempt to provide a visual reading companion to my second favourite book of all time. And I hope, just as I found great happiness in understanding the <i>Brennschluss</i> calculation after reading Niklas Riewald's <a href="https://niklasriewald.com/category/gravitys-rainbow/" target="_blank" rel="noopener">'The math behind <i>Gravity's Rainbow</i>'</a>, that other readers can do the same as they scroll through <i>The Zone</i>.</p>
         </div>
       </div>
     </div>
@@ -84,9 +86,11 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
               <p class="contents-description">
                 {link.slug === 'glossary' ? (
                   <>scroll through or search for critical terms in <em>Gravity's Rainbow</em></>
-                ) : (
+                ) : link.slug === 'reference' ? (
                   <>other companions (wikis, essays...) with which to read the book</>
-                )}
+                ) : link.slug === 'network' ? (
+                  <>mapping out characters and words in Pynchon's paranoia networks</>
+                ) : null}
               </p>
             </div>
           </a>
@@ -116,12 +120,13 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   <section class="acknowledgements" aria-labelledby="acknowledgements-title">
     <div class="acknowledgements-inner">
+      <Notch />
       <h2 id="acknowledgements-title" class="acknowledgements-title"><em>acknowledgements</em></h2>
       <p class="acknowledgements-body">
         This site would not have existed without Christian Swinehart's <a href="https://www.reddit.com/r/davidfosterwallace/comments/1sifhu5/introducing_infinite_digest_a_series_of_data/" target="_blank" rel="noopener">Reddit post</a> on <a href="https://samizdat.co/digest/" target="_blank" rel="noopener">Infinite Digest</a>, whose visualisations of <i>Infinite Jest</i> showed me what a book's structure looks like from above.
       </p>
       <p class="acknowledgements-body">
-        For the reading of <i>Gravity's Rainbow</i> itself, I owe a great deal to the <a href="https://gravitys-rainbow.pynchonwiki.com/" target="_blank" rel="noopener">Pynchon Wiki</a>, the wonderful community at <a href="https://www.reddit.com/r/ThomasPynchon/" target="_blank" rel="noopener">r/ThomasPynchon</a>, the <a href="https://redcircle.com/shows/pynchon-pals" target="_blank" rel="noopener">Pynchon Pals</a> podcast, Steven Weisenburger's <a href="https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/" target="_blank" rel="noopener"><i>A Gravity's Rainbow Companion</i></a>, the <a href="http://www.johnsemley.com/" target="_blank" rel="noopener">writing of John Semley</a>, and Edward Mendelson's essays on Pynchon.
+        For the reading of <i>Gravity's Rainbow</i> itself, I owe a great deal to the <a href="https://gravitys-rainbow.pynchonwiki.com/wiki/index.php?title=Main_Page" target="_blank" rel="noopener">Pynchon Wiki</a>, the wonderful community at <a href="https://www.reddit.com/r/ThomasPynchon/" target="_blank" rel="noopener">r/ThomasPynchon</a>, the <a href="https://redcircle.com/shows/pynchon-pals" target="_blank" rel="noopener">Pynchon Pals</a> podcast, Steven Weisenburger's <a href="https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/" target="_blank" rel="noopener"><i>A Gravity's Rainbow Companion</i></a>, John Semley's <a href="https://www.gravitysrainbowguide.com" target="_blank" rel="noopener">'Proverbs for Paranoids: A Gravity's Rainbow Reading Guide'</a>, and Edward Mendelson's essays on Pynchon.
       </p>
       <p class="acknowledgements-body">
         The site is set in Major Mono Display for display type, Faculty Glyphic for headings, Newsreader for ledes, Piazzolla for prose, and Mononoki for monospace.
@@ -148,7 +153,7 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
   }
 
   .hero-inner {
-    padding-block: var(--space-xl) var(--space-lg);
+    padding-block: 2.8rem var(--space-lg);
   }
 
   .hero-title,
@@ -177,19 +182,6 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     color: var(--color-text);
   }
 
-  .opening-intro::before {
-    content: '\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1';
-    display: block;
-    width: 100%;
-    margin-top: var(--space-sm);
-    margin-bottom: var(--space-sm);
-    font-family: var(--font-prose);
-    font-size: 0.85rem;
-    line-height: 1;
-    letter-spacing: 0.1em;
-    color: var(--color-text-dim);
-  }
-
   .contents {
     padding-block: var(--space-xl) var(--space-2xl);
     scroll-margin-top: calc(var(--nav-height, 3.5rem) + var(--space-md));
@@ -197,16 +189,8 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   .contents-intro {
     max-width: var(--homepage-reading);
-    font-family: var(--font-prose);
-    font-size: var(--text-prose);
-    line-height: var(--lh-prose);
-    color: var(--color-text-secondary);
     text-align: left;
     margin-inline: auto;
-  }
-
-  .contents-intro + .contents-intro {
-    margin-top: var(--space-sm);
   }
 
   .contents-list {
@@ -337,11 +321,8 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   .contents-link {
     position: relative;
+    background-image: none;
     transition: color 0.18s ease;
-  }
-
-  .contents-link::after {
-    display: none;
   }
 
   .contents-link:hover,
@@ -382,18 +363,6 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     margin: 0 auto;
   }
 
-  .acknowledgements-inner::before {
-    content: '\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1\2003\25A1';
-    display: block;
-    width: min(100%, var(--homepage-reading, 40rem));
-    margin: var(--space-md) auto var(--space-sm);
-    font-family: var(--font-prose);
-    font-size: 0.85rem;
-    line-height: 1;
-    letter-spacing: 0.1em;
-    color: var(--color-text-dim);
-  }
-
   .acknowledgements-title {
     width: min(100%, var(--homepage-reading, 40rem));
     margin: 0 auto var(--space-sm);
@@ -415,6 +384,20 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   .acknowledgements-body + .acknowledgements-body {
     margin-top: var(--space-sm);
+  }
+
+  .acknowledgements-body a {
+    background-image: none;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+    text-decoration-color: transparent;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+
+  .acknowledgements-body a:hover,
+  .acknowledgements-body a:focus-visible {
+    text-decoration-color: currentColor;
   }
 
   .episode-field {
