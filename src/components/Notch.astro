@@ -1,0 +1,20 @@
+---
+---
+
+<div class="notch" aria-hidden="true"></div>
+
+<style>
+  .notch {
+    width: min(100%, var(--homepage-reading, 40rem));
+    margin: 0 auto var(--space-sm);
+    font-family: var(--font-prose);
+    font-size: 1.7rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: var(--color-text-dim);
+  }
+
+  .notch::before {
+    content: '\25A1\200A\25A1\200A\25A1\200A\25A1\200A\25A1\200A\25A1\200A\25A1';
+  }
+</style>

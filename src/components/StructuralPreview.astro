@@ -91,12 +91,12 @@ const totalH = PAD_TOP + MAX_H + LABEL_H;
           const cx = (partStartX[pi] + partEndX[pi]) / 2;
           return (
             <text
-              class="sparkline-part-label"
+              class="sparkline-part-label plot-label"
               x={cx}
               y={PAD_TOP + MAX_H + 22}
               text-anchor="middle"
               fill="var(--color-text-dim)"
-              font-family="var(--font-heading)"
+              font-family="var(--plot-label-font)"
             >{label}</text>
           );
         })}
@@ -119,6 +119,8 @@ const totalH = PAD_TOP + MAX_H + LABEL_H;
 </div>
 
 <script>
+  import { scalePlotLabels } from '../lib/plotLabels';
+
   const svg = document.querySelector('.sparkline') as SVGSVGElement;
   if (svg) {
     const bars = Array.from(
@@ -130,13 +132,7 @@ const totalH = PAD_TOP + MAX_H + LABEL_H;
     const tooltipBarTop = Number(wrap?.dataset.barPadTop || '48');
 
     function scalePartLabels() {
-      if (!svg) return;
-      const rendered = svg.getBoundingClientRect().width;
-      if (!rendered) return;
-      const vb = svg.viewBox.baseVal.width;
-      const r = vb / rendered;
-      const label = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--svg-label')) * r;
-      svg.querySelectorAll('.sparkline-part-label').forEach(el => el.setAttribute('font-size', String(label)));
+      scalePlotLabels(svg);
     }
 
     function alignTitle() {
@@ -389,7 +385,8 @@ const totalH = PAD_TOP + MAX_H + LABEL_H;
   }
 
   .sparkline-part-label {
-    font-size: 14px;
+    font-family: var(--plot-label-font);
+    font-weight: var(--plot-label-weight);
   }
 
   .sp-tooltip {
