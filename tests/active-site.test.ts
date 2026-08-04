@@ -140,10 +140,11 @@ describe('reference interactions', () => {
 });
 
 describe('live route boundary', () => {
-  it('contains only Home, Glossary, and Reference', () => {
+  it('contains only Home, Network, Glossary, and Reference', () => {
     expect(readdirSync(resolve(root, 'src/pages')).sort()).toEqual([
       'glossary.astro',
       'index.astro',
+      'network.astro',
       'reference.astro',
     ]);
   });
