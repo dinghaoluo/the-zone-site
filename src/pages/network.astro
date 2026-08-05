@@ -215,6 +215,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     <header class="page-header network-header">
       <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
       <h1 class="page-title">Network</h1>
+      <p class="page-wip">[ <i>work in progress</i> ]</p>
     </header>
 
     <div class="network-lede" data-network-lede data-lede-variant="marginal">
@@ -312,6 +313,14 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .network-header .page-title {
     width: auto;
     margin-inline: auto;
+    text-align: center;
+  }
+
+  .page-wip {
+    margin-top: var(--space-xs);
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    color: var(--color-text-dim);
     text-align: center;
   }
 

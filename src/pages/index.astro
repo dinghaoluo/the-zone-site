@@ -82,7 +82,7 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
           <a class="contents-entry contents-link contents-link--available" href={sitePath(`${link.slug}/`)}>
             <HomepagePreview slug={link.slug} />
             <div class="contents-copy">
-              <span class="contents-label">[ {link.label} ]</span>
+              <span class="contents-label">[ {link.label} ]{link.slug === 'network' && <span class="contents-wip"> work in progress</span>}</span>
               <p class="contents-description">
                 {link.slug === 'glossary' ? (
                   <>scroll through or search for critical terms in <em>Gravity's Rainbow</em></>
@@ -280,6 +280,14 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     line-height: 1.45;
     color: var(--color-text-dim);
     transition: color 0.18s ease;
+  }
+
+  .contents-wip {
+    margin-left: 0.75em;
+    font-family: var(--font-prose);
+    font-size: var(--text-xs);
+    font-style: italic;
+    color: var(--color-text-dim);
   }
 
   .contents-label {
