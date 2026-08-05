@@ -243,9 +243,12 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
       // Show hover label if this node doesn't have a visible permanent label
       if (n.tier > 1) {
+        const rightEdge = n.sx + rS(n.radius) + 9 + n.name.length * 9;
+        const flipLeft = rightEdge > W - PAD;
         hoverLabel
-          .attr('x', n.sx + rS(n.radius) + 9)
+          .attr('x', flipLeft ? n.sx - rS(n.radius) - 9 : n.sx + rS(n.radius) + 9)
           .attr('y', n.sy + 2)
+          .attr('text-anchor', flipLeft ? 'end' : 'start')
           .text(n.name)
           .attr('fill', n.colour)
           .attr('font-weight', '700')
