@@ -134,6 +134,15 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
     </div>
   </section>
 
+  <section class="contact" aria-label="Contact">
+    <div class="contact-inner">
+      <Notch />
+      <p class="contact-body">
+        Developing this analysis as an amateur in computational literary analysis has been a tremendously fun journey of learning and improving, but suffice it to say that the analysis can at places be immature, incomplete, or the interpretation overconfident or flat-out wrong. Therefore, I welcome questions, suggestions, or collaborations: <a href="mailto:dinghao.luo@outlook.com">dinghao.luo@outlook.com</a>.
+      </p>
+    </div>
+  </section>
+
   <Footer slot="footer" />
 </Layout>
 
@@ -421,6 +430,42 @@ const pendingLinks = indexLinks.filter((link) => !link.available);
 
   .episode-plate {
     min-width: 0;
+  }
+
+  .contact {
+    padding: 0 var(--page-gutter) var(--space-2xl);
+  }
+
+  .contact-inner {
+    width: min(100%, var(--measure-site));
+    margin: 0 auto;
+  }
+
+  .contact-body {
+    width: min(100%, calc(var(--homepage-reading, 40rem) * 2 / 3));
+    margin-right: auto;
+    margin-left: max(0px, calc((100% - var(--homepage-reading, 40rem)) / 2));
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .contact-body a::after {
+    display: none;
+  }
+
+  .contact-body a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+    text-decoration-color: transparent;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+
+  .contact-body a:hover,
+  .contact-body a:focus-visible {
+    text-decoration-color: currentColor;
   }
 
   @media (max-width: 48rem) {
