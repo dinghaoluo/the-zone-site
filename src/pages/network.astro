@@ -2,6 +2,7 @@
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import NetworkAtlas from '../components/NetworkAtlas.astro';
+import NetworkMatrix from '../components/NetworkMatrix.astro';
 import Layout from '../layouts/Layout.astro';
 
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
@@ -248,6 +249,18 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       <NetworkAtlas />
     </figure>
 
+    <section class="network-section matrix-section">
+      <div class="matrix-stage">
+        <h2 class="matrix-heading" id="cooccurrence-title">Co-occurrence</h2>
+        <figure class="section-chart" aria-labelledby="cooccurrence-title">
+          <NetworkMatrix />
+        </figure>
+        <div class="section-prose matrix-copy">
+          <p class="prose-copy">'They are in love. Fuck the war.' (1.06). The lovebirds Roger and Jessica share only eleven episodes compared to Katje and Slothrop's sixteen, the latter obviously leading by count; then why do we have <a href="https://themillions.com/2016/03/gravitys-rainbow-a-love-story.html" target="_blank" rel="noopener">so much more attachment</a> to the former's relationship? In this matrix we don't simply count co-occurrence episodes: it's much less surprising to find two characters present together in a crowded episode, compared to when a pair of characters dominate <i>their own</i> episodes. This 'domination weight' therefore normalises character co-occurrence: <button class="matrix-pair-ref" type="button" data-matrix-pair="Jessica Swanlake|Roger Mexico" data-matrix-colour="var(--network-counterforce)" aria-controls="matrix-plate" aria-label="Highlight Roger and Jessica's co-occurrence" aria-pressed="false">Roger and Jessica</button> reach 1.6, the highest weight in the matrix, whereas <button class="matrix-pair-ref matrix-pair-ref--zone" type="button" data-matrix-pair="Katje Borgesius|Tyrone Slothrop" data-matrix-colour="var(--network-quest)" aria-controls="matrix-plate" aria-label="Highlight Katje and Slothrop's co-occurrence" aria-pressed="false">Katje and Slothrop</button> have only 0.9. Amongst the top forty pairs we see four out of the five communities identified in the  character Atlas above. <button class="matrix-pair-ref" type="button" data-matrix-pair="Jessica Swanlake|Roger Mexico" data-matrix-colour="var(--network-counterforce)" aria-controls="matrix-plate" aria-label="Highlight Roger and Jessica's co-occurrence" aria-pressed="false">Roger and Jessica</button> form London's strongest tie, <button class="matrix-pair-ref matrix-pair-ref--rocket" type="button" data-matrix-pair="Enzian|Tchitcherine" data-matrix-colour="var(--network-rocket)" aria-controls="matrix-plate" aria-label="Highlight Enzian and Tchitcherine's co-occurrence" aria-pressed="false">Enzian and Tchitcherine</button> Rocket's; <button class="matrix-pair-ref matrix-pair-ref--cross-community" type="button" data-matrix-pairs="Ned Pointsman|Tyrone Slothrop;Tchitcherine|Tyrone Slothrop;Marvy|Tyrone Slothrop;Tyrone Slothrop|Weissmann / Blicero;Enzian|Tyrone Slothrop;Laszlo Jamf|Tyrone Slothrop;Roger Mexico|Tyrone Slothrop" data-matrix-colour="var(--color-text-dim)" aria-controls="matrix-plate" aria-label="Highlight Slothrop's seven strongest cross-community co-occurrences" aria-pressed="false">Slothrop</button> appears in seven of the ten strongest cross-community pairs. This result concurs with prior analysis by <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler</a> (2016), which identifies Slothrop with Tantivy and Roger with Jessica as strongest. <a href="https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/" target="_blank" rel="noopener">Martin Paul Eve</a> (2015) groups Roger, Jessica, and Pointsman, using frequent-term proximity across the whole text rather than episode co-occurrence. You can read my methods <a href={`${base}/methods/`}>here</a>.</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <Footer slot="footer" />
@@ -491,6 +504,147 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     padding: 0;
   }
 
+  .network-section {
+    margin-top: var(--space-2xl);
+    padding-left: 0;
+  }
+
+  .matrix-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 899 / 579.56;
+  }
+
+  .section-prose {
+    max-width: 32rem;
+  }
+
+  .section-chart {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .matrix-heading {
+    position: absolute;
+    top: auto;
+    right: 8.8988%;
+    bottom: calc(100% + 0.75rem);
+    z-index: 3;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1;
+    text-align: right;
+  }
+
+  .matrix-copy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 8.8988%;
+    z-index: 2;
+    height: 74.981%;
+    max-width: none;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  /* The float follows the compressed diagonal and clears the cluster labels. */
+  .matrix-copy::before {
+    content: '';
+    float: left;
+    width: 100%;
+    height: 100%;
+    shape-outside: polygon(0 0, 17.094% 0, 100% 100%, 0 100%);
+    shape-margin: 2.25rem;
+  }
+
+  .matrix-copy .prose-copy {
+    font-size: var(--text-prose);
+    line-height: var(--lh-prose);
+    text-align: justify;
+  }
+
+  .matrix-copy a {
+    pointer-events: auto;
+  }
+
+  .matrix-pair-ref {
+    appearance: none;
+    display: inline;
+    position: relative;
+    margin: 0;
+    padding: 0 0.04em;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 calc(100% - 0.08em);
+    background-repeat: no-repeat;
+    background-size: 0 2px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    color: var(--matrix-pair-colour, var(--network-counterforce));
+    font: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: color 0.2s ease, background-size 0.25s ease;
+  }
+
+  .matrix-pair-ref:hover,
+  .matrix-pair-ref:focus-visible,
+  .matrix-pair-ref[aria-pressed='true'] {
+    background-size: 100% 2px;
+    color: color-mix(in srgb, var(--matrix-pair-colour, var(--network-counterforce)) 58%, white);
+  }
+
+  .matrix-pair-ref--zone {
+    --matrix-pair-colour: var(--network-quest);
+  }
+
+  .matrix-pair-ref--cross-community {
+    --matrix-pair-colour: var(--color-text-dim);
+  }
+
+  .matrix-pair-ref--rocket {
+    --matrix-pair-colour: var(--network-rocket);
+  }
+
+  .matrix-pair-ref:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 0.15em;
+  }
+
+  @media (max-width: 48rem) {
+    .matrix-pair-ref {
+      background-image: none;
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.14em;
+    }
+  }
+
+  @supports not (shape-outside: polygon(0 0, 100% 100%, 0 100%)) {
+    .matrix-copy {
+      left: 56%;
+      right: 1.5%;
+      height: 43%;
+      padding-top: 0;
+    }
+
+    .matrix-copy::before {
+      display: none;
+    }
+  }
+
 
   @media (min-width: 66.01rem) {
     .lede-notes.is-anchored {
@@ -517,6 +671,46 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       gap: var(--space-md) 1.5rem;
       margin-top: var(--space-lg);
       padding: 0;
+    }
+  }
+
+  @media (max-width: 86rem) {
+    .matrix-stage {
+      display: flex;
+      flex-direction: column;
+      aspect-ratio: auto;
+    }
+
+    .matrix-heading {
+      position: static;
+      order: 0;
+      width: auto;
+      height: auto;
+      margin: 0 0 var(--space-md);
+      white-space: normal;
+      font-size: var(--text-h3);
+      line-height: var(--lh-heading);
+      text-align: right;
+    }
+
+    .section-chart {
+      order: 1;
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .matrix-copy {
+      position: static;
+      order: 2;
+      width: min(100%, 32rem);
+      height: auto;
+      margin: var(--space-xl) auto 0;
+      padding: 0;
+      pointer-events: auto;
+    }
+
+    .matrix-copy::before {
+      display: none;
     }
   }
 
@@ -790,6 +984,54 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   window.addEventListener('resize', () => {
     queueLedeMarginNotesPosition();
     if (activeLedeTrigger) queueLedeTooltipPosition();
+  });
+
+  const matrixPairRefs = document.querySelectorAll<HTMLButtonElement>('[data-matrix-pair], [data-matrix-pairs]');
+  const matrixTouchInput = window.matchMedia('(hover: none), (pointer: coarse)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function setMatrixPairHighlight(matrixPairRef: HTMLButtonElement, active: boolean) {
+    const pairs = matrixPairRef.dataset.matrixPairs?.split(';')
+      ?? (matrixPairRef.dataset.matrixPair ? [matrixPairRef.dataset.matrixPair] : []);
+    if (pairs.length === 0) return;
+
+    matrixPairRefs.forEach((ref) => {
+      if (active && ref !== matrixPairRef) ref.setAttribute('aria-pressed', 'false');
+    });
+    matrixPairRef.setAttribute('aria-pressed', String(active));
+    document.dispatchEvent(new CustomEvent('matrix-pair-highlight', {
+      detail: { pairs, colour: matrixPairRef.dataset.matrixColour, active },
+    }));
+  }
+
+  matrixPairRefs.forEach((matrixPairRef) => {
+    matrixPairRef.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'touch') setMatrixPairHighlight(matrixPairRef, true);
+    });
+
+    matrixPairRef.addEventListener('pointerleave', (event) => {
+      if (event.pointerType !== 'touch') setMatrixPairHighlight(matrixPairRef, false);
+    });
+
+    matrixPairRef.addEventListener('focus', () => {
+      if (!matrixTouchInput.matches) setMatrixPairHighlight(matrixPairRef, true);
+    });
+    matrixPairRef.addEventListener('blur', () => {
+      if (!matrixTouchInput.matches) setMatrixPairHighlight(matrixPairRef, false);
+    });
+
+    matrixPairRef.addEventListener('click', () => {
+      if (!matrixTouchInput.matches) return;
+
+      const nextActive = matrixPairRef.getAttribute('aria-pressed') !== 'true';
+      setMatrixPairHighlight(matrixPairRef, nextActive);
+      if (nextActive) {
+        document.getElementById('matrix-plate')?.scrollIntoView({
+          behavior: reducedMotion.matches ? 'auto' : 'smooth',
+          block: 'center',
+        });
+      }
+    });
   });
 
   const backdrop = document.getElementById('network-backdrop');

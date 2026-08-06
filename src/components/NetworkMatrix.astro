@@ -1,0 +1,306 @@
+---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+---
+
+<div class="matrix-plate" id="matrix-plate" data-base={base}></div>
+
+<script>
+  import { scalePlotLabels } from '../lib/plotLabels';
+  import * as d3 from 'd3';
+
+  const plate = document.getElementById('matrix-plate')!;
+  const base = plate.dataset.base || '';
+
+  // top 40 by weighted degree, sorted community-first so block-diagonal emerges
+  const N = 40;
+  const CELL_WIDTH = 16;
+  const CELL_HEIGHT = 10.24;
+  const COLUMN_GAP = 1;
+  const ROW_GAP = 0.64;
+  const COLUMN_STEP = CELL_WIDTH + COLUMN_GAP;
+  const ROW_STEP = CELL_HEIGHT + ROW_GAP;
+  const LABEL_PAD_LEFT = 140;
+  const LABEL_PAD_TOP = 0;
+  const LABEL_PAD_RIGHT = 80;
+  const LABEL_PAD_BOTTOM = 145;
+  let activePairs = new Set<string>();
+
+  function updatePairHighlight() {
+    const cells = plate.querySelectorAll<SVGRectElement>('.matrix-cell');
+    const isActive = activePairs.size > 0;
+
+    plate.classList.toggle('is-pair-highlighted', isActive);
+    cells.forEach((cell) => {
+      const isPairActive = activePairs.has(cell.dataset.pair ?? '');
+      cell.classList.toggle('is-pair-active', isPairActive);
+      cell.classList.toggle('is-pair-muted', isActive && !isPairActive);
+    });
+  }
+
+  document.addEventListener('matrix-pair-highlight', (event) => {
+    const detail = (event as CustomEvent<{ pairs?: string[]; colour?: string; active?: boolean }>).detail;
+    activePairs = detail.active ? new Set(detail.pairs) : new Set();
+    if (activePairs.size > 0 && detail.colour) {
+      plate.style.setProperty('--matrix-active-pair-colour', detail.colour);
+    } else {
+      plate.style.removeProperty('--matrix-active-pair-colour');
+    }
+    updatePairHighlight();
+  });
+
+  Promise.all([
+    fetch(`${base}/data/network/nodes.csv`).then(r => r.text()),
+    fetch(`${base}/data/network/edges.csv`).then(r => r.text()),
+  ]).then(([nodesText, edgesText]) => {
+    const allNodes = d3.csvParse(nodesText);
+    const allEdges = d3.csvParse(edgesText);
+    const pairKey = (first: string, second: string) => [first, second].sort().join('|');
+
+    // sorted community-first, then by degree within each community
+    const top = [...allNodes]
+      .sort((a, b) => +b.weighted_degree! - +a.weighted_degree!)
+      .slice(0, N)
+      .sort((a, b) => +a.community_id! - +b.community_id! || +b.weighted_degree! - +a.weighted_degree!);
+
+    const topIds = new Set(top.map(n => n.id));
+
+    // Build edge weight lookup
+    const edgeMap = new Map<string, number>();
+    for (const e of allEdges) {
+      if (!topIds.has(e.source!) || !topIds.has(e.target!)) continue;
+      edgeMap.set(`${e.source}|${e.target}`, +e.weight!);
+      edgeMap.set(`${e.target}|${e.source}`, +e.weight!);
+    }
+
+    const maxWeight = Math.max(...edgeMap.values());
+    const matrixWidth = N * COLUMN_STEP - COLUMN_GAP;
+    const matrixHeight = N * ROW_STEP - ROW_GAP;
+    const W = LABEL_PAD_LEFT + matrixWidth + LABEL_PAD_RIGHT;
+    const H = LABEL_PAD_TOP + matrixHeight + LABEL_PAD_BOTTOM;
+
+    const svg = d3.select(plate).append('svg')
+      .attr('viewBox', `0 0 ${W} ${H}`)
+      .attr('preserveAspectRatio', 'xMinYMin meet')
+      .attr('role', 'img')
+      .attr('aria-label', 'Lower-triangular co-occurrence matrix of the top 40 characters');
+
+    // Row labels
+    for (let i = 1; i < N; i++) {
+      const n = top[i];
+      svg.append('text')
+        .attr('class', 'plot-label')
+        .attr('x', LABEL_PAD_LEFT - 6)
+        .attr('y', LABEL_PAD_TOP + i * ROW_STEP + CELL_HEIGHT / 2)
+        .attr('text-anchor', 'end')
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', n.community_colour!)
+        .attr('font-family', 'var(--plot-label-font)')
+        .attr('font-size', '14px')
+        .attr('font-weight', 'var(--plot-label-weight)')
+        .text(n.short_name!);
+    }
+
+    // Column labels (rotated below the matrix)
+    for (let i = 0; i < N - 1; i++) {
+      const n = top[i];
+      const x = LABEL_PAD_LEFT + i * COLUMN_STEP + CELL_WIDTH / 2;
+      const y = LABEL_PAD_TOP + matrixHeight + 2;
+      svg.append('text')
+        .attr('class', 'plot-label')
+        .attr('x', x)
+        .attr('y', y)
+        .attr('text-anchor', 'start')
+        .attr('dominant-baseline', 'hanging')
+        .attr('fill', n.community_colour!)
+        .attr('font-family', 'var(--plot-label-font)')
+        .attr('font-size', '14px')
+        .attr('font-weight', 'var(--plot-label-weight)')
+        .attr('transform', `rotate(55 ${x} ${y})`)
+        .text(n.short_name!);
+    }
+
+    const cells = svg.append('g').attr('class', 'cells');
+
+    for (let row = 0; row < N; row++) {
+      for (let col = 0; col < row; col++) {
+        const w = edgeMap.get(`${top[row].id}|${top[col].id}`) || 0;
+        if (w === 0) continue;
+
+        const opacity = 0.15 + (w / maxWeight) * 0.8;
+        const sameComm = top[row].community_id === top[col].community_id;
+        const colour = sameComm ? top[row].community_colour! : 'var(--color-text-dim)';
+
+        cells.append('rect')
+          .attr('class', 'matrix-cell')
+          .attr('x', LABEL_PAD_LEFT + col * COLUMN_STEP)
+          .attr('y', LABEL_PAD_TOP + row * ROW_STEP)
+          .attr('width', CELL_WIDTH)
+          .attr('height', CELL_HEIGHT)
+          .attr('fill', colour)
+          .attr('opacity', opacity)
+          .attr('rx', 1)
+          .attr('data-row', top[row].short_name!)
+          .attr('data-col', top[col].short_name!)
+          .attr('data-pair', pairKey(top[row].id!, top[col].id!))
+          .attr('data-weight', w.toFixed(2));
+      }
+    }
+
+    const communitySpans: Array<{ start: number; end: number; label: string; colour: string }> = [];
+    let communityStart = 0;
+    for (let i = 1; i <= N; i++) {
+      if (i === N || top[i].community_id !== top[communityStart].community_id) {
+        communitySpans.push({
+          start: communityStart,
+          end: i,
+          label: top[communityStart].community_label!,
+          colour: top[communityStart].community_colour!,
+        });
+        communityStart = i;
+      }
+    }
+
+    svg.append('line')
+      .attr('class', 'matrix-diagonal')
+      .attr('x1', LABEL_PAD_LEFT)
+      .attr('y1', LABEL_PAD_TOP)
+      .attr('x2', LABEL_PAD_LEFT + matrixWidth)
+      .attr('y2', LABEL_PAD_TOP + matrixHeight)
+      .attr('stroke', 'var(--color-border)')
+      .attr('stroke-width', 0.8);
+
+    // community names follow the diagonal in the blank upper triangle
+    const diagonalAngle = Math.atan2(matrixHeight, matrixWidth) * 180 / Math.PI;
+    for (const community of communitySpans) {
+      const midpoint = (community.start + community.end) / 2;
+      const x = LABEL_PAD_LEFT + midpoint * COLUMN_STEP - COLUMN_GAP / 2;
+      const y = LABEL_PAD_TOP + midpoint * ROW_STEP - ROW_GAP / 2;
+      svg.append('text')
+        .attr('class', 'plot-label matrix-community-label')
+        .attr('x', 0)
+        .attr('y', -8)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', community.colour)
+        .attr('font-family', 'var(--plot-label-font)')
+        .attr('font-size', '16px')
+        .attr('font-weight', '700')
+        .attr('font-style', 'normal')
+        .attr('opacity', 0.95)
+        .attr('pointer-events', 'none')
+        .attr('transform', `translate(${x} ${y}) rotate(${diagonalAngle})`)
+        .text(community.label);
+    }
+
+    // Hover tooltip
+    const tooltip = d3.select(plate).append('div')
+      .attr('class', 'matrix-tooltip')
+      .style('opacity', '0');
+
+    cells.selectAll('rect')
+      .on('mouseenter', function(ev) {
+        const el = d3.select(this);
+        const row = el.attr('data-row');
+        const col = el.attr('data-col');
+        const w = el.attr('data-weight');
+        tooltip.html(`<strong>${row}</strong> × <strong>${col}</strong><br>weight: ${parseFloat(w).toFixed(1)}`)
+          .style('opacity', '1');
+
+        const plateRect = plate.getBoundingClientRect();
+        const tipNode = tooltip.node() as HTMLElement;
+        const tipW = tipNode.offsetWidth;
+        const x = ev.clientX - plateRect.left + plate.scrollLeft;
+        const y = ev.clientY - plateRect.top + plate.scrollTop;
+        const visibleLeft = plate.scrollLeft;
+        const visibleRight = plate.scrollLeft + plate.clientWidth;
+        const left = x + 12;
+        const overflowRight = (left + tipW) - visibleRight;
+
+        if (overflowRight > 0) {
+          tooltip.style('left', `${Math.max(visibleLeft + 4, x - tipW - 8)}px`);
+        } else {
+          tooltip.style('left', `${left}px`);
+        }
+        tooltip.style('top', `${Math.max(4, y - 10)}px`);
+      })
+      .on('mouseleave', () => { tooltip.style('opacity', '0'); });
+
+    const svgNode = svg.node() as SVGSVGElement;
+    const updateLabelScale = () => scalePlotLabels(svgNode);
+    updatePairHighlight();
+    updateLabelScale();
+    new ResizeObserver(updateLabelScale).observe(plate);
+
+  }).catch(err => {
+    console.error('Matrix failed:', err);
+    plate.innerHTML = '<p style="color:var(--color-text-dim);font-style:italic">Matrix data unavailable.</p>';
+  });
+</script>
+
+<style>
+  .matrix-plate {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    overscroll-behavior: none;
+    touch-action: pan-y;
+  }
+
+  .matrix-plate :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .matrix-plate :global(.matrix-tooltip) {
+    position: absolute;
+    pointer-events: none;
+    background: color-mix(in srgb, var(--color-surface) 48%, transparent);
+    border: 1px solid var(--color-border);
+    border-radius: 0.45rem;
+    padding: 0.4rem 0.6rem;
+    font-family: var(--font-prose);
+    font-size: var(--text-xs);
+    line-height: 1.25;
+    color: var(--color-text);
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .matrix-plate :global(.matrix-diagonal) {
+    opacity: 0.7;
+  }
+
+  .matrix-plate :global(.matrix-community-label) {
+    font-weight: 700;
+  }
+
+  .matrix-plate :global(.matrix-cell) {
+    transition: opacity 160ms ease, fill 160ms ease, stroke 160ms ease;
+  }
+
+  .matrix-plate :global(.matrix-cell.is-pair-muted) {
+    opacity: 0.08;
+  }
+
+  .matrix-plate :global(.matrix-cell.is-pair-active) {
+    fill: color-mix(in srgb, var(--matrix-active-pair-colour, var(--network-counterforce)) 58%, white);
+    opacity: 1;
+    stroke: color-mix(in srgb, var(--matrix-active-pair-colour, var(--network-counterforce)) 40%, white);
+    stroke-width: 1.2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-plate :global(.matrix-cell) {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 90rem) {
+    .matrix-plate :global(svg) {
+      min-width: 0;
+    }
+  }
+</style>
