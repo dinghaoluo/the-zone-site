@@ -21,7 +21,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         <p class="note-placeholder">hover over a node to inspect</p>
         <p class="note-placeholder">click on a node to lock in</p>
       </div>
-      <div class="sidebar-key" id="sidebar-key"></div>
+      <div class="sidebar-legend" id="sidebar-legend" aria-label="Atlas key">
+        <p class="legend-copy"><strong>Circle area</strong> shows weighted degree, which is the sum of the weights of a character's edges.</p>
+        <p class="legend-copy"><strong>Edges</strong> connect characters who appear in at least one common episode; edge weights are the sum, across those episodes, of the lesser of the two characters' shares of tracked mentions.</p>
+      </div>
+      <div class="sidebar-key" id="sidebar-key">
+        <p class="sidebar-heading">Community</p>
+      </div>
     </aside>
   </div>
 </div>
@@ -32,6 +38,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
   const canvas = document.getElementById('atlas-canvas')!;
   const noteEl = document.getElementById('sidebar-note')!;
+  const legendEl = document.getElementById('sidebar-legend')!;
   const keyEl = document.getElementById('sidebar-key')!;
   const base = canvas.dataset.base || '';
 
@@ -156,7 +163,42 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
     function esc(s: string) { return s.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]||c)); }
 
+    function positionHoverLabel(n: SimNode) {
+      const rightEdge = n.sx + rS(n.radius) + 9 + n.name.length * 9;
+      const flipLeft = rightEdge > W - PAD;
+      hoverLabel
+        .attr('x', flipLeft ? n.sx - rS(n.radius) - 9 : n.sx + rS(n.radius) + 9)
+        .attr('y', n.sy + 2)
+        .attr('text-anchor', flipLeft ? 'end' : 'start')
+        .text(n.name)
+        .attr('fill', n.colour)
+        .attr('font-weight', '700')
+        .transition(d3.transition().duration(DUR * 0.6)).attr('opacity', 1);
+    }
+
+    function positionLockedLabel(n: SimNode) {
+      const rightEdge = n.sx + rS(n.radius) + 9 + n.name.length * 9;
+      const flipLeft = rightEdge > W - PAD;
+      lockedLabel
+        .attr('x', flipLeft ? n.sx - rS(n.radius) - 9 : n.sx + rS(n.radius) + 9)
+        .attr('y', n.sy + 2)
+        .attr('text-anchor', flipLeft ? 'end' : 'start')
+        .text(n.name)
+        .attr('fill', n.colour)
+        .attr('font-weight', '700')
+        .transition(d3.transition().duration(DUR * 0.6)).attr('opacity', 1);
+    }
+
+    function hideHoverLabel() {
+      hoverLabel.interrupt().attr('opacity', 0);
+    }
+
+    function hideLockedLabel() {
+      lockedLabel.interrupt().attr('opacity', 0);
+    }
+
     function showNote(n: SimNode) {
+      legendEl.hidden = true;
       const rels = edgeData.filter(e => e.source === n.id || e.target === n.id)
         .sort((a, b) => b.episodes - a.episodes).slice(0, 5)
         .map(e => { const oId = e.source === n.id ? e.target : e.source; const o = nodeMap.get(oId); return { name: o?.name || oId, colour: o?.colour || '', count: e.episodes }; });
@@ -169,8 +211,10 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     }
 
     function resetNote() {
+      legendEl.hidden = false;
       noteEl.innerHTML = '<p class="note-placeholder">hover over a node to inspect</p><p class="note-placeholder">click on a node to lock in</p>';
-      hoverLabel.attr('opacity', 0);
+      hideHoverLabel();
+      hideLockedLabel();
       highlightRing.attr('opacity', 0);
       labels.attr('fill', d => d.tier === 1 ? 'var(--color-text)' : 'var(--color-text-dim)').attr('font-weight', 'var(--plot-label-weight)');
     }
@@ -222,6 +266,16 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       .attr('pointer-events', 'none')
       .attr('opacity', 0);
 
+    const lockedLabel = svg.append('text')
+      .attr('class', 'locked-label plot-label')
+      .attr('fill', 'var(--color-text)')
+      .attr('font-family', 'var(--plot-label-font)')
+      .attr('font-size', '14px')
+      .attr('font-weight', '700')
+      .attr('dominant-baseline', 'middle')
+      .attr('pointer-events', 'none')
+      .attr('opacity', 0);
+
     function highlight(id: string) {
       const nb = adj.get(id) || new Set();
       const n = simMap.get(id)!;
@@ -242,28 +296,56 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         .transition(t).attr('opacity', 1);
 
       // Show hover label if this node doesn't have a visible permanent label
-      if (n.tier > 1) {
-        const rightEdge = n.sx + rS(n.radius) + 9 + n.name.length * 9;
-        const flipLeft = rightEdge > W - PAD;
-        hoverLabel
-          .attr('x', flipLeft ? n.sx - rS(n.radius) - 9 : n.sx + rS(n.radius) + 9)
-          .attr('y', n.sy + 2)
-          .attr('text-anchor', flipLeft ? 'end' : 'start')
-          .text(n.name)
-          .attr('fill', n.colour)
-          .attr('font-weight', '700')
-          .transition(t).attr('opacity', 1);
+      if (n.tier > 2) {
+        positionHoverLabel(n);
       } else {
-        hoverLabel.attr('opacity', 0);
+        hideHoverLabel();
       }
 
       showNote(n);
     }
 
     hitAreas
-      .on('mouseenter', (_, d) => { if (!locked) highlight(d.id); })
-      .on('mouseleave', () => { if (!locked) { render(); resetNote(); } })
-      .on('click', (ev, d) => { ev.stopPropagation(); if (locked === d.id) { locked = null; render(); resetNote(); } else { locked = d.id; highlight(d.id); } });
+      .on('mouseenter', (_, d) => {
+        if (!locked) {
+          highlight(d.id);
+          return;
+        }
+
+        if (d.id !== locked && adj.get(locked)?.has(d.id)) {
+          if (d.tier > 2) {
+            positionHoverLabel(d);
+          } else {
+            hideHoverLabel();
+          }
+        }
+      })
+      .on('mouseleave', (_, d) => {
+        if (!locked) {
+          render();
+          resetNote();
+          return;
+        }
+
+        if (d.id !== locked) hideHoverLabel();
+      })
+      .on('click', (ev, d) => {
+        ev.stopPropagation();
+        if (locked === d.id) {
+          locked = null;
+          render();
+          resetNote();
+        } else {
+          locked = d.id;
+          highlight(d.id);
+          if (d.tier > 2) {
+            positionLockedLabel(d);
+            hideHoverLabel();
+          } else {
+            hideLockedLabel();
+          }
+        }
+      });
     svg.on('click', () => { if (locked) { locked = null; render(); resetNote(); } });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && locked) { locked = null; render(); resetNote(); } });
 
@@ -414,6 +496,34 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     color: var(--color-text-dim);
   }
 
+  .sidebar-legend {
+    display: grid;
+    gap: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-sm);
+  }
+
+  .sidebar-legend[hidden] { display: none; }
+
+  .sidebar-heading {
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .legend-copy {
+    font-size: var(--plot-label-size);
+    line-height: 1.42;
+    color: var(--color-text-dim);
+  }
+
+  .legend-copy strong {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+  }
+
   .sidebar-key {
     border-top: 1px solid var(--color-border);
     padding-top: var(--space-sm);
@@ -444,5 +554,8 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   @media (max-width: 64rem) {
     .atlas-body { flex-direction: column; }
     .atlas-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); }
+    .sidebar-note,
+    .sidebar-legend,
+    .sidebar-key { flex: 1 1 16rem; }
   }
 </style>
