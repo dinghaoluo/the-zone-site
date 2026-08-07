@@ -17,6 +17,7 @@ const { entries } = Astro.props;
             class="rail-term"
             href={`#glossary-${entry.id}`}
             data-entry-id={entry.id}
+            data-narrative-anchor={entry.narrativeAnchorId}
             style={`--entry-color: var(${entry.colorVar})`}
           >
             {entry.railLabel || entry.displayLabel}

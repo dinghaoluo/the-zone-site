@@ -1,4 +1,4 @@
-export type PlotlineId =
+export type LegacyPlotlineId =
   | 'P01'
   | 'P02'
   | 'P03'
@@ -8,6 +8,29 @@ export type PlotlineId =
   | 'P07'
   | 'P08';
 
+export type NarrativeAnchorId =
+  | 'zone-squad'
+  | 'london-counterforce'
+  | 'rocket'
+  | 'peenemunde'
+  | 'schwarzkommando'
+  | 'central-asia';
+
+export interface NarrativeAnchor {
+  id: NarrativeAnchorId;
+  label: string;
+  colorVar: string;
+}
+
+export const narrativeAnchors: NarrativeAnchor[] = [
+  { id: 'zone-squad', label: 'The Zone Squad', colorVar: '--network-quest' },
+  { id: 'london-counterforce', label: 'London Counterforce', colorVar: '--network-counterforce' },
+  { id: 'rocket', label: 'The Rocket', colorVar: '--network-rocket' },
+  { id: 'peenemunde', label: 'Peenemünde', colorVar: '--network-pokler' },
+  { id: 'schwarzkommando', label: 'The Schwarzkommando', colorVar: '--plotline-schwarzkommando' },
+  { id: 'central-asia', label: 'Central Asia', colorVar: '--plotline-central-asia' },
+];
+
 export interface GlossaryFocusEntry {
   id: string;
   displayLabel: string;
@@ -16,6 +39,7 @@ export interface GlossaryFocusEntry {
     episodeId: string;
     sort: number;
   };
+  narrativeAnchorId?: NarrativeAnchorId;
   colorVar: string;
   context: {
     excerpt: string;
@@ -32,7 +56,7 @@ export interface GlossaryFocusEntry {
   relatedTerms?: string[];
 }
 
-const plotlineColorVars: Record<PlotlineId, string> = {
+const plotlineColorVars: Record<LegacyPlotlineId, string> = {
   P01: '--plotline-slothrop',
   P02: '--plotline-blicero',
   P03: '--plotline-enzian',
@@ -43,8 +67,75 @@ const plotlineColorVars: Record<PlotlineId, string> = {
   P08: '--plotline-film',
 };
 
+const legacyColourToNarrativeAnchor: Record<string, NarrativeAnchorId | undefined> = {
+  '--plotline-slothrop': 'zone-squad',
+  '--plotline-blicero': 'rocket',
+  '--plotline-enzian': 'schwarzkommando',
+  '--plotline-pokler': 'peenemunde',
+  '--plotline-pointsman': 'london-counterforce',
+  '--plotline-counterforce': 'london-counterforce',
+  '--plotline-tchitcherine': 'central-asia',
+  // film remains neutral; it is a cross-cutting motif rather than a plotline
+  '--plotline-film': undefined,
+};
 
-export const glossaryFocusEntries: GlossaryFocusEntry[] = [
+// manually reviewed exceptions to the legacy crosswalk
+const narrativeAnchorOverrides: Record<string, NarrativeAnchorId> = {
+  'herero-genocide': 'schwarzkommando',
+  'operation-black-wing': 'schwarzkommando',
+  sudwest: 'schwarzkommando',
+  'von-goll': 'schwarzkommando',
+  'kezvh-mandala': 'schwarzkommando',
+  enzian: 'schwarzkommando',
+  schwarzkommando: 'schwarzkommando',
+  'raketen-stadt': 'schwarzkommando',
+  'von-trotha-aggregat': 'schwarzkommando',
+  pwe: 'london-counterforce',
+  whitsun: 'london-counterforce',
+  'blavatsky-theosophy': 'london-counterforce',
+  'new-star': 'rocket',
+  'v2-a4': 'rocket',
+  brennschluss: 'rocket',
+  'pfau-zwei': 'rocket',
+  '00000': 'rocket',
+  schwarzgeraet: 'rocket',
+  wozzeck: 'rocket',
+  ohka: 'rocket',
+  jamf: 'peenemunde',
+  'von-braun': 'peenemunde',
+  'gift-of-daedalus': 'peenemunde',
+  'mittelwerk-dora': 'peenemunde',
+  nordhausen: 'peenemunde',
+  'prandtl-boundary-layer': 'peenemunde',
+  'rocket-noon': 'peenemunde',
+  'jamf-olfabriken': 'peenemunde',
+  peenemunde: 'peenemunde',
+  'operation-backfire': 'peenemunde',
+  'coal-tar-theology': 'peenemunde',
+  'rapallo-treaty': 'peenemunde',
+  rathenau: 'peenemunde',
+  'eisenkrote': 'zone-squad',
+  'on-preterition': 'zone-squad',
+  volkerwanderung: 'zone-squad',
+  'bukharin-conspiracy': 'central-asia',
+  'nta-new-turkic-alphabet': 'central-asia',
+  'tsagi-assignment': 'central-asia',
+  'geraet-hangman': 'schwarzkommando',
+  'solange-leni': 'peenemunde',
+  '00001': 'schwarzkommando',
+};
+
+// motifs whose local explanation stays genuinely cross-cutting
+const narrativeAnchorNeutralOverrides = new Set([
+  'caligari-gloves',
+  'seele-filament',
+  'phoebus-cartel',
+  'michael-faraday',
+  'thief-of-bagdad',
+  'sabbatai-zvi',
+]);
+
+const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   // part 1 episodes
   {
     id: 'screaming',
@@ -6972,3 +7063,18 @@ export const glossaryFocusEntries: GlossaryFocusEntry[] = [
     relatedTerms: ['blicero', '00000', 'gottfried'],
   },
 ];
+
+export const glossaryFocusEntries: GlossaryFocusEntry[] = rawGlossaryFocusEntries.map((entry) => {
+  const narrativeAnchorId = entry.narrativeAnchorId
+    ?? narrativeAnchorOverrides[entry.id]
+    ?? (narrativeAnchorNeutralOverrides.has(entry.id)
+      ? undefined
+      : legacyColourToNarrativeAnchor[entry.colorVar]);
+  const narrativeAnchor = narrativeAnchors.find((anchor) => anchor.id === narrativeAnchorId);
+
+  return {
+    ...entry,
+    narrativeAnchorId,
+    colorVar: narrativeAnchor?.colorVar ?? '--color-accent',
+  };
+});

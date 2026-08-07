@@ -1,5 +1,5 @@
 ---
-import type { GlossaryFocusEntry } from '../data/glossaryFocusEntries';
+import { narrativeAnchors, type GlossaryFocusEntry } from '../data/glossaryFocusEntries';
 import BackToTop from './BackToTop.astro';
 import GlossaryEntryBlock from './GlossaryEntryBlock.astro';
 import GlossaryLexicalRail from './GlossaryLexicalRail.astro';
@@ -27,6 +27,18 @@ for (const entry of sortedEntries) {
 
 const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, episodes }));
 ---
+
+<aside class="glossary-key" aria-labelledby="glossary-key-title">
+  <p class="glossary-key-heading" id="glossary-key-title">PLOTLINE KEYS</p>
+  <ul class="glossary-key-list">
+    {narrativeAnchors.map((anchor) => (
+      <li>
+        <span class="glossary-key-swatch" style={`--key-color: var(${anchor.colorVar})`} aria-hidden="true"></span>
+        <span>{anchor.label}</span>
+      </li>
+    ))}
+  </ul>
+</aside>
 
 <section class="glossary-scroll-layout" data-glossary-scroll>
   <aside class="glossary-rail-shell" aria-label="Glossary index">
@@ -75,6 +87,7 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
   if (layout) {
     const entries = Array.from(layout.querySelectorAll<HTMLElement>('.glossary-entry'));
     const terms = Array.from(layout.querySelectorAll<HTMLAnchorElement>('.rail-term'));
+    const glossaryKey = document.querySelector<HTMLElement>('.glossary-key');
     const railShell = layout.querySelector<HTMLElement>('.glossary-rail-shell');
     const railWindow = layout.querySelector<HTMLElement>('.glossary-rail-window');
     const railList = layout.querySelector<HTMLElement>('.glossary-rail-list');
@@ -111,14 +124,25 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     let pendingRailTargetId = '';
     let pendingRailTargetTimeout = 0;
 
+    function updateKeyHeight(): void {
+      if (!glossaryKey) return;
+      layout?.style.setProperty('--glossary-key-height', `${glossaryKey.getBoundingClientRect().height}px`);
+    }
+
     function updateRailHeight(): void {
       if (!railShell) return;
       layout?.style.setProperty('--glossary-rail-height', `${railShell.getBoundingClientRect().height}px`);
     }
 
+    updateKeyHeight();
     updateRailHeight();
-    if (railShell && 'ResizeObserver' in window) {
-      new ResizeObserver(updateRailHeight).observe(railShell);
+    if ('ResizeObserver' in window) {
+      const sizeObserver = new ResizeObserver(() => {
+        updateKeyHeight();
+        updateRailHeight();
+      });
+      if (glossaryKey) sizeObserver.observe(glossaryKey);
+      if (railShell) sizeObserver.observe(railShell);
     }
 
     function clamp(value: number, min: number, max: number): number {
@@ -465,6 +489,53 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
 </script>
 
 <style>
+  .glossary-key {
+    width: min(100%, var(--measure-site));
+    margin: 0 auto var(--space-xl);
+    padding: 0 var(--page-gutter);
+  }
+
+  .glossary-key-heading {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .glossary-key-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1.1rem;
+    margin: 0;
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+    list-style: none;
+  }
+
+  .glossary-key-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    font-family: var(--plot-label-font);
+    font-size: var(--plot-label-size);
+    font-weight: var(--plot-label-weight);
+    letter-spacing: var(--plot-label-letter-spacing);
+    line-height: 1.35;
+    color: var(--color-text-secondary);
+  }
+
+  .glossary-key-swatch {
+    width: 0.65rem;
+    height: 0.65rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--key-color);
+  }
+
   .glossary-scroll-layout {
     display: grid;
     grid-template-columns: minmax(12rem, 18rem) minmax(0, 48rem);
@@ -473,6 +544,47 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     width: min(100%, var(--measure-site));
     margin: 0 auto;
     padding: 0 var(--page-gutter) var(--space-xl);
+  }
+
+  @media (min-width: 901px) {
+    .glossary-key {
+      position: sticky;
+      top: var(--nav-height, 3.5rem);
+      z-index: 20;
+      padding-top: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+  }
+
+  @media (min-width: 76rem) {
+    .glossary-key {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      border-top: 1px solid var(--color-rule);
+      border-bottom-color: var(--color-rule);
+    }
+
+    .glossary-key-heading {
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .glossary-key-list {
+      flex: 0 1 auto;
+      flex-wrap: nowrap;
+      gap: 0.55rem;
+      padding: 0;
+      border: 0;
+      transform: translateY(-0.07rem);
+    }
+
+    .glossary-key-list li {
+      gap: 0.36rem;
+      white-space: nowrap;
+    }
   }
 
   .glossary-rail-shell {
@@ -484,6 +596,16 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     height: min(72vh, 40rem);
     min-width: 0;
     align-self: start;
+  }
+
+  @media (min-width: 901px) {
+    .glossary-rail-shell {
+      top: calc(
+        var(--nav-height, 3.5rem) +
+        var(--glossary-key-height, 0px) +
+        var(--space-sm)
+      );
+    }
   }
 
   .glossary-search-slot {

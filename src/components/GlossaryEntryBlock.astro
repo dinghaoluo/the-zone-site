@@ -40,6 +40,7 @@ const searchCopy = [
 <section
   class="glossary-entry"
   data-entry-id={entry.id}
+  data-narrative-anchor={entry.narrativeAnchorId}
   data-search-title={`${entry.displayLabel} ${entry.railLabel || ''} ${entry.context.highlightedTerm}`}
   data-search-quote={entry.context.excerpt}
   data-search-copy={searchCopy}
@@ -109,6 +110,16 @@ const searchCopy = [
   .entry-header {
     margin-bottom: var(--space-lg);
     scroll-margin-top: calc(var(--nav-height, 3.5rem) + 2rem);
+  }
+
+  @media (min-width: 901px) {
+    .entry-header {
+      scroll-margin-top: calc(
+        var(--nav-height, 3.5rem) +
+        var(--glossary-key-height, 0px) +
+        var(--space-sm)
+      );
+    }
   }
 
   .entry-episode {

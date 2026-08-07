@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { episodePartLengths, episodeWordCounts } from '../src/data/episodeWordCounts';
-import { glossaryFocusEntries } from '../src/data/glossaryFocusEntries';
+import { glossaryFocusEntries, narrativeAnchors } from '../src/data/glossaryFocusEntries';
 import { homepageLanguageSummary } from '../src/data/homepageLanguageSummary';
 import references from '../src/data/references.json';
 
@@ -35,6 +35,23 @@ describe('glossary integrity', () => {
       )
       .map(entry => entry.id);
     expect(missing).toEqual([]);
+  });
+
+  it('uses only the six narrative colours or the ordinary accent', () => {
+    const anchors = new Map(narrativeAnchors.map(anchor => [anchor.id, anchor.colorVar]));
+    const allowedColours = new Set([...anchors.values(), '--color-accent']);
+    const invalid = glossaryFocusEntries
+      .filter(entry => !allowedColours.has(entry.colorVar))
+      .map(entry => entry.id);
+    const mismatched = glossaryFocusEntries
+      .filter(entry => entry.narrativeAnchorId && entry.colorVar !== anchors.get(entry.narrativeAnchorId))
+      .map(entry => entry.id);
+
+    expect(invalid).toEqual([]);
+    expect(mismatched).toEqual([]);
+    expect(new Set(glossaryFocusEntries.map(entry => entry.narrativeAnchorId).filter(Boolean))).toEqual(
+      new Set(narrativeAnchors.map(anchor => anchor.id))
+    );
   });
 });
 
