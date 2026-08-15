@@ -15,6 +15,66 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       <h1 class="page-title">Methods</h1>
       <p class="page-wip">[ <i>work in progress</i> ]</p>
     </header>
+    <div class="methods-body">
+      <nav class="methods-toc" aria-label="Table of contents">
+        <ol class="toc-l1">
+          <li>
+            <a href="#network"><span class="toc-number">1</span>Network</a>
+            <ol class="toc-l2">
+              <li><a href="#atlas"><span class="toc-number">1.1</span>Atlas</a></li>
+              <li><a href="#matrix"><span class="toc-number">1.2</span>Matrix</a></li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+
+      <section id="network">
+        <h2><span class="section-number">1</span>Network</h2>
+
+        <section id="atlas">
+          <h3><span class="section-number">1.1</span>Atlas</h3>
+
+          <h4>Unit of analysis</h4>
+          <p class="prose-copy">The fundamental unit is the <i>episode</i>: one of the 73 numbered sections into which <i>Gravity's Rainbow</i> is divided across its four parts. Episodes range from 611 lexical tokens (1.11) to 16,508 (3.11); this variation matters because longer episodes are not intrinsically more connective than shorter ones, and the weighting scheme described below compensates for episode length.</p>
+
+          <h4>Entity recognition and mention tracking</h4>
+          <p class="prose-copy">I maintain a roster of named human characters (currently 178) identified through close reading, cross-referenced against Weisenburger's companion and the Pynchon Wiki. For each episode, I record every unambiguous mention of each character: full names, surnames, given names, pronouns resolved manually where the referent is clear from context, and established nicknames (e.g. 'Pirate' for Prentice, 'Säure' for Bummer). Ambiguous references and unnamed characters ('the girl', 'a soldier') are excluded. The count for a character in a given episode is the total number of such resolved mentions.</p>
+          <p class="prose-copy">This is deliberately a measure of <i>textual presence</i> rather than narrative presence: a character who is discussed extensively in absentia registers just as strongly as one who acts on the page. The distinction matters for Pynchon, whose absent characters (Slothrop in Part 4, Blicero for much of Parts 2 and 3) often dominate the discourse of episodes they never physically enter.</p>
+
+          <h4>Edge construction and weighting</h4>
+          <p class="prose-copy">Two characters share an edge if both appear in at least one common episode. The edge weight is constructed to reflect not merely how often two characters co-occur but how concentrated that co-occurrence is. For each shared episode <i>e</i>, I compute each character's share of total tracked mentions in <i>e</i> and take the minimum of the two shares. Summing these minima across all shared episodes produces the edge weight:</p>
+          <p class="prose-copy methods-formula"><i>w</i>(<i>i</i>, <i>j</i>) = &Sigma;<sub><i>e</i> &isin; <i>E<sub>ij</sub></i></sub> min( <i>m<sub>i,e</sub></i> / <i>M<sub>e</sub></i> , <i>m<sub>j,e</sub></i> / <i>M<sub>e</sub></i> )</p>
+          <p class="prose-copy">where <i>m<sub>i,e</sub></i> is the mention count of character <i>i</i> in episode <i>e</i>, <i>M<sub>e</sub></i> is the total tracked mentions in <i>e</i>, and <i>E<sub>ij</sub></i> is the set of episodes in which both <i>i</i> and <i>j</i> appear. The minimum operator ensures that a character who dominates a crowded episode does not inflate the weight of every pairwise tie in that episode; only the lesser partner's share counts. A two-hander where both characters split attention equally contributes more than an ensemble scene where one character briefly surfaces among dozens.</p>
+
+          <h4>Community detection</h4>
+          <p class="prose-copy">Communities are identified by applying greedy modularity maximisation (Clauset, Newman, and Moore, 2004) to the weighted adjacency matrix. The algorithm is agglomerative: it starts with each node as its own community and iteratively merges the pair of communities whose merger yields the greatest increase in modularity, stopping when no merge improves the score. This produces five communities that correspond recognisably to narrative groupings: The Zone Squad (Slothrop and the Zone-associated figures), London Counterforce (Pointsman, Roger, Jessica, Pirate, and their milieu), The Rocket (Blicero, Gottfried, Enzian, the Schwarzkommando, and Tchitcherine's network), Peenemünde (Pökler, Mondaugen, Jamf, and the chemical-industrial complex), and Afterlives (the séance figures, Lyle Bland, and the departed). These labels are my own retrospective interpretation of what the algorithm surfaces; the clustering itself receives no narrative priors.</p>
+
+          <h4>Layout</h4>
+          <p class="prose-copy">Node positions are pre-computed offline using a Fruchterman-Reingold force-directed layout (1991) initialised from a community-seeded arrangement: nodes belonging to the same community start in the same quadrant, which accelerates convergence and produces more legible cluster separation than random initialisation. The layout runs for 500 iterations with Barnes-Hut approximation (threshold 0.5) and exports fixed (x, y) coordinates.</p>
+          <p class="prose-copy">At render time, the browser does not run a live simulation. D3's <code>forceCollide</code> applies a collision-avoidance pass (100 ticks, radius proportional to node size plus label padding) to nudge overlapping nodes apart without displacing the global topology. This ensures labels remain legible at all zoom levels without introducing the visual instability of a continuously animated layout.</p>
+
+          <h4>Visual encoding</h4>
+          <p class="prose-copy">Node radius scales with weighted degree (the sum of all incident edge weights), square-rooted and linearly mapped to a display range of 3 to 12 SVG units. Labels are assigned to three visibility tiers based on weighted-degree rank: tier 1 (top 15) always visible, tier 2 (16 to 40) shown on community highlight or hover, tier 3 (remainder) shown only on direct hover. Edge stroke width scales linearly with weight.</p>
+        </section>
+
+        <section id="matrix">
+          <h3><span class="section-number">1.2</span>Matrix</h3>
+
+          <h4>Character selection</h4>
+          <p class="prose-copy">The matrix includes the 40 characters with the highest weighted degree. This threshold is a legibility constraint: at cell dimensions of 16 &times; 10.24 px, the resulting matrix occupies a viewport-width figure while keeping row and column labels readable at their rendered size. Characters outside the top 40 retain full representation in the atlas; their exclusion from the matrix is a visual limitation, not an analytical one.</p>
+
+          <h4>Ordering</h4>
+          <p class="prose-copy">Characters are sorted by two keys: community membership (primary) and weighted degree within community (secondary, descending). This produces the block-diagonal structure visible along the main diagonal: clusters of strong within-community ties appear as dense coloured blocks, and cross-community connections scatter into the off-diagonal regions. The ordering is fixed rather than interactive; a seriation algorithm (e.g. optimal leaf ordering on a dendrogram) might reveal additional structure but would obscure the community labels that anchor interpretation.</p>
+
+          <h4>Visual encoding</h4>
+          <p class="prose-copy">Only the lower triangle is rendered, since co-occurrence is symmetric. Cell opacity encodes edge weight on a linear scale mapped from the minimum displayed weight (opacity 0.15) to the maximum (0.95). Cells linking two characters within the same community take that community's assigned colour; cross-community cells use the page's neutral text colour (<code>--color-text-dim</code>). The diagonal carries no data cells but is marked with a thin rule to demarcate the matrix boundary. Community labels are positioned in the vacant upper triangle, rotated to run parallel with the diagonal, providing group identification without consuming additional vertical space.</p>
+
+          <h4>Limitations</h4>
+          <p class="prose-copy">Co-mention at episode level is too coarse a unit to establish conversation, encounter, or relationship. Two characters who appear in the same 10,000-word episode may never interact within it. The matrix (and the atlas) should be read as a map of textual proximity rather than a social network in the strict sense: it captures where Pynchon distributes attention, not necessarily where characters engage with one another.</p>
+        </section>
+      </section>
+
+    </div>
   </main>
 
   <Footer slot="footer" />
@@ -32,5 +92,162 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     font-family: var(--font-prose);
     font-size: var(--text-xs);
     color: var(--color-text-dim);
+  }
+  .methods-body {
+    max-width: var(--measure-reading);
+    margin-inline: auto;
+    padding-bottom: var(--space-2xl);
+  }
+
+  .methods-toc {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .toc-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    color: var(--color-text-dim);
+    margin: 0 0 var(--space-md);
+    text-transform: uppercase;
+  }
+
+  .toc-l1 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--color-rule);
+    padding-left: 1.25rem;
+  }
+
+  .toc-l1 > li {
+    font-family: var(--font-prose);
+    font-size: var(--text-lg);
+    line-height: 2;
+  }
+
+  .toc-l1 > li + li {
+    margin-top: var(--space-xs);
+  }
+
+  .toc-l2 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .toc-l2 > li {
+    font-size: var(--text-base);
+    line-height: 2;
+    color: var(--color-text-secondary);
+  }
+
+  .toc-number {
+    display: inline-block;
+    min-width: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    color: var(--color-text-dim);
+  }
+
+  .methods-toc a {
+    color: var(--color-text-secondary);
+    transition: color 0.15s ease;
+  }
+
+  .methods-toc a:hover,
+  .methods-toc a:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .methods-body > section {
+    margin-top: var(--space-2xl);
+  }
+
+  .methods-body section section {
+    margin-top: var(--space-xl);
+  }
+
+  .section-number {
+    display: inline-block;
+    min-width: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6em;
+    color: var(--color-text-dim);
+    vertical-align: baseline;
+  }
+
+  .methods-body h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: 400;
+    line-height: var(--lh-heading);
+    margin: 0 0 var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .methods-body h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    font-weight: 400;
+    line-height: var(--lh-heading);
+    margin: 0 0 var(--space-md);
+  }
+
+  .methods-body h4 {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-text-dim);
+    margin: var(--space-lg) 0 var(--space-sm);
+    text-transform: lowercase;
+  }
+
+  .methods-body h4:first-of-type {
+    margin-top: 0;
+  }
+
+  .methods-body .prose-copy {
+    font-family: var(--font-prose);
+    font-size: var(--text-prose);
+    line-height: var(--lh-prose);
+    max-width: var(--measure-reading);
+    margin-top: var(--space-md);
+  }
+
+  .methods-body .prose-copy:first-of-type,
+  .methods-body h4 + .prose-copy {
+    margin-top: 0;
+  }
+
+  .methods-formula {
+    padding: var(--space-md) var(--space-lg);
+    border-left: 2px solid var(--color-accent-dim);
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+
+  .methods-body code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+  }
+
+  @media (max-width: 48rem) {
+    .methods-body {
+      padding-inline: 0;
+    }
+
+    .toc-l1 {
+      padding-left: 1rem;
+    }
+
+    .toc-l2 {
+      padding-left: 1rem;
+    }
   }
 </style>
