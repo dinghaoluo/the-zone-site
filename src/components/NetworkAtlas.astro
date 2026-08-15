@@ -15,7 +15,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   </div>
 
   <div class="atlas-body">
-    <div class="atlas-canvas" id="atlas-canvas" data-base={base}></div>
+    <div class="atlas-canvas" id="atlas-canvas" data-base={base}>
+      <div class="atlas-zoom-controls" aria-label="Atlas zoom controls">
+        <button type="button" data-atlas-zoom="in" aria-label="Zoom in" title="Zoom in">+</button>
+        <button type="button" data-atlas-zoom="out" aria-label="Zoom out" title="Zoom out">&minus;</button>
+        <button type="button" data-atlas-zoom="reset" aria-label="Reset atlas view" title="Reset atlas view">&#8634;</button>
+      </div>
+    </div>
     <aside class="atlas-sidebar" id="atlas-sidebar">
       <div class="sidebar-note" id="sidebar-note">
         <p class="note-placeholder">hover over a node to inspect</p>
@@ -40,14 +46,24 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   const noteEl = document.getElementById('sidebar-note')!;
   const legendEl = document.getElementById('sidebar-legend')!;
   const keyEl = document.getElementById('sidebar-key')!;
-  const base = canvas.dataset.base || '';
+  const base = (canvas.dataset.base || window.location.pathname.replace(/\/network(?:\/index\.html)?\/?$/, '')).replace(/\/$/, '');
 
   // viewBox is the internal coordinate space; rendered size is CSS-driven
   const W = 1800, H = 1000, PAD = 60;
   const DUR = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 250;
+  const mobileAtlas = window.matchMedia('(max-width: 48rem)');
   let locked: string | null = null;
   let activePart: number | null = null;
   let selectedCommunity: number | null = null;
+  let zoomTransform = d3.zoomIdentity;
+
+  function notePlaceholder() {
+    return mobileAtlas.matches
+      ? '<p class="note-placeholder">tap a node to inspect</p>'
+      : '<p class="note-placeholder">hover over a node to inspect</p><p class="note-placeholder">click on a node to lock in</p>';
+  }
+
+  noteEl.innerHTML = notePlaceholder();
 
   const svg = d3.select(canvas).append('svg')
     .attr('viewBox', `0 0 ${W} ${H}`)
@@ -56,9 +72,10 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     .attr('aria-label', 'Character co-presence network');
 
   svg.append('rect').attr('width', W).attr('height', H).attr('fill', 'transparent');
-  const gEdges = svg.append('g').attr('class', 'edges');
-  const gNodes = svg.append('g').attr('class', 'nodes');
-  const gLabels = svg.append('g').attr('class', 'labels');
+  const scene = svg.append('g').attr('class', 'atlas-scene');
+  const gEdges = scene.append('g').attr('class', 'edges');
+  const gNodes = scene.append('g').attr('class', 'nodes');
+  const gLabels = scene.append('g').attr('class', 'labels');
 
   Promise.all([
     fetch(`${base}/data/network/nodes.csv`).then(r => r.text()),
@@ -132,6 +149,29 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       .attr('r', d => rS(d.radius))
       .attr('fill', d => d.colour).attr('fill-opacity', 0.8);
 
+    const communityCentres = communities.map(c => {
+      const members = simNodes.filter(n => n.community === c.id);
+      return {
+        ...c,
+        x: d3.mean(members, n => n.sx)!,
+        y: d3.mean(members, n => n.sy)!,
+      };
+    });
+
+    const communityLabels = gLabels.selectAll<SVGTextElement, typeof communityCentres[0]>('text.community-label')
+      .data(communityCentres).join('text')
+      .attr('class', 'community-label plot-label')
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+      .attr('fill', d => d.colour)
+      .attr('font-family', 'var(--plot-label-font)')
+      .attr('font-weight', '700')
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .attr('pointer-events', 'none')
+      .attr('opacity', 0)
+      .text(d => d.label);
+
     // Labels (tier 1 only by default; tier 2 shows on hover/community filter)
     const labelNodes = simNodes.filter(n => n.tier <= 2);
     const labels = gLabels.selectAll<SVGTextElement, SimNode>('text')
@@ -159,6 +199,23 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       if (!activePart) return true;
       const a = partActivity[n.id] || partActivity[n.name];
       return Boolean(a?.parts[String(activePart)]?.episodes);
+    }
+
+    function defaultLabelOpacity(n: SimNode) {
+      if (!nodeInPart(n)) return 0;
+      if (selectedCommunity !== null && n.community !== selectedCommunity) return 0;
+      if (!mobileAtlas.matches) return n.tier === 1 ? 1 : 0;
+      if (zoomTransform.k >= 2.2) return n.tier <= 2 ? (n.tier === 1 ? 1 : 0.8) : 0;
+      if (zoomTransform.k >= 1.35) return n.tier === 1 ? 1 : 0;
+      return 0;
+    }
+
+    function updateCommunityLabels() {
+      communityLabels.attr('opacity', d => {
+        if (!mobileAtlas.matches || zoomTransform.k >= 1.35) return 0;
+        if (selectedCommunity !== null && d.id !== selectedCommunity) return 0;
+        return 1;
+      });
     }
 
     function esc(s: string) { return s.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]||c)); }
@@ -212,7 +269,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
     function resetNote() {
       legendEl.hidden = false;
-      noteEl.innerHTML = '<p class="note-placeholder">hover over a node to inspect</p><p class="note-placeholder">click on a node to lock in</p>';
+      noteEl.innerHTML = notePlaceholder();
       hideHoverLabel();
       hideLockedLabel();
       highlightRing.attr('opacity', 0);
@@ -240,15 +297,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         });
 
       labels.transition(t)
-        .attr('opacity', d => {
-          if (!nodeInPart(d)) return 0;
-          if (communityFilter && d.community !== selectedCommunity) return 0;
-          return d.tier === 1 ? 1 : 0;
-        });
+        .attr('opacity', defaultLabelOpacity);
+
+      updateCommunityLabels();
     }
 
     // Highlight ring for hovered node
-    const highlightRing = svg.append('circle')
+    const highlightRing = scene.append('circle')
       .attr('class', 'highlight-ring')
       .attr('fill', 'none')
       .attr('stroke-width', 2.5)
@@ -256,7 +311,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       .attr('opacity', 0);
 
     // Hover label for nodes without a permanent label
-    const hoverLabel = svg.append('text')
+    const hoverLabel = scene.append('text')
       .attr('class', 'hover-label plot-label')
       .attr('fill', 'var(--color-text)')
       .attr('font-family', 'var(--plot-label-font)')
@@ -266,7 +321,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       .attr('pointer-events', 'none')
       .attr('opacity', 0);
 
-    const lockedLabel = svg.append('text')
+    const lockedLabel = scene.append('text')
       .attr('class', 'locked-label plot-label')
       .attr('fill', 'var(--color-text)')
       .attr('font-family', 'var(--plot-label-font)')
@@ -346,7 +401,10 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
           }
         }
       });
-    svg.on('click', () => { if (locked) { locked = null; render(); resetNote(); } });
+    svg.on('click', event => {
+      if (event.defaultPrevented) return;
+      if (locked) { locked = null; render(); resetNote(); }
+    });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && locked) { locked = null; render(); resetNote(); } });
 
     // Part buttons
@@ -369,13 +427,85 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         selectedCommunity = selectedCommunity === c.id ? null : c.id;
         keyEl.querySelectorAll('.key-row').forEach(r => r.classList.toggle('active', +(r as HTMLElement).dataset.cid! === selectedCommunity));
         locked = null; render(); resetNote();
+        if (mobileAtlas.matches) {
+          if (selectedCommunity === null) resetAtlasView();
+          else zoomToCommunity(selectedCommunity);
+        }
       });
       keyEl.appendChild(row);
     }
 
     const svgNode = svg.node() as SVGSVGElement;
-    const updateLabelScale = () => scalePlotLabels(svgNode);
-    updateLabelScale();
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
+      .scaleExtent([1, 5])
+      .on('zoom', event => {
+        zoomTransform = event.transform;
+        scene.attr('transform', zoomTransform.toString());
+        updateLabelScale();
+        if (!locked) labels.attr('opacity', defaultLabelOpacity);
+        updateCommunityLabels();
+      });
+
+    function updateLabelScale() {
+      if (!mobileAtlas.matches) {
+        scalePlotLabels(svgNode);
+        hitAreas.attr('r', d => Math.max(rS(d.radius), 8) + 3);
+        return;
+      }
+
+      const bounds = svgNode.getBoundingClientRect();
+      const renderedScale = Math.max(bounds.width / W, bounds.height / H);
+      const targetSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--plot-label-size')) || 16;
+      if (!renderedScale) return;
+
+      svg.selectAll<SVGTextElement, unknown>('.plot-label')
+        .attr('font-size', `${targetSize / renderedScale / zoomTransform.k}px`);
+      hitAreas.attr('r', d => Math.max(rS(d.radius) + 3, 18 / renderedScale / zoomTransform.k));
+    }
+
+    function resetAtlasView() {
+      svg.transition().duration(DUR).call(zoom.transform, d3.zoomIdentity);
+    }
+
+    function zoomToCommunity(communityId: number) {
+      const members = simNodes.filter(n => n.community === communityId);
+      const x0 = d3.min(members, n => n.sx - rS(n.radius))!;
+      const x1 = d3.max(members, n => n.sx + rS(n.radius))!;
+      const y0 = d3.min(members, n => n.sy - rS(n.radius))!;
+      const y1 = d3.max(members, n => n.sy + rS(n.radius))!;
+      const k = Math.min(4, 0.72 / Math.max((x1 - x0) / W, (y1 - y0) / H));
+      const transform = d3.zoomIdentity
+        .translate(W / 2, H / 2)
+        .scale(k)
+        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+      svg.transition().duration(DUR).call(zoom.transform, transform);
+    }
+
+    function configureMobileView() {
+      if (mobileAtlas.matches) {
+        svg.attr('preserveAspectRatio', 'xMidYMid slice').call(zoom);
+      } else {
+        svg.on('.zoom', null).attr('preserveAspectRatio', 'xMidYMid meet');
+        zoomTransform = d3.zoomIdentity;
+        scene.attr('transform', null);
+        (svgNode as SVGSVGElement & { __zoom?: d3.ZoomTransform }).__zoom = d3.zoomIdentity;
+      }
+      if (!locked) noteEl.innerHTML = notePlaceholder();
+      updateLabelScale();
+      render();
+    }
+
+    canvas.querySelectorAll<HTMLButtonElement>('[data-atlas-zoom]').forEach(button => {
+      button.addEventListener('click', () => {
+        const action = button.dataset.atlasZoom;
+        if (action === 'in') svg.transition().duration(DUR).call(zoom.scaleBy, 1.5);
+        if (action === 'out') svg.transition().duration(DUR).call(zoom.scaleBy, 1 / 1.5);
+        if (action === 'reset') resetAtlasView();
+      });
+    });
+
+    configureMobileView();
+    mobileAtlas.addEventListener('change', configureMobileView);
     new ResizeObserver(updateLabelScale).observe(canvas);
 
     render();
@@ -436,6 +566,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   }
 
   .atlas-canvas {
+    position: relative;
     flex: 1;
     min-width: 0;
   }
@@ -444,6 +575,17 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .atlas-canvas :global(.community-label) {
+    paint-order: stroke;
+    stroke: var(--color-bg);
+    stroke-width: 7px;
+    stroke-linejoin: round;
+  }
+
+  .atlas-zoom-controls {
+    display: none;
   }
 
   .atlas-sidebar {
@@ -557,5 +699,108 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     .sidebar-note,
     .sidebar-legend,
     .sidebar-key { flex: 1 1 16rem; }
+  }
+
+  @media (max-width: 48rem) {
+    .atlas-bar {
+      margin-bottom: var(--space-sm);
+    }
+
+    .atlas-parts {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      width: 100%;
+      gap: 0;
+    }
+
+    .parts-label {
+      display: none;
+    }
+
+    .part-btn {
+      min-width: 0;
+      min-height: 44px;
+      padding: 0;
+    }
+
+    .part-btn + .part-btn {
+      border-left: 0;
+    }
+
+    .atlas-body {
+      gap: var(--space-sm);
+    }
+
+    .atlas-canvas {
+      width: 100%;
+      height: clamp(26rem, 62svh, 36rem);
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .atlas-canvas :global(svg) {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    .atlas-canvas :global(svg:active) {
+      cursor: grabbing;
+    }
+
+    .atlas-zoom-controls {
+      position: absolute;
+      right: var(--space-sm);
+      bottom: var(--space-sm);
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 2.5rem);
+      background: color-mix(in srgb, var(--color-bg) 95%, transparent);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .atlas-zoom-controls button {
+      display: inline-grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: 0;
+      border-left: 1px solid var(--color-border-subtle);
+      border-radius: 0;
+      background: transparent;
+      color: var(--color-text-dim);
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .atlas-zoom-controls button:first-child {
+      border-left: 0;
+    }
+
+    .atlas-zoom-controls button:hover,
+    .atlas-zoom-controls button:focus-visible {
+      color: var(--color-accent);
+    }
+
+    .atlas-zoom-controls button:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: -3px;
+    }
+
+    .atlas-sidebar {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: var(--space-md);
+    }
+
+    .sidebar-note,
+    .sidebar-legend,
+    .sidebar-key {
+      flex: 0 0 auto;
+      width: 100%;
+    }
   }
 </style>
