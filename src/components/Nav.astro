@@ -20,8 +20,18 @@ function isActive(href: string): boolean {
     <a class="nav-brand wordmark" href={`${base}/`} aria-label="The Zone">
       <span>The</span><span>Zone</span>
     </a>
-    <div class="nav-right">
-      <ul class="nav-links" role="list">
+    <button
+      class="nav-menu-toggle"
+      id="nav-menu-toggle"
+      type="button"
+      aria-controls="primary-nav-links"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+    >
+      <span data-nav-menu-label>[ Menu ]</span>
+    </button>
+    <div class="nav-menu-panel">
+      <ul class="nav-links" id="primary-nav-links" role="list">
         {links.map(({ href, label }) => (
           <li>
             <a
@@ -34,18 +44,58 @@ function isActive(href: string): boolean {
           </li>
         ))}
       </ul>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Use light theme">
-        <span class="theme-label" data-theme-label="d">d</span>
-        <span class="theme-sep">/</span>
-        <span class="theme-label" data-theme-label="l">l</span>
-      </button>
     </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Use light theme">
+      <span class="theme-label" data-theme-label="d">d</span>
+      <span class="theme-sep">/</span>
+      <span class="theme-label" data-theme-label="l">l</span>
+    </button>
   </div>
 </nav>
 
 <script>
   const toggle = document.getElementById('theme-toggle');
   const nav = document.querySelector('.nav') as HTMLElement | null;
+  const menuToggle = document.getElementById('nav-menu-toggle') as HTMLButtonElement | null;
+  const menuLabel = menuToggle?.querySelector<HTMLElement>('[data-nav-menu-label]');
+  const navLinks = document.getElementById('primary-nav-links');
+  const mobileNav = window.matchMedia('(max-width: 48rem)');
+
+  function setMenuOpen(open: boolean, restoreFocus = false) {
+    if (!nav || !menuToggle) return;
+    nav.classList.toggle('is-menu-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    navLinks?.toggleAttribute('inert', mobileNav.matches && !open);
+    if (menuLabel) menuLabel.textContent = open ? '[ Close ]' : '[ Menu ]';
+    if (restoreFocus) menuToggle.focus();
+  }
+
+  setMenuOpen(false);
+
+  menuToggle?.addEventListener('click', () => {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  navLinks?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) setMenuOpen(false);
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!nav?.classList.contains('is-menu-open')) return;
+    if (event.target instanceof Node && !nav.contains(event.target)) setMenuOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav?.classList.contains('is-menu-open')) {
+      event.preventDefault();
+      setMenuOpen(false, true);
+    }
+  });
+
+  mobileNav.addEventListener('change', () => {
+    setMenuOpen(false);
+  });
 
   if (toggle) {
     function updateLabels() {
@@ -100,12 +150,6 @@ function isActive(href: string): boolean {
     min-height: 3.25rem;
   }
 
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.4rem;
-  }
-
   .nav-brand {
     font-family: var(--font-display);
     font-size: 1.3rem;
@@ -118,9 +162,14 @@ function isActive(href: string): boolean {
     color: var(--color-accent);
   }
 
+  .nav-menu-panel {
+    display: contents;
+  }
+
   .nav-links {
     display: flex;
     gap: 1.4rem;
+    margin-left: auto;
     list-style: none;
   }
 
@@ -143,13 +192,41 @@ function isActive(href: string): boolean {
     color: var(--color-accent);
   }
 
-  @media (max-width: 640px) {
+  .nav-menu-toggle {
+    display: none;
+    appearance: none;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: var(--color-text-dim);
+    font-family: var(--font-figure);
+    font-size: 0.84rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .nav-menu-toggle:hover,
+  .nav-menu-toggle:focus-visible,
+  .nav-menu-toggle[aria-expanded='true'] {
+    color: var(--color-accent);
+  }
+
+  .nav-menu-toggle:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 0.12rem;
+  }
+
+  @media (max-width: 48rem) {
     .nav-inner {
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
       max-width: none;
       min-height: 3.15rem;
-      gap: 0.65rem;
+      column-gap: 0.65rem;
+      row-gap: 0;
       padding-inline: var(--space-md);
     }
 
@@ -163,9 +240,10 @@ function isActive(href: string): boolean {
       align-items: center;
     }
 
-    .theme-toggle {
+    .nav .theme-toggle {
       font-size: 0.8rem;
       padding: 0;
+      margin-left: 0;
       min-height: 44px;
       min-width: 2.25rem;
       display: flex;
@@ -173,24 +251,79 @@ function isActive(href: string): boolean {
       justify-content: center;
     }
 
-    .nav-right {
-      flex: 0 0 auto;
-      min-width: 0;
-      gap: 0.3rem;
+    .nav .theme-toggle:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 0.12rem;
     }
 
-    .nav-links {
-      gap: clamp(0.5rem, 2.6vw, 0.75rem);
+    .nav-menu-panel {
+      display: grid;
+      flex: 1 0 100%;
+      order: 3;
+      grid-template-rows: 0fr;
+      width: 100%;
+      overflow: hidden;
+      border-top: 1px solid transparent;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        grid-template-rows 220ms ease,
+        opacity 150ms ease,
+        border-color 150ms ease,
+        visibility 0s linear 220ms;
+    }
+
+    .nav.is-menu-open .nav-menu-panel {
+      grid-template-rows: 1fr;
+      border-top-color: var(--color-border-subtle);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    .nav-menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .nav-links a {
       font-size: 0.84rem;
       white-space: nowrap;
-      min-height: 44px;
-      padding: 0;
+      width: 100%;
+      min-height: 34px;
+      padding: 0 0.25rem;
       line-height: 1;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      min-height: 0;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 calc(2.25rem + 0.65rem - 0.25rem) 0 auto;
+      overflow: hidden;
+      transform: translateY(-0.2rem);
+      transition: transform 220ms ease;
+    }
+
+    .nav.is-menu-open .nav-links {
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-menu-panel,
+    .nav-links {
+      transition: none;
     }
   }
 
@@ -198,6 +331,7 @@ function isActive(href: string): boolean {
     display: flex;
     align-items: baseline;
     gap: 0;
+    margin-left: 1.4rem;
     font-family: var(--font-figure);
     font-size: 0.75rem;
     letter-spacing: 0;
