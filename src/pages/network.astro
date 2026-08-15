@@ -987,6 +987,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   });
 
   const matrixPairRefs = document.querySelectorAll<HTMLButtonElement>('[data-matrix-pair], [data-matrix-pairs]');
+  const mobileNetwork = window.matchMedia('(max-width: 48rem)');
   const matrixTouchInput = window.matchMedia('(hover: none), (pointer: coarse)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -1000,38 +1001,53 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     });
     matrixPairRef.setAttribute('aria-pressed', String(active));
     document.dispatchEvent(new CustomEvent('matrix-pair-highlight', {
-      detail: { pairs, colour: matrixPairRef.dataset.matrixColour, active },
+      detail: {
+        pairs,
+        colour: matrixPairRef.dataset.matrixColour,
+        active,
+        trigger: active ? matrixPairRef : null,
+      },
     }));
   }
 
   matrixPairRefs.forEach((matrixPairRef) => {
     matrixPairRef.addEventListener('pointerenter', (event) => {
-      if (event.pointerType !== 'touch') setMatrixPairHighlight(matrixPairRef, true);
+      if (!mobileNetwork.matches && event.pointerType !== 'touch') setMatrixPairHighlight(matrixPairRef, true);
     });
 
     matrixPairRef.addEventListener('pointerleave', (event) => {
-      if (event.pointerType !== 'touch') setMatrixPairHighlight(matrixPairRef, false);
+      if (!mobileNetwork.matches && event.pointerType !== 'touch') setMatrixPairHighlight(matrixPairRef, false);
     });
 
     matrixPairRef.addEventListener('focus', () => {
-      if (!matrixTouchInput.matches) setMatrixPairHighlight(matrixPairRef, true);
+      if (!mobileNetwork.matches && !matrixTouchInput.matches) setMatrixPairHighlight(matrixPairRef, true);
     });
     matrixPairRef.addEventListener('blur', () => {
-      if (!matrixTouchInput.matches) setMatrixPairHighlight(matrixPairRef, false);
+      if (!mobileNetwork.matches && !matrixTouchInput.matches) setMatrixPairHighlight(matrixPairRef, false);
     });
 
     matrixPairRef.addEventListener('click', () => {
-      if (!matrixTouchInput.matches) return;
+      if (!mobileNetwork.matches && !matrixTouchInput.matches) return;
 
       const nextActive = matrixPairRef.getAttribute('aria-pressed') !== 'true';
       setMatrixPairHighlight(matrixPairRef, nextActive);
-      if (nextActive) {
-        document.getElementById('matrix-plate')?.scrollIntoView({
-          behavior: reducedMotion.matches ? 'auto' : 'smooth',
-          block: 'center',
-        });
-      }
     });
+  });
+
+  function clearMatrixPairHighlight() {
+    const activeRef = Array.from(matrixPairRefs).find(ref => ref.getAttribute('aria-pressed') === 'true');
+    if (activeRef) setMatrixPairHighlight(activeRef, false);
+  }
+
+  document.addEventListener('pointerdown', event => {
+    if (!mobileNetwork.matches) return;
+    const target = event.target;
+    if (target instanceof Element && target.closest('[data-matrix-pair], [data-matrix-pairs]')) return;
+    clearMatrixPairHighlight();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileNetwork.matches) clearMatrixPairHighlight();
   });
 
   const backdrop = document.getElementById('network-backdrop');

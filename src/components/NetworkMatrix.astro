@@ -2,14 +2,24 @@
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 
-<div class="matrix-plate" id="matrix-plate" data-base={base}></div>
+<div class="matrix-plate" id="matrix-plate" data-base={base}>
+  <div class="matrix-mobile-ui">
+    <div class="matrix-community-key" aria-label="Community key"></div>
+  </div>
+  <div class="matrix-viewport">
+    <div class="matrix-canvas"></div>
+  </div>
+</div>
 
 <script>
   import { scalePlotLabels } from '../lib/plotLabels';
   import * as d3 from 'd3';
 
   const plate = document.getElementById('matrix-plate')!;
-  const base = plate.dataset.base || '';
+  const canvas = plate.querySelector<HTMLElement>('.matrix-canvas')!;
+  const communityKey = plate.querySelector<HTMLElement>('.matrix-community-key')!;
+  const mobileMatrix = window.matchMedia('(max-width: 48rem)');
+  const base = (plate.dataset.base || window.location.pathname.replace(/\/network(?:\/index\.html)?\/?$/, '')).replace(/\/$/, '');
 
   // top 40 by weighted degree, sorted community-first so block-diagonal emerges
   const N = 40;
@@ -24,28 +34,38 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   const LABEL_PAD_RIGHT = 80;
   const LABEL_PAD_BOTTOM = 145;
   let activePairs = new Set<string>();
+  let activeMatrixTrigger: HTMLElement | null = null;
+  let showMobilePairTooltip: ((pairs: string[] | null, trigger: HTMLElement | null) => void) | null = null;
 
   function updatePairHighlight() {
     const cells = plate.querySelectorAll<SVGRectElement>('.matrix-cell');
     const isActive = activePairs.size > 0;
+    const showCellHighlight = !mobileMatrix.matches;
 
-    plate.classList.toggle('is-pair-highlighted', isActive);
+    plate.classList.toggle('is-pair-highlighted', isActive && showCellHighlight);
     cells.forEach((cell) => {
       const isPairActive = activePairs.has(cell.dataset.pair ?? '');
-      cell.classList.toggle('is-pair-active', isPairActive);
-      cell.classList.toggle('is-pair-muted', isActive && !isPairActive);
+      cell.classList.toggle('is-pair-active', showCellHighlight && isPairActive);
+      cell.classList.toggle('is-pair-muted', showCellHighlight && isActive && !isPairActive);
     });
   }
 
   document.addEventListener('matrix-pair-highlight', (event) => {
-    const detail = (event as CustomEvent<{ pairs?: string[]; colour?: string; active?: boolean }>).detail;
+    const detail = (event as CustomEvent<{
+      pairs?: string[];
+      colour?: string;
+      active?: boolean;
+      trigger?: HTMLElement | null;
+    }>).detail;
     activePairs = detail.active ? new Set(detail.pairs) : new Set();
+    activeMatrixTrigger = detail.active ? detail.trigger ?? null : null;
     if (activePairs.size > 0 && detail.colour) {
       plate.style.setProperty('--matrix-active-pair-colour', detail.colour);
     } else {
       plate.style.removeProperty('--matrix-active-pair-colour');
     }
     updatePairHighlight();
+    showMobilePairTooltip?.(activePairs.size > 0 ? [...activePairs] : null, activeMatrixTrigger);
   });
 
   Promise.all([
@@ -78,16 +98,18 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     const W = LABEL_PAD_LEFT + matrixWidth + LABEL_PAD_RIGHT;
     const H = LABEL_PAD_TOP + matrixHeight + LABEL_PAD_BOTTOM;
 
-    const svg = d3.select(plate).append('svg')
+    const svg = d3.select(canvas).append('svg')
       .attr('viewBox', `0 0 ${W} ${H}`)
       .attr('preserveAspectRatio', 'xMinYMin meet')
       .attr('role', 'img')
       .attr('aria-label', 'Lower-triangular co-occurrence matrix of the top 40 characters');
 
+    const rowLabels = svg.append('g').attr('class', 'matrix-row-labels');
+
     // Row labels
     for (let i = 1; i < N; i++) {
       const n = top[i];
-      svg.append('text')
+      rowLabels.append('text')
         .attr('class', 'plot-label')
         .attr('x', LABEL_PAD_LEFT - 6)
         .attr('y', LABEL_PAD_TOP + i * ROW_STEP + CELL_HEIGHT / 2)
@@ -100,12 +122,14 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         .text(n.short_name!);
     }
 
+    const columnLabels = svg.append('g').attr('class', 'matrix-column-labels');
+
     // Column labels (rotated below the matrix)
     for (let i = 0; i < N - 1; i++) {
       const n = top[i];
       const x = LABEL_PAD_LEFT + i * COLUMN_STEP + CELL_WIDTH / 2;
       const y = LABEL_PAD_TOP + matrixHeight + 2;
-      svg.append('text')
+      columnLabels.append('text')
         .attr('class', 'plot-label')
         .attr('x', x)
         .attr('y', y)
@@ -120,6 +144,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     }
 
     const cells = svg.append('g').attr('class', 'cells');
+    const pairDetails = new Map<string, {
+      rowName: string;
+      colName: string;
+      weight: number;
+    }>();
 
     for (let row = 0; row < N; row++) {
       for (let col = 0; col < row; col++) {
@@ -143,6 +172,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
           .attr('data-col', top[col].short_name!)
           .attr('data-pair', pairKey(top[row].id!, top[col].id!))
           .attr('data-weight', w.toFixed(2));
+        pairDetails.set(pairKey(top[row].id!, top[col].id!), {
+          rowName: top[row].short_name!,
+          colName: top[col].short_name!,
+          weight: w,
+        });
       }
     }
 
@@ -160,6 +194,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       }
     }
 
+    communityKey.innerHTML = communitySpans.map(community => `
+      <span class="matrix-community-key-item">
+        <span class="matrix-community-key-swatch" style="background:${community.colour}"></span>
+        <span>${community.label}</span>
+      </span>
+    `).join('');
+
     svg.append('line')
       .attr('class', 'matrix-diagonal')
       .attr('x1', LABEL_PAD_LEFT)
@@ -171,11 +212,12 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
     // community names follow the diagonal in the blank upper triangle
     const diagonalAngle = Math.atan2(matrixHeight, matrixWidth) * 180 / Math.PI;
+    const communityLabels = svg.append('g').attr('class', 'matrix-community-labels');
     for (const community of communitySpans) {
       const midpoint = (community.start + community.end) / 2;
       const x = LABEL_PAD_LEFT + midpoint * COLUMN_STEP - COLUMN_GAP / 2;
       const y = LABEL_PAD_TOP + midpoint * ROW_STEP - ROW_GAP / 2;
-      svg.append('text')
+      communityLabels.append('text')
         .attr('class', 'plot-label matrix-community-label')
         .attr('x', 0)
         .attr('y', -8)
@@ -195,15 +237,25 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     // Hover tooltip
     const tooltip = d3.select(plate).append('div')
       .attr('class', 'matrix-tooltip')
+      .attr('role', 'tooltip')
+      .attr('aria-hidden', 'true')
       .style('opacity', '0');
+    const referenceTooltip = d3.select(document.body).append('div')
+      .attr('class', 'matrix-reference-tooltip')
+      .attr('id', 'matrix-reference-tooltip')
+      .attr('role', 'tooltip')
+      .attr('aria-hidden', 'true');
+    let referenceTooltipTrigger: HTMLElement | null = null;
 
     cells.selectAll('rect')
       .on('mouseenter', function(ev) {
+        if (mobileMatrix.matches) return;
         const el = d3.select(this);
         const row = el.attr('data-row');
         const col = el.attr('data-col');
         const w = el.attr('data-weight');
-        tooltip.html(`<strong>${row}</strong> × <strong>${col}</strong><br>weight: ${parseFloat(w).toFixed(1)}`)
+        tooltip.html(`<strong>${row}</strong> × <strong>${col}</strong><br>co-occurrence: ${parseFloat(w).toFixed(1)}`)
+          .attr('aria-hidden', 'false')
           .style('opacity', '1');
 
         const plateRect = plate.getBoundingClientRect();
@@ -223,12 +275,108 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         }
         tooltip.style('top', `${Math.max(4, y - 10)}px`);
       })
-      .on('mouseleave', () => { tooltip.style('opacity', '0'); });
+      .on('mouseleave', () => {
+        tooltip.attr('aria-hidden', 'true').style('opacity', '0');
+      });
 
     const svgNode = svg.node() as SVGSVGElement;
-    const updateLabelScale = () => scalePlotLabels(svgNode);
+
+    function updateLabelScale() {
+      if (!mobileMatrix.matches) scalePlotLabels(svgNode);
+    }
+
+    function setOverview() {
+      plate.dataset.matrixMode = 'overview';
+      svg
+        .attr('viewBox', `${LABEL_PAD_LEFT} ${LABEL_PAD_TOP} ${matrixWidth} ${matrixHeight}`)
+        .attr('preserveAspectRatio', 'xMinYMin meet');
+    }
+
+    function positionReferenceTooltip(pairKeys: string[], trigger: HTMLElement) {
+      if (!mobileMatrix.matches || pairKeys.length === 0) return;
+      const details = pairKeys
+        .map(pair => pairDetails.get(pair))
+        .filter((detail): detail is NonNullable<typeof detail> => detail !== undefined);
+      if (details.length === 0) {
+        clearMobileTooltip();
+        return;
+      }
+
+      if (referenceTooltipTrigger !== trigger) {
+        referenceTooltipTrigger?.removeAttribute('aria-describedby');
+        referenceTooltipTrigger = trigger;
+        trigger.setAttribute('aria-describedby', 'matrix-reference-tooltip');
+      }
+
+      const tooltipNode = referenceTooltip.node() as HTMLElement;
+      referenceTooltip.html(details.map(detail => (
+        `<strong>${detail.rowName}</strong> × <strong>${detail.colName}</strong><br>co-occurrence: ${detail.weight.toFixed(1)}`
+      )).join('<br><br>'))
+        .attr('aria-hidden', 'false')
+        .classed('is-open', true)
+        .style('left', '0px')
+        .style('top', '0px');
+
+      const triggerRect = trigger.getBoundingClientRect();
+      const tooltipWidth = tooltipNode.offsetWidth;
+      const tooltipHeight = tooltipNode.offsetHeight;
+      const gutter = 12;
+      const navBottom = document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().bottom ?? 0;
+      const left = Math.max(gutter, Math.min(
+        triggerRect.left + triggerRect.width / 2 - tooltipWidth / 2,
+        window.innerWidth - tooltipWidth - gutter,
+      ));
+      const top = Math.max(navBottom + 4, triggerRect.top - tooltipHeight);
+      referenceTooltip.style('left', `${left}px`).style('top', `${top}px`);
+    }
+
+    function clearMobileTooltip() {
+      referenceTooltipTrigger?.removeAttribute('aria-describedby');
+      referenceTooltipTrigger = null;
+      referenceTooltip.attr('aria-hidden', 'true').classed('is-open', false);
+    }
+
+    showMobilePairTooltip = (pairs, trigger) => {
+      if (!mobileMatrix.matches) return;
+      if (pairs === null || trigger === null) {
+        clearMobileTooltip();
+        return;
+      }
+      positionReferenceTooltip(pairs, trigger);
+    };
+
+    function configureMatrixView() {
+      if (mobileMatrix.matches) {
+        setOverview();
+      } else {
+        delete plate.dataset.matrixMode;
+        svg
+          .attr('viewBox', `0 0 ${W} ${H}`)
+          .attr('preserveAspectRatio', 'xMinYMin meet');
+        clearMobileTooltip();
+      }
+      updateLabelScale();
+      updatePairHighlight();
+    }
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mobileMatrix.matches) clearMobileTooltip();
+    });
+
     updatePairHighlight();
-    updateLabelScale();
+    configureMatrixView();
+    if (activePairs.size > 0) showMobilePairTooltip([...activePairs], activeMatrixTrigger);
+    mobileMatrix.addEventListener('change', configureMatrixView);
+    window.addEventListener('scroll', () => {
+      if (activePairs.size > 0 && activeMatrixTrigger) {
+        positionReferenceTooltip([...activePairs], activeMatrixTrigger);
+      }
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+      if (activePairs.size > 0 && activeMatrixTrigger) {
+        positionReferenceTooltip([...activePairs], activeMatrixTrigger);
+      }
+    });
     new ResizeObserver(updateLabelScale).observe(plate);
 
   }).catch(err => {
@@ -246,6 +394,15 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     touch-action: pan-y;
   }
 
+  .matrix-viewport,
+  .matrix-canvas {
+    width: 100%;
+  }
+
+  .matrix-mobile-ui {
+    display: none;
+  }
+
   .matrix-plate :global(svg) {
     display: block;
     width: 100%;
@@ -256,9 +413,9 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .matrix-plate :global(.matrix-tooltip) {
     position: absolute;
     pointer-events: none;
-    background: color-mix(in srgb, var(--color-surface) 48%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
     border: 1px solid var(--color-border);
-    border-radius: 0.45rem;
+    border-radius: 0;
     padding: 0.4rem 0.6rem;
     font-family: var(--font-prose);
     font-size: var(--text-xs);
@@ -267,6 +424,10 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     transition: opacity 0.15s;
     white-space: nowrap;
     z-index: 10;
+  }
+
+  :global(.matrix-reference-tooltip) {
+    display: none;
   }
 
   .matrix-plate :global(.matrix-diagonal) {
@@ -301,6 +462,98 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   @media (max-width: 90rem) {
     .matrix-plate :global(svg) {
       min-width: 0;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .matrix-plate {
+      touch-action: auto;
+    }
+
+    .matrix-mobile-ui {
+      display: grid;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .matrix-community-key {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      color: var(--color-text-dim);
+      font-size: var(--text-xs);
+      line-height: 1.3;
+    }
+
+    .matrix-community-key :global(.matrix-community-key-item) {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .matrix-community-key :global(.matrix-community-key-swatch) {
+      width: 0.55rem;
+      height: 0.55rem;
+      flex: 0 0 auto;
+      border-radius: 50%;
+    }
+
+    .matrix-viewport {
+      max-width: 100%;
+      overflow: hidden;
+      overscroll-behavior: contain;
+    }
+
+    .matrix-plate[data-matrix-mode='overview'] .matrix-canvas,
+    .matrix-plate[data-matrix-mode='overview'] .matrix-viewport {
+      height: auto;
+    }
+
+    .matrix-plate :global(svg) {
+      min-width: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .matrix-plate[data-matrix-mode='overview'] :global(.matrix-row-labels),
+    .matrix-plate[data-matrix-mode='overview'] :global(.matrix-column-labels),
+    .matrix-plate[data-matrix-mode='overview'] :global(.matrix-community-labels) {
+      display: none;
+    }
+
+    .matrix-plate :global(.matrix-tooltip) {
+      display: none;
+    }
+
+    :global(.matrix-reference-tooltip) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 110;
+      display: block;
+      width: max-content;
+      max-width: calc(100vw - 1.5rem);
+      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0;
+      background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+      color: var(--color-text);
+      font-family: var(--font-prose);
+      font-size: var(--text-xs);
+      line-height: 1.25;
+      white-space: normal;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.15s,
+        visibility 0s linear 0.15s;
+    }
+
+    :global(.matrix-reference-tooltip.is-open) {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
     }
   }
 </style>
