@@ -1,0 +1,668 @@
+---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+---
+
+<div class="episode-heatmap" id="episode-heatmap" data-base={base}>
+  <div class="episode-heatmap-body">
+    <div class="episode-heatmap-canvas-column">
+      <div class="episode-heatmap-topline">
+        <div class="episode-heatmap-title"><slot name="title" /></div>
+        <div class="episode-density-control" role="group" aria-label="Density scale">
+          <button type="button" data-density-mode-button="normalised" aria-pressed="true">normalised</button>
+          <button type="button" data-density-mode-button="raw" aria-pressed="false">raw</button>
+        </div>
+      </div>
+      <div class="episode-heatmap-canvas" id="episode-heatmap-canvas"></div>
+    </div>
+    <aside class="episode-heatmap-sidebar" id="episode-heatmap-sidebar">
+      <div class="episode-heatmap-reading"><slot name="reading" /></div>
+    </aside>
+  </div>
+  <div class="episode-tooltip" id="episode-tooltip" role="tooltip" aria-hidden="true">
+    <strong data-episode-tooltip-title></strong>
+    <span data-episode-tooltip-detail></span>
+  </div>
+</div>
+
+<script>
+  import * as d3 from 'd3';
+  import { scalePlotLabels } from '../lib/plotLabels';
+
+  type Point = {
+    displayOrder: number;
+    shortName: string;
+    episodeId: string;
+    episodeOrder: number;
+    density: number;
+    normalisedDensity: number;
+    communityColour: string;
+  };
+
+  type SelectionDetail = {
+    displayOrder: number;
+    displayOrders?: number[];
+    locked?: boolean;
+  } | null;
+  type DensityMode = 'normalised' | 'raw';
+
+  const plate = document.getElementById('episode-heatmap')!;
+  const canvas = document.getElementById('episode-heatmap-canvas')!;
+  const densityModeLinks = plate.querySelectorAll<HTMLAnchorElement>('[data-density-mode-toggle]');
+  const densityModeButtons = plate.querySelectorAll<HTMLButtonElement>('[data-density-mode-button]');
+  const mobileFigure = window.matchMedia('(max-width: 48rem)');
+  const base = (plate.dataset.base || window.location.pathname.replace(/\/network(?:\/index\.html)?\/?$/, '')).replace(/\/$/, '');
+  const file = `${base}/data/network/character-through-episodes/figure3_ordered_trajectories.csv`;
+  const nodesFile = `${base}/data/network/nodes.csv`;
+  const W = mobileFigure.matches ? 430 : 1180;
+  const H = mobileFigure.matches ? 500 : 690;
+  const PAD = mobileFigure.matches
+    ? { top: 44, right: 8, bottom: 30, left: 118 }
+    : { top: 62, right: 108, bottom: 62, left: 178 };
+  const plotWidth = W - PAD.left - PAD.right;
+  const plotHeight = H - PAD.top - PAD.bottom;
+  const partRanges = [
+    { label: 'Part I', start: 0, end: 20 },
+    { label: 'Part II', start: 21, end: 28 },
+    { label: 'Part III', start: 29, end: 60 },
+    { label: 'Part IV', start: 61, end: 72 },
+  ];
+  let pendingSelection: SelectionDetail | undefined;
+  let selectionHandler: ((detail: SelectionDetail) => void) | null = null;
+  const communityColours: Record<string, string> = {
+    '1': 'var(--network-quest)',
+    '2': 'var(--network-counterforce)',
+    '3': 'var(--network-rocket)',
+    '4': 'var(--network-pokler)',
+    '5': 'var(--network-afterlives)',
+  };
+
+  function densityOpacity(density: number, mode: DensityMode) {
+    const scaleMaximum = mode === 'normalised' ? 1 : 18;
+    return density <= 0 ? 0.1 : 0.14 + Math.min(0.86, density / scaleMaximum * 0.86);
+  }
+
+  const tooltip = document.getElementById('episode-tooltip')!;
+  const tooltipTitle = tooltip.querySelector<HTMLElement>('[data-episode-tooltip-title]')!;
+  const tooltipDetail = tooltip.querySelector<HTMLElement>('[data-episode-tooltip-detail]')!;
+  let tooltipTrigger: Element | null = null;
+
+  function clearMobileTooltip() {
+    tooltipTrigger?.removeAttribute('aria-describedby');
+    tooltipTrigger = null;
+    tooltip.setAttribute('aria-hidden', 'true');
+    tooltip.classList.remove('is-open');
+  }
+
+  function positionMobileTooltip(trigger: Element) {
+    if (!mobileFigure.matches) return;
+    const triggerRect = trigger.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const gutter = 12;
+    const navBottom = document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().bottom ?? 0;
+    const left = Math.max(gutter, Math.min(
+      triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2,
+      window.innerWidth - tooltipRect.width - gutter,
+    ));
+    const top = Math.max(navBottom + 4, triggerRect.top - tooltipRect.height - 6);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+  }
+
+  function showMobileTooltip(title: string, detail: string, trigger: Element) {
+    if (!mobileFigure.matches) return;
+    if (tooltipTrigger !== trigger) {
+      tooltipTrigger?.removeAttribute('aria-describedby');
+      tooltipTrigger = trigger;
+      trigger.setAttribute('aria-describedby', 'episode-tooltip');
+    }
+    tooltipTitle.textContent = title;
+    tooltipDetail.textContent = detail;
+    tooltip.setAttribute('aria-hidden', 'false');
+    tooltip.classList.add('is-open');
+    positionMobileTooltip(trigger);
+  }
+
+  document.addEventListener('trajectory-select', (event) => {
+    const detail = (event as CustomEvent<SelectionDetail>).detail ?? null;
+    if (selectionHandler) selectionHandler(detail);
+    else pendingSelection = detail;
+  });
+
+  Promise.all([
+    fetch(file).then((response) => {
+      if (!response.ok) throw new Error(`Figure 3 data returned ${response.status}`);
+      return response.text();
+    }),
+    fetch(nodesFile).then((response) => {
+      if (!response.ok) throw new Error(`Figure 3 community data returned ${response.status}`);
+      return response.text();
+    }),
+  ])
+    .then(([text, nodesText]) => {
+      const communityByName = new Map(
+        d3.csvParse(nodesText).map((node) => [node.id ?? '', node]),
+      );
+      const rows = d3.csvParse(text).map((row): Point => {
+        const node = communityByName.get(row.canonical_name ?? '');
+        return {
+          displayOrder: +(row.display_order ?? 0),
+          shortName: row.short_name ?? row.canonical_name ?? '',
+          episodeId: row.episode_id ?? '',
+          episodeOrder: +(row.episode_order ?? row.global_index ?? 0),
+          density: +(row.mentions_per_1000 ?? 0),
+          normalisedDensity: 0,
+          communityColour: node?.community_colour ?? communityColours[node?.community_id ?? ''] ?? 'var(--color-text-dim)',
+        };
+      });
+      const byCharacter = d3.group(rows, (row) => row.displayOrder);
+      function densityPeak(points: Point[]) {
+        return points.reduce((best, point) => point.density > best.density ? point : best, points[0]);
+      }
+      const characters = [...byCharacter.values()]
+        .map((points) => points.sort((a, b) => a.episodeOrder - b.episodeOrder))
+        .sort((a, b) => {
+          const aPeak = densityPeak(a);
+          const bPeak = densityPeak(b);
+          return aPeak.episodeOrder - bPeak.episodeOrder || a[0].displayOrder - b[0].displayOrder;
+        });
+      characters.forEach((points) => {
+        const peak = densityPeak(points).density;
+        points.forEach((point) => { point.normalisedDensity = peak > 0 ? point.density / peak : 0; });
+      });
+      const episodes = characters[0].map((point) => point.episodeId);
+      const x = d3.scaleBand<string>()
+        .domain(episodes)
+        .range([PAD.left, PAD.left + plotWidth])
+        .padding(0);
+      const y = d3.scaleBand<number>()
+        .domain(characters.map((points) => points[0].displayOrder))
+        .range([PAD.top, PAD.top + plotHeight])
+        .paddingInner(0.1);
+      const xTicks = mobileFigure.matches
+        ? ['1.01', '2.01', '3.01', '4.01']
+        : ['1.01', '1.11', '2.01', '3.01', '3.16', '4.01', '4.12'];
+      let lockedRows: number[] | null = null;
+      let hoverTimer: number | null = null;
+      let hoveredRow: number | null = null;
+      let densityMode: DensityMode = 'normalised';
+
+      const svg = d3.select(canvas).append('svg')
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('role', 'group')
+        .attr('aria-label', 'Mention density heatmap for the twenty most-mentioned named characters through 73 episodes');
+      const plot = svg.append('g').attr('class', 'episode-heatmap-plot');
+
+      plot.selectAll<SVGTextElement, typeof partRanges[number]>('.part-label')
+        .data(partRanges)
+        .join('text')
+        .attr('class', 'plot-label part-label')
+        .attr('x', (part) => ((x(episodes[part.start]) ?? 0) + (x(episodes[part.end]) ?? 0) + x.bandwidth()) / 2)
+        .attr('y', PAD.top - 30)
+        .attr('text-anchor', 'middle')
+        .attr('font-style', 'normal')
+        .text((part) => mobileFigure.matches ? part.label.replace('Part ', '') : part.label);
+
+      plot.selectAll<SVGLineElement, typeof partRanges[number]>('.part-separator')
+        .data(partRanges.slice(1))
+        .join('line')
+        .attr('class', 'part-separator')
+        .attr('x1', (part) => (x(episodes[part.start]) ?? 0) - 0.5)
+        .attr('x2', (part) => (x(episodes[part.start]) ?? 0) - 0.5)
+        .attr('y1', PAD.top - 4)
+        .attr('y2', PAD.top + plotHeight + 3);
+
+      plot.selectAll<SVGTextElement, string>('.episode-tick')
+        .data(xTicks)
+        .join('text')
+        .attr('class', 'plot-label episode-tick')
+        .attr('x', (episode) => (x(episode) ?? 0) + x.bandwidth() / 2)
+        .attr('y', PAD.top + plotHeight + 15)
+        .attr('text-anchor', 'middle')
+        .text((episode) => episode);
+
+      const rowGroups = plot.selectAll<SVGGElement, Point[]>('.heat-row')
+        .data(characters)
+        .join('g')
+        .attr('class', 'heat-row')
+        .attr('data-row', (points) => String(points[0].displayOrder));
+
+      const rowSummary = plot.append('text')
+        .attr('class', 'plot-label heat-row-summary')
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'auto')
+        .attr('opacity', 0)
+        .attr('pointer-events', 'none');
+
+      rowGroups.append('text')
+        .attr('class', 'plot-label heat-row-label')
+        .attr('x', PAD.left - 12)
+        .attr('y', (points) => (y(points[0].displayOrder) ?? 0) + y.bandwidth() / 2)
+        .attr('text-anchor', 'end')
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', (points) => points[0].communityColour)
+        .text((points) => points[0].shortName);
+
+      const cells = rowGroups.selectAll<SVGRectElement, Point>('.heat-cell')
+        .data((points) => points)
+        .join('rect')
+        .attr('class', 'heat-cell')
+        .attr('x', (point) => x(point.episodeId) ?? 0)
+        .attr('y', (point) => y(point.displayOrder) ?? 0)
+        .attr('width', x.bandwidth() + 0.15)
+        .attr('height', y.bandwidth())
+        .attr('fill', (point) => point.communityColour)
+        .attr('fill-opacity', (point) => densityOpacity(point.normalisedDensity, densityMode));
+
+      const rowHits = plot.selectAll<SVGRectElement, Point[]>('.row-hit')
+        .data(characters)
+        .join('rect')
+        .attr('class', 'row-hit')
+        .attr('x', 0)
+        .attr('y', (points) => y(points[0].displayOrder) ?? 0)
+        .attr('width', W)
+        .attr('height', y.bandwidth())
+        .attr('role', 'button')
+        .attr('tabindex', 0)
+        .attr('aria-label', (points) => `Show ${points[0].shortName}'s trajectory through the episodes`)
+        .attr('aria-pressed', 'false')
+        .attr('data-row', (points) => points[0].displayOrder);
+
+      function selectedPoints(displayOrder: number) {
+        return byCharacter.get(displayOrder) ?? [];
+      }
+
+      function selectionSummary(displayOrders: number[]) {
+        const selectedRows = displayOrders
+          .map((displayOrder) => selectedPoints(displayOrder))
+          .filter((points) => points.length);
+        const names = selectedRows.map((points) => points[0].shortName);
+        const peaks = selectedRows.map((points) => densityPeak(points));
+        const peakEpisodes = [...new Set(peaks.map((peak) => peak.episodeId))];
+        const peakDetail = selectedRows.length === 1
+          ? `${peaks[0].density.toFixed(1)} mentions per 1,000 words`
+          : `${peaks.map((peak, index) => `${names[index]} ${peak.density.toFixed(1)}`).join(' · ')} mentions per 1,000 words`;
+        return {
+          title: names.join(' + '),
+          detail: `${peakEpisodes.length === 1 ? 'peak episode' : 'peak episodes'}: ${peakEpisodes.join(', ')}\n${peakDetail}`,
+        };
+      }
+
+      function showRowSummary(displayOrders: number[]) {
+        const selectedRows = displayOrders
+          .map((displayOrder) => ({ displayOrder, points: selectedPoints(displayOrder) }))
+          .filter((row) => row.points.length);
+        if (!selectedRows.length) return;
+        const peaks = [...new Map(selectedRows.map((row) => {
+          const peak = densityPeak(row.points);
+          return [peak.episodeId, peak];
+        })).values()].sort((a, b) => a.episodeOrder - b.episodeOrder);
+        const peakEpisodes = peaks.map((peak) => peak.episodeId);
+        const peakLabel = peakEpisodes.length === 1
+          ? `: episode ${peakEpisodes[0]}`
+          : `: episodes ${peakEpisodes.slice(0, -1).join(', ')} and ${peakEpisodes[peakEpisodes.length - 1]}`;
+        rowSummary.selectAll('tspan').remove();
+        rowSummary.append('tspan').attr('font-style', 'italic').text('max');
+        rowSummary.append('tspan').text(peakLabel);
+        const peakCentre = d3.mean(peaks, (peak) => (x(peak.episodeId) ?? PAD.left) + x.bandwidth() / 2) ?? PAD.left;
+        const labelHalfWidth = Math.min((rowSummary.node()?.getComputedTextLength() ?? 0) / 2, plotWidth / 2);
+        const summaryX = Math.min(
+          PAD.left + plotWidth - labelHalfWidth,
+          Math.max(PAD.left + labelHalfWidth, peakCentre),
+        );
+        const topmostRowY = Math.min(...selectedRows.map((row) => y(row.displayOrder) ?? PAD.top));
+        rowSummary
+          .attr('x', summaryX)
+          .attr('y', Math.max(PAD.top - 9, topmostRowY - 9))
+          .attr('fill', selectedRows[0].points[0].communityColour)
+          .attr('opacity', 1);
+        rowSummary.raise();
+      }
+
+      function clearRowSummary() {
+        rowSummary.attr('opacity', 0).text('');
+      }
+
+      function selectedDisplayOrders(detail: Exclude<SelectionDetail, null>) {
+        return [...new Set(detail.displayOrders?.length ? detail.displayOrders : [detail.displayOrder])];
+      }
+
+      function sameLockedSelection(displayOrders: number[]) {
+        return lockedRows !== null
+          && lockedRows.length === displayOrders.length
+          && lockedRows.every((displayOrder, index) => displayOrder === displayOrders[index]);
+      }
+
+      function applySelection(displayOrders: number[], lock: boolean) {
+        if (!displayOrders.length) return;
+        const selected = new Set(displayOrders);
+        const summaryDisplayOrder = displayOrders[0];
+        if (lock) {
+          lockedRows = displayOrders;
+          document.dispatchEvent(new CustomEvent('trajectory-selection-committed', {
+            detail: { displayOrder: summaryDisplayOrder, displayOrders },
+          }));
+        }
+        rowGroups.classed('is-row-active', (points) => selected.has(points[0].displayOrder)).classed('is-row-muted', (points) => !selected.has(points[0].displayOrder));
+        cells.classed('is-cell-muted', (point) => !selected.has(point.displayOrder));
+        rowHits.attr('aria-pressed', (points) => String(lockedRows?.includes(points[0].displayOrder) ?? false));
+        showRowSummary(displayOrders);
+      }
+
+      function clearSelection() {
+        lockedRows = null;
+        rowGroups.classed('is-row-active', false).classed('is-row-muted', false);
+        cells.classed('is-cell-muted', false);
+        rowHits.attr('aria-pressed', 'false');
+        clearRowSummary();
+        clearMobileTooltip();
+        document.dispatchEvent(new CustomEvent('trajectory-selection-cleared'));
+      }
+
+      function cancelRowHover() {
+        if (hoverTimer !== null) window.clearTimeout(hoverTimer);
+        hoverTimer = null;
+        hoveredRow = null;
+      }
+
+      function setDensityMode(mode: DensityMode) {
+        densityMode = mode;
+        cells.attr('fill-opacity', (point) => densityOpacity(mode === 'normalised' ? point.normalisedDensity : point.density, mode));
+        densityModeLinks.forEach((link) => {
+          const nextMode = mode === 'normalised' ? 'raw' : 'normalised';
+          link.textContent = nextMode;
+          link.setAttribute('aria-label', `Switch to ${nextMode} density`);
+        });
+        densityModeButtons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.densityModeButton === mode));
+        });
+      }
+
+      densityModeLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          setDensityMode(densityMode === 'normalised' ? 'raw' : 'normalised');
+        });
+      });
+      densityModeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const mode = button.dataset.densityModeButton as DensityMode;
+          setDensityMode(mode);
+        });
+      });
+
+      selectionHandler = (detail) => {
+        if (!detail) clearSelection();
+        else applySelection(selectedDisplayOrders(detail), detail.locked ?? true);
+      };
+
+      rowHits
+        .on('pointerenter', (event, points) => {
+          if (event.pointerType === 'touch' || lockedRows !== null) return;
+          const displayOrder = points[0].displayOrder;
+          cancelRowHover();
+          hoveredRow = displayOrder;
+          hoverTimer = window.setTimeout(() => {
+            if (lockedRows === null && hoveredRow === displayOrder) applySelection([displayOrder], false);
+            hoverTimer = null;
+          }, 500);
+        })
+        .on('pointerleave', (_, points) => {
+          const displayOrder = points[0].displayOrder;
+          if (hoveredRow === displayOrder) cancelRowHover();
+          if (lockedRows === null) clearSelection();
+        })
+        .on('focus', (_, points) => { if (lockedRows === null) applySelection([points[0].displayOrder], false); })
+        .on('blur', () => { if (lockedRows === null) clearSelection(); })
+        .on('click', (event, points) => {
+          event.stopPropagation();
+          const displayOrders = [points[0].displayOrder];
+          if (sameLockedSelection(displayOrders)) {
+            clearSelection();
+          } else {
+            applySelection(displayOrders, true);
+            if (mobileFigure.matches) {
+              const summary = selectionSummary(displayOrders);
+              showMobileTooltip(summary.title, summary.detail, event.currentTarget as Element);
+            }
+          }
+        })
+        .on('keydown', (event, points) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            const displayOrders = [points[0].displayOrder];
+            if (sameLockedSelection(displayOrders)) clearSelection();
+            else applySelection(displayOrders, true);
+          }
+          if (event.key === 'Escape') clearSelection();
+        });
+
+      svg.on('click', () => { if (lockedRows !== null) clearSelection(); });
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (canvas.contains(target) || target.closest('[data-trajectory-select]')) return;
+        if (lockedRows !== null) clearSelection();
+        else clearMobileTooltip();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lockedRows !== null) clearSelection();
+        else if (event.key === 'Escape') clearMobileTooltip();
+      });
+
+      plate.querySelectorAll<HTMLButtonElement>('[data-trajectory-select]').forEach((ref) => {
+        ref.addEventListener('click', () => {
+          if (!mobileFigure.matches) return;
+          window.setTimeout(() => {
+            if (ref.getAttribute('aria-pressed') !== 'true') {
+              clearMobileTooltip();
+              return;
+            }
+            const displayOrders = (ref.dataset.trajectorySelect ?? '')
+              .split(',')
+              .map((value) => Number(value.trim()))
+              .filter(Number.isFinite);
+            const summary = selectionSummary(displayOrders);
+            showMobileTooltip(summary.title, summary.detail, ref);
+          });
+        });
+      });
+
+      if (pendingSelection) selectionHandler(pendingSelection);
+      const updateLabelScale = () => scalePlotLabels(
+        svg.node() as SVGSVGElement,
+        '.plot-label',
+        mobileFigure.matches ? 10 : undefined,
+      );
+      updateLabelScale();
+      new ResizeObserver(updateLabelScale).observe(canvas);
+      window.addEventListener('scroll', () => {
+        if (tooltipTrigger) positionMobileTooltip(tooltipTrigger);
+      }, { passive: true });
+      window.addEventListener('resize', () => {
+        if (tooltipTrigger) positionMobileTooltip(tooltipTrigger);
+      });
+    })
+    .catch((error) => {
+      console.error('Figure 3 failed:', error);
+      canvas.innerHTML = '<p class="episode-heatmap-placeholder">Character trajectory data unavailable.</p>';
+    });
+</script>
+
+<style>
+  .episode-heatmap {
+    position: relative;
+    width: 100%;
+  }
+
+  .episode-heatmap-body {
+    display: grid;
+    grid-template-columns: minmax(62.4rem, 1fr) minmax(17rem, 18.5rem);
+    gap: clamp(0.875rem, 1.2vw, 1.25rem);
+    align-items: start;
+  }
+
+  .episode-heatmap-canvas-column { min-width: 0; }
+  .episode-heatmap-topline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    padding-left: max(9.42rem, 15.1%);
+  }
+  .episode-heatmap-title { min-width: 0; }
+  .episode-density-control { display: none; }
+  .episode-heatmap-canvas { min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; }
+  .episode-heatmap-canvas :global(svg) { display: block; width: 100%; max-width: none; min-width: 62.4rem; height: auto; overflow: visible; }
+  .episode-heatmap-canvas :global(.heat-cell) { transition: opacity 160ms ease, fill 160ms ease; }
+  .episode-heatmap-canvas :global(.heat-cell.is-cell-muted) { opacity: 0.1; }
+  .episode-heatmap-canvas :global(.row-hit) { fill: transparent; cursor: pointer; }
+  .episode-heatmap-canvas :global(.row-hit:focus) { outline: none; }
+  .episode-heatmap-canvas :global(.row-hit:focus-visible) { stroke: var(--color-accent); stroke-width: 2; stroke-opacity: 0.75; }
+  .episode-heatmap-canvas :global(.heat-row.is-row-muted .heat-row-label) { opacity: 0.35; }
+  .episode-heatmap-canvas :global(.heat-row-summary) {
+    font-family: var(--plot-label-font);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .episode-heatmap-canvas :global(.part-label) { fill: var(--color-text-secondary); font-style: normal; }
+  .episode-heatmap-canvas :global(.episode-tick) { fill: var(--color-text-dim); }
+  .episode-heatmap-canvas :global(.part-separator) { stroke: var(--color-border); stroke-width: 1; }
+
+  /* use the SVG's reserved right gutter for a wider reading column */
+  .episode-heatmap-sidebar {
+    min-width: 0;
+    width: calc(100% + 4rem);
+    margin-left: -4rem;
+  }
+  .episode-heatmap-placeholder { font-family: var(--plot-label-font); font-size: var(--text-xs); line-height: 1.35; color: var(--color-text-dim); }
+  .episode-heatmap-placeholder + .episode-heatmap-placeholder { margin-top: 0.3rem; }
+  .episode-heatmap-reading { min-width: 0; }
+  .episode-heatmap-reading :global(.episode-reading) { color: var(--color-text-secondary); }
+  .episode-heatmap-reading :global(.episode-reading .prose-copy) {
+    margin: 0;
+    font-family: var(--font-prose);
+    font-size: var(--text-prose);
+    font-weight: 400;
+    line-height: var(--lh-prose);
+    letter-spacing: 0;
+    color: var(--color-text-secondary);
+  }
+  .episode-heatmap-reading :global(.episode-reading .prose-copy + .prose-copy) { margin-top: var(--space-sm); }
+  .episode-tooltip { display: none; }
+
+  @media (max-width: 88rem) {
+    .episode-heatmap-body { grid-template-columns: 1fr; }
+    .episode-heatmap-sidebar {
+      width: auto;
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .episode-heatmap-topline {
+      align-items: center;
+      gap: var(--space-sm);
+      padding-left: 0;
+    }
+
+    .episode-density-control {
+      display: inline-flex;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+
+    .episode-density-control button {
+      min-height: 2rem;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0;
+      background: transparent;
+      color: var(--color-text-dim);
+      font-family: var(--plot-label-font);
+      font-size: var(--text-xs);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .episode-density-control button + button {
+      border-left: 0;
+    }
+
+    .episode-density-control button[aria-pressed='true'] {
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .episode-density-control button:focus-visible {
+      outline: 1px solid var(--color-accent);
+      outline-offset: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .episode-heatmap-canvas {
+      overflow-x: visible;
+      touch-action: pan-y;
+    }
+
+    .episode-heatmap-canvas :global(svg) {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .episode-heatmap-canvas :global(.heat-row-summary) {
+      display: none;
+    }
+
+    .episode-tooltip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 110;
+      display: block;
+      width: max-content;
+      max-width: calc(100vw - 1.5rem);
+      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0;
+      background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+      color: var(--color-text);
+      font-family: var(--font-prose);
+      font-size: var(--text-xs);
+      line-height: 1.25;
+      letter-spacing: 0;
+      white-space: normal;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.15s,
+        visibility 0s linear 0.15s;
+    }
+
+    .episode-tooltip strong,
+    .episode-tooltip span {
+      display: block;
+    }
+
+    .episode-tooltip span {
+      margin-top: 0.15rem;
+      white-space: pre-line;
+    }
+
+    .episode-tooltip.is-open {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .episode-heatmap-canvas :global(.heat-cell) { transition: none; }
+    .episode-tooltip { transition: none; }
+  }
+</style>

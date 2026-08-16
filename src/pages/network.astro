@@ -3,6 +3,7 @@ import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import NetworkAtlas from '../components/NetworkAtlas.astro';
 import NetworkMatrix from '../components/NetworkMatrix.astro';
+import CharacterEpisodeHeatmap from '../components/CharacterEpisodeHeatmap.astro';
 import Layout from '../layouts/Layout.astro';
 
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
@@ -261,6 +262,21 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       </div>
     </section>
 
+    <section class="network-section episode-section" aria-labelledby="mention-density-title">
+      <div class="episode-stage">
+        <figure class="section-chart episode-chart" aria-labelledby="mention-density-title">
+          <CharacterEpisodeHeatmap>
+            <h2 slot="title" class="episode-heading" id="mention-density-title">Character mention density</h2>
+            <div slot="reading" class="episode-reading">
+              <p class="prose-copy">The twenty characters on this heatmap have the highest raw mention totals across the novel. Strictly speaking, the plot has each character's mentions in an episode <i>per</i> 1,000 words, normalised within-character so that the final value is within the 0-to-1 range, with that character's own maximum set to 1; finally, the characters are ordered, from top to bottom, by their peak-mention episodes. Switch to <a href="#episode-heatmap" data-density-mode-toggle aria-label="Switch to raw density">raw</a> density here to compare <i>across</i> characters. Raw counts, episode lengths, and the calculation are in the <a href={`${base}/methods/#character-trajectories`}>Methods</a>.</p>
+              <p class="prose-copy">Here we see <button class="matrix-pair-ref episode-ref" type="button" data-trajectory-select="6,8" aria-controls="episode-heatmap" aria-label="Highlight Roger and Jessica's mention trajectories" aria-pressed="false">Roger and Jessica</button> flare together briefly at episode 1.07 and <button class="matrix-pair-ref matrix-pair-ref--zone episode-ref" type="button" data-trajectory-select="4" aria-controls="episode-heatmap" aria-pressed="false">Slothrop</button>'s burst of activity at the start of Part II as we move to continental Europe; we see the brothers <button class="matrix-pair-ref matrix-pair-ref--rocket episode-ref" type="button" data-trajectory-select="16" aria-controls="episode-heatmap" aria-label="Highlight Tchitcherine's mention trajectory" aria-pressed="false">Tchitcherine</button> and <button class="matrix-pair-ref matrix-pair-ref--rocket episode-ref" type="button" data-trajectory-select="11" aria-controls="episode-heatmap" aria-label="Highlight Enzian's mention trajectory" aria-pressed="false">Enzian</button>, and then <button class="matrix-pair-ref matrix-pair-ref--pokler episode-ref" type="button" data-trajectory-select="17,9,18" aria-controls="episode-heatmap" aria-label="Highlight Pökler, Jamf, and Bland's mention trajectories" aria-pressed="false">Pökler, Jamf, and Bland</button> near the end of Part III.</p>
+              <p class="prose-copy">I loved working through this analysis, as seeing each character cluster brought back so many scenes and memories.</p>
+            </div>
+          </CharacterEpisodeHeatmap>
+        </figure>
+      </div>
+    </section>
+
   </main>
 
   <Footer slot="footer" />
@@ -509,6 +525,35 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     padding-left: 0;
   }
 
+  .episode-section {
+    padding-inline: 0;
+    margin-top: var(--space-lg);
+  }
+
+  .episode-stage {
+    position: static;
+  }
+
+  .episode-heading {
+    position: static;
+    width: auto;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1;
+    text-align: left;
+  }
+
+  .episode-chart {
+    margin-top: 0;
+  }
+
+  .episode-ref {
+    font-size: inherit;
+  }
+
   .matrix-stage {
     position: relative;
     width: 100%;
@@ -618,6 +663,10 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     --matrix-pair-colour: var(--network-rocket);
   }
 
+  .matrix-pair-ref--pokler {
+    --matrix-pair-colour: var(--network-pokler);
+  }
+
   .matrix-pair-ref:focus-visible {
     outline: 1px solid currentColor;
     outline-offset: 0.15em;
@@ -712,6 +761,16 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     .matrix-copy::before {
       display: none;
     }
+
+    .episode-heading {
+      position: static;
+      width: auto;
+      margin: 0;
+      font-size: var(--text-h3);
+      line-height: var(--lh-heading);
+      text-align: left;
+    }
+
   }
 
 
@@ -1048,6 +1107,109 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && mobileNetwork.matches) clearMatrixPairHighlight();
+  });
+
+  type ReadingReference = {
+    selector: string;
+    eventName: string;
+    clearEventName: string;
+    commitEventName: string;
+    key: 'displayOrder' | 'index';
+  };
+
+  type ReadingSelection = {
+    displayOrder?: number;
+    displayOrders?: number[];
+    index?: number;
+    locked?: boolean;
+  } | null;
+
+  function wireReadingReferences(config: ReadingReference) {
+    const refs = Array.from(document.querySelectorAll<HTMLButtonElement>(config.selector));
+    let pinned: HTMLButtonElement | null = null;
+    let externalPinned = false;
+
+    function valuesFor(ref: HTMLButtonElement) {
+      const value = ref.dataset[config.key === 'displayOrder' ? 'trajectorySelect' : 'castBoundarySelect'] ?? '';
+      return value.split(',').map((entry) => Number(entry.trim())).filter(Number.isFinite);
+    }
+
+    function detailFor(ref: HTMLButtonElement, locked: boolean): ReadingSelection {
+      const values = valuesFor(ref);
+      if (!values.length) return null;
+      return config.key === 'displayOrder'
+        ? { displayOrder: values[0], displayOrders: values, locked }
+        : { index: values[0], locked };
+    }
+
+    function dispatch(ref: HTMLButtonElement | null, locked = false) {
+      refs.forEach((candidate) => candidate.setAttribute('aria-pressed', String(candidate === pinned)));
+      const detail = ref ? detailFor(ref, locked) : null;
+      document.dispatchEvent(new CustomEvent<ReadingSelection>(config.eventName, { detail }));
+    }
+
+    document.addEventListener(config.clearEventName, () => {
+      pinned = null;
+      externalPinned = false;
+      refs.forEach((candidate) => candidate.setAttribute('aria-pressed', 'false'));
+    });
+
+    document.addEventListener(config.commitEventName, (event) => {
+      const detail = (event as CustomEvent<ReadingSelection>).detail;
+      const value = config.key === 'displayOrder' ? detail?.displayOrder : detail?.index;
+      const committedValues = config.key === 'displayOrder' && detail?.displayOrders?.length
+        ? detail.displayOrders
+        : value === undefined ? [] : [value];
+      const committed = refs.find((candidate) => {
+        const values = valuesFor(candidate);
+        return values.length === committedValues.length
+          && values.every((candidateValue, index) => candidateValue === committedValues[index]);
+      }) ?? null;
+      pinned = committed;
+      externalPinned = committed === null;
+      refs.forEach((candidate) => candidate.setAttribute('aria-pressed', String(candidate === pinned)));
+    });
+
+    refs.forEach((ref) => {
+      ref.addEventListener('pointerenter', (event) => {
+        if (event.pointerType !== 'touch' && pinned === null && !externalPinned) dispatch(ref, false);
+      });
+      ref.addEventListener('pointerleave', (event) => {
+        if (event.pointerType !== 'touch' && pinned === null && !externalPinned) dispatch(null);
+      });
+      ref.addEventListener('focus', () => {
+        if (pinned === null && !externalPinned) dispatch(ref, false);
+      });
+      ref.addEventListener('blur', () => {
+        if (pinned === null && !externalPinned) dispatch(null);
+      });
+      ref.addEventListener('click', () => {
+        if (pinned === ref) {
+          pinned = null;
+          dispatch(null);
+          return;
+        }
+        pinned = ref;
+        externalPinned = false;
+        dispatch(ref, true);
+      });
+    });
+
+    return () => {
+      if (pinned !== null || externalPinned) {
+        pinned = null;
+        externalPinned = false;
+        dispatch(null);
+      }
+    };
+  }
+
+  wireReadingReferences({
+    selector: '[data-trajectory-select]',
+    eventName: 'trajectory-select',
+    clearEventName: 'trajectory-selection-cleared',
+    commitEventName: 'trajectory-selection-committed',
+    key: 'displayOrder',
   });
 
   const backdrop = document.getElementById('network-backdrop');
