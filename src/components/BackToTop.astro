@@ -38,6 +38,7 @@ const { threshold = 480, class: className = '' } = Astro.props;
     }
 
     button.addEventListener('click', () => {
+      document.getElementById('main-content')?.focus({ preventScroll: true });
       window.scrollTo({
         top: 0,
         behavior: reducedMotion.matches ? 'auto' : 'smooth',

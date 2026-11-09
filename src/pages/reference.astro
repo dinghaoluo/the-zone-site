@@ -28,7 +28,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 <Layout title="References" description="Bibliography and source notes for The Zone.">
   <Nav slot="nav" />
 
-  <main class="site-page reference-page" id="main-content">
+  <main class="site-page reference-page" id="main-content" tabindex="-1">
     <header class="page-header reference-header">
       <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
       <h1 class="page-title">References</h1>
@@ -39,7 +39,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         <div class="reference-search">
           <SearchField
             id="reference-search"
-            count={`${items.length} references`}
             ariaLabel="Search references"
           />
         </div>
@@ -158,7 +157,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     const emptyState = referencePage.querySelector<HTMLElement>('#reference-empty');
     const emptyMessage = referencePage.querySelector<HTMLElement>('#reference-empty-message');
     const referenceList = referencePage.querySelector<HTMLElement>('#reference-list');
-    const count = referencePage.querySelector<HTMLElement>('[data-site-search-count]');
     const categoryFilter = referencePage.querySelector<HTMLElement>('#reference-category-filter');
     const searchRecords = cards.map(card => {
       const titleElement = card.querySelector<HTMLElement>('[data-reference-title-text]');
@@ -274,13 +272,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         if (show) visible += 1;
       });
 
-      const filtered = activeCategory !== 'all' || hasSearch;
       const suffix = activeCategory === 'all' ? '' : ` in ${categoryLabel(activeCategory)}`;
-      if (count) {
-        count.textContent = filtered
-          ? `${visible} of ${cards.length} references${suffix}`
-          : `${cards.length} references`;
-      }
       if (referenceList) referenceList.hidden = visible === 0;
       if (emptyState) emptyState.hidden = visible !== 0;
       if (emptyMessage) {

@@ -219,6 +219,10 @@ function isActive(href: string): boolean {
   }
 
   @media (max-width: 48rem) {
+    .nav {
+      overflow: visible;
+    }
+
     .nav-inner {
       display: flex;
       flex-wrap: wrap;
@@ -257,25 +261,29 @@ function isActive(href: string): boolean {
     }
 
     .nav-menu-panel {
-      display: grid;
-      flex: 1 0 100%;
-      order: 3;
-      grid-template-rows: 0fr;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      display: block;
       width: 100%;
+      max-height: 0;
       overflow: hidden;
+      background: var(--color-nav-bg);
       border-top: 1px solid transparent;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transition:
-        grid-template-rows 220ms ease,
-        opacity 150ms ease,
+        max-height 180ms ease,
+        opacity 140ms ease,
         border-color 150ms ease,
-        visibility 0s linear 220ms;
+        visibility 0s linear 180ms;
     }
 
     .nav.is-menu-open .nav-menu-panel {
-      grid-template-rows: 1fr;
+      max-height: min(16rem, calc(100dvh - 3.15rem));
       border-top-color: var(--color-border-subtle);
       opacity: 1;
       visibility: visible;
@@ -293,7 +301,7 @@ function isActive(href: string): boolean {
       font-size: 0.84rem;
       white-space: nowrap;
       width: 100%;
-      min-height: 34px;
+      min-height: 38px;
       padding: 0 0.25rem;
       line-height: 1;
       display: flex;
@@ -305,18 +313,13 @@ function isActive(href: string): boolean {
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      gap: 0;
+      gap: 0.1rem;
       min-height: 0;
       width: max-content;
       max-width: 100%;
       margin: 0 calc(2.25rem + 0.65rem - 0.25rem) 0 auto;
+      padding: 0.55rem 0 0.7rem;
       overflow: hidden;
-      transform: translateY(-0.2rem);
-      transition: transform 220ms ease;
-    }
-
-    .nav.is-menu-open .nav-links {
-      transform: none;
     }
   }
 

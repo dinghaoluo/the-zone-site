@@ -6,7 +6,7 @@ export function normaliseSearch(value: string): string {
     .replace(/ß/g, 'ss')
     .replace(/æ/g, 'ae')
     .replace(/œ/g, 'oe')
-    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .trim();
 }
 
@@ -33,7 +33,7 @@ function normaliseCharacter(value: string): string {
     .replace(/ß/g, 'ss')
     .replace(/æ/g, 'ae')
     .replace(/œ/g, 'oe')
-    .replace(/[^a-z0-9]/g, '');
+    .replace(/[^\p{L}\p{N}]/gu, '');
 }
 
 export function highlightRanges(value: string, compactQuery: string): { start: number; end: number }[] {
@@ -48,8 +48,8 @@ export function highlightRanges(value: string, compactQuery: string): { start: n
     const end = index + character.length;
     const normalised = normaliseCharacter(character);
 
-    for (const _ of normalised) {
-      compactValue += _;
+    compactValue += normalised;
+    for (let offset = 0; offset < normalised.length; offset++) {
       offsets.push({ start, end });
     }
 

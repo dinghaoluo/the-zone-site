@@ -37,11 +37,66 @@ const canonicalURL = Astro.site ? new URL(canonicalPath, Astro.site) : Astro.url
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <slot name="nav" />
     <slot />
     <slot name="footer" />
 
     <script>
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const disclosureTime = getComputedStyle(document.documentElement).getPropertyValue('--disclosure-duration').trim();
+      const disclosureDuration = parseFloat(disclosureTime) * (disclosureTime.endsWith('ms') ? 1 : 1000);
+
+      document.querySelectorAll<HTMLDetailsElement>('details').forEach(details => {
+        const summary = details.querySelector('summary')!;
+        const content = summary.nextElementSibling as HTMLElement;
+        let expanded = details.open;
+        let animation: Animation | null = null;
+        let fade: Animation | null = null;
+        let settledHeight = details.getBoundingClientRect().height;
+        details.dataset.expanded = String(expanded);
+
+        function setExpanded(open: boolean, height = details.getBoundingClientRect().height) {
+          const opacity = details.open ? getComputedStyle(content).opacity : '0';
+          animation?.cancel();
+          fade?.cancel();
+          expanded = open;
+          details.dataset.expanded = String(open);
+          details.open = true;
+          const endHeight = open ? details.getBoundingClientRect().height
+            : summary.getBoundingClientRect().height + details.offsetHeight - details.clientHeight;
+          const duration = reducedMotion.matches ? 0 : disclosureDuration;
+          details.style.overflow = 'clip';
+          animation = details.animate([{ height: `${height}px` }, { height: `${endHeight}px` }], {
+            duration, easing: 'ease', fill: 'both',
+          });
+          fade = content.animate([{ opacity }, { opacity: open ? 1 : 0 }], {
+            duration, easing: 'ease', fill: 'both',
+          });
+          animation.onfinish = () => {
+            details.open = expanded;
+            animation?.cancel();
+            fade?.cancel();
+            animation = null;
+            details.style.overflow = '';
+            settledHeight = details.getBoundingClientRect().height;
+          };
+        }
+
+        summary.addEventListener('click', event => {
+          event.preventDefault();
+          setExpanded(!expanded);
+        });
+        details.addEventListener('toggle', () => {
+          if (animation) return;
+          expanded = details.open;
+          details.dataset.expanded = String(expanded);
+        });
+        new ResizeObserver(() => {
+          if (expanded) setExpanded(true, animation ? undefined : settledHeight);
+        }).observe(content);
+      });
+
       document.querySelectorAll('.h-scroll-fade').forEach(outer => {
         const scroller = outer.querySelector('.h-scroll-fade__scroller') as HTMLElement | null;
         if (!scroller) return;
@@ -121,3 +176,4 @@ const canonicalURL = Astro.site ? new URL(canonicalPath, Astro.site) : Astro.url
 
 <style is:global>
   @import "../styles/global.css";
+</style>

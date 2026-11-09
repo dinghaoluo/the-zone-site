@@ -29,6 +29,11 @@
   --plot-label-font: var(--font-prose);
   --plot-label-weight: 400;
   --plot-label-letter-spacing: 0;
+  --interaction-duration: 160ms;
+  --disclosure-duration: 220ms;
+  --figure-highlight-duration: var(--interaction-duration);
+  --figure-muted-opacity: 0.1;
+  --figure-muted-label-opacity: 0.35;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -101,7 +106,7 @@
 
   --color-text: #2c3133;
   --color-text-secondary: #5d6465;
-  --color-text-dim: #7b8180;
+  --color-text-dim: #686f6e;
 
   --color-accent: #96513e;
   --color-accent-hover: #763e30;
@@ -205,9 +210,67 @@ a.link-block {
   background-image: none;
 }
 
+button,
+input,
+select,
+summary {
+  transition:
+    color var(--interaction-duration) ease,
+    background-color var(--interaction-duration) ease,
+    border-color var(--interaction-duration) ease,
+    box-shadow var(--interaction-duration) ease;
+}
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+.disclosure-toggle {
+  position: relative;
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-left: 0.3em;
+  vertical-align: 0.03em;
+}
+
+.disclosure-toggle::before,
+.disclosure-toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: currentColor;
+}
+
+.disclosure-toggle::before { height: 1px; }
+.disclosure-toggle::after {
+  width: 1px;
+  transition: transform var(--disclosure-duration) ease;
+}
+
+details[data-expanded='true'] > summary .disclosure-toggle::after,
+details[open]:not([data-expanded]) > summary .disclosure-toggle::after {
+  transform: scaleY(0);
+}
+
 :focus-visible {
   outline: 1px solid var(--color-accent);
   outline-offset: 0.25rem;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--space-sm);
+  left: var(--space-md);
+  z-index: 200;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--color-accent);
+  background: var(--color-bg);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
 }
 
 h1, h2, h3, h4 {

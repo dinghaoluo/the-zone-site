@@ -1,18 +1,15 @@
 ---
 interface Props {
   id: string;
-  count: string;
   ariaLabel: string;
 }
 
-const { id, count, ariaLabel } = Astro.props;
-const countId = `${id}-count`;
+const { id, ariaLabel } = Astro.props;
 ---
 
 <div class="site-search" role="search" aria-label={ariaLabel} data-site-search>
   <div class="site-search-head">
     <label for={id}>Search</label>
-    <p id={countId} role="status" aria-live="polite" data-site-search-count>{count}</p>
   </div>
   <div class="site-search-input-wrap">
     <span class="site-search-prefix" aria-hidden="true">
@@ -27,7 +24,6 @@ const countId = `${id}-count`;
       autocomplete="off"
       spellcheck="false"
       placeholder="Type to search"
-      aria-describedby={countId}
       aria-keyshortcuts="/"
       data-site-search-input
     />
