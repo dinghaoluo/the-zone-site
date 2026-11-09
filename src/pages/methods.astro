@@ -1,29 +1,37 @@
 ---
 import Footer from '../components/Footer.astro';
+import LexicalNetworkEvidence from '../components/LexicalNetworkEvidence.astro';
 import Nav from '../components/Nav.astro';
 import Layout from '../layouts/Layout.astro';
 
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 
-<Layout title="Methods" description="How data is collected, structured, and visualised across The Zone.">
+<Layout title="Methods" description="How I collect, structure and visualise data across The Zone.">
   <Nav slot="nav" />
 
-  <main class="site-page methods-page" id="main-content">
+  <main class="site-page methods-page" id="main-content" tabindex="-1">
     <header class="page-header">
       <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
       <h1 class="page-title">Methods</h1>
-      <p class="page-wip">[ <i>work in progress</i> ]</p>
     </header>
+
     <div class="methods-body">
       <nav class="methods-toc" aria-label="Table of contents">
         <ol class="toc-l1">
           <li>
             <a href="#network"><span class="toc-number">1</span>Network</a>
             <ol class="toc-l2">
-              <li><a href="#atlas"><span class="toc-number">1.1</span>Atlas</a></li>
-              <li><a href="#matrix"><span class="toc-number">1.2</span>Matrix</a></li>
+              <li><a href="#atlas"><span class="toc-number">1.1</span>Character atlas</a></li>
+              <li><a href="#matrix"><span class="toc-number">1.2</span>Co-occurrence matrix</a></li>
+              <li><a href="#character-trajectories"><span class="toc-number">1.3</span>Character-mention heatmap</a></li>
+              <li><a href="#cast-composition"><span class="toc-number">1.4</span>Cast transitions</a></li>
+              <li><a href="#lexical-density-map"><span class="toc-number">1.5</span>Lexical density map</a></li>
+              <li><a href="#lexical-atlas"><span class="toc-number">1.6</span>Lexical atlas</a></li>
             </ol>
+          </li>
+          <li>
+            <a href="#glossary"><span class="toc-number">2</span>Glossary</a>
           </li>
         </ol>
       </nav>
@@ -32,48 +40,133 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         <h2><span class="section-number">1</span>Network</h2>
 
         <section id="atlas">
-          <h3><span class="section-number">1.1</span>Atlas</h3>
+          <h3><span class="section-number">1.1</span><a href={`${base}/network/#character-atlas-title`}>Character atlas</a></h3>
 
-          <h4>Unit of analysis</h4>
-          <p class="prose-copy">The fundamental unit is the <i>episode</i>: one of the 73 numbered sections into which <i>Gravity's Rainbow</i> is divided across its four parts. Episodes range from 611 lexical tokens (1.11) to 16,508 (3.11); this variation matters because longer episodes are not intrinsically more connective than shorter ones, and the weighting scheme described below compensates for episode length.</p>
+          <h4>Episodes and lexical tokens</h4>
+          <p class="prose-copy">I divide <i>Gravity's Rainbow</i> into numbered episodes across four parts. A lexical token is one extracted word occurrence, such as one appearance of <code>rocket</code>, with internal apostrophes and lexical hyphens retained. Network densities use these lexical-token denominators.</p>
 
-          <h4>Entity recognition and mention tracking</h4>
-          <p class="prose-copy">I maintain a roster of named human characters (currently 178) identified through close reading, cross-referenced against Weisenburger's companion and the Pynchon Wiki. For each episode, I record every unambiguous mention of each character: full names, surnames, given names, pronouns resolved manually where the referent is clear from context, and established nicknames (e.g. 'Pirate' for Prentice, 'Säure' for Bummer). Ambiguous references and unnamed characters ('the girl', 'a soldier') are excluded. The count for a character in a given episode is the total number of such resolved mentions.</p>
-          <p class="prose-copy">This is deliberately a measure of <i>textual presence</i> rather than narrative presence: a character who is discussed extensively in absentia registers just as strongly as one who acts on the page. The distinction matters for Pynchon, whose absent characters (Slothrop in Part 4, Blicero for much of Parts 2 and 3) often dominate the discourse of episodes they never physically enter.</p>
+          <h4>Characters and mentions</h4>
+          <p class="prose-copy">The registry contains named human characters identified through close reading and checked against Steven Weisenburger's <a href="https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/" target="_blank" rel="noopener"><i>A Gravity's Rainbow Companion</i></a> and the <a href="https://gravitys-rainbow.pynchonwiki.com/wiki/index.php?title=Main_Page" target="_blank" rel="noopener">Pynchon Wiki</a>. The matching layer counts unambiguous registered forms, including full names, surnames, given names and established nicknames such as 'Pirate' for Prentice and 'Säure' for Bummer. Pronouns, ambiguous forms and unnamed descriptions such as 'the girl' or 'a soldier' remain outside it.</p>
+          <p class="prose-copy">A character discussed in absentia contributes in the same way as one acting in the scene; Slothrop in Part 4 and Blicero through much of Parts 2 and 3 are the clearest cases.</p>
 
           <h4>Edge construction and weighting</h4>
-          <p class="prose-copy">Two characters share an edge if both appear in at least one common episode. The edge weight is constructed to reflect not merely how often two characters co-occur but how concentrated that co-occurrence is. For each shared episode <i>e</i>, I compute each character's share of total tracked mentions in <i>e</i> and take the minimum of the two shares. Summing these minima across all shared episodes produces the edge weight:</p>
+          <p class="prose-copy">Two characters share an edge when both have a registered mention in at least one episode. For each shared episode <i>e</i>, I calculate each character's share of all tracked character mentions in that episode and take the smaller share. The edge weight is the sum of these minima:</p>
           <p class="prose-copy methods-formula"><i>w</i>(<i>i</i>, <i>j</i>) = &Sigma;<sub><i>e</i> &isin; <i>E<sub>ij</sub></i></sub> min( <i>m<sub>i,e</sub></i> / <i>M<sub>e</sub></i> , <i>m<sub>j,e</sub></i> / <i>M<sub>e</sub></i> )</p>
-          <p class="prose-copy">where <i>m<sub>i,e</sub></i> is the mention count of character <i>i</i> in episode <i>e</i>, <i>M<sub>e</sub></i> is the total tracked mentions in <i>e</i>, and <i>E<sub>ij</sub></i> is the set of episodes in which both <i>i</i> and <i>j</i> appear. The minimum operator ensures that a character who dominates a crowded episode does not inflate the weight of every pairwise tie in that episode; only the lesser partner's share counts. A two-hander where both characters split attention equally contributes more than an ensemble scene where one character briefly surfaces among dozens.</p>
+          <p class="prose-copy">Here, <i>m<sub>i,e</sub></i> is the mention count for character <i>i</i> in episode <i>e</i>, <i>M<sub>e</sub></i> is the total tracked character mentions in <i>e</i> and <i>E<sub>ij</sub></i> contains the episodes shared by <i>i</i> and <i>j</i>. The smaller share caps what a dominant character can contribute to every tie in a crowded episode; a two-hander split evenly between two names contributes more than an ensemble episode in which one name surfaces briefly. This denominator is named-character mention mass.</p>
 
           <h4>Community detection</h4>
-          <p class="prose-copy">Communities are identified by applying greedy modularity maximisation (Clauset, Newman, and Moore, 2004) to the weighted adjacency matrix. The algorithm is agglomerative: it starts with each node as its own community and iteratively merges the pair of communities whose merger yields the greatest increase in modularity, stopping when no merge improves the score. This produces five communities that correspond recognisably to narrative groupings: The Zone Squad (Slothrop and the Zone-associated figures), London Counterforce (Pointsman, Roger, Jessica, Pirate, and their milieu), The Rocket (Blicero, Gottfried, Enzian, the Schwarzkommando, and Tchitcherine's network), Peenemünde (Pökler, Mondaugen, Jamf, and the chemical-industrial complex), and Afterlives (the séance figures, Lyle Bland, and the departed). These labels are my own retrospective interpretation of what the algorithm surfaces; the clustering itself receives no narrative priors.</p>
+          <p class="prose-copy">I apply weighted greedy modularity maximisation, following <a href="https://doi.org/10.1103/PhysRevE.70.066111" target="_blank" rel="noopener">Aaron Clauset, Mark Newman and Cristopher Moore</a> (2004), to the adjacency matrix. The agglomerative calculation begins with one node per community, merges the pair producing the largest modularity gain and stops when no merge improves the score. I named the resulting groups from the characters gathered in each: The Zone Squad; London Counterforce; The Rocket; Peenemünde; Afterlives. These names are retrospective interpretations. Edge weights alone determine the partition; the names and plotline reading enter afterwards.</p>
 
           <h4>Layout</h4>
-          <p class="prose-copy">Node positions are pre-computed offline using a Fruchterman-Reingold force-directed layout (1991) initialised from a community-seeded arrangement: nodes belonging to the same community start in the same quadrant, which accelerates convergence and produces more legible cluster separation than random initialisation. The layout runs for 500 iterations with Barnes-Hut approximation (threshold 0.5) and exports fixed (x, y) coordinates.</p>
-          <p class="prose-copy">At render time, the browser does not run a live simulation. D3's <code>forceCollide</code> applies a collision-avoidance pass (100 ticks, radius proportional to node size plus label padding) to nudge overlapping nodes apart without displacing the global topology. This ensures labels remain legible at all zoom levels without introducing the visual instability of a continuously animated layout.</p>
+          <p class="prose-copy">I place the communities around fixed centroids chosen for the display. Within each community, NetworkX runs a separate <a href="https://doi.org/10.1002/spe.4380211102" target="_blank" rel="noopener">Fruchterman-Reingold</a> spring layout, then nudges each node towards the weighted centre of its cross-community neighbours. The script exports fixed <i>x</i> and <i>y</i> coordinates.</p>
+          <p class="prose-copy">In the browser, D3 keeps each node near those coordinates with <i>x</i> and <i>y</i> forces, while <code>forceCollide</code> reduces circle overlap. Measured text bounds place labels beside, above or below their nodes.</p>
 
           <h4>Visual encoding</h4>
-          <p class="prose-copy">Node radius scales with weighted degree (the sum of all incident edge weights), square-rooted and linearly mapped to a display range of 3 to 12 SVG units. Labels are assigned to three visibility tiers based on weighted-degree rank: tier 1 (top 15) always visible, tier 2 (16 to 40) shown on community highlight or hover, tier 3 (remainder) shown only on direct hover. Edge stroke width scales linearly with weight.</p>
+          <p class="prose-copy">For each node, the export takes the square root of weighted degree divided by the maximum weighted degree; the browser maps that value from 0 to 1 to a radius of 5 to 24 SVG units. Tier 1 contains the highest weighted-degree characters plus Franz Pökler, promoted so that his community retains a visible anchor.</p>
+          <p class="prose-copy">Edge display width is the square root of edge weight divided by the maximum edge weight; the browser maps that value to a stroke width of 0.3 to 1.5 SVG units. Edges below the ordinary display threshold remain in the data.</p>
         </section>
 
         <section id="matrix">
-          <h3><span class="section-number">1.2</span>Matrix</h3>
+          <h3><span class="section-number">1.2</span><a href={`${base}/network/#cooccurrence-title`}>Co-occurrence matrix</a></h3>
 
           <h4>Character selection</h4>
-          <p class="prose-copy">The matrix includes the 40 characters with the highest weighted degree. This threshold is a legibility constraint: at cell dimensions of 16 &times; 10.24 px, the resulting matrix occupies a viewport-width figure while keeping row and column labels readable at their rendered size. Characters outside the top 40 retain full representation in the atlas; their exclusion from the matrix is a visual limitation, not an analytical one.</p>
+          <p class="prose-copy">Figure 2 uses the characters with the highest weighted degree. The Character atlas retains the complete connected profile.</p>
 
           <h4>Ordering</h4>
-          <p class="prose-copy">Characters are sorted by two keys: community membership (primary) and weighted degree within community (secondary, descending). This produces the block-diagonal structure visible along the main diagonal: clusters of strong within-community ties appear as dense coloured blocks, and cross-community connections scatter into the off-diagonal regions. The ordering is fixed rather than interactive; a seriation algorithm (e.g. optimal leaf ordering on a dendrogram) might reveal additional structure but would obscure the community labels that anchor interpretation.</p>
+          <p class="prose-copy">I sort the selected characters first by community ID, then by descending weighted degree within each community. Strong within-community ties therefore gather into coloured blocks along the diagonal; cross-community ties fall outside those blocks. The order remains fixed so that the community labels and the Character atlas use the same grouping.</p>
 
           <h4>Visual encoding</h4>
-          <p class="prose-copy">Only the lower triangle is rendered, since co-occurrence is symmetric. Cell opacity encodes edge weight on a linear scale mapped from the minimum displayed weight (opacity 0.15) to the maximum (0.95). Cells linking two characters within the same community take that community's assigned colour; cross-community cells use the page's neutral text colour (<code>--color-text-dim</code>). The diagonal carries no data cells but is marked with a thin rule to demarcate the matrix boundary. Community labels are positioned in the vacant upper triangle, rotated to run parallel with the diagonal, providing group identification without consuming additional vertical space.</p>
+          <p class="prose-copy">The figure renders the lower triangle because the co-occurrence matrix is symmetric. Opacity follows <code>0.15 + 0.8 &times; weight / maximum weight</code>; zero would map to 0.15, the smallest positive displayed edge maps to about 0.153 and the maximum maps to 0.95. A within-community cell takes that community's colour, whilst a cross-community cell uses <code>--color-text-dim</code>. A thin rule marks the empty diagonal. Community labels occupy the unused upper triangle and run parallel to the diagonal.</p>
 
           <h4>Limitations</h4>
-          <p class="prose-copy">Co-mention at episode level is too coarse a unit to establish conversation, encounter, or relationship. Two characters who appear in the same 10,000-word episode may never interact within it. The matrix (and the atlas) should be read as a map of textual proximity rather than a social network in the strict sense: it captures where Pynchon distributes attention, not necessarily where characters engage with one another.</p>
+          <p class="prose-copy">Episode-level co-mention establishes textual co-presence; it cannot establish conversation, encounter or relationship. Two characters in the same episode may occupy separate scenes. The Co-occurrence matrix and Character atlas therefore map how Pynchon distributes named attention across formal episodes.</p>
+        </section>
+
+        <section id="character-trajectories">
+          <h3><span class="section-number">1.3</span><a href={`${base}/network/#mention-density-title`}>Character-mention heatmap</a></h3>
+
+          <h4>Mention density</h4>
+          <p class="prose-copy">Figure 3 takes the characters with the highest raw mention totals. Its columns follow formal episode order across the four parts. I order the rows by the episode of maximum mention density, from earliest to latest; ties follow effective first appearance. Row labels and cells use the community colours from the Character atlas. The opening view divides each character's densities by that character's own maximum; the control marked 'raw' restores one common density scale.</p>
+
+          <h4>Raw counts and episode lengths</h4>
+          <p class="prose-copy">Each cell begins with a registered mention count and its episode's lexical-token count. I calculate raw density as mentions divided by lexical tokens, multiplied by 1,000. The raw view uses a shared 0 to 18 per-1,000 domain; the observed maximum is 17.5806. The research table retains the raw count, denominator and density for every character-episode pair, together with each character's raw total and peaks. A density peak locates the episode in which a character is most concentrated relative to episode length, which can differ from the largest raw count.</p>
+
+          <h4>Display choices and limits</h4>
+          <p class="prose-copy">I use within-character normalisation for the opening view because low-frequency trajectories otherwise stay close to the background. This display gives every row's peak the same full opacity, so it supports comparison of timing and shape within a character; it cannot support comparison of absolute prominence between characters. The raw control restores that comparison on the shared scale. Zero-density cells render at opacity 0.10 so that absences remain visible; positive cells begin at 0.14 and rise to the active scale maximum. I leave the observations unsmoothed and add no threshold marks; each cell remains one formal episode.</p>
+        </section>
+
+        <section id="cast-composition">
+          <h3><span class="section-number">1.4</span><a href={`${base}/network/#cast-composition-title`}>Cast transitions</a></h3>
+
+          <h4>Adjacent episode boundaries</h4>
+          <p class="prose-copy">Figure 4 compares adjacent formal episodes using the complete character profile. For each episode, I convert the character counts into mention shares after adding one prior mention distributed according to each character's whole-novel share. This is whole-novel empirical-prior shrinkage with total concentration 1; it has little effect on an ordinary episode and remains visible in an episode with very few named mentions. Base-2 Jensen-Shannon divergence compares each pair of adjacent share distributions. A value of 0 means identical distributions; 1 bit is the upper bound for distributions with no overlap. Stem height carries that value.</p>
+
+          <h4>Sensitivity checks</h4>
+          <p class="prose-copy">The research data flag a boundary which remains in the top ten under at least six of eight specifications and whose two episodes each contain at least 20 character mentions. The eight specifications use prior concentrations of 0, 1, 5 and 10; pool characters with fewer than 5, 10 or 20 whole-novel mentions; and repeat the calculation without Slothrop. The six-of-eight rule selects exploratory flags; it is not a probability threshold. The flags remain in the data and are omitted from Figure 4.</p>
+
+          <h4>Contributor tables</h4>
+          <p class="prose-copy">Jensen-Shannon divergence decomposes into one non-negative contribution per character. The selected reading names the largest contributions in each direction, with direction taken from the change in smoothed mention share. The research data retain the endpoint totals, smoothed share changes and character contributions for each boundary. Contribution is accounting; it does not imply causation. 'Other names' is the residual of the calculation; it does not count active characters.</p>
+        </section>
+
+        <section id="lexical-density-map">
+          <h3><span class="section-number">1.5</span><a href={`${base}/network/#lexical-through-episodes-title`}>Lexical density map</a></h3>
+
+          <h4>Keyness cohort and episode density</h4>
+          <p class="prose-copy">Figure 5 uses the exact forms that David Letzler retains in both of his manually filtered comparisons, one against the Brown Corpus and one against its fiction subset. Membership in both lists determines the cohort. Letzler's comparative ranks do not enter the episode denominator or displayed rate.</p>
+          <p class="prose-copy">For form <i>w</i> in episode <i>e</i>, I calculate <i>density</i>(<i>w</i>, <i>e</i>) = 1,000 &times; <i>c</i>(<i>w</i>, <i>e</i>) / <i>n</i>(<i>e</i>). Here, <i>c</i> is the exact normalised surface-form count and <i>n</i> is the complete lexical-token count defined in Figure 1, before the stop-word filtering and vocabulary cut-offs used for Figure 6. The <a href={`${base}/data/network/lexical-through-episodes/episode_density.csv`}>density table (CSV)</a> retains the raw count, lexical-token denominator and per-1,000 rate for every form and episode.</p>
+
+          <h4>Display choices and limits</h4>
+          <p class="prose-copy">I order the rows by the episode in which each form reaches its highest density. All episodes occupy equal horizontal positions; trace height and colour use one linear scale from 0 to 16 occurrences per 1,000 lexical tokens. Straight lines join the formal episode observations. The filled area helps locate each row but is not cumulative. Each preview contains a checked exact-form quotation from that row's density-peak episode.</p>
+          <p class="prose-copy">I tested a filled heatmap, within-form rescaling, smoothing and significance marks. The heatmap repeated Figure 3. Within-form rescaling made a rare <code>ha</code> peak look comparable with a frequent <code>here</code> peak; smoothing and significance marks gave sparse dependent observations more certainty than the corpus supports. The published traces therefore keep one common linear scale and the CSV retains every observation. A high mark leads to close reading; it does not classify topic, voice or climax.</p>
+        </section>
+
+        <section id="lexical-atlas">
+          <h3><span class="section-number">1.6</span><a href={`${base}/network/#lexical-network-title`}>Lexical atlas</a></h3>
+
+          <h4>Corpus and tokenisation</h4>
+          <p class="prose-copy">Figure 6 uses the same OCR-corrected, one-file-per-episode corpus. This follows <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler's</a> preparation of <i>Gravity's Rainbow</i> for AntConc, AutoMap, ORA and MALLET. A lexical token remains one extracted word occurrence, as defined in Figure 1.</p>
+          <p class="prose-copy">Before counting, I normalise text with Unicode NFC. I fold non-breaking spaces and soft hyphens, convert typographic apostrophes to ASCII apostrophes and convert common Unicode hyphens to <code>-</code>. Tokens may contain internal apostrophes or lexical hyphens; grammatical English possessive endings are removed. A recorded repair map handles known OCR splits such as <code>peene-münde</code> and <code>schwarzkom-mando</code>. I use the EPUB extraction in <code>Gravitys_Rainbow_text</code> for a separate Unicode audit. Forms such as <code>pökler</code>, <code>pokier</code> and <code>polder</code> remain distinct.</p>
+
+          <h4>Stop words and vocabulary</h4>
+          <p class="prose-copy">The ordinary stop list contains pronouns, auxiliaries, articles, conjunctions, prepositions and contractions. These frequent grammatical or organisational words can make a proximity graph chiefly a map of English syntax. I retain forms from Letzler's comparison list: <code>all</code>, <code>are</code>, <code>back</code>, <code>comes</code>, <code>ha</code>, <code>has</code>, <code>here</code>, <code>inside</code>, <code>is</code>, <code>knows</code>, <code>now</code> and <code>oh</code>.</p>
+          <p class="prose-copy">An eligible form has at least two letters and occurs at least 20 times. I take the 500 highest-frequency eligible types, retain the complete tie at frequency 54 and add four terms required by the validation audit. This vocabulary cut keeps the three-dimensional graph inspectable; it does not exhaust the novel's vocabulary.</p>
+
+          <h4>Four-sentence proximity</h4>
+          <p class="prose-copy">Letzler's AutoMap character network uses a four-sentence recurrence radius; I adopt the same scale for this lexical relation. I detect a sentence boundary at a period, question mark or exclamation mark followed by whitespace or an episode boundary. A short abbreviation list prevents forms such as <code>Mr.</code> and <code>Dr.</code> from ending a sentence. Ellipses are removed before this pass, following Letzler's account of AutoMap's treatment of the three dots.</p>
+          <p class="prose-copy">Within each episode, every unordered pair of occurrences belonging to two different retained word types contributes a pair event when their sentence indices differ by no more than four. Repeated occurrences contribute separate events. I score each pair with normalised pointwise mutual information (NPMI), following the association-network logic of <a href="https://aclanthology.org/J90-1003/" target="_blank" rel="noopener">Church and Hanks</a> (1990) and the bounded normalisation described by <a href="https://svn.spraakbanken.gu.se/repos/gerlof/pub/www/Docs/npmi-pfd.pdf" target="_blank" rel="noopener">Bouma</a> (2009). PMI compares the observed pair-event probability <i>p</i>(<i>x</i>, <i>y</i>) with <i>p</i>(<i>x</i>)<i>p</i>(<i>y</i>); NPMI divides that value by &minus;log <i>p</i>(<i>x</i>, <i>y</i>) and places independence at zero. A candidate pair needs at least 10 events, support in at least three episodes and positive NPMI.</p>
+
+          <p class="prose-copy">Pair-event probabilities use all eligible occurrence pairs before the count and episode-support cuts. If <i>T</i> is the total number of unordered pair events and <i>c</i>(<i>x</i>, <i>y</i>) is the count for two distinct types, then <i>p</i>(<i>x</i>, <i>y</i>) = <i>c</i>(<i>x</i>, <i>y</i>) / (2<i>T</i>), and <i>p</i>(<i>x</i>) is the sum of counts involving <i>x</i>, divided by 2<i>T</i>. This treats each undirected event as two ordered events, one in each direction; the marginals therefore count pair endpoints.</p>
+
+          <h4>Selected graph and opening forest</h4>
+          <p class="prose-copy">From the eligible positive-NPMI pairs, I retain the global 99th percentile of scores, mutual top-eight neighbours and one strongest fallback edge for each otherwise uncovered eligible word. Selection keeps the display readable; it does not produce an inferential backbone or a catalogue of semantic relations.</p>
+          <p class="prose-copy">The opening view uses a deterministic Kruskal maximum-spanning forest. It preserves the selected graph's components, including isolated nodes. Higher NPMI wins; ties after rounding to eight decimal places follow lexical order of the two endpoints. The 'All links' control restores the full selected graph without changing the nodes, communities or coordinates.</p>
+
+          <h4>Communities and layout</h4>
+          <p class="prose-copy">I apply weighted greedy modularity maximisation to the complete selected graph, including its disconnected node. Colour carries the numeric community partition; it does not name a plotline, topic or literary importance. The evidence table retains each node's community ID.</p>
+          <p class="prose-copy">The published coordinates come from a deterministic, community-aware three-dimensional spring layout with bridge refinement, component packing and controlled overlap. They are fixed display geometry inside an arbitrary coordinate system. The browser does not recompute them when an edge mode or community is selected. The two-dimensional fallback is a frozen projection of the same data. Screen distance therefore helps navigation but is not a measure of textual distance.</p>
+
+          <h4>Visual encoding and limits</h4>
+          <p class="prose-copy">Node radius follows NPMI-weighted degree after a <code>log1p</code> transform capped at the relation's 99th percentile. The three-dimensional view uses spherical marks, so depth testing lets a nearer node cover a farther one. Edge width and opacity provide a restrained score cue.</p>
+          <p class="prose-copy">Four-sentence proximity records local verbal recurrence under one declared event model. It does not establish meaning, topic, narrative relation or causation. The retained-word and selected-edge tables below expose the records used by Figure 6.</p>
+
+          <LexicalNetworkEvidence />
         </section>
       </section>
 
+      <section id="glossary">
+        <h2><span class="section-number">2</span>Glossary</h2>
+
+        <h4>Structure</h4>
+        <p class="prose-copy">I anchor each glossary entry to one episode, usually the term's first appearance or the episode in which it carries the most weight, then order the entries by episode number. An entry contains a verbatim excerpt, the highlighted term and an explanatory apparatus. The apparatus gives a definition or gloss, traces the term's etymological, historical, scientific or cultural origin and notes its local narrative function where that function is relevant. I cite Weisenburger, the Pynchon Wiki or primary sources when they substantiate or extend the explanation.</p>
+
+        <h4>Selection criteria</h4>
+        <p class="prose-copy">The glossary is not exhaustive. I include a term when at least one of three conditions holds: (1) it is in a language other than English and the immediate context does not give a reader without that language enough to infer its meaning; (2) it names a specific historical event, scientific concept, musical composition, chemical compound or cultural artefact that the novel leaves unglossed and a general reader is unlikely to recognise; or (3) the passage performs a structural or thematic operation whose significance may be missed on a first reading, such as a leitmotif recurrence, intertextual allusion or narrative doubling.</p>
+        <p class="prose-copy">The third condition is necessarily interpretative; 'non-obvious' depends on the reader. I err towards inclusion where the gap is factual and towards restraint where the reading is mine.</p>
+
+        <h4>Colour coding and cross-references</h4>
+        <p class="prose-copy">Glossary colours use six narrative anchors distilled from recurring critical and textual centres: The Zone Squad, London Counterforce, The Rocket, Peenemünde, The Schwarzkommando and Central Asia. The list follows <a href="https://thomaspynchon.com/rocket-power-gravitys-rainbow-reviewed-by-richard-poirier-1973/" target="_blank" rel="noopener">Richard Poirier's 1973 review</a> and later discussions by <a href="https://doi.org/10.16995/pn.401" target="_blank" rel="noopener">Steven Weisenburger</a>, <a href="https://doi.org/10.16995/pn.147" target="_blank" rel="noopener">Fran Mason</a>, <a href="https://doi.org/10.16995/pn.54" target="_blank" rel="noopener">Yoshihiro Nagano</a>, <a href="https://doi.org/10.16995/pn.170" target="_blank" rel="noopener">Robert L. McLaughlin</a>, <a href="https://doi.org/10.16995/pn.36" target="_blank" rel="noopener">Tiina Käkelä-Puumala</a> and <a href="https://doi.org/10.16995/pn.218" target="_blank" rel="noopener">Jeffrey S. Baker</a>. Colour follows the term's most direct anchor within its episode. A cross-cutting entry keeps the ordinary site accent. This key orients the reader; it does not classify the terms.</p>
+        <p class="prose-copy">The Character atlas uses a different grouping computed from weighted character co-presence. The two systems overlap without being equivalent: clustering maps textual proximity, whilst glossary colours organise an interpretation. I add related-term links when the novel itself supplies a connection.</p>
+      </section>
     </div>
   </main>
 
@@ -87,12 +180,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     padding-inline: var(--page-gutter);
   }
 
-  .page-wip {
-    margin-top: var(--space-sm);
-    font-family: var(--font-prose);
-    font-size: var(--text-xs);
-    color: var(--color-text-dim);
-  }
   .methods-body {
     max-width: var(--measure-reading);
     margin-inline: auto;
@@ -199,13 +286,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   }
 
   .methods-body h4 {
-    font-family: var(--font-mono);
+    font-family: var(--font-prose);
     font-size: var(--text-xl);
     font-weight: 400;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     color: var(--color-text-dim);
     margin: var(--space-lg) 0 var(--space-sm);
-    text-transform: lowercase;
+    text-transform: none;
   }
 
   .methods-body h4:first-of-type {
