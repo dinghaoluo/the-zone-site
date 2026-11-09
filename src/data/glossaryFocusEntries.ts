@@ -173,18 +173,23 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Sir Joseph Paxton\'s glass-and-iron hall, built for the Great Exhibition of 1851 and re-erected at Sydenham Hill, burned down in 1936; its surviving towers were demolished in 1940 so that Luftwaffe bomber crews could not use them as landmarks. The image in the novel\'s opening dream carries a Victorian monument to progress that was literally dismantled to deny the enemy a navigational fix, a transparent structure whose visibility had become a liability.',
+        'Sir Joseph Paxton\'s glass-and-iron hall, built for the Great Exhibition of 1851 and re-erected at Sydenham Hill, burned down in 1936; the south water tower was dismantled in 1940 and the north tower demolished in April 1941, reputedly because they could serve as landmarks for German bombers. The image in the novel\'s opening dream recalls a Victorian monument to progress; in the wartime account of its surviving towers, visibility itself had become a liability.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates the Crystal Palace image at V3.7; notes the 1940 tower demolition.',
+        note: 'Annotates the Crystal Palace image at V3.7; dates both tower demolitions to 1940, whereas Historic England dates the north tower to April 1941.',
       },
       {
         label: 'Crystal Palace (Wikipedia)',
         url: 'https://en.wikipedia.org/wiki/The_Crystal_Palace',
         note: 'History of Paxton\'s structure from 1851 through the 1936 fire.',
+      },
+      {
+        label: 'Historic England, Crystal Palace south water tower',
+        url: 'https://historicengland.org.uk/listing/the-list/list-entry/1469984',
+        note: 'The official list entry dates the south tower demolition to autumn 1940 and the north tower demolition to 16 April 1941; the navigation-aid explanation is given as reputed.',
       },
     ],
     relatedTerms: ['screaming'],
@@ -201,7 +206,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Absolute zero is the lower limit of the thermodynamic temperature scale, -273.15 degrees Celsius, the point at which molecular motion effectively ceases. Pavlov uses the same phrase in his *Lectures on Conditioned Reflexes*: an unreinforced conditioned reflex that decays without repetition returns to \'an absolute zero\' of response. Pirate\'s opening dream keeps both registers in play at once, and Weisenburger reads the phrase across the thermodynamic definition and the Pavlovian one without asking the passage to settle for either.',
+        'Absolute zero is the lower limit of the thermodynamic temperature scale, -273.15 degrees Celsius; quantum zero-point motion can remain at this temperature. Pavlov uses the same phrase in his *Lectures on Conditioned Reflexes*: an unreinforced conditioned reflex that decays without repetition returns to \'an absolute zero\' of response. Pirate\'s opening dream keeps both registers in play at once, and Weisenburger reads the phrase across the thermodynamic definition and the Pavlovian one without asking the passage to settle for either.',
     },
     externalRefs: [
       {
@@ -210,9 +215,9 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates the dual meaning at V3.34; quotes Pavlov\'s *Lectures* 2:121 on extinction returning to \'an absolute zero.\'',
       },
       {
-        label: 'Absolute zero (Wikipedia)',
-        url: 'https://en.wikipedia.org/wiki/Absolute_zero',
-        note: 'The thermodynamic definition.',
+        label: 'NIST, Kelvin: Introduction',
+        url: 'https://www.nist.gov/si-redefinition/kelvin-introduction',
+        note: 'Defines 0 K as -273.15 degrees Celsius and distinguishes thermal motion from quantum zero-point motion.',
       },
     ],
     relatedTerms: ['pavlovian', 'conditioned-reflex', 'transmarginal'],
@@ -230,13 +235,13 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The novel\'s second sentence sets aside \'disentanglement\' in favour of \'a progressive knotting into,\' and its syntax begins by offering escape before drawing the sentence and the novel further inside the knot.',
+        'During the evacuation in Pirate\'s opening dream, the narrator sets aside \'disentanglement\' in favour of \'a progressive knotting into,\' and the sentence begins by offering escape before drawing the sentence and the novel further inside the knot.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Glosses the second sentence and its refusal of disentanglement.',
+        note: 'Glosses the opening evacuation dream and its refusal of disentanglement.',
       },
     ],
     relatedTerms: ['preterite', 'they-them'],
@@ -253,7 +258,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Pirate watches the V-2\'s exhaust plume rise in the east, its vapour trail lit by the sun over Holland. Weisenburger follows this \'new star\' through the Advent calendars, the Star of Bethlehem, zodiacal signs, and the pins on Slothrop\'s London map, so the iconographic first light in each case is a V-2 climbing over Holland.',
+        'Pirate watches the V-2\'s exhaust plume rise in the east, its vapour trail lit by the sun over Holland. Weisenburger follows this \'new star\' through the Advent calendars, the Star of Bethlehem, zodiacal signs, and the pins on Slothrop\'s London map; the rocket\'s exhaust introduces an image that will recur in religious calendars and in Slothrop\'s record of his lovers.',
     },
     externalRefs: [
       {
@@ -309,7 +314,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Pirate grows bananas on a London rooftop and cooks breakfast while a V-2 approaches, working for the Special Operations Executive out of an office in the Chelsea Embankment. His useful intelligence gift is that he receives other people\'s fantasies as though they were his own, an ability that leaves little room for a private inner life. By Part 4 he is organising the Counterforce that the breakfast guests have gradually become.',
+        'Pirate grows bananas on a London rooftop and cooks breakfast while a V-2 approaches, working for the Special Operations Executive and sharing a maisonette near the Chelsea Embankment. His useful intelligence gift is that he receives other people\'s fantasies as though they were his own, an ability that leaves little room for a private inner life. By Part 4 he is organising the Counterforce that the breakfast guests have gradually become.',
     },
     externalRefs: [
       {
@@ -323,7 +328,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'v-e-day',
     displayLabel: 'V-E Day',
-    chronology: { episodeId: '1.01', sort: 101.2 },
+    chronology: { episodeId: '1.02', sort: 102.05 },
     colorVar: plotlineColorVars.P06,
     context: {
       excerpt:
@@ -351,16 +356,16 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     id: 'cest-magnifique',
     displayLabel: 'C\'est magnifique, mais ce n\'est pas la guerre',
     railLabel: 'C\'est magnifique',
-    chronology: { episodeId: '1.01', sort: 101.25 },
+    chronology: { episodeId: '1.02', sort: 102.05 },
     colorVar: plotlineColorVars.P06,
     context: {
       excerpt:
-        'to spell out the words C\'est magnifique, mais ce n\'est pas la guerre which Pirate has appropriated as his motto',
+        'to spell out the words C\'est magnifique, mais ce n\'est pas la guerre ... which Pirate has appropriated as his motto',
       highlightedTerm: 'C\'est magnifique',
     },
     apparatus: {
       explanation:
-        'The French general Pierre Bosquet is said to have spoken these words while watching the Charge of the Light Brigade at Balaclava on 25 October 1854: \'It is magnificent, but it is not war.\' Pirate pipes them across a banana blancmange in icing, so a nineteenth-century verdict on military folly arrives at breakfast during another failed campaign.',
+        'The French general Pierre Bosquet is said to have spoken these words while watching the Charge of the Light Brigade at Balaclava on 25 October 1854: \'It is magnificent, but it is not war.\' Pirate pipes them across a banana blancmange in icing, so a nineteenth-century verdict on military folly arrives at breakfast in wartime London.',
     },
     externalRefs: [
       {
@@ -379,7 +384,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'greenwich',
     displayLabel: 'Greenwich',
-    chronology: { episodeId: '1.01', sort: 101.3 },
+    chronology: { episodeId: '1.02', sort: 102.05 },
     colorVar: plotlineColorVars.P06,
     context: {
       excerpt:
@@ -388,7 +393,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The mail-carrying rocket has impacted near the Royal Observatory at Greenwich, the point defined as having zero degrees of longitude and therefore the coordinate origin of British imperial cartography. The impact site coincides with the prime meridian from which longitude is measured, giving the opening pages a spatial zero to sit alongside the earlier Pavlovian one.',
+        'The mail-carrying rocket has impacted near the Royal Observatory at Greenwich, the point defined as having zero degrees of longitude and therefore the coordinate origin of British imperial cartography. The Greenwich setting invokes the prime meridian from which longitude is measured, giving the opening pages a spatial zero as well as a Pavlovian one.',
     },
     externalRefs: [
       {
@@ -462,7 +467,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'banana-breakfast',
     displayLabel: 'Banana breakfast',
-    chronology: { episodeId: '1.02', sort: 102.2 },
+    chronology: { episodeId: '1.01', sort: 101.05 },
     colorVar: plotlineColorVars.P06,
     context: {
       excerpt:
@@ -471,7 +476,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Pirate serves an inventory of banana dishes on a London roof while a V-2 is incoming, four songs and several routines interrupting the meal. The tropical abundance is absurd under wartime rationing, and it has arrived through the same plantation trade that the novel later follows into other colonial histories.',
+        'Pirate serves an inventory of banana dishes on a London roof while a V-2 is incoming, four songs and several routines interrupting the meal. The tropical abundance is absurd under wartime rationing, but these bananas have grown in Pirate\'s own rooftop hothouse.',
     },
     externalRefs: [
       {
@@ -528,7 +533,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'In Pirate\'s first surrogate fantasy, Lord Blatherard Osmo\'s lymphatic tissue grows into a monster large enough to consume London. Weisenburger traces the name to Adenoid Hynkel, the Hitler figure in Chaplin\'s *The Great Dictator* (1940); the adenoidal Richard M. Zhlubb at the Orpheus Theatre in Part 4 will later give the image a Nixonian face, so the fantasy at the breakfast table and the fantasy under the falling rocket share a single body-horror figure.',
+        'In Pirate\'s first surrogate fantasy, Lord Blatherard Osmo\'s lymphatic tissue grows into a monster large enough to consume London. Weisenburger proposes a connection with Adenoid Hynkel, the Hitler figure in Chaplin\'s *The Great Dictator* (1940); the adenoidal Richard M. Zhlubb at the Orpheus Theatre in Part 4 will later give the image a Nixonian face, so the fantasy at the breakfast table and the fantasy under the falling rocket share a single body-horror figure.',
     },
     externalRefs: [
       {
@@ -556,7 +561,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Supreme Headquarters, Allied Expeditionary Force, the command Eisenhower ran from January 1944 for the invasion and occupation of northwest Europe. SHAEF servicemen wore a shoulder patch depicting a flaming sword with a rainbow arching over it; Bloat has the insignia engraved on hairbrushes by Garrard\'s, the Crown Jewellers on Regent Street. The military rainbow in the SHAEF badge quietly anticipates the novel\'s title, though it appears here on a shoulder patch stitched to a uniform, an emblem of command well before the phenomenon of light.',
+        'Supreme Headquarters, Allied Expeditionary Force, the command formally established under Eisenhower on 13 February 1944 for the invasion and occupation of northwest Europe. SHAEF servicemen wore a shoulder patch depicting a flaming sword with a rainbow arching over it; Bloat has the insignia engraved on hairbrushes by Garrard\'s, the Crown Jewellers on Regent Street. The military rainbow in the SHAEF badge anticipates the novel\'s title, though it appears here on a shoulder patch stitched to a uniform, an emblem of command well before the phenomenon of light.',
     },
     externalRefs: [
       {
@@ -568,6 +573,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'SHAEF (Wikipedia)',
         url: 'https://en.wikipedia.org/wiki/Supreme_Headquarters_Allied_Expeditionary_Force',
         note: 'History of the Allied command 1944-1945.',
+      },
+      {
+        label: 'US National Archives, Records of SHAEF',
+        url: 'https://www.archives.gov/research/holocaust/finding-aid/military/rg-331.html',
+        note: 'Distinguishes Eisenhower\'s arrival in January 1944 from SHAEF\'s formal establishment on 13 February.',
       },
     ],
     relatedTerms: ['achtung', 'white-visitation'],
@@ -639,7 +649,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Slothrop\'s erections precede V-2 strikes on the London map. Pointsman reads this as a conditioned reflex in Pavlov\'s technical sense: infant Slothrop was conditioned by Laszlo Jamf with Imipolex G, and the response has persisted into adulthood. Whether the correlation is true, paranoid, or a statistical artefact the novel never resolves, and the question structures the first two parts before the text abandons it.',
+        'Slothrop\'s erections precede V-2 strikes on the London map. Pointsman reads this as a conditioned reflex in Pavlov\'s technical sense: he hypothesises that Jamf conditioned Slothrop in infancy and that Imipolex G remains implicated in the adult response. Whether the correlation is true, paranoid, or a statistical artefact the novel never resolves, and the question structures the first two parts before the text abandons it.',
     },
     externalRefs: [
       {
@@ -690,7 +700,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The V-1, called the doodlebug or buzzbomb by Londoners, was a pilotless flying bomb driven by a pulse-jet engine at roughly 400 miles per hour and used against Britain from June 1944. Its distinctive engine gave a few seconds of warning; when the fuel cut off and the buzzing stopped, the bomb dived and detonated within seconds. The V-2 that replaced the V-1 from September 1944 gave no such warning, since it travelled faster than sound and its engine noise arrived only after the warhead.',
+        'The V-1, called the doodlebug or buzzbomb by Londoners, was a pilotless flying bomb driven by a pulse-jet engine at roughly 400 miles per hour and used against Britain from June 1944. Its distinctive engine gave warning of its approach; the preset dive starved the engine of fuel, and the silence warned of imminent impact. The V-2, first used against Britain in September 1944, gave no such warning, since it travelled faster than sound and its engine noise arrived only after the warhead.',
     },
     externalRefs: [
       {
@@ -700,12 +710,22 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates the V-1 at V21.9; cites Irving on launch numbers and the engine cutoff-to-dive interval.',
+        note: 'Annotates the V-1 at V21.9; cites Irving on launch numbers and performance.',
       },
       {
         label: 'V-1 flying bomb (Wikipedia)',
         url: 'https://en.wikipedia.org/wiki/V-1_flying_bomb',
         note: 'History and mechanism of the pulse-jet flying bomb.',
+      },
+      {
+        label: 'The National Archives, The day a missile struck the site',
+        url: 'https://www.nationalarchives.gov.uk/explore-the-collection/the-collection-blog/the-day-a-missile-struck-the-national-archives/',
+        note: 'Explains that the V-1 entered its preset dive before fuel starvation stopped the engine.',
+      },
+      {
+        label: 'RAF Museum, British Military Aviation in 1945',
+        url: 'https://www.rafmuseum.org.uk/research/research-enquiries/history-of-aviation-timeline/british-military-aviation/1945-2/',
+        note: 'Records V-1 and V-2 attacks continuing into March 1945.',
       },
     ],
     relatedTerms: ['v2-a4', 'screaming'],
@@ -781,7 +801,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
-        'down to \'The White Visitation,\' which houses PISCES',
+        'down to "The White Visitation," which houses a catchall agency known as PISCES',
       highlightedTerm: 'The White Visitation',
     },
     apparatus: {
@@ -804,22 +824,22 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P02,
     context: {
       excerpt:
-        'adjusted to what scientists of the last century called a \'sensitive flame\': invisible at the base, fading upward into smooth blue light that hovers several inches above, a glimmering small cone',
+        'adjusted to what scientists of the last century called a "sensitive flame": invisible at the base, as it issues from its orifice, fading upward into smooth blue light that hovers several inches above, a glimmering small cone',
       highlightedTerm: 'sensitive flame',
     },
     apparatus: {
       explanation:
-        'A sensitive flame is a gas jet adjusted so that small changes in air pressure alter its visible shape, a nineteenth-century instrument that Victorian spiritualists used to detect physical interference during seances. In the seance room at Snoxall\'s, any human movement in the room would disturb the flame, which meant that a disturbance in its absence became, for the participants, evidence for the presence they had gathered to detect.',
+        'A sensitive flame is a gas jet adjusted so that small changes in air pressure alter its visible shape. At Snoxall\'s séance it registers visitors entering and leaving the room; Weisenburger reads it as a check against physical interference, alongside the older protocols meant to distinguish a spirit manifestation from a human trick.',
     },
     externalRefs: [
       {
         label: 'Ronald Pearsall, *The Table-Rappers* (1972)',
-        note: 'Documents Victorian seance protocols: rules on group size (3-12, ideal 8), opposite-temperament participants, and the use of sensitive flames to detect physical interference (pp. 42-43).',
+        note: 'The Companion cites pp. 42-43 for Victorian séance protocols, including group size and the temperaments of participants; it discusses the sensitive flame as a check against hoaxes.',
       },
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates the sensitive flame at V29.31; cites Pearsall on Victorian anti-hoax technology.',
+        note: 'Annotates the sensitive flame at V29.31 as a check against hoaxes; cites Pearsall separately on Victorian séance protocols.',
       },
     ],
     relatedTerms: ['eventyr', 'peter-sachsa'],
@@ -864,7 +884,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Petr Demianovich Ouspensky (1878-1947) was a Russian esoteric philosopher who studied with George Gurdjieff, later broke from him, and lectured in London until 1939. *Tertium Organum* (published in Russian in 1912, English 1922) argues for higher dimensions and forms of consciousness beyond ordinary perception, and Pynchon introduces that system into the seance scene through a passing voice that dismisses it as \'nonsense.\'',
+        'Petr Demianovich Ouspensky (1878-1947) was a Russian esoteric philosopher who studied with George Gurdjieff, later broke from him, and lectured in London until 1939. *Tertium Organum* (published in Russian in 1912, English 1920) argues for higher dimensions and forms of consciousness beyond ordinary perception, and Pynchon introduces that system into the seance scene through a passing voice that dismisses it as \'nonsense.\'',
     },
     externalRefs: [
       {
@@ -877,6 +897,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         url: 'https://en.wikipedia.org/wiki/P._D._Ouspensky',
         note: 'Russian esoteric philosopher (1878-1947); disciple of Gurdjieff; author of *Tertium Organum*.',
       },
+      {
+        label: 'J. Walter Driscoll, Ouspensky bibliography',
+        url: 'https://www.ouspensky.org.uk/bibliography',
+        note: 'Distinguishes the first English edition, Manas Press (1920), from the second US edition, Knopf (1922).',
+      },
     ],
     relatedTerms: ['eventyr', 'sensitive-flame'],
   },
@@ -888,7 +913,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
-        'Recall Zipf\'s Principle of Least Effort: if we plot the frequency of a word P sub n against its rank-order n on logarithmic axes, we should of course get something like a straight line',
+        'Recall Zipf\'s Principle of Least Effort: if we plot the frequency of a word P sub n against its rank-order n on logarithmic axes ... we should of course get something like a straight line',
       highlightedTerm: 'Zipf\'s Principle of Least Effort',
     },
     apparatus: {
@@ -921,7 +946,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'No single organisation exhausts \'They\' in the novel; the capitalised pronouns gather the offices, laboratories, armies, and cartels that sort people for use or disposal, while withholding the proper name that would confine responsibility to one institution. The construction has since become one of the standard ways critics describe the book\'s diffuse power, whether reading Pynchon through Foucault, corporate cartel history, or Cold War paranoia.',
+        'No single organisation exhausts \'They\' in the novel; the capitalised pronouns gather the offices, laboratories, armies, and cartels that sort people for use or disposal, while withholding the proper name that would confine responsibility to one institution.',
     },
     externalRefs: [
       {
@@ -1019,7 +1044,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Myron Grunton\'s BBC broadcasts invent African rocket troops in order to frighten German civilian listeners, calling them Schwarzkommando before British intelligence knows that any Herero rocket unit exists. Enzian\'s group in the Zone then takes up the name that Allied propaganda had already projected onto them, so a word coined inside a PWE broadcast file, never used of any real unit, arrives as the self-designation of Herero survivors of the 1904 killings whom the broadcasters never consulted.',
+        'Operation Black Wing builds its propaganda on Pirate\'s report that Herero people are active in Germany\'s secret-weapons programme. Myron Grunton turns that intelligence into a broadcast intended to frighten German listeners, and von Göll films fraudulent African rocket troops at the White Visitation. The staff do not know who suggested the name \'Schwarzkommando\'. When the Herero unit appears in the Zone, von Göll treats it as proof that his film has brought its subject into being; the novel leaves his claim of creation within the history of an operation that began with reports of real Africans.',
     },
     externalRefs: [
       {
@@ -1033,7 +1058,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'elas-greeks',
     displayLabel: 'ELAS Greeks',
-    chronology: { episodeId: '1.06', sort: 106 },
+    chronology: { episodeId: '1.05', sort: 105.05 },
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
@@ -1060,7 +1085,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'pointsman',
     displayLabel: 'Ned Pointsman',
-    chronology: { episodeId: '1.06', sort: 106.1 },
+    chronology: { episodeId: '1.09', sort: 109.05 },
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
@@ -1138,7 +1163,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Volume 2 of Pavlov\'s *Lectures on Conditioned Reflexes*, translated into English by Horsley Gantt in 1941, in which Pavlov extended his physiological work into psychiatric territory. Seven Pavlovians at the White Visitation share a single copy on a weekly rotation, and the fetishistic secrecy gives a medical textbook the aura of scripture; every Pavlovian term Pointsman applies to Slothrop, from conditioned reflex through transmarginal inhibition, comes out of the volume that the seven pass among themselves.',
+        'Volume 2 of Pavlov\'s *Lectures on Conditioned Reflexes*, translated into English by Horsley Gantt in 1941, in which Pavlov extended his physiological work into psychiatric territory. Seven Pavlovians share a single copy on a weekly rotation, and the fetishistic secrecy gives a medical textbook the aura of scripture; Pointsman applies its psychiatric vocabulary to Slothrop alongside the earlier *Conditioned Reflexes* that first drew him into Pavlovian research.',
     },
     externalRefs: [
       {
@@ -1329,12 +1354,13 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Roger Mexico divides London into grid squares and finds that V-2 counts follow a Poisson distribution, the discrete law of rare independent events that Siméon Denis Poisson (1781-1840) formulated in the 1830s. Each strike is independent of the earlier strikes; a hit gives its square no memory and changes no later probability. Pointsman, who requires a stimulus for every response, cannot use that kind of explanation. R. D. Clarke\'s 1946 study of V-1 impacts on London supplied the historical evidence Pynchon draws on.',
+        'Roger Mexico divides London into grid squares and finds that V-2 counts follow a Poisson distribution, the discrete law of rare independent events that Siméon Denis Poisson (1781-1840) formulated in the 1830s. In Roger\'s model, each strike is independent of the earlier strikes; a hit gives its square no memory and changes no later probability. Pointsman, who requires a stimulus for every response, cannot use that kind of explanation. R. D. Clarke\'s 1946 study of V-1 impacts on London supplied the historical evidence Pynchon draws on.',
     },
     externalRefs: [
       {
         label: 'R. D. Clarke, \'An Application of the Poisson Distribution\' (1946)',
-        note: 'The historical analysis of V-weapon strikes that Pynchon draws on for Roger Mexico\'s work.',
+        note: 'The original one-page paper compares flying-bomb counts in 576 squares with a Poisson distribution.',
+        url: 'https://www.anesi.com/ClarkePoissonLondonBombs.pdf',
       },
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
@@ -1362,7 +1388,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Chapter 43 of Pavlov\'s *Lectures*, volume 2, catalogues the laws that govern the conditioned cortex. Summation combines weak stimuli into their mathematical sum; transition takes an unceasing positive stimulus and passes it into inhibition; irradiation and concentration send excitation and inhibition across the cortex and then draw them back together; reciprocal induction has one process intensify another at the same point or at neighbouring points. All five assume the cortex is a mosaic of bi-stable, on-or-off elements, and Mexico\'s probabilities occupy the space between zero and one that Pointsman\'s model excludes.',
+        'Chapter 43 of Pavlov\'s *Lectures*, volume 2, catalogues the laws that govern the conditioned cortex. Summation combines weak stimuli into their mathematical sum; transition takes an unceasing positive stimulus and passes it into inhibition; irradiation and concentration send excitation and inhibition across the cortex and then draw them back together; reciprocal induction has one process intensify another at the same point or at neighbouring points. Pointsman reads these laws through his model of a cortex made of on-or-off elements; Mexico\'s probabilities occupy the space between zero and one that this model excludes.',
     },
     externalRefs: [
       {
@@ -1412,7 +1438,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The Monte Carlo fallacy treats independent outcomes as though earlier results altered the next probability, and Roger applies the correction to rocket strikes: a square that has already been hit is neither safer nor more likely to be hit again. \'Bombs are not dogs. No link. No memory. No conditioning.\' The line is a direct rebuke to Pointsman, whose reflex model needs conditioned traces that the Poisson distribution has already ruled out at the level of the data.',
+        'The Monte Carlo fallacy treats independent outcomes as though earlier results altered the next probability, and Roger applies the correction to rocket strikes: a square that has already been hit is neither safer nor more likely to be hit again. \'Bombs are not dogs. No link. No memory. No conditioning.\' The line is a direct rebuke to Pointsman, whose reflex model needs conditioned traces that Roger\'s independent-event model excludes. The fit of the strike counts to a Poisson distribution does not by itself prove that the strikes are independent.',
     },
     externalRefs: [
       {
@@ -1572,7 +1598,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P01,
     context: {
       excerpt:
-        '"Kryptosam" is a proprietary form of stabilised tyrosine, developed by IG Farben as part of a research contract with OKW.',
+        '"Kryptosam" is a proprietary form of stabilized tyrosine, developed by IG Farben as part of a research contract with OKW.',
       highlightedTerm: 'Kryptosam',
     },
     apparatus: {
@@ -1648,7 +1674,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'sudwest',
     displayLabel: 'Südwest',
-    chronology: { episodeId: '1.12', sort: 112.2 },
+    chronology: { episodeId: '3.03', sort: 303.05 },
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
@@ -1657,7 +1683,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Südwest is German South-West Africa, present-day Namibia. Germany ruled the territory from 1884 until 1915; between 1904 and 1908 German forces killed an estimated 65,000 to 80,000 Herero and 10,000 Nama in what historians recognise as the first genocide of the twentieth century. Weissmann served there after the killings and took the young Enzian as his lover; the racial and sexual authority he exercised in the colony returns in the rocket battery with Katje and Gottfried.',
+        'Südwest is German South-West Africa, present-day Namibia. Germany ruled the territory from 1884 until 1915; between 1904 and 1908 German forces killed an estimated 65,000 Herero and 10,000 Nama in what historians recognise as the first genocide of the twentieth century. Weissmann served there after the killings and took the young Enzian as his lover; the racial and sexual authority he exercised in the colony returns in the rocket battery with Katje and Gottfried.',
     },
     externalRefs: [
       {
@@ -1668,6 +1694,16 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'German South West Africa (Wikipedia)',
         url: 'https://en.wikipedia.org/wiki/German_South_West_Africa',
         note: 'German colony, 1884-1915.',
+      },
+      {
+        label: 'Bundestag Research Services, WD 2-3000-092/15 (2015)',
+        url: 'https://www.bundestag.de/resource/blob/459004/WD-2-092-15-pdf.pdf',
+        note: 'Page 10 gives estimates of 65,000 Herero and 10,000 Nama killed; the Bundesarchiv separately estimates that only about 15,000 of an initial 80,000 Herero survived.',
+      },
+      {
+        label: 'Bundesarchiv, The war against the Herero in 1904',
+        url: 'https://www.bundesarchiv.de/themen-entdecken/online-entdecken/geschichtsgalerien/der-krieg-gegen-die-herero-1904/',
+        note: 'Documents the war and concentration camps, and distinguishes the estimated prewar Herero population from the number who survived.',
       },
     ],
     relatedTerms: ['enzian', 'schwarzkommando', 'herero-genocide'],
@@ -1684,7 +1720,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Operation Black Wing invents the Schwarzkommando as African rocket troops meant to frighten German listeners, and Enzian\'s Herero community later appears in the Zone, organised around the rocket, and adopts the same name; a name coined inside a PWE propaganda file ends up as the self-designation of a people the file had invented without ever consulting them.',
+        'Pirate\'s intelligence that Herero people are active in Germany\'s secret-weapons programme gives Operation Black Wing its factual starting point. The British operation fabricates a film of African rocket troops and calls them the Schwarzkommando; Enzian\'s unit later appears under the same name in the Zone. Von Göll believes that his film has created the formation, but the earlier report prevents a simple sequence in which an invented people subsequently becomes real.',
     },
     externalRefs: [
       {
@@ -1719,7 +1755,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Passchendaele (Wikipedia)',
         url: 'https://en.wikipedia.org/wiki/Battle_of_Passchendaele',
-        note: 'Third Battle of Ypres (1917): 475,000 total casualties for four miles of ground.',
+        note: 'Third Battle of Ypres (1917); casualty estimates differ between historical accounts.',
       },
     ],
     relatedTerms: ['white-visitation'],
@@ -1757,16 +1793,16 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     id: 'beyond-the-zero',
     displayLabel: 'Beyond the Zero (Pavlov)',
     railLabel: 'Zero',
-    chronology: { episodeId: '1.12', sort: 112.6 },
+    chronology: { episodeId: '1.13', sort: 113.05 },
     colorVar: '--color-accent',
     context: {
       excerpt:
-        'we must also realise that extinction can proceed beyond the point of reducing a reflex to zero',
+        'we must also realize that extinction can proceed beyond the point of reducing a reflex to zero',
       highlightedTerm: 'beyond',
     },
     apparatus: {
       explanation:
-        'Part 1 takes its title from the chapter on extinction in Pavlov\'s *Conditioned Reflexes*. An extinguished reflex can recover after a lapse, which means that an unmeasurable response may still persist \'beyond\' zero. Pointsman uses that possibility to keep Slothrop inside Pavlovian causation; Mexico hears the phrase as movement \'past the tongue-stop...and into the other realm.\'',
+        'Part 1 takes its title from Pavlov\'s lecture on extinction in *Conditioned Reflexes* (1927). Repetition without reinforcement can deepen inhibition after the visible response has fallen to zero; the time needed for recovery can indicate that depth. Pointsman asks whether Jamf stopped when infant Slothrop\'s response reached zero and left a reflex capable of returning years later. Mexico\'s thoughts move the phrase from that experimental threshold towards \'the other realm\'.',
     },
     externalRefs: [
       {
@@ -1776,7 +1812,8 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       },
       {
         label: 'Pavlov, *Conditioned Reflexes* (1927)',
-        note: 'Chapter 4, \'Extinction\': the passage Pynchon quotes, with emphasis added by Pointsman.',
+        note: 'Pages 57-58 distinguish a zero visible response from deeper extinction and discuss recovery time as a measure of extinction depth.',
+        url: 'https://psychclassics.yorku.ca/Pavlov/lecture4.htm',
       },
     ],
     relatedTerms: ['conditioned-reflex', 'pavlovian', 'pointsman', 'absolute-zero'],
@@ -1851,12 +1888,17 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates at V84.3; cites Watson and Rayner, The Psychological Care of Infant and Child (1928), p. 54.',
+        note: 'Annotates at V84.3; cites John B. Watson\'s *Psychological Care of Infant and Child* (1928), p. 54.',
       },
       {
         label: 'Little Albert experiment (Wikipedia)',
         url: 'https://en.wikipedia.org/wiki/Little_Albert_experiment',
         note: 'Watson and Rayner\'s 1920 conditioning of an infant into generalised fear of furry stimuli.',
+      },
+      {
+        label: 'Watson and Rayner, Conditioned Emotional Reactions (1920)',
+        url: 'https://psychclassics.yorku.ca/Watson/emotion.htm',
+        note: 'The original report records conditioning beginning at eleven months, three days, and says Albert left before the investigators attempted removal of the response.',
       },
     ],
     relatedTerms: ['conditioned-reflex', 'beyond-the-zero', 'pointsman', 'slothrop'],
@@ -1868,7 +1910,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
-        'thirteen years along the clew, to the Minotaur waiting for him. Venus and Ariadne!',
+        'They own everything: Ariadne, the Minotaur, even, Pointsman fears, himself.',
       highlightedTerm: 'Ariadne',
     },
     apparatus: {
@@ -1897,13 +1939,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        '*Amanita muscaria*, the red-capped fly agaric, contains muscimol and ibotenic acid and is related to the lethally poisonous *Amanita phalloides* (the destroying angel). Osbie Feel opens the episode toasting caps in the oven. Robert Graves proposed in *The White Goddess* that Dionysian centaurs and maenads ate the mushroom for \'enormous muscular strength, erotic power, delirious visions, and the gift of prophecy\'; whether or not scholars accept that shamanic reading, Pynchon sets the mushroom beside the industrial compounds of IG Farben.',
+        '*Amanita muscaria*, the red-capped fly agaric, contains muscimol and ibotenic acid and is related to the lethally poisonous *Amanita phalloides* (the death cap). Osbie Feel opens the episode toasting caps in the oven. Robert Graves proposed in *The White Goddess* that Dionysian centaurs and maenads ate the mushroom for \'enormous muscular strength, erotic power, delirious visions, and the gift of prophecy\'; whether or not scholars accept that shamanic reading, Pynchon sets the mushroom beside the industrial compounds of IG Farben.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V93.2; cites Graves, *The White Goddess*, p. 45.',
+      },
+      {
+        label: 'Australian National Botanic Gardens, Deathcap Mushroom',
+        url: 'https://www.anbg.gov.au/fungi/deathcap.html',
+        note: 'Identifies *Amanita phalloides* as the death cap.',
       },
       {
         label: '*Amanita muscaria*',
@@ -1945,12 +1992,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P02,
     context: {
       excerpt:
-        'she belongs in a way none of them can guess cruelly to the Oven, Der Kinderofen',
+        'she belongs in a way none of them can guess cruelly to the Oven ... to Der Kinderofen',
       highlightedTerm: 'Der Kinderofen',
     },
     apparatus: {
       explanation:
-        'Pynchon coins *Kinderofen* (child-oven) for the witch\'s oven in *Hansel and Gretel*. Grimm calls it *der Backofen* (the baking oven); the substitution stops the oven being incidental to a fairy tale and sizes it for children. Blicero assigns Katje and Gottfried the fattened children\'s parts, then seals Gottfried inside the 00000 as the sacrifice that the tale had allowed to escape.',
+        'Pynchon uses *Kinderofen* (child-oven) for the witch\'s oven in *Hansel and Gretel*. Grimm calls it *der Backofen* (the baking oven); the substitution stops the oven being incidental to a fairy tale and sizes it for children. Blicero assigns Katje and Gottfried the fattened children\'s parts, then seals Gottfried inside the 00000 as the sacrifice that the tale had allowed to escape.',
     },
     externalRefs: [
       {
@@ -1964,7 +2011,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'gottfried',
     displayLabel: 'Gottfried',
-    chronology: { episodeId: '1.14', sort: 114.03 },
+    chronology: { episodeId: '4.12', sort: 412.05 },
     colorVar: plotlineColorVars.P02,
     context: {
       excerpt:
@@ -1973,7 +2020,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Gottfried\'s name joins *Gottes* and *Frieden* (God\'s peace). Weisenburger traces the compound back to the god Frey or Freyr, deity of fertility and Yuletide sacrifice, and through him to Priapus, Orpheus, Adonis, and Christ. Blicero seals the yellow-haired boy inside Imipolex G and launches him in the 00000; the text pairs him with Enzian as \'yellow and blue where the African was dark\' and calls boy and rocket \'concurrently designed\'. Inside Blicero\'s *Märchen* Gottfried takes the role of the fattened child whom the fairy tale had allowed to escape, which the 00000 does not.',
+        'Gottfried\'s name means \'God\'s peace\'. Weisenburger traces the compound back to the god Frey or Freyr, deity of fertility and Yuletide sacrifice, and through him to Priapus, Orpheus, Adonis, and Christ. Blicero seals the yellow-haired boy inside Imipolex G and launches him in the 00000; the text pairs him with Enzian as \'a color-negative, yellow and blue\' and calls boy and rocket \'concurrently designed\'. Inside Blicero\'s *Märchen* Gottfried takes the role of the fattened child whom the fairy tale had allowed to escape, which the 00000 does not.',
     },
     externalRefs: [
       {
@@ -2054,7 +2101,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates at V94.20 and V94.41; identifies Grimm\'s Fairy Tales no. 72 and notes that Pynchon\'s Kinderofen does not appear in Grimm.',
+        note: 'Annotates at V94.20 and V94.41; identifies *Hansel and Gretel* and notes that Pynchon\'s Kinderofen does not appear in Grimm.',
+      },
+      {
+        label: 'Grimm, *Hansel and Gretel*, trans. D. L. Ashliman',
+        url: 'https://sites.pitt.edu/~dash/grimm015.html',
+        note: 'The final German edition numbers the tale 15; the children escape after Gretel pushes the witch into the oven.',
       },
     ],
     relatedTerms: ['00000', 'hexeszuechtigung', 'der-kinderofen'],
@@ -2235,7 +2287,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P02,
     context: {
       excerpt:
-        'gave his African boy the name \'Enzian,\' after the mountain gentian',
+        'gave his African boy the name "Enzian," after Rilke\'s mountainside gentian of Nordic colors, brought down like a pure word to the valleys',
       highlightedTerm: 'Enzian',
     },
     apparatus: {
@@ -2264,7 +2316,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        '\'In this sign you shall conquer.\' Eusebius reports that Constantine saw a sign in the sky before the Battle of the Milvian Bridge in 312; later tradition made it a cross. Kooy and Uytenbogaart record the phrase scratched below a red-circle tree mark at a V-2 launch site near Wassenaar. The soldier \'did not live to see his prophecy fulfilled\', and his Christian promise of victory remains attached to the rocket\'s firing bearing.',
+        '\'In this sign you shall conquer.\' Eusebius reports in *Life of Constantine* I.28 that the emperor saw a cross of light above the sun, accompanied by an instruction to conquer by it, before his victory over Maxentius at the Milvian Bridge in 312. Kooy and Uytenbogaart record the phrase scratched below a red-circle tree mark at a V-2 launch site near Wassenaar. The soldier \'did not live to see his prophecy fulfilled\', and his Christian promise of victory remains attached to the rocket\'s firing bearing.',
     },
     externalRefs: [
       {
@@ -2276,6 +2328,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: '*In hoc signo vinces*',
         url: 'https://en.wikipedia.org/wiki/In_hoc_signo_vinces',
         note: 'Constantine\'s vision before the Battle of the Milvian Bridge (312 CE).',
+      },
+      {
+        label: 'Eusebius, *Life of Constantine*, Book I',
+        url: 'https://www.newadvent.org/fathers/25021.htm',
+        note: 'Chapters 28-31 describe the cross of light, the subsequent dream, and the military standard.',
       },
     ],
     relatedTerms: ['bodenplatte', 'blicero'],
@@ -2320,7 +2377,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'German colonial forces killed Herero and Nama people through battle, expulsion into the Omaheke Desert, forced labour, and concentration camps between 1904 and 1908. Von Trotha\'s *Vernichtungsbefehl* of October 1904 ordered the killing of all Herero men and the expulsion of women and children into the desert; camps followed. An estimated 65,000 to 80,000 Herero and 10,000 Nama died. Enzian and the Schwarzkommando descend from the survivors, and Weissmann carries colonial command from South-West Africa into the rocket battery; the genocide sits chronologically earlier than the European war and remains active inside it.',
+        'German colonial forces killed Herero and Nama people through battle, expulsion into the Omaheke Desert, forced labour, and concentration camps between 1904 and 1908. Von Trotha\'s *Vernichtungsbefehl* of October 1904 ordered the killing of all Herero men and the expulsion of women and children into the desert; camps followed. An estimated 65,000 Herero and 10,000 Nama died. Enzian and the Schwarzkommando descend from the survivors, and Weissmann carries colonial command from South-West Africa into the rocket battery; the genocide sits chronologically earlier than the European war and remains active inside it.',
     },
     externalRefs: [
       {
@@ -2331,6 +2388,16 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Jürgen Zimmerer, \'Colonial Genocide and the Holocaust\'',
         note: 'Historicises the Herero genocide as a precursor to the Holocaust.',
+      },
+      {
+        label: 'Bundestag Research Services, WD 2-3000-092/15 (2015)',
+        url: 'https://www.bundestag.de/resource/blob/459004/WD-2-092-15-pdf.pdf',
+        note: 'Page 10 gives estimates of 65,000 Herero and 10,000 Nama killed; the Bundesarchiv separately estimates that only about 15,000 of an initial 80,000 Herero survived.',
+      },
+      {
+        label: 'Bundesarchiv, The war against the Herero in 1904',
+        url: 'https://www.bundesarchiv.de/themen-entdecken/online-entdecken/geschichtsgalerien/der-krieg-gegen-die-herero-1904/',
+        note: 'Documents the war and concentration camps, and distinguishes the estimated prewar Herero population from the number who survived.',
       },
     ],
     relatedTerms: ['sudwest', 'schwarzkommando', 'enzian', 'preterite'],
@@ -2348,7 +2415,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Von Göll directs propaganda film, trades on the black market, and later moves through the Zone as *Der Springer*, the chess knight. His fabricated Schwarzkommando footage precedes the discovery of an actual Schwarzkommando, and Allied intelligence staff read the invented reels as evidence of a real formation, so that the film has shifted what a viewer counts as documentation and, in time, has given the Herero survivors in the Zone the imagery through which they organise themselves as the Schwarzkommando.',
+        'Von Göll directs propaganda film, trades on the black market, and later moves through the Zone as *Der Springer*, the chess knight. His fabricated Schwarzkommando footage is meant to be found as evidence of African rocket troops; when he learns of Enzian\'s unit, he believes that his film has brought the formation into being. The novel records his claim without establishing that the Herero group owes its existence or organisation to the footage.',
     },
     externalRefs: [
       {
@@ -2437,7 +2504,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
-        'The Rundstedt offensive has bogged down',
+        'The Rundstedt offensive perked him up though, gave him a new lease on life',
       highlightedTerm: 'Rundstedt offensive',
     },
     apparatus: {
@@ -2526,13 +2593,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Pointsman dreams of a champion Weimaraner named Reichssieger von Thanatz Alpdrücken. *Alpdrücken* (nightmare, literally \'elf-pressing\') later titles von Göll\'s sadomasochistic film; *Thanatz*, from Greek *thanatos*, becomes the name of Miklos Thanatz. The breed name sounds Weimar, and the studbook tattoo inside the dog\'s ear runs on the same identifying procedure that the SS used to mark prisoners at Auschwitz, so that a champion pedigree and a camp inmate are catalogued by machinery that only distinguishes them by which register they end up in.',
+        'Pointsman dreams of a champion Weimaraner named Reichssieger von Thanatz Alpdrücken. *Alpdrücken* (nightmare, literally \'elf-pressing\') later titles von Göll\'s sadomasochistic film; *Thanatz*, from Greek *thanatos*, becomes the name of Miklos Thanatz. The breed name recalls Weimar, and the tattoo inside the dog\'s ear gives the pedigree a bodily registration mark. The comparison with Auschwitz concerns numbering people and animals; prisoners there were initially tattooed on the chest and later usually on the left forearm.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V142.32-33; traces the fragmentation of the dog\'s name into later characters and films.',
+      },
+      {
+        label: 'United States Holocaust Memorial Museum, Tattoos and Numbers',
+        url: 'https://encyclopedia.ushmm.org/content/en/article/tattoos-and-numbers-the-system-of-identifying-prisoners-at-auschwitz',
+        note: 'Describes the introduction of prisoner-number tattoos and the change from chest stamps to forearm tattoos.',
       },
     ],
     relatedTerms: ['pointsman', 'alpdrucken', 'von-goll'],
@@ -2574,7 +2646,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'On 28 March 1942, Palm Sunday, the RAF used incendiaries against Lübeck, a lightly defended Baltic port whose medieval timber centre burned readily; the raid was among the earliest area-bombing operations of the war. Basher St Blaise and his wingman see an angel above the fire. The last V-2 struck England on 27 March 1945, almost three years later; Hitler\'s response to Lübeck had begun the \'Baedeker raids\' on historic English cities while the *Vergeltungswaffen* were still under development. Leni Pökler\'s childhood home, the novel notes elsewhere, stood beside the Trave in Lübeck.',
+        'On the night of 28-29 March 1942, leading into Palm Sunday, the RAF used incendiaries against Lübeck, a lightly defended Baltic port whose medieval timber centre burned readily; the raid was among the earliest area-bombing operations of the war. Basher St Blaise and his wingman see an angel above the fire. The last V-2 struck England on 27 March 1945, almost three years later; Hitler\'s response to Lübeck had begun the \'Baedeker raids\' on historic English cities while the *Vergeltungswaffen* were still under development. Leni Pökler\'s childhood home, the novel notes elsewhere, stood beside the Trave in Lübeck.',
     },
     externalRefs: [
       {
@@ -2583,9 +2655,9 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V146.27; notes the Palm Sunday date and the three-year symmetry with the last V-2.',
       },
       {
-        label: 'Bombing of Lübeck in World War II',
-        url: 'https://en.wikipedia.org/wiki/Bombing_of_L%C3%BCbeck_in_World_War_II',
-        note: 'RAF raid of 28 March 1942 that destroyed much of the medieval city centre.',
+        label: 'RAF Museum, British Military Aviation in 1942',
+        url: 'https://www.rafmuseum.org.uk/research/research-enquiries/history-of-aviation-timeline/british-military-aviation/1942-2/',
+        note: 'Dates the incendiary raid on Lübeck to the night of 28-29 March 1942.',
       },
     ],
     relatedTerms: ['eventyr', 'peter-sachsa'],
@@ -2603,7 +2675,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'In the Lurianic Kabbalah of Isaac Luria (1534-72), vessels formed to receive divine light shatter under its force, scattering sparks through creation; the *qlippoth* are the husks that entrap those sparks. Gershom Scholem, in *On the Kabbalah and Its Symbolism* (1960), describes the result: \'Nothing remains in its proper place. Everything is somewhere else.\' *Gravity\'s Rainbow* briefly promises \'a gathering back to home\', then withdraws the promise with \'there is no such message, no such home\'. The Kabbalistic frame gives the novel a vocabulary for scattering and a language for the *tikkun* that might reassemble the pieces, and the question of whether the sparks scattered by this war can still be gathered is one the novel refuses to close.',
+        'In the Lurianic Kabbalah of Isaac Luria (1534-72), vessels formed to receive divine light shatter under its force, scattering sparks through creation; the *qlippoth* are the husks that entrap those sparks. Gershom Scholem, in *On the Kabbalah and Its Symbolism* (German 1960; English 1965), describes the result: \'Nothing remains in its proper place. Everything is somewhere else.\' *Gravity\'s Rainbow* briefly promises \'a gathering back to home\', then withdraws the promise with \'there is no such message, no such home\'. The Kabbalistic frame gives the novel a vocabulary for scattering and a language for the *tikkun* that might reassemble the pieces, and the question of whether the sparks scattered by this war can still be gathered is one the novel refuses to close.',
     },
     externalRefs: [
       {
@@ -2615,6 +2687,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Gershom Scholem',
         url: 'https://en.wikipedia.org/wiki/Gershom_Scholem',
         note: 'Scholar of Jewish mysticism (1897-1982) whose works on Kabbalah are Pynchon\'s primary source.',
+      },
+      {
+        label: 'Gershom Scholem, On the Kabbalah and Its Symbolism, trans. Ralph Manheim (1965)',
+        url: 'https://www.penguinrandomhouse.com/books/162202/on-the-kabbalah-and-its-symbolism-by-gershom-scholem/',
+        note: 'Pages 112-13 describe the breaking of the vessels, exile, and tikkun; the German original appeared in 1960.',
       },
     ],
     relatedTerms: ['qlippoth', 'preterite'],
@@ -2683,7 +2760,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P07,
     context: {
       excerpt:
-        'Earth\'s excrement, purged out for the ennoblement of shining steel. Passed over. We passed over the coal-tars. A thousand different molecules waited in the preterite dung.',
+        'Earth\'s excrement, purged out for the ennoblement of shining steel. Passed over. ... We passed over the coal-tars. A thousand different molecules waited in the preterite dung.',
       highlightedTerm: 'coal-tars',
     },
     apparatus: {
@@ -2717,8 +2794,8 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P07,
     context: {
       excerpt:
-        'von Maltzen at the Rapallo Treaty',
-      highlightedTerm: 'Rapallo Treaty',
+        'Why do you think von Maltzan and I saw the Rapallo treaty through?',
+      highlightedTerm: 'Rapallo treaty',
     },
     apparatus: {
       explanation:
@@ -2780,7 +2857,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The *Verein für Raumschiffahrt* (Society for Space Travel) brought amateur rocketeers together in Berlin from 1927, tested liquid-fuel motors on the Raketenflugplatz, and drew Wernher von Braun in as a student before the army absorbed its most useful members. Pökler enters Pynchon\'s fictional version after seeing *Die Frau im Mond*. Leni calls it \'Wandervögel idiocy\' because its engineers discuss the stars while military money is already deciding what their rockets will become.',
+        'The *Verein für Raumschiffahrt* (Society for Space Travel) was founded in Breslau in 1927, later tested liquid-fuel motors at the Raketenflugplatz in Berlin, and drew Wernher von Braun in as a student before the army absorbed its most useful members. Pökler enters Pynchon\'s fictional version after seeing *Die Frau im Mond*. Leni calls it \'Wandervögel idiocy\' because its engineers discuss the stars while military money is already deciding what their rockets will become.',
     },
     externalRefs: [
       {
@@ -2793,6 +2870,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         url: 'https://en.wikipedia.org/wiki/Verein_f%C3%BCr_Raumschiffahrt',
         note: 'German amateur rocket society (1927-1934).',
       },
+      {
+        label: 'NASA, *Realizing the Dream of Flight* (2005)',
+        url: 'https://ntrs.nasa.gov/api/citations/20050229888/downloads/20050229888.pdf',
+        note: 'The Willy Ley chapter, p. 157, dates the VfR foundation at Breslau to 5 June 1927.',
+      },
     ],
     relatedTerms: ['pokler', 'wandervogel', 'peenemunde', 'von-braun'],
   },
@@ -2800,7 +2882,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     id: 'pokler',
     displayLabel: 'Franz Pökler',
     railLabel: 'F. Pökler',
-    chronology: { episodeId: '1.19', sort: 119.3 },
+    chronology: { episodeId: '3.11', sort: 311.05 },
     colorVar: plotlineColorVars.P04,
     context: {
       excerpt:
@@ -2944,7 +3026,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Fritz Lang\'s 1924 silent epic comprises *Siegfried* and *Kriemhild\'s Revenge*. Franz Pökler sleeps through the second film and later remembers Attila \'sweeping in from the East\', an event that he did not see; Siegfried Kracauer describes the destruction in *Kriemhild\'s Revenge* as an ordered chain of causes and effects (*From Caligari to Hitler*, pp. 93-94), which returns in the couple\'s later argument about the *Götterdämmerung* mentality of the rocket engineers.',
+        'Fritz Lang\'s 1924 silent epic comprises *Siegfried* and *Kriemhild\'s Revenge*. Franz Pökler sleeps through the second film, and the narrator says that he misses Attila \'roaring in from the East\'; Siegfried Kracauer describes the destruction in *Kriemhild\'s Revenge* as an ordered chain of causes and effects (*From Caligari to Hitler*, pp. 93-94), which returns in the couple\'s later argument about the *Götterdämmerung* mentality of the rocket engineers.',
     },
     externalRefs: [
       {
@@ -2996,7 +3078,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Latin *cortex* means tree bark and, in anatomy, the brain\'s outer layer; with the dogs\' bark inside a Pavlovian laboratory, Pointsman\'s joke folds three senses into one word and quietly binds the conditioning apparatus to the etymology it borrows from.',
+        'Latin *cortex* means tree bark and, in anatomy, the brain\'s outer layer; with the dogs\' bark inside a Pavlovian laboratory, Pointsman\'s joke folds three senses into one word and binds the conditioning apparatus to the etymology it borrows from.',
     },
     externalRefs: [
       {
@@ -3718,13 +3800,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The \'Paranoid Systems of History\' briefing claims that the German Inflation drove young technicians towards control work in feedback systems and servomechanisms. Norbert Wiener defined cybernetics as the study of communication and control in animals and machines, taking the word from Greek *kybernētēs*, \'steersman\'; he chose the term during work in 1947 and published *Cybernetics* the following year. The 1945 briefing therefore uses a name that did not yet exist, one of the passage\'s small anachronisms.',
+        'The \'Paranoid Systems of History\' briefing claims that the German Inflation drove young technicians towards control work in feedback systems and servomechanisms. Norbert Wiener defined cybernetics as the study of communication and control in animals and machines, taking the word from Greek *kybernētēs*, \'steersman\'; he chose the term during work in 1947 and published *Cybernetics* the following year. The 1945 briefing therefore anticipates Wiener\'s use of the term for this field, one of the passage\'s small anachronisms; the word itself had earlier political uses that Wiener later acknowledged.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V238.30; notes the anachronism of the term and cites Wiener, *Cybernetics*, p. 12.',
+      },
+      {
+        label: 'Norbert Wiener, Cybernetics in History',
+        url: 'https://beausievers.com/bhqfu/computer_art/readings/wiener-cybernetics_in_history.pdf',
+        note: '*The Human Use of Human Beings*, chapter 1, explains the modern use of the term and acknowledges earlier uses by Ampère and a Polish scientist.',
       },
     ],
     relatedTerms: ['beyond-the-zero'],
@@ -3737,7 +3824,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
-        'to Bavarian tunesmith Carl Orff\'s lively\nTo-tus flore-o! lam amore virginali Totus ardeo',
+        'To-tus flore-o! lam amore virginali Totus ardeo',
       highlightedTerm: 'Totus ardeo',
     },
     apparatus: {
@@ -3868,7 +3955,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Blicero\'s final rocket bears five zeroes and contains the S-Gerät, with Gottfried sealed inside an Imipolex G shroud. The number is a countdown that continues after zero has already arrived; its companion 00001 falls in the closing pages, over a Los Angeles cinema.',
+        'Blicero\'s final rocket bears five zeroes and contains the S-Gerät, with Gottfried sealed inside an Imipolex G shroud. The number is a countdown that continues after zero has already arrived; the closing pages return to the 00000, its tip poised above a Los Angeles cinema. The Schwarzkommando are still assembling its companion 00001 on the Heath.',
     },
     externalRefs: [
       {
@@ -4022,13 +4109,23 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Café Odeon opened at Limmatquai 2 in Zürich in 1911. Its documented and reputed patrons included James Joyce, Vladimir Lenin, Leon Trotsky, Albert Einstein, and Tristan Tzara, all of whom were in wartime Zürich, though later accounts of their overlapping visits are not always reliably documented. Richard Ellmann\'s biography identifies the Odeon as one of Joyce\'s regular cafés, and Pynchon uses that historical clustering to place Slothrop in a room whose earlier occupants he cannot see.',
+        'Café Odeon opened at Limmatquai 2 in Zürich in 1911. Its documented and reputed patrons included James Joyce, Vladimir Lenin, Leon Trotsky, Albert Einstein, and Tristan Tzara, though their association with the café spans different years and does not establish that they met there. Richard Ellmann\'s biography identifies the Odeon as one of Joyce\'s regular cafés, and Pynchon uses that historical clustering to place Slothrop in a room whose earlier occupants he cannot see.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V262.35; identifies the historical patrons and the Stoppard/Ellmann connections.',
+      },
+      {
+        label: 'ODEON, The coffee house\'s history',
+        url: 'https://odeon.ch/en/odeon-history/',
+        note: 'Dates the opening to 1911 and recounts the café\'s associations with Joyce, the Dadaists, Lenin, Trotsky, and Einstein.',
+      },
+      {
+        label: 'ETH Library, Einstein\'s Berlin years',
+        url: 'https://library.ethz.ch/sammlungen-und-archive/online-zugaenge/einstein-online/die-berliner-zeit-1914-1933.html',
+        note: 'Records Einstein\'s move to Berlin in April 1914 and his later visits to Zürich.',
       },
     ],
     relatedTerms: ['slothrop'],
@@ -4068,7 +4165,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P01,
     context: {
       excerpt:
-        'In ordinary times, the center always wins. Its power grows with time, and that can\'t be reversed, not by ordinary means.',
+        'the center always wins. Its power grows with time, and that can\'t be reversed, not by ordinary means.',
       highlightedTerm: 'center always wins',
     },
     apparatus: {
@@ -4079,7 +4176,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates at V263.18; identifies the Argentine anarchist context and Acción Argentina.',
+        note: 'Annotates at V263.34-35; connects the Argentine anarchist context with Acción Argentina.',
       },
     ],
     relatedTerms: ['descamisados', 'the-zone', 'preterite'],
@@ -4167,12 +4264,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P05,
     context: {
       excerpt:
-        'Murphy\'s Law, that brash Irish proletarian restatement of Godel\'s Theorem',
-      highlightedTerm: 'Godel\'s Theorem',
+        'Murphy\'s Law to consider, that brash Irish proletarian restatement of Gödel\'s Theorem',
+      highlightedTerm: 'Gödel\'s Theorem',
     },
     apparatus: {
       explanation:
-        'Kurt Gödel proved in 1931 that any consistent, effectively axiomatised formal system capable of elementary arithmetic contains statements it cannot prove, and cannot prove its own consistency; his paper, *Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I*, closed Hilbert\'s programme for complete and consistent formal foundations. Pynchon sets that limit beside Murphy\'s Law: after everything has been taken care of, something will still go wrong or supply a surprise. Weisenburger also places 1931 beside Pudding\'s failed catalogue of European political outcomes, drafted in the same year.',
+        'Gödel\'s incompleteness theorems establish limits on formal proof: a consistent, effectively axiomatised system extending Peano arithmetic contains arithmetical statements it cannot decide, and cannot prove its own consistency as expressed through its standard proof predicate. His 1931 results obstruct Hilbert\'s proposed finitistic consistency proofs wherever those methods can themselves be formalised in the system. Pynchon sets that limit beside Murphy\'s Law: after everything has been taken care of, something will still go wrong or supply a surprise. Weisenburger also places 1931 beside Pudding\'s failed catalogue of European political outcomes, drafted in the same year.',
     },
     externalRefs: [
       {
@@ -4184,6 +4281,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Gödel\'s incompleteness theorems',
         url: 'https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems',
         note: 'Kurt Gödel\'s 1931 proof of limits on completeness and consistency in formal systems.',
+      },
+      {
+        label: 'Solomon Feferman, Gödel\'s incompleteness theorems, free will and mathematical thought',
+        url: 'https://math.stanford.edu/~feferman/papers/GodelFreeWill.pdf',
+        note: 'Sections 2-3 state the arithmetic assumptions and the restriction on consistency proofs by methods formalised within the same system.',
       },
     ],
     relatedTerms: ['maxwells-demon', 'pointsman'],
@@ -4340,7 +4442,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Ice Saints',
         url: 'https://en.wikipedia.org/wiki/Ice_Saints',
-        note: 'Central European folk tradition of a late-May frost linked to saints\' feast days.',
+        note: 'Central European folk tradition of a mid-May frost linked to saints\' feast days.',
       },
     ],
     relatedTerms: ['the-zone', 'slothrop'],
@@ -4348,7 +4450,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: 'tchitcherine',
     displayLabel: 'Vaslav Tchitcherine',
-    chronology: { episodeId: '3.01', sort: 301.3 },
+    chronology: { episodeId: '3.05', sort: 305.05 },
     colorVar: plotlineColorVars.P07,
     context: {
       excerpt:
@@ -4444,13 +4546,13 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   },
   {
     id: 'tannhauserism',
-    displayLabel: 'Tannhauserism',
+    displayLabel: 'Tannhäuserism',
     chronology: { episodeId: '3.02', sort: 302.1 },
     colorVar: plotlineColorVars.P01,
     context: {
       excerpt:
-        'There is that not-so-rare personality disorder known as Tannhauserism. Some of us love to be taken under mountains',
-      highlightedTerm: 'Tannhauserism',
+        'There is that not-so-rare personality disorder known as Tannhäuserism. Some of us love to be taken under mountains',
+      highlightedTerm: 'Tannhäuserism',
     },
     apparatus: {
       explanation:
@@ -4558,7 +4660,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Pervitin was Temmler Pharmaceuticals\' trade name for methamphetamine hydrochloride, introduced in 1938 and issued to Wehrmacht troops as a fatigue-suppressant during the 1940 campaign. It was sold without prescription until German authorities restricted it in 1941, though military distribution continued through the war. Enzian swallows two Pervitins on the road, taking a German military drug into the Zone he now crosses as a Herero commander.',
+        'Pervitin was Temmler Pharmaceuticals\' trade name for methamphetamine hydrochloride, introduced in 1938 and issued to Wehrmacht troops as a fatigue-suppressant during the 1940 campaign. Initially sold without prescription, it came under the Opium Law in 1941; military distribution continued through the war. Enzian swallows two Pervitins on the road, taking a German military drug into the Zone he now crosses as a Herero commander.',
     },
     externalRefs: [
       {
@@ -4570,6 +4672,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Pervitin',
         url: 'https://en.wikipedia.org/wiki/Methamphetamine#History',
         note: 'Methamphetamine trade name used by the Wehrmacht as a fatigue-suppressor.',
+      },
+      {
+        label: 'Bundesarchiv, Pervitin records, 1939-1943',
+        url: 'https://www.deutsche-digitale-bibliothek.de/item/DDEYAU3SJS44I25TUZ4VQXIB55VLEIIP',
+        note: 'File RH 12-23/1884 includes the April 1940 military instructions and distribution statistics, later reports, and correspondence with the Temmler works.',
       },
     ],
     relatedTerms: ['enzian', 'ig-farben'],
@@ -4609,7 +4716,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Geli is a young witch descended from Amy Sprue. She meets Slothrop on the Brocken, and in 4.11 casts the spell that prevents Tchitcherine from recognising Enzian as his half-brother. Her witchcraft is a kind of knowledge that Pointsman will not enter in a laboratory record and Tchitcherine will not enter in a dossier.',
+        'Geli is the young witch who watches the Brocken spectre with Slothrop in 3.04; Amy Sprue, recalled in that scene, is his ancestor. In 4.11 Geli casts the spell that prevents Tchitcherine from recognising Enzian as his half-brother. Her witchcraft is a kind of knowledge that Pointsman will not enter in a laboratory record and Tchitcherine will not enter in a dossier.',
     },
     externalRefs: [
       {
@@ -4702,7 +4809,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The New Turkic Alphabet, or *Yañalif*, used a Latin alphabet of thirty-three letters (later thirty-four) to replace Arabic scripts for many Soviet Turkic languages. Local reformers and Soviet planners supported Latinisation for different combinations of literacy, secularisation, and political integration; Thomas G. Winner\'s *The Oral Art and Literature of the Kazakhs of Russian Central Asia* (1958) is Weisenburger\'s identified source. Soviet policy replaced the Latin alphabets with Cyrillic between 1938 and 1940, separating another generation from the preceding written system. Tchitcherine is posted with the commission that carries the new Latin letters into Kazakh villages, where the same evening the agents also encounter the *ajtys*.',
+        'The New Turkic Alphabet, or *Yañalif*, was a Soviet project to replace Arabic scripts for many Turkic languages with Latin alphabets. Local reformers and Soviet planners supported Latinisation for different combinations of literacy, secularisation, and political integration; Thomas G. Winner\'s *The Oral Art and Literature of the Kazakhs of Russian Central Asia* (1958) is Weisenburger\'s identified source. Soviet policy replaced the Latin alphabets with Cyrillic between 1938 and 1940, separating another generation from the preceding written system. Tchitcherine is posted with the commission that carries the new Latin letters into Kazakh villages, where the same evening the agents also encounter the *ajtys*.',
     },
     externalRefs: [
       {
@@ -4726,13 +4833,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'An *ajtys* is a Kazakh improvised verse contest between *aqyns*, commonly accompanied by the dombra, a long-necked lute, or the shamanic bowed qobyz. Pynchon makes this one a courtship exchange between a boy and a girl in the eye of the village, and stages it beside the alphabet commission so the reader can hear how much of the sung reply the new Latin letters would fail to capture.',
+        'An *ajtys* is a Kazakh improvised verse contest between *aqyns*, commonly accompanied by the dombra, a long-necked lute. Pynchon makes this one a courtship exchange between a boy and a girl in the eye of the village, and stages it beside the alphabet commission so the reader can hear how much of the sung reply the new Latin letters would fail to capture.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V356.10; cites Winner on the ajtys and aqyn traditions.',
+      },
+      {
+        label: 'UNESCO, Aitysh/Aitys, art of improvisation',
+        url: 'https://ich.unesco.org/en/RL/aitysh-aitys-art-of-improvisation-00997',
+        note: 'The nomination describes the verse contest and distinguishes the Kazakh dombra from the Kyrgyz komuz.',
       },
     ],
     relatedTerms: ['nta-new-turkic-alphabet', 'tchitcherine', 'kirghiz-light'],
@@ -4750,7 +4862,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Werner Heisenberg\'s uncertainty relation places an intrinsic lower bound on the joint spreads of position and momentum, ΔxΔp ≥ ℏ/2. The relation does not arise simply because a measurement disturbs the particle; the modern formulation follows from the non-commuting operators for position and momentum. Heisenberg published the paper in 1927 and received the 1932 Nobel Prize in Physics. Pynchon uses the physical limit as an analogy for opiate addiction, where a doctor cannot lower pain without also lowering the patient\'s tolerance for pain, so relief and desire behave like conjugate variables.',
+        'Werner Heisenberg\'s uncertainty relation places an intrinsic lower bound on the joint spreads of position and momentum, ΔxΔp ≥ ℏ/2. The relation does not arise simply because a measurement disturbs the particle; the modern formulation follows from the non-commuting operators for position and momentum. Heisenberg published the paper in 1927 and received the Nobel Prize in Physics for 1932, presented in 1933. Pynchon uses the physical limit as an analogy for opiate addiction, where a doctor cannot lower pain without also lowering the patient\'s tolerance for pain, so relief and desire behave like conjugate variables.',
     },
     externalRefs: [
       {
@@ -4762,6 +4874,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Uncertainty principle',
         url: 'https://en.wikipedia.org/wiki/Uncertainty_principle',
         note: 'Heisenberg\'s 1927 principle of quantum mechanics.',
+      },
+      {
+        label: 'Nobel Foundation, The Nobel Prize in Physics 1932',
+        url: 'https://www.nobelprize.org/prizes/physics/1932/summary/',
+        note: 'Distinguishes the 1932 prize year from its presentation to Heisenberg in 1933.',
       },
     ],
     relatedTerms: ['maxwells-demon', 'godels-theorem', 'pointsman'],
@@ -4868,7 +4985,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P01,
     context: {
       excerpt:
-        'He is the knight who leaps perpetually — across the chessboard of the Zone',
+        'He is the knight who leaps perpetually ... across the chessboard of the Zone',
       highlightedTerm: 'knight',
     },
     apparatus: {
@@ -5038,7 +5155,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P08,
     context: {
       excerpt:
-        'stalking Reichssieger von Thanatz Alpdrücken, that most elusive of Nazi hounds.',
+        'But looking back, he knew that had to be the night, Alpdrücken night',
       highlightedTerm: 'Alpdrücken',
     },
     apparatus: {
@@ -5178,7 +5295,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P01,
     context: {
       excerpt:
-        'Gustav is a composer. For months he has been carrying on a raging debate with Saure over who is better, Beethoven or Rossini.',
+        'Gustav is a composer. For months he has been carrying on a raging debate with Säure over who is better, Beethoven or Rossini.',
       highlightedTerm: 'Beethoven or Rossini',
     },
     apparatus: {
@@ -5340,7 +5457,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P01,
     context: {
       excerpt:
-        'Slothrop meets Miklos Thanatz, full beard, eyebrows feathering out like trailing edges',
+        'Slothrop looks around and finds Miklos Thanatz, full beard, eyebrows feathering out like trailing edges',
       highlightedTerm: 'Thanatz',
     },
     apparatus: {
@@ -5368,7 +5485,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Aboard the *Anubis*, Slothrop names the wish to bring Bianca back from darkness a \'Eurydice-obsession\', after Orpheus\'s failed recovery of his wife from Hades on the condition that he not look back. Slothrop also feels the counter-temptation to leave her there and accept a \'reasonable facsimile\', so Pynchon uses the myth to stage a very Pynchonian problem about substitute bodies and copies of the beloved.',
+        'Aboard the *Anubis*, Slothrop names the wish to bring Bianca back from darkness a \'Eurydice-obsession\', after Orpheus\'s failed recovery of his wife from Hades on the condition that he not look back. Slothrop also feels the counter-temptation to leave her there and accept a \'reasonable facsimile\'; the imagined substitute would release him from having to recover Bianca herself.',
     },
     externalRefs: [
       {
@@ -5420,13 +5537,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Ensign Morituri, an ex-kamikaze trainee, carries the Roman gladiatorial greeting *morituri te salutant*, \'those who are about to die salute thee\', recorded by Suetonius in his account of Claudius\'s mock naval battle on Lake Fucinus in 52 CE; Conrad\'s Marlow quotes the phrase in *Heart of Darkness* on visiting the Company offices. Morituri appears aboard the *Anubis* to attend Greta Erdmann, and his thoughts on \'radioactivity\' carry an irony that only the reader in 1973 can supply, since the scene takes place a few weeks before the atomic bombing of Hiroshima on 6 August 1945.',
+        'Ensign Morituri, an ex-kamikaze trainee, carries the words *morituri te salutant*, \'those who are about to die salute thee\', which Suetonius records as the condemned combatants\' address to Claudius before a mock naval battle on Lake Fucinus in 52 CE; Conrad\'s Marlow quotes the phrase in *Heart of Darkness* on visiting the Company offices. Morituri appears aboard the *Anubis* to attend Greta Erdmann, and his thoughts on \'radioactivity\' carry a dramatic irony for readers who know what followed, since the scene takes place a few weeks before the atomic bombing of Hiroshima on 6 August 1945.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V473.3-4; identifies the gladiatorial and Conradian sources.',
+      },
+      {
+        label: 'Suetonius, Life of Claudius, 21.6',
+        url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Claudius*.html',
+        note: 'Records the address to Claudius before the mock naval battle and his reply; this is the particular event behind the phrase.',
       },
     ],
     relatedTerms: ['anubis', 'greta-erdmann'],
@@ -5467,7 +5589,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Greta Erdmann\'s Weimar-era comedy casts her as \'the dizzy debutante Lotte Lüstig,\' drifting downriver in a bathtub with Max Schlepzig. The title, \'Youth, arise!,\' differs by a single consonant from *Juden heraus!* (\'Jews, get out!\'), a slogan that ran through nineteenth-century German antisemitic agitation and was formalised under Nazi policy in the 1930s. The narrator calls the near-homophone \'a lighthearted pun, of course\'; the film industry plays with a phrase that the state will soon use in earnest.',
+        'Greta Erdmann\'s Weimar-era comedy casts her as \'the dizzy debutante Lotte Lüstig,\' drifting downriver in a bathtub with Max Schlepzig. The title, \'Youth, arise!,\' plays on the sound of *Juden heraus!* (\'Jews, get out!\'), a slogan that ran through nineteenth-century German antisemitic agitation and was formalised under Nazi policy in the 1930s. The narrator calls the near-homophone \'a lighthearted pun, of course\'; the film industry plays with a phrase that the state will soon use in earnest.',
     },
     externalRefs: [
       {
@@ -5520,7 +5642,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Aboard the Anubis, Countess Bibescu dreams of Bucharest in January 1941, when Romania\'s fascist Iron Guard (Garda de Fier, also called the Legion of the Archangel Michael) launched a coup and pogrom in which Jews and Leftists were murdered, some with their bodies hung on hooks in the municipal slaughterhouse. \'Long Live Death\' (*Trăiască Moartea*) was a rallying cry among European fascist movements, echoing the Spanish Legion\'s *Viva la muerte*, made notorious by José Millán-Astray in the 1930s. The Countess remembers industrial meat-hooks while travelling on a pleasure ship full of escaped fascists, and the January 1941 pogrom sits inside her memory as an image of the *Anubis* passenger list projected sixteen years forward.',
+        'Aboard the Anubis, Countess Bibescu dreams of Bucharest in January 1941, when Romania\'s fascist Iron Guard (Garda de Fier, also called the Legion of the Archangel Michael) launched a coup and pogrom in which Jews and Leftists were murdered, some with their bodies hung on hooks in the municipal slaughterhouse. \'Long Live Death\' (*Trăiască Moartea*) was a rallying cry among European fascist movements, echoing the Spanish Legion\'s *Viva la muerte*, made notorious by José Millán-Astray in the 1930s. The Countess remembers industrial meat-hooks while travelling on a pleasure ship full of escaped fascists, and her memory of the January 1941 pogrom brings its victims into the same passage as the escaped fascists aboard the *Anubis* four years later.',
     },
     externalRefs: [
       {
@@ -5543,7 +5665,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'As Slothrop approaches Peenemünde, all shadows align with the east-northeast bearing along which test rockets were fired out to sea. This is \'Rocket Noon,\' a liturgical hour for the rocket\'s \'devout,\' complete with a noontime siren \'the whole town believes in.\' Weisenburger connects the passage to the noon firing of the 00000 on Lüneburg Heath, so that the Peenemünde alignment Slothrop notices in the sunlight and the final launch he never witnesses share the same east-northeast solar geometry.',
+        'As Slothrop approaches Peenemünde, all shadows align with the east-northeast bearing along which test rockets were fired out to sea. This is \'Rocket Noon,\' a liturgical hour for the rocket\'s \'devout,\' complete with a noontime siren \'the whole town believes in.\' Weisenburger connects the passage to the noon firing of the 00000 on Lüneburg Heath; the repeated hour links the two sites without establishing a common firing bearing or shadow direction.',
     },
     externalRefs: [
       {
@@ -5567,13 +5689,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Närrisch names the Peenemünde test stands as Stations of the Cross, numbering them out of liturgical order as the boat passes: VI, V, III, IV, II, IX, VIII, I, and finally VII and X. The concrete ruins become markers on the rocket\'s *via dolorosa*; Test Stands VII and X, from which the A4 flew, occupy the places of crucifixion and entombment. Närrisch\'s out-of-order numbering keeps the liturgy incomplete, and the boat\'s own path along the ruined stands becomes the fourteenth station he does not name.',
+        'The narrator calls the Peenemünde test stands \'stations of the cross\' as Närrisch counts them from the passing boat: VI, V, III, IV, II, IX, VIII, I, and finally VII and X. The concrete ruins become markers on the rocket\'s *via dolorosa*. In the traditional fourteen-station sequence, VII is Christ\'s second fall and X is the stripping of his garments; crucifixion, death, and entombment belong to XI, XII, and XIV, which the passage does not name.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates the Peenemünde test-stand sequence and its liturgical associations.',
+      },
+      {
+        label: 'Vatican, Way of the Cross (2010)',
+        url: 'https://www.vatican.va/news_services/liturgy/2010/documents/ns_lit_doc_20100402_via-crucis_en.html',
+        note: 'Lists the traditional fourteen Stations, including the second fall at VII and the stripping of garments at X.',
       },
     ],
     relatedTerms: ['peenemunde', 'rocket-noon', 'v2-a4', 'brennschluss'],
@@ -5610,12 +5737,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P08,
     context: {
       excerpt:
-        'Narrisch hasn\'t been to a movie since Der Mude Tod.',
-      highlightedTerm: 'Der Mude Tod',
+        'Närrisch hasn\'t been to a movie since Der Müde Tod.',
+      highlightedTerm: 'Der Müde Tod',
     },
     apparatus: {
       explanation:
-        'In Fritz Lang\'s *Der müde Tod* (1921, English title *Destiny*), a woman bargains with Death to save her lover through three historical settings, a Muslim city, Renaissance Venice, and imperial China, and fails each time before choosing to die with him. Närrisch has not been to a film since seeing it and \'has forgotten its ending, the last Rilke-elegiac shot of weary Death leading the two lovers away hand in hand through the forget-me-nots.\' Kracauer reads the film in *From Caligari to Hitler* as an example of the Weimar fascination with fate and submission; its failed rescues recur in Gottfried\'s death and in Slothrop\'s failures to save anyone in the Zone.',
+        'In Fritz Lang\'s *Der müde Tod* (1921, English title *Destiny*), a woman bargains with Death to save her lover through three historical settings, a Muslim city, Renaissance Venice, and imperial China, and fails each time before choosing to die with him. Närrisch has not been to a film since seeing it and \'he\'s forgotten its ending, the last Rilke-elegiac shot of weary Death leading the two lovers away hand in hand through the forget-me-nots.\' Kracauer reads the film in *From Caligari to Hitler* as an example of the Weimar fascination with fate and submission; its failed rescues recur in Gottfried\'s death and in Slothrop\'s failures to save anyone in the Zone.',
     },
     externalRefs: [
       {
@@ -5644,7 +5771,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'RABE (*Raketenbau und Entwicklung*, rocket manufacture and development) was a Soviet-run facility at Bleicherode, near Nordhausen in central Germany, established in the summer of 1945 to exploit captured V-2 expertise. German engineers were recruited with wages and, in 1946, relocated to the Soviet Union, most to the steppes of Kyrgyzstan, in the deportation operation known as Osoaviakhim. In the passage, a rocket engineer can go east with RABE or west to America for \'$6 a day\'; the same technical labour crosses the new political boundary in either direction, and James McGovern\'s *Crossbow and Overcast* documents the Bleicherode facility under Soviet control.',
+        'RABE (*Raketenbau und Entwicklung*, rocket manufacture and development) was a Soviet-run facility at Bleicherode, near Nordhausen in central Germany, established in the summer of 1945 to exploit captured V-2 expertise. German engineers were recruited with wages, then forcibly relocated to the Soviet Union in October 1946 during Operation Osoaviakhim; many subsequently worked on Gorodomlya Island in Lake Seliger. In the passage, a rocket engineer can go east with RABE or west to America for \'$6 a day\'; the same technical labour crosses the new political boundary in either direction, and James McGovern\'s *Crossbow and Overcast* documents the Bleicherode facility under Soviet control.',
     },
     externalRefs: [
       {
@@ -5656,6 +5783,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Operation Osoaviakhim',
         url: 'https://en.wikipedia.org/wiki/Operation_Osoaviakhim',
         note: 'The 22 October 1946 Soviet operation that deported German specialists including RABE engineers.',
+      },
+      {
+        label: 'Chertok, *Rockets and People*, vol. 2 (NASA, 2006)',
+        url: 'https://www.nasa.gov/wp-content/uploads/2023/04/sp-4110-vol2.pdf',
+        note: 'Chapter 3, pp. 43-45, traces the German specialists from RABE and Nordhausen to NII-88 and Gorodomlya Island.',
       },
     ],
     relatedTerms: ['operation-backfire', 'von-braun', 'peenemunde'],
@@ -5673,7 +5805,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Enzian rides into a slag-heap refinery named for Laszlo Jamf and finds that it is \'not a ruin at all\' but \'in perfect working order,\' waiting for \'the right connections to be set up.\' Its apparent bombing damage looks like a rearrangement \'both sides had always agreed on.\' Jamf\'s name attaches his academic chemistry to industrial production; Enzian begins to suspect that the refinery survived because the companies behind the war expected to use it afterwards, the wartime destruction having been targeted around the plant one side wanted the other to preserve.',
+        'Enzian rides into a slag-heap refinery named for Laszlo Jamf and finds that it is \'not a ruin at all\' but \'in perfect working order,\' waiting for \'the right connections to be set up.\' Its apparent bombing damage looks to him like part of a plan that both sides had agreed on. Jamf\'s name attaches his academic chemistry to industrial production; Enzian begins to suspect that the refinery survived because the companies behind the war expected to use it afterwards, the wartime destruction having been targeted around the plant one side wanted the other to preserve.',
     },
     externalRefs: [
       {
@@ -5772,7 +5904,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The episode\'s epigraph invents a letter home from the child Jesus, who cheerfully reports that he has put people in Hell, then marks its Oxyrhynchus papyrus number \'classified.\' Archaeologists working near the Egyptian city of Oxyrhynchus have recovered thousands of textual fragments since 1896; papyri 1, 654, and 655 contain sayings that also appear in the Coptic *Gospel of Thomas* found at Nag Hammadi, and a separate apocryphal Infancy Gospel narrates miracles of Jesus\'s boyhood, including inflicting death on those who thwart him. The \'classified\' stamp attached to a papyrus number puts apocryphal scripture behind the same access controls as the intelligence dossiers, so the epigraph\'s joke is that the child Jesus\'s cruelty has been assigned a security caveat before it can reach the reader.',
+        'The episode\'s epigraph invents a letter home from the child Jesus, who cheerfully reports that he has put people in Hell, then marks its Oxyrhynchus papyrus number \'classified.\' Archaeologists working near the Egyptian city of Oxyrhynchus have recovered thousands of textual fragments since the 1896-97 excavation season; papyri 1, 654, and 655 contain sayings that also appear in the Coptic *Gospel of Thomas* found at Nag Hammadi, and a separate apocryphal Infancy Gospel narrates miracles of Jesus\'s boyhood, including inflicting death on those who thwart him. The \'classified\' stamp attached to a papyrus number puts apocryphal scripture behind the same access controls as the intelligence dossiers, so the epigraph\'s joke is that the child Jesus\'s cruelty has been assigned a security caveat before it can reach the reader.',
     },
     externalRefs: [
       {
@@ -5784,6 +5916,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Oxyrhynchus Papyri',
         url: 'https://en.wikipedia.org/wiki/Oxyrhynchus_Papyri',
         note: 'Overview of the archaeological find and its significance for early Christian textual scholarship.',
+      },
+      {
+        label: 'Oxford, The Oxyrhynchus Papyri: Introduction',
+        url: 'https://oxyrhynchus.web.ox.ac.uk/node/3484596',
+        note: 'Dates the first season to 1896-97 and the discovery and publication of papyrus 1 to 1897; identifies it with the sayings Gospel of Thomas.',
       },
     ],
     relatedTerms: ['qlippoth', 'shekinah', 'pirate-prentice'],
@@ -5824,7 +5961,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Father Rapier preaches \'against return\' at the afterlife Convention: once technical control reaches a sufficient density of connections, \'the chances for freedom are over for good.\' Pierre Teilhard de Chardin (1881-1955), the Jesuit palaeontologist and philosopher, proposed in *The Phenomenon of Man* that material evolution tends towards an \'omega point\' of spiritual convergence, a work suppressed by the Church during his lifetime and published only after his death. Rapier reads that convergence as the moment when control becomes irreversible, and calls the threshold \'Critical Mass,\' borrowing a nuclear-physics term still classified in 1945.',
+        'Father Rapier preaches \'against return\' at the afterlife Convention: once technical control reaches a sufficient density of connections, \'the chances for freedom are over for good.\' Pierre Teilhard de Chardin (1881-1955), the Jesuit palaeontologist and philosopher, proposed in *The Phenomenon of Man* that material evolution tends towards an \'omega point\' of spiritual convergence, a work suppressed by the Church during his lifetime and published only after his death. Rapier reads that convergence as the moment when control becomes irreversible, and calls the threshold \'Critical Mass,\' borrowing a term from nuclear physics. The concept was already in print in 1939, when Francis Perrin published calculations of uranium criticality.',
     },
     externalRefs: [
       {
@@ -5836,6 +5973,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Pierre Teilhard de Chardin',
         url: 'https://en.wikipedia.org/wiki/Pierre_Teilhard_de_Chardin',
         note: 'Life, works, and the synthesis of evolution and Christianity.',
+      },
+      {
+        label: 'Cameron Reed, Origin of Critical Mass (2004)',
+        url: 'https://physicstoday.aip.org/letters/a-reader-inquires-origin-of-critical-mass',
+        note: 'Examines Perrin\'s 1 May 1939 paper and its use of \'masse critique\'; distinguishes the concept\'s publication from later wartime secrecy.',
       },
     ],
     relatedTerms: ['pirate-prentice', 'they-them', 'process'],
@@ -5853,7 +5995,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'William Slothrop\'s fictional *On Preterition* extends holiness to \'the many God passes over when he chooses a few.\' Judas Iscariot stands to these Preterite as Jesus stands to the Elect, and William argues that love must include both. Pynchon gives the tract the publication history of his own ancestor William Pynchon (1590-1662), founder of Springfield, Massachusetts, whose *The Meritorious Price of Our Redemption* (1650) was condemned by the Massachusetts General Court for challenging orthodox Puritan atonement doctrine and ordered burned on Boston Common; only four copies are known to survive.',
+        'William Slothrop\'s fictional *On Preterition* extends holiness to \'the many God passes over when he chooses a few.\' Judas Iscariot stands to these Preterite as Jesus stands to the Elect, and William argues that love must include both. Pynchon gives the tract the publication history of his own ancestor William Pynchon (1590-1662), founder of Springfield, Massachusetts, whose *The Meritorious Price of Our Redemption* (1650) was condemned by the Massachusetts General Court for challenging orthodox Puritan atonement doctrine and ordered burned in Boston; only four copies are known to survive.',
     },
     externalRefs: [
       {
@@ -5882,13 +6024,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Volksdeutsch, Poles, Estonians, Letts, Lithuanians, Sudetens, Czechs, Slovaks, Croats, Serbs, Macedonians, Magyars, Circassians, Bulgars, and Romani people stream across the Zone in one long sentence. *Völkerwanderung* means \'migration of peoples,\' the name first given to the fourth-to-sixth-century movements that ended the Western Roman Empire. Pynchon repurposes it for the postwar displacement of 1945, when an estimated twelve million Germans were expelled from Eastern Europe and millions of other Europeans criss-crossed the former Reich\'s territory carrying \'pressed-board panelling, violins in weathered black cases, handfuls of hundred-year-old agates.\'',
+        'Volksdeutsch, Poles, Estonians, Letts, Lithuanians, Sudetens, Czechs, Slovaks, Croats, Serbs, Macedonians, Magyars, Circassians, Bulgars, and Romani people stream across the Zone in one long sentence. *Völkerwanderung* means \'migration of peoples,\' the name first given to the fourth-to-sixth-century movements that ended the Western Roman Empire. Pynchon repurposes it for the displacement of 1945, part of a wider flight and expulsion that left about twelve million Germans seeking new homes by 1950. Millions of other Europeans criss-crossed the former Reich\'s territory carrying \'horns and violins in weathered black cases\' and \'handfuls of hundred-year-old agates\'.',
     },
     externalRefs: [
       {
         label: '*Völkerwanderung*',
         url: 'https://en.wikipedia.org/wiki/Migration_Period',
         note: 'The historical migration period; Pynchon repurposes the term for the 1945 displacement of peoples.',
+      },
+      {
+        label: 'Haus der Geschichte, Flight and expulsion',
+        url: 'https://www.hdg.de/lemo/kapitel/nachkriegsjahre/alltag/flucht-und-vertreibung.html',
+        note: 'Places the twelve-million total across flight and expulsion beginning in 1944-45 and continuing through the postwar years to 1950.',
       },
     ],
     relatedTerms: ['the-zone', 'preterite', 'forget-frontiers'],
@@ -5905,7 +6052,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Andreas arranges the five letters of the A4 firing sequence (Klar, Entlüftung, Zündung, Vorstufe, Hauptstufe) as a mandala modelled on a Herero village. Klar and Entlüftung are female, connected with birth and breath; Zündung and Vorstufe are male, connected with fire and building; Hauptstufe occupies the centre where the sacred cattle were penned in the traditional *onganda*. The rocket countdown has been rebuilt as the compass, gendered space, and social order of a Herero compound, so the machine that killed the Herero\'s grandparents is now being read as a diagram of Herero life.',
+        'Andreas arranges the five letters of the A4 firing sequence (Klar, Entlüftung, Zündung, Vorstufe, Hauptstufe) as a mandala modelled on a Herero village. Klar and Entlüftung are female, connected with birth and breath; Zündung and Vorstufe are male, connected with fire and building; Hauptstufe occupies the centre where the sacred cattle were penned in the traditional *onganda*. The rocket countdown has been rebuilt as the compass, gendered space, and social order of a Herero compound, so a weapon built by the German state is now being read through the village structure of a people subjected to German colonial genocide.',
     },
     externalRefs: [
       {
@@ -5929,13 +6076,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Andreas believes that von Trotha\'s army \'passed over\' the surviving Herero so that their descendants would find the Aggregat. Generalleutnant Lothar von Trotha commanded the German forces in South-West Africa during the Herero and Nama genocide of 1904-08; his *Vernichtungsbefehl* of October 1904 explicitly ordered the killing or expulsion of the entire Herero people, and survivors were driven into the Omaheke Desert or interned in concentration camps. Andreas\'s theology turns survival from accident into mission and makes the rocket the purpose of a genocide committed by the people who built it; the machine explains why anyone survived, and the murder authorises the machine.',
+        'Andreas believes that von Trotha\'s army \'passed over\' the surviving Herero so that their descendants would find the Aggregat. Generalleutnant Lothar von Trotha commanded the German forces in South-West Africa from 1904 until his recall in November 1905, during the genocide of 1904-08; his *Vernichtungsbefehl* of October 1904 explicitly ordered the killing or expulsion of the entire Herero people, and survivors were driven into the Omaheke Desert or interned in concentration camps. Andreas\'s theology turns survival from accident into mission and makes the rocket the purpose of a genocide committed by the people who built it; the machine explains why anyone survived, and the murder authorises the machine.',
     },
     externalRefs: [
       {
         label: 'Herero and Nama genocide',
         url: 'https://en.wikipedia.org/wiki/Herero_and_Nama_genocide',
         note: 'Von Trotha\'s extermination order and the Herero genocide of 1904-08.',
+      },
+      {
+        label: 'Federal Agency for Civic Education, The Herero uprising of 1904',
+        url: 'https://www.bpb.de/kurz-knapp/hintergrund-aktuell/176142/januar-1904-herero-aufstand-in-deutsch-suedwestafrika/',
+        note: 'Dates von Trotha\'s appointment to 1904 and recall to November 1905; quotes the extermination order of 2 October 1904.',
       },
     ],
     relatedTerms: ['herero-genocide', 'enzian', 'schwarzkommando', 'preterite', 'kezvh-mandala'],
@@ -6000,7 +6152,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Slothrop wears a pig costume for a village festival and chases a real pig through the streets as Plechazunga, the Pig-Hero, a Northern German thunder-god who is said to have driven off a Viking raid with a lightning bolt. Earlier costumes made him Rocketman and then Schwarzknabe; this one places him among the swine of William Slothrop\'s tract, the passed-over creatures driven squealing to the end of the pike. After Plechazunga, his names and appearances become harder to join into one person.',
+        'Slothrop wears a pig costume for a village festival and chases a real pig through the streets as Plechazunga, the Pig-Hero, who, in the novel\'s village legend, drove off a Viking raid with a lightning bolt. Earlier costumes made him Rocketman and then Schwarzknabe; this one places him among the swine of William Slothrop\'s tract, the passed-over creatures driven squealing to the end of the pike. After Plechazunga, his names and appearances become harder to join into one person.',
     },
     externalRefs: [
       {
@@ -6071,12 +6223,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: '--color-accent',
     context: {
       excerpt:
-        '"move beyond life, toward the inorganic. Here is no frailty, no mortality—here is Strength, and the Timeless." Then . . . he wrote, in enormous letters, Si—N.',
+        '"move beyond life, toward the inorganic. Here is no frailty, no mortality—here is Strength, and the Timeless." ... wrote, in enormous letters, Si—N.',
       highlightedTerm: 'Si—N',
     },
     apparatus: {
       explanation:
-        'Jamf ends his lecture by writing Si-N in enormous letters after telling the students to \'move beyond life, toward the inorganic.\' Silicon-nitrogen polymers, or polysilazanes, convert on heating into thermally stable silicon nitride ceramics; Jamf turns that route from polymer to heat-resistant inorganic material into a promise of the \'Strength, and the Timeless\' that chemistry might manufacture outside carbon-based mortality. Outside, the students sing *Semper sit in flores* (\'may he always be in flower\'); organic bloom continues while Jamf lectures against it.',
+        'Jamf ends his lecture by wiping C-H from the board and writing Si-N in enormous letters after telling the students to \'move beyond life, toward the inorganic.\' The silicon-nitrogen bond names his proposed escape from carbon-based mortality into \'Strength, and the Timeless\'. The narrator immediately adds that Jamf never synthesised the inorganic rings or chains he had promised. Outside, the students sing *Semper sit in flores* (\'may he always be in flower\'); organic bloom continues while Jamf lectures against it.',
     },
     externalRefs: [
       {
@@ -6242,7 +6394,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: '--color-accent',
     context: {
       excerpt:
-        'One village in Mecklenburg has been taken over by army dogs . . . Bodies of neighbouring villagers and eager sociologists litter all the approaches to the Hund-Stadt. Nobody can get near it.',
+        'One village in Mecklenburg has been taken over by army dogs ... Bodies of neighboring villagers and eager sociologists litter all the approaches to the Hund-Stadt. Nobody can get near it.',
       highlightedTerm: 'Hund-Stadt',
     },
     apparatus: {
@@ -6271,7 +6423,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'A Firm operative uses the Latin tag \'always something new out of Africa\' while discussing behavioural experiments on African subjects before the methods are tried on domestic \'target groups.\' The phrase derives from Pliny the Elder\'s *Natural History* (VIII.17.42), *semper aliquid novi Africam adferre*, and passed into European proverbial usage as a marker of Africa as a source of the marvellous and strange, a framing that underwrote centuries of colonial exploitation disguised as scientific curiosity. The operative expects the Americans to watch \'how we do with our lovely black animals\' before \'trying it on their own\'; postwar intelligence inherits the categories and sequence of colonial experiment.',
+        'A Firm operative uses the Latin tag \'always something new out of Africa\' while discussing behavioural experiments on African subjects before the methods are tried on domestic \'target groups.\' The phrase derives from Pliny the Elder\'s *Natural History* (VIII.17.42), *semper aliquid novi Africam adferre*, and passed into European proverbial usage as a marker of Africa as a source of the marvellous and strange, a framing that underwrote centuries of colonial exploitation disguised as scientific curiosity. The operative expects the Americans to watch \'how we do with our lovely black animals\' before they \'try it on their own\'; postwar intelligence inherits the categories and sequence of colonial experiment.',
     },
     externalRefs: [
       {
@@ -6295,7 +6447,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'German for \'saint\'s halo,\' and also the name of a measurable optical phenomenon: light diffracting through dewdrops produces a luminescence around the shadow of an observer\'s head. The Heiligenschein appears at Slothrop\'s crossroads transformation at the opening of Part 4. Its rings run \'infrared to ultraviolet,\' taking in the invisible at both ends of the spectrum, and the figure inside them is identified as the Magician, the tarot card opposed to the Fool. The physical explanation (dew, diffraction, an observer\'s own shadow) and the tarot identification (the Magician opposed to the Fool) sit on top of one another without either dissolving the other, and Slothrop\'s crossroads figure remains at once a measurable atmospheric effect and a claimed sacral appearance.',
+        '*Heiligenschein* means \'saint\'s halo\' and names the bright region around the shadow of an observer\'s head. On dewy grass, droplets focus sunlight onto leaves and return reflected light towards its source. In 4.01 the halo belongs to the Magician who uproots a mandrake, within the passage that interrupts Slothrop\'s crossroads transformation. Pynchon gives the halo rings running \'infrared to ultraviolet\'; the dewy setting permits an optical explanation, while the screaming root and multiplied money place the Magician inside the mandrake folklore.',
     },
     externalRefs: [
       {
@@ -6304,9 +6456,9 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         note: 'Annotates at V625.18; glosses as saint\'s halo and optical luminescence.',
       },
       {
-        label: 'Heiligenschein',
-        url: 'https://en.wikipedia.org/wiki/Heiligenschein',
-        note: 'The atmospheric optical phenomenon produced by dewdrops.',
+        label: 'American Meteorological Society, Heiligenschein',
+        url: 'https://glossary.ametsoc.org/wiki/heiligenschein/',
+        note: 'Explains how dewdrops focus sunlight and return reflected light towards the observer.',
       },
     ],
     relatedTerms: ['slothrop', 'bicycle-rider-fool', 'weissmanns-tarot'],
@@ -6346,7 +6498,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The Werwolf movement was a Nazi underground network organised in autumn 1944, publicly proclaimed by Goebbels on 1 April 1945, and told to fight after Germany\'s surrender. Its stencil, \'WILLST DU V-2, DANN ARBEITE\' (\'If you want V-2, then work!\'), echoes *Arbeit macht frei* without depending on a false V-2/*frei* homophone. Actual stay-behind operations after capitulation were minimal, but the stencils on Zone walls outlive the government that authorised them, and their imperative to work for the V-2 remains legible after the state that wanted the V-2 has dissolved. A Time article of 16 April 1945 quoted their song: \'Lily the werewolf is my name; ... I bite, I eat, I am not tame.\'',
+        'The Werwolf movement was a Nazi underground network organised in autumn 1944, publicly proclaimed by Goebbels on 1 April 1945, and told to fight after Germany\'s surrender. Its stencil, \'WILLST DU V-2, DANN ARBEITE\' (\'If you want V-2, then work!\'), recalls *Arbeit macht frei*. Actual stay-behind operations after capitulation were minimal, but the stencils on Zone walls outlive the government that authorised them, and their imperative to work for the V-2 remains legible after the state that wanted the V-2 has dissolved. A Time article of 16 April 1945 quoted their song: \'Lily the werewolf is my name; ... I bite, I eat, I am not tame.\'',
     },
     externalRefs: [
       {
@@ -6426,7 +6578,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Phoebus S.A. Compagnie Industrielle pour le Développement de l\'Éclairage was established in Geneva in December 1924 from an earlier syndicate. Its members, including Osram, Siemens, Philips, and International General Electric, fixed prices and standardised bulb life at 1,000 hours, down from earlier designs that lasted 2,500. In Byron\'s story, the cartel persecutes a lightbulb that refuses to burn out on schedule; the cartel\'s international operation broke down with the outbreak of war in 1939, though accounts differ over its formal dissolution.',
+        'Phoebus S.A. Compagnie Industrielle pour le Développement de l\'Éclairage was established in Geneva in December 1924 from an earlier syndicate. Its members, including Osram, Philips, Compagnie des Lampes, and International General Electric, fixed prices and standardised bulb life at 1,000 hours, below the 1,500 to 2,000 hours previously common for household bulbs. In Byron\'s story, the cartel persecutes a lightbulb that refuses to burn out on schedule; the cartel\'s international operation broke down with the outbreak of war in 1939, though accounts differ over its formal dissolution.',
     },
     externalRefs: [
       {
@@ -6438,6 +6590,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Phoebus cartel',
         url: 'https://en.wikipedia.org/wiki/Phoebus_cartel',
         note: 'International cartel that controlled lightbulb lifespans and prices from 1924 until the outbreak of war in 1939.',
+      },
+      {
+        label: 'Markus Krajewski, The Great Lightbulb Conspiracy (2014)',
+        url: 'https://spectrum.ieee.org/the-great-lightbulb-conspiracy',
+        note: 'Archival research on the cartel agreement, membership, lifetime standard, testing, and penalties.',
       },
     ],
     relatedTerms: ['ig-farben', 'they-them', 'seele-filament'],
@@ -6454,7 +6611,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Byron is a sentient lightbulb who refuses the planned obsolescence imposed by the Phoebus cartel. Signed in Geneva in December 1924 and controlling an estimated ninety per cent of global lightbulb production through Osram, Siemens, Philips, and General Electric\'s international subsidiary, Phoebus fixed prices and shortened bulb life to 1,000 hours. Byron will not burn out on that schedule; the object has acquired a will of his own, and the cartel spends the rest of his story trying to arrange his destruction through the electrical grid he cannot leave.',
+        'Byron is a sentient lightbulb who refuses the planned obsolescence imposed by the Phoebus cartel. The Phoebus agreement, signed in Geneva in December 1924, established a cartel controlling an estimated ninety per cent of global lightbulb production through Osram, Philips, and General Electric\'s international subsidiary; it fixed prices and shortened bulb life to 1,000 hours. Byron will not burn out on that schedule; the object has acquired a will of his own, and the cartel spends the rest of his story trying to arrange his destruction through the electrical grid he cannot leave.',
     },
     externalRefs: [
       {
@@ -6473,12 +6630,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     colorVar: plotlineColorVars.P06,
     context: {
       excerpt:
-        'his soul (Seek, as the core of the earlier carbon filament was known in Germany)',
-      highlightedTerm: 'Seek',
+        'his soul (Seele, as the core of the earlier carbon filament was known in Germany)',
+      highlightedTerm: 'Seele',
     },
     apparatus: {
       explanation:
-        'In technical German, *die Seele* (\'the soul\') designates the core of an object: the bore of a gun barrel, the heart of an electrical cable, or the carbon filament of a lightbulb. Pynchon renders it as \'Seek,\' an anglicised approximation, so that Byron\'s filament is his soul. Phoebus\'s engineered lifespan for filaments therefore governs the same interior term the language uses for soul, and Byron\'s refusal to burn out on schedule reads at once as an engineering deviation and as a small theological revolt against the cartel that owns the word.',
+        'In technical German, *die Seele* (\'the soul\') designates the core of an object: the bore of a gun barrel, the heart of an electrical cable, or the carbon filament of a lightbulb. Pynchon uses the German word for Byron\'s soul, so that the filament and the soul share a name. Phoebus\'s engineered lifespan for filaments therefore governs the same interior term the language uses for soul, and Byron\'s refusal to burn out on schedule reads at once as an engineering deviation and as a small theological revolt against the cartel that owns the word.',
     },
     externalRefs: [
       {
@@ -6502,13 +6659,23 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Enzian imagines Katje as the \'White Woman\' of the Kalahari rock paintings, a pale figure carrying bow and arrows and trailed by a dark handmaiden. Katje takes the white master\'s place in the image, and even Enzian\'s desire for her arrives through colonial iconography. The painting itself is an archaeological puzzle; the figure is \'white from the waist down,\' and the colour is almost all that is known about her.',
+        'Enzian imagines Katje as the \'White Woman\' of a Kalahari rock painting, a pale figure carrying bow and arrows and trailed by a dark handmaiden. Katje takes the white master\'s place in the image, and even Enzian\'s desire for her arrives through colonial iconography. Weisenburger suggests Geoffrey Parrinder\'s *African Mythology* as the source, including its claim that little is known about the \'White Lady\' beyond her colour. The Brandberg/Daureb \'White Lady\' is in Namibia\'s Namib Desert; research identifies the central figure as local and male, rejecting Henri Breuil\'s interpretation of a woman of Mediterranean origin. Pynchon\'s Kalahari setting differs from the Brandberg site\'s geography, while Enzian\'s comparison with Katje depends on a colonial reading of the painted figure.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V658.26-27; traces the image to Parrinder\'s African Mythology.',
+      },
+      {
+        label: 'J. David Lewis-Williams, Setting the record straight (2006)',
+        url: 'https://www.archaeology.org.za/sites/default/files/attachments/publications/2015/12/28/vol_23_no_2.pdf',
+        note: 'The Digging Stick 23(2), p. 6, discusses the rejection of Breuil\'s identification of the Brandberg figure as a foreign woman.',
+      },
+      {
+        label: 'Bradshaw Foundation, The White Lady of Brandberg/Daureb',
+        url: 'https://www.bradshawfoundation.com/africa/namibia/white_lady/index.php',
+        note: 'Locates the painting in the Namib Desert and describes the colonial interpretation and subsequent research.',
       },
     ],
     relatedTerms: ['enzian', 'katje', 'herero-genocide'],
@@ -6548,13 +6715,13 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Minor C. Keith and Andrew Preston formed United Fruit in 1899 by merging the Tropical Trading and Transport Company with the Boston Fruit Company; the corporation accumulated plantations, railways, ports, telegraph lines, and political power across Central America. Pynchon\'s narrator calls it \'the IG Farben of Central America,\' and the radio commercials work as cover for labour exploitation and colonial dominion. Its postwar interventions included lobbying the Eisenhower administration for the 1954 CIA coup against Jacobo Árbenz in Guatemala (Operation PBSUCCESS), with Allen Dulles at the CIA and John Foster Dulles at State both holding financial ties to the company; the \'banana republic\' epithet, coined by O. Henry in *Cabbages and Kings* (1904), was already in circulation for exactly the configuration of plantation, railway concession, and pliant government that United Fruit spent the twentieth century maintaining.',
+        'Minor C. Keith and Andrew Preston formed United Fruit in 1899 by merging the Tropical Trading and Transport Company with the Boston Fruit Company; the corporation accumulated plantations, railways, ports, telegraph lines, and political power across Central America. Weisenburger calls it \'the IG Farben of Central America,\' and the radio commercials work as cover for labour exploitation and colonial dominion. Its postwar interventions included lobbying the Eisenhower administration for the 1954 CIA coup against Jacobo Árbenz in Guatemala (Operation PBSUCCESS), with Allen Dulles directing the CIA and John Foster Dulles serving as secretary of state; the \'banana republic\' epithet, coined by O. Henry in *Cabbages and Kings* (1904), was already in circulation for exactly the configuration of plantation, railway concession, and pliant government that United Fruit spent the twentieth century maintaining.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates at V678.26; identifies United Fruit as \'the IG Farben of Central America.\'',
+        note: 'Annotates at V678.26; the phrase \'the IG Farben of Central America\' is Weisenburger\'s description.',
       },
       {
         label: 'United Fruit Company',
@@ -6622,7 +6789,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The Ohka (\'Cherry Blossom\') was a Japanese rocket-propelled suicide bomb built from wood and fabric, with a pilot\'s cockpit and no landing gear. Its first, failed sortie took place on 21 March 1945, near the spring equinox. The novel places the 00000 pre-launch scenes and firing in spring 1945 but gives no precise date, so the parallel between Ichizo in his Ohka cockpit and Gottfried inside the Schwarzgerät capsule operates through seasonal and ritual overlap, with Weisenburger noting the equinox correspondence as one of several date-cluster resonances the final episodes leave for the reader to draw together.',
+        'The Ohka (\'Cherry Blossom\') was a Japanese rocket-propelled suicide bomb whose Model 11 had an aluminium fuselage and wooden wings, with a pilot\'s cockpit and no landing gear. Its first, failed sortie took place on 21 March 1945, near the spring equinox. The novel places the 00000 pre-launch scenes and firing in spring 1945 but gives no precise date, so the parallel between Ichizo in his Ohka cockpit and Gottfried inside the Schwarzgerät capsule operates through seasonal and ritual overlap, with Weisenburger noting the equinox correspondence as one of several date-cluster resonances the final episodes leave for the reader to draw together.',
     },
     externalRefs: [
       {
@@ -6634,6 +6801,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Yokosuka MXY-7 Ohka',
         url: 'https://en.wikipedia.org/wiki/Yokosuka_MXY-7_Ohka',
         note: 'Japanese rocket-propelled human-guided kamikaze weapon.',
+      },
+      {
+        label: 'Planes of Fame Air Museum, Yokosuka MXY-7 Model 11',
+        url: 'https://planesoffame.org/aircraft/plane-MXY-7',
+        note: 'Describes the Model 11 aluminium fuselage, wooden wings, cockpit, and absence of landing gear.',
       },
     ],
     relatedTerms: ['gottfried', 'blicero', '00000'],
@@ -6650,13 +6822,13 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Tchitcherine, hearing Wimpe describe the compound, corrects the spelling to \'thiophosphate\' (sulphur-based), but Wimpe insists on \'theophosphate\' from Greek *theos*, \'indicating the Presence of God,\' and the mispronounced consonant is where the theology enters the pharmacology. Its hallucinations are \'so ordinary, so conventional\' that they are called \'the dullest hallucinations known to psychopharmacology\'; the same ordinary themes recur across subjects with enough consistency to earn the name \'haunting.\' Under Oneirine, \'the presence of the dead, journeys by the same route where one person will set out later but arrive earlier\' cease to appear strange.',
+        'Tchitcherine, hearing Wimpe describe the compound, corrects the spelling to \'thiophosphate\' (sulphur-based), but Wimpe insists on \'theophosphate\' from Greek *theos*, \'indicating the Presence of God,\' and the change of vowel puts theology inside the chemical name. Its hallucinations are \'so ordinary, so conventional\' that they are called \'the dullest hallucinations known to psychopharmacology\'; the same ordinary themes recur across subjects with enough consistency to earn the name \'haunting.\' Under Oneirine, \'the presence of the dead, journeys by the same route and means where one person will set out later but arrive earlier\' cease to appear strange.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
-        note: 'Annotates at V702.9; distinguishes theophosphate (God) from thiophosphate (sulphur).',
+        note: 'Annotates the drugged Tchitcherine episode at V700-706, including Wimpe\'s injection and the fictional Journal of Oneiric PsychoPharmacology.',
       },
     ],
     relatedTerms: ['tchitcherine', 'sandoz-lsd', 'pervitin'],
@@ -6696,7 +6868,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'On 9 Thermidor Year II (27 July 1794), Robespierre was arrested without a trial and, the following day, guillotined; the Terror ended in the same manoeuvre. \'Thermidor\' has since named the conservative phase that follows revolutionary upheaval. Roger Mexico, drugged and dreaming, sees the same fate approaching the Counterforce, \'the glamorous ex-rebels, half-suspected but still enjoying official immunity and sly love... doomed pet freaks,\' a formation in which the former insurgents are permitted survival on condition that they perform their earlier rebellion as spectacle for the powers they once opposed, and the phrase \'pet freaks\' does most of the work in placing them as household ornaments kept for the amusement of the very powers they once tried to overthrow, no longer read as political threats at all.',
+        'On 9 Thermidor Year II (27 July 1794), Robespierre was arrested without a trial and, the following day, guillotined; his fall began the Thermidorian Reaction, whose dismantling of the Terror continued over the following months. \'Thermidor\' has since named the conservative phase that follows revolutionary upheaval. Roger Mexico, drugged and dreaming, sees the same fate approaching the Counterforce, \'the glamorous ex-rebels, half-suspected but still enjoying official immunity and sly love... doomed pet freaks,\' a formation in which the former insurgents are permitted survival on condition that they perform their earlier rebellion as spectacle for the powers they once opposed.',
     },
     externalRefs: [
       {
@@ -6762,7 +6934,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
   {
     id: '00001',
     displayLabel: '00001',
-    chronology: { episodeId: '4.10', sort: 410 },
+    chronology: { episodeId: '4.11', sort: 411.05 },
     colorVar: plotlineColorVars.P07,
     context: {
       excerpt:
@@ -6794,7 +6966,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'From Greek *katharos* (pure), the Cathars flourished in Languedoc during the twelfth and thirteenth centuries with a dualist theology that treated spirit as trapped in matter; Cathar \'perfects\' renounced sex, meat, and property. Pope Innocent III launched the Albigensian Crusade in 1209 to devastate the Cathar strongholds, and inquisitions completed the suppression through the fourteenth century. Denis de Rougemont, in *Love in the Western World* (1939), argues that Cathar ideas survived in troubadour poetry and the Tristan and Tannhäuser stories, a reading that later medievalists have largely qualified but which supplies Enzian\'s horror at souls imprisoned in newborn bodies with its transmission line into the twentieth century, and de Rougemont is the likeliest single source for Pynchon\'s Cathar vocabulary throughout Part 4.',
+        'From Greek *katharos* (pure), the Cathars flourished in Languedoc during the twelfth and thirteenth centuries with a dualist theology that treated spirit as trapped in matter; Cathar \'perfects\' renounced sex, meat, and property. Pope Innocent III launched the Albigensian Crusade in 1209 to devastate the Cathar strongholds, and inquisitions completed the suppression through the fourteenth century. Denis de Rougemont, in *Love in the Western World* (1939), argues that Cathar ideas survived in troubadour poetry and the Tristan and Tannhäuser stories. Weisenburger proposes de Rougemont as Pynchon\'s source for Enzian\'s horror at souls imprisoned in newborn bodies; the claimed survival of Cathar ideas belongs to de Rougemont\'s reading.',
     },
     externalRefs: [
       {
@@ -6869,13 +7041,18 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Pynchon builds *terrenity* from Latin *terrenus* (\'of the earth\') by analogy with *serenus* and serenity: \'earthliness\' or \'earth-hood.\' The word appears as trees mourn the road cut through them. English names the quality of being serene but has no equivalent for belonging to the earth, so Pynchon makes one at the point where the ground is engineered, wounded, and paved.',
+        '*Terrenity* is an obsolete English word for earthiness or worldliness; Webster\'s 1913 dictionary records it with a quotation from Owen Feltham. Weisenburger derives it from Latin *terrenus* (\'of the earth\') and notes the analogy with *serenus* and serenity. Pynchon glosses the word as \'earth-hood\' while trees mourn the road cut through them, giving that belonging to the earth a name at the point where the ground is engineered, wounded, and paved.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V733.24; glosses as \'earthliness\' from Latin *terrenus*.',
+      },
+      {
+        label: 'Webster\'s Unabridged Dictionary (1913), Terrenity',
+        url: 'https://www.gutenberg.org/cache/epub/669/pg669-images.html',
+        note: 'Records the word as obsolete, defines it as earthiness or worldliness, and cites Feltham.',
       },
     ],
     relatedTerms: ['tchitcherine', 'the-zone'],
@@ -6937,13 +7114,23 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The ten-card Celtic-method reading in the passage follows Arthur Edward Waite\'s *Pictorial Key to the Tarot* (1910); the significator is the Knight of Swords, the Grail quester Galahad. The spread includes the Tower (ruin and pride\'s chastisement), the Queen of Swords (\'female sadness, absence, sterility\'), and the World (emigration and new beginnings); the penultimate Two of Swords points towards \'conformity, equipoise, and business.\' Weisenburger reads Weissmann\'s postwar fate through Dornberger on the Bell Helicopter board, von Braun at NASA, and Wegener at Yale, historical continuations of Peenemünde personnel that let the tarot\'s cards be mapped onto the Operation Paperclip trajectory Blicero would have taken had his career followed the ordinary path of German rocket engineers into American corporate and academic institutions.',
+        'The ten-card Celtic-method reading in the passage follows Arthur Edward Waite\'s *Pictorial Key to the Tarot* (1910); the significator is the Knight of Swords, whom Waite compares with the Grail quester Galahad. The spread includes the Tower (ruin and pride\'s chastisement), the Queen of Swords (\'female sadness and embarrassment, absence, sterility\'), and the World (emigration and new beginnings); the penultimate Two of Swords points towards \'conformity, equipoise, and business.\' Weisenburger reads Weissmann\'s postwar fate through Dornberger at Bell Aircraft and Bell Aerosystems, von Braun at NASA, and Wegener at Yale, historical continuations of Peenemünde personnel that let the tarot\'s cards be mapped onto the Operation Paperclip trajectory Blicero would have taken had his career followed the ordinary path of German rocket engineers into American corporate and academic institutions.',
     },
     externalRefs: [
       {
         label: 'Weisenburger, *A Gravity\'s Rainbow Companion*',
         url: 'https://www.ugapress.org/9780820328072/a-gravitys-rainbow-companion/',
         note: 'Annotates at V746.30 (pp. 373-376); provides complete card-by-card analysis of the Celtic spread.',
+      },
+      {
+        label: 'NASA, Exploring the Unknown, volume IV',
+        url: 'https://ntrs.nasa.gov/api/citations/19990116994/downloads/19990116994.pdf',
+        note: 'Identifies Dornberger\'s postwar work for Bell Aircraft on Project BOMI.',
+      },
+      {
+        label: 'A. E. Waite, The Pictorial Key to the Tarot, Part III',
+        url: 'https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot/Part_3',
+        note: 'Gives the card descriptions and the Celtic method; the Knight of Swords is compared with Galahad, and the World includes voyage, emigration, and change of place.',
       },
     ],
     relatedTerms: ['blicero', 'von-braun', 'operation-backfire'],
@@ -6961,7 +7148,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'MacGregor Mathers, William Wynn Westcott, and William Robert Woodman founded this Christian Kabbalist secret society in 1887, drawing on Rosicrucian and Kabbalist sources and on cipher manuscripts of doubtful provenance (Mathers claimed clairvoyant correspondence with a \'Fraulein Sprengel\'). W. B. Yeats joined in 1890 and reached the fifth of seven initiatory \'Elements.\' In Part 4, the Golden Dawn supplies the scheme for Weissmann\'s tarot: the Tower card\'s path connects Netzach (victory) with Hod (splendour) on the Kabbalistic Tree of Life. The order dissolved around 1903 amid internal quarrels; Aleister Crowley\'s breakaway groups and Israel Regardie\'s published rituals carried its practices into twentieth-century occultism, so by the time Weissmann\'s spread is dealt the Golden Dawn\'s Tower reading has already become one item in the syncretic inventory the novel keeps drawing from, an inventory running through the Illuminati, the Templars, and the Rosicrucians into modern societies whose personnel overlap with the cartels and intelligence services elsewhere in the book.',
+        'MacGregor Mathers, William Wynn Westcott, and William Robert Woodman founded this Christian Kabbalist secret society in 1888, drawing on Rosicrucian and Kabbalist sources and on cipher manuscripts of doubtful provenance (Westcott claimed authorisation in letters from a \'Fraulein Sprengel\'). W. B. Yeats joined in 1890. In Part 4, the Golden Dawn supplies the scheme for Weissmann\'s tarot: the Tower card\'s path connects Netzach (victory) with Hod (splendour) on the Kabbalistic Tree of Life. The order split repeatedly from 1900, with further schisms in 1903; Aleister Crowley\'s breakaway groups and Israel Regardie\'s published rituals carried its practices into twentieth-century occultism, so by the time Weissmann\'s spread is dealt the Golden Dawn\'s Tower reading has already become one item in the syncretic inventory the novel keeps drawing from, an inventory running through the Illuminati, the Templars, and the Rosicrucians into modern societies whose personnel overlap with the cartels and intelligence services elsewhere in the book.',
     },
     externalRefs: [
       {
@@ -6972,7 +7159,12 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
       {
         label: 'Hermetic Order of the Golden Dawn',
         url: 'https://en.wikipedia.org/wiki/Hermetic_Order_of_the_Golden_Dawn',
-        note: 'Victorian occult society (1887-c.1903) that systematised Western ceremonial magic.',
+        note: 'Victorian occult society (1888-c.1903) that systematised Western ceremonial magic.',
+      },
+      {
+        label: 'Museum of Freemasonry, Golden Dawn archives',
+        url: 'https://atom.aim25.com/index.php/the-hermetic-order-of-the-golden-dawn-its-members-and-related-bodies-2',
+        note: 'Fonds GBR 1991 GD: dates the foundation to 1888, attributes the Sprengel correspondence to Westcott, and describes the successive schisms.',
       },
     ],
     relatedTerms: ['weissmanns-tarot', 'blavatsky-theosophy', 'illuminati-weishaupt'],
@@ -6989,7 +7181,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'A. E. Waite\'s *Book of Black Magic and of Pacts* gives the recipe: take a hand from a hanged criminal, drain and dry it, then combine it with wax into a candle. Folklore says the light paralyses everyone nearby while a thief enters the house. The novel places that frozen household beside the power of \'Them,\' the paralysing candle is an emblem for the way the sleeping occupants cannot wake to their own dispossession, and the same grimoire vocabulary extends to a glove described as the female counterpart, drawn from the same folkloric lineage of preserved body parts turned into charms.',
+        'A. E. Waite\'s *Book of Black Magic and of Pacts* describes a hand taken from a hanged criminal, drained and dried, with its grease combined with wax to make a candle. Folklore says the light paralyses those who see it while a thief enters the house. Pynchon describes a candle held in a dead man\'s hand, then calls Gottfried\'s white kid-glove gag its \'female equivalent\': the glove receives the hand as the 00000 receives the boy. The comparison makes the gag part of Blicero\'s sexual symbolism.',
     },
     externalRefs: [
       {
@@ -7001,6 +7193,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Hand of Glory',
         url: 'https://en.wikipedia.org/wiki/Hand_of_Glory',
         note: 'Occult artefact made from a hanged man\'s hand, used in European folklore as a thief\'s charm.',
+      },
+      {
+        label: 'A. E. Waite, Concerning the Hand of Glory',
+        url: 'https://sacred-texts.com/book/the-book-of-ceremonial-magic/section-4-concerning-the-hand-of-glory',
+        note: 'The later *Book of Ceremonial Magic*, section VIII.4, reproduces the procedure and the claimed power to prevent movement.',
       },
     ],
     relatedTerms: ['order-golden-dawn', 'weissmanns-tarot'],
@@ -7018,7 +7215,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'Wovoka (c. 1856-1932), also called Jack Wilson, a Paiute mystic, experienced his prophetic vision during the solar eclipse of 1 January 1889: whites would vanish, the dead would return, and the tribes would regain an abundant land. He instructed followers to \'not hurt anybody or do harm to anyone,\' and the ghost shirt worn in the accompanying dance was said to be bulletproof. As the movement spread among the recently defeated Lakota, military anxiety culminated in the massacre of Big Foot\'s band at Wounded Knee on 29 December 1890, where a Hotchkiss gun (the same brand as Ichizo\'s weapon in the kamikaze episode) was fired into the camp. Pynchon leaves Tonto with the ghost shirt after the Lone Ranger finds his \'young friend, innocent Dan, swinging from a tree limb by a broken neck,\' equipping the Indigenous sidekick with the doctrinally pacifist garment and a knife at once, and the passage does not settle whether the knife will be used or whether the shirt is bulletproof in a fictional world where Wounded Knee has already supplied one historical answer.',
+        'Wovoka (c. 1856-1932), also called Jack Wilson, a Paiute mystic, experienced his prophetic vision during the solar eclipse of 1 January 1889: the dead would return and the people would live again in an abundant land. He instructed followers to \'not hurt anybody or do harm to anyone.\' Among Lakota followers, ghost shirts were believed to protect their wearers from bullets; James Mooney records that Wovoka disclaimed responsibility for the shirts, which formed no part of the dance costume in his own Mason Valley community. On 29 December 1890, US troops massacred Big Foot\'s band at Wounded Knee, firing Hotchkiss guns into the camp (the name also given to Ichizo\'s machine gun in the kamikaze episode). Pynchon leaves Tonto with the ghost shirt after the Lone Ranger finds his \'young friend, innocent Dan, swinging from a tree limb by a broken neck,\' equipping the Indigenous sidekick with the garment and a knife at once. Wovoka\'s injunction against violence and the Lakota belief in protection from bullets give Tonto\'s shirt different possible meanings; the passage leaves his use of the knife unresolved.',
     },
     externalRefs: [
       {
@@ -7030,6 +7227,11 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Ghost Dance',
         url: 'https://en.wikipedia.org/wiki/Ghost_Dance',
         note: 'Millenarian movement among Native American peoples (1889-1890).',
+      },
+      {
+        label: 'James Mooney, *The Ghost-dance Religion and the Sioux Outbreak of 1890* (1896)',
+        url: 'https://www.gutenberg.org/files/74335/74335-h/74335-h.htm',
+        note: 'Pages 772-73 discuss Wovoka\'s teaching, p. 781 gives his message, and p. 791 distinguishes the Lakota ghost shirt from the dance in Mason Valley.',
       },
     ],
     relatedTerms: ['preterite', 'ohka'],
@@ -7046,7 +7248,7 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
     },
     apparatus: {
       explanation:
-        'The final rocket is launched from the heathland of Lower Saxony, some 7,400 square kilometres of sandy, nutrient-poor soil supporting mainly heather (*Calluna vulgaris*) and giving the landscape its purple-green colouring. The German military surrendered to Field Marshal Montgomery here on 4 May 1945, three days before VE Day. Weisenburger draws on Baedeker and Frances Yates for older layers: Romani people may have made their first European home on the Heath in 1417, perhaps bringing tarot divination, and a supposed 1586 meeting of the kings of Navarre and Denmark, Elizabeth I, and several princes would have founded an evangelical league and, later accounts claimed, Rosicrucianism. The \'great change kneading, turning, stirring\' the Heath, in the novel\'s phrase, folds these older ritual layers into the industrial ceremony being prepared for Gottfried, so that the ground receiving the 00000 has already been designated for sacrificial use across several centuries of religious, esoteric, and political history.',
+        'The final rocket is launched from the heathland of Lower Saxony, some 7,400 square kilometres of sandy, nutrient-poor soil supporting mainly heather (*Calluna vulgaris*) and giving the landscape its purple-green colouring. German forces in the Netherlands, north-west Germany, and Denmark surrendered to Field Marshal Montgomery here on 4 May 1945, four days before VE Day. Weisenburger links the Heath to Romani arrivals in 1417 and a tradition about the transmission of tarot divination; Roma are documented in Byzantine Europe in the thirteenth century, and tarot\'s use for divination developed centuries after the cards appeared in fifteenth-century Italy. He also follows Frances Yates\'s account of a supposed conference in 1586 involving Protestant princes and representatives of the monarchs of Navarre, Denmark, and England, later associated with Rosicrucian origins. In the novel, the earlier horse sacrifices give Gottfried\'s launch a local ritual precedent: the horse\'s subsequent change from \'holy offering\' to \'servant of power\' places the military use of animals in the same landscape as the Rocket.',
     },
     externalRefs: [
       {
@@ -7058,6 +7260,25 @@ const rawGlossaryFocusEntries: GlossaryFocusEntry[] = [
         label: 'Lüneburg Heath',
         url: 'https://en.wikipedia.org/wiki/L%C3%BCneburg_Heath',
         note: 'Heathland in Lower Saxony, site of the German surrender (May 1945) and the novel\'s final launch.',
+      },
+      {
+        label: 'National Army Museum, May 1945',
+        url: 'https://www.nam.ac.uk/explore/may-1945',
+        note: 'Records the regional surrender at Lüneburg Heath on 4 May and VE Day on 8 May 1945.',
+      },
+      {
+        label: 'Council of Europe, From India to Europe',
+        url: 'https://rm.coe.int/from-india-to-europe-factsheets-on-romani-history/16808b18ed',
+        note: 'Factsheet 1.0 discusses evidence for Roma in the European Byzantine Empire in the thirteenth century.',
+      },
+      {
+        label: 'V&A, A history of tarot cards',
+        url: 'https://www.vam.ac.uk/articles/tarot-cards',
+        note: 'Distinguishes the fifteenth-century card game from the occult and divinatory uses that developed centuries later.',
+      },
+      {
+        label: 'Frances Yates, *The Rosicrucian Enlightenment* (1972)',
+        note: 'Chapter 3 discusses Simon Studion\'s account of the supposed 1586 Lüneburg conference and specifies representatives of the three monarchs.',
       },
     ],
     relatedTerms: ['blicero', '00000', 'gottfried'],
