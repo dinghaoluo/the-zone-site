@@ -45,7 +45,6 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     <div class="glossary-search-slot">
       <SearchField
         id="glossary-search"
-        count={`${sortedEntries.length} terms`}
         ariaLabel="Search glossary"
       />
       <div class="glossary-episode-jump">
@@ -92,7 +91,6 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     const railWindow = layout.querySelector<HTMLElement>('.glossary-rail-window');
     const railList = layout.querySelector<HTMLElement>('.glossary-rail-list');
     const searchInput = layout.querySelector<HTMLInputElement>('[data-site-search-input]');
-    const searchCount = layout.querySelector<HTMLElement>('[data-site-search-count]');
     const searchEmpty = layout.querySelector<HTMLElement>('[data-glossary-search-empty]');
     const episodeJump = layout.querySelector<HTMLSelectElement>('[data-glossary-episode-jump]');
     const episodeStatus = layout.querySelector<HTMLElement>('[data-glossary-episode-status]');
@@ -365,11 +363,6 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
       }
 
       layout?.classList.toggle('is-searching', hasQuery);
-      if (searchCount) {
-        searchCount.textContent = hasQuery
-          ? `${matchedEntries.length} of ${entries.length} terms`
-          : `${entries.length} terms`;
-      }
       if (searchEmpty) searchEmpty.hidden = !hasQuery || matchedEntries.length > 0;
 
       if (!hasQuery) {
@@ -451,7 +444,6 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
 
     // Hide search/episode-jump on scroll-down, show on scroll-up (mobile only)
     const searchSlot = layout.querySelector<HTMLElement>('.glossary-search-slot');
-    let lastScrollY = window.scrollY;
     let anchorY = window.scrollY;
     let scrollDir: 'up' | 'down' = 'up';
     const SCROLL_THRESHOLD = 30;
@@ -480,7 +472,6 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
           applyScrollDir('down');
         }
       }
-      lastScrollY = y;
     }, { passive: true });
 
     setActive(activeId);
@@ -558,7 +549,7 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
     }
   }
 
-  @media (min-width: 76rem) {
+  @media (min-width: 86rem) {
     .glossary-key {
       display: flex;
       align-items: center;
@@ -574,8 +565,8 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
 
     .glossary-key-list {
       flex: 0 1 auto;
-      flex-wrap: nowrap;
-      gap: 0.55rem;
+      flex-wrap: wrap;
+      gap: 0.55rem 1.25rem;
       padding: 0;
       border: 0;
       transform: translateY(-0.07rem);
@@ -721,6 +712,8 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
       display: block;
       max-width: 100%;
       padding: 0 0 var(--space-xl);
+      /* collapsing controls must not reverse the detected scroll direction */
+      overflow-anchor: none;
     }
 
     .glossary-rail-shell {
@@ -769,6 +762,8 @@ const episodeParts = Array.from(episodeGroups, ([part, episodes]) => ({ part, ep
       scroll-behavior: auto;
     }
 
+    .glossary-rail-shell,
+    .glossary-search-slot,
     .glossary-episode-jump select {
       transition: none;
     }

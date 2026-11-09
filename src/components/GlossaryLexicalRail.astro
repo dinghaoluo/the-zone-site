@@ -74,7 +74,7 @@ const { entries } = Astro.props;
   }
 
   .rail-term.is-active {
-    color: var(--entry-color);
+    color: color-mix(in srgb, var(--entry-color) 80%, var(--color-text));
     opacity: 1;
     font-weight: 400;
   }

@@ -51,7 +51,7 @@ const searchCopy = [
     <h2>{entry.displayLabel}</h2>
   </header>
 
-  <PullQuote label={entry.displayLabel}>
+  <PullQuote>
     {contextParts.before}{contextParts.match ? <mark>{contextParts.match}</mark> : null}{contextParts.after}
   </PullQuote>
 
@@ -136,16 +136,17 @@ const searchCopy = [
     font-size: clamp(1.95rem, 4.2vw, 3.45rem);
     font-weight: 400;
     line-height: 1.04;
+    overflow-wrap: anywhere;
     color: var(--color-text);
     letter-spacing: 0;
   }
 
   .glossary-entry.is-active h2 {
-    color: var(--entry-color);
+    color: color-mix(in srgb, var(--entry-color) 80%, var(--color-text));
   }
 
   mark:not(.site-search-match) {
-    color: var(--entry-color);
+    color: color-mix(in srgb, var(--entry-color) 80%, var(--color-text));
     background: transparent;
     font-style: italic;
   }
@@ -180,7 +181,7 @@ const searchCopy = [
 
   .entry-apparatus summary:hover,
   .entry-apparatus summary:focus-visible {
-    color: var(--entry-color);
+    color: color-mix(in srgb, var(--entry-color) 80%, var(--color-text));
   }
 
   .entry-apparatus-body {
@@ -216,7 +217,6 @@ const searchCopy = [
     max-width: 28rem;
     margin-top: 0.15rem;
     color: var(--color-text-dim);
-    opacity: 0.78;
   }
 
   .related-list a {
@@ -225,7 +225,7 @@ const searchCopy = [
   }
 
   .related-list a:hover {
-    color: var(--entry-color);
+    color: color-mix(in srgb, var(--entry-color) 80%, var(--color-text));
   }
 
   .entry-list a:focus-visible,
