@@ -1,0 +1,12 @@
+{
+  "source": "Unicode-preserving 2A episode corpus",
+  "source_hash": "50fb81b4771b4f8885628ba1bfbbed5f3bef0f4b29c2f08c6c93fd133f43a4bc",
+  "measure": "1,000 * raw_count / lexical_tokens",
+  "denominator": "complete lexical tokens before stopword and vocabulary filtering",
+  "normalisation": "Unicode NFC, case-folding, declared English possessive handling",
+  "cells": 1168,
+  "forms": 16,
+  "episodes": 73,
+  "total_cohort_occurrences": 6924,
+  "total_lexical_tokens": 327676
+}

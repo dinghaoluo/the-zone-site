@@ -1,0 +1,114 @@
+[
+  {
+    "word": "light",
+    "episode_id": "1.01",
+    "quote_before": "But coming down in total blackout, without one glint of ",
+    "matched_surface": "light",
+    "quote_after": ", only great invisible crashing."
+  },
+  {
+    "word": "shit",
+    "episode_id": "1.10",
+    "quote_before": "A-and here's Dumpster Villard, he was constipated that night, wasn't he—it's black ",
+    "matched_surface": "shit",
+    "quote_after": " mean as resin that will someday clarify forever to dark amber."
+  },
+  {
+    "word": "comes",
+    "episode_id": "1.11",
+    "quote_before": "Far away, through the rain, ",
+    "matched_surface": "comes",
+    "quote_after": " the crack-blast of another German rocket."
+  },
+  {
+    "word": "knows",
+    "episode_id": "1.17",
+    "quote_before": "There is to this enterprise, Pointsman ",
+    "matched_surface": "knows",
+    "quote_after": ", a danger of seduction."
+  },
+  {
+    "word": "oh",
+    "episode_id": "1.21",
+    "quote_before": "You're catching the War. It's infecting you and I don't know how to keep it away. ",
+    "matched_surface": "Oh",
+    "quote_after": ", Jess. Jessica. Don't leave me."
+  },
+  {
+    "word": "here",
+    "episode_id": "3.02",
+    "quote_before": "But ",
+    "matched_surface": "here",
+    "quote_after": " in the Zone categories have been blurred badly."
+  },
+  {
+    "word": "wind",
+    "episode_id": "3.04",
+    "quote_before": "Along the ",
+    "matched_surface": "wind",
+    "quote_after": " between them, faintly, comes the singing of Furies: There was a young man named McGuire, Who was fond of the pitch amplifier."
+  },
+  {
+    "word": "sez",
+    "episode_id": "3.06",
+    "quote_before": "\"Well, this is all creepy enough here, Oberst,\" ",
+    "matched_surface": "sez",
+    "quote_after": " Slothrop."
+  },
+  {
+    "word": "white",
+    "episode_id": "3.18",
+    "quote_before": "The storm yanks at rope and cable, the cloudy night goes ",
+    "matched_surface": "white",
+    "quote_after": " and loud, in huge spasms."
+  },
+  {
+    "word": "zone",
+    "episode_id": "3.21",
+    "quote_before": "…say we are supposed to be the Kabbalists out here, say that's our real Destiny, to be the scholar-magicians of the ",
+    "matched_surface": "Zone",
+    "quote_after": ", with somewhere in it a Text…"
+  },
+  {
+    "word": "ha",
+    "episode_id": "3.22",
+    "quote_before": "\"A what? A discharge? For you? Ha! ",
+    "matched_surface": "Ha",
+    "quote_after": "! Ha!\""
+  },
+  {
+    "word": "all",
+    "episode_id": "3.23",
+    "quote_before": "They keep appearing, ",
+    "matched_surface": "all",
+    "quote_after": " through this disquieting structure, gathered in groups, pacing alone in meditation, or studying the paintings, the books, the exhibits."
+  },
+  {
+    "word": "inside",
+    "episode_id": "3.23",
+    "quote_before": "…though if it all does grow toward some end shape, those who are here ",
+    "matched_surface": "inside",
+    "quote_after": " can't see it."
+  },
+  {
+    "word": "now",
+    "episode_id": "3.27",
+    "quote_before": "",
+    "matched_surface": "Now",
+    "quote_after": " wouldn't an afterburner there also give an asymmetrical burning pattern, and heat fluxes greater than the structure could take?"
+  },
+  {
+    "word": "rocket",
+    "episode_id": "4.10",
+    "quote_before": "But the ",
+    "matched_surface": "Rocket",
+    "quote_after": " can penetrate, from the sky, at any given point. Nowhere is safe."
+  },
+  {
+    "word": "sky",
+    "episode_id": "4.11",
+    "quote_before": "There is a luminary looking down from the ",
+    "matched_surface": "sky",
+    "quote_after": ", a face on it totally at peace, like the Buddha's."
+  }
+]
