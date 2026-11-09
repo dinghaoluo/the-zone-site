@@ -4,12 +4,10 @@ This is a visual companion to Thomas Pynchon's *Gravity's Rainbow* (1973).
 
 ## current live pages
 
-- **network**: character and lexical networks, episode densities, and cast transitions
-- **glossary**: critical terms and phrases in the novel
+- **network**: character atlas, co-occurrence matrix, mention heatmap, cast transitions, lexical density map, and lexical atlas
+- **glossary**: important terms and phrases in the novel (inspired by Pynchon Wiki's page-by-page companion)
 - **reference**: bibliography and source notes
-- **methods**: calculations, display choices, and limitations
-
-The homepage contains the section index and the episode word-count plot. Network and Methods remain works in progress.
+- **methods**
 
 ## forthcoming pages
 
