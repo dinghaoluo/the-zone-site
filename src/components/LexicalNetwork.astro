@@ -1,0 +1,1219 @@
+---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+const dataUrl = `${base}/data/network/lexical-proximity.json`;
+const rendererUrl = `${base}/vendor/3d-force-graph/3d-force-graph.min.js`;
+const methodsHref = `${base}/methods/#lexical-atlas`;
+---
+
+<section class="lexical-network" id="lexical-network" data-data-url={dataUrl} data-renderer-url={rendererUrl} data-methods-href={methodsHref} aria-labelledby="lexical-network-title" aria-busy="true">
+  <header class="lexical-network-header">
+    <h2 id="lexical-network-title">Lexical atlas</h2>
+  </header>
+
+  <div class="lexical-network-controls" role="group" aria-label="Lexical atlas controls">
+    <div class="lexical-control-cluster lexical-control-cluster--query">
+      <form class="lexical-control lexical-control--search" id="lexical-network-search-form">
+        <label for="lexical-network-search">Find a word</label>
+        <div class="lexical-search-entry">
+          <input id="lexical-network-search" type="search" name="word" list="lexical-network-word-list" autocomplete="off" spellcheck="false" placeholder="Search words" aria-describedby="lexical-network-search-status" />
+          <button type="submit">Find</button>
+        </div>
+        <datalist id="lexical-network-word-list"></datalist>
+        <span class="lexical-search-status" id="lexical-network-search-status" role="status" aria-live="polite"></span>
+      </form>
+
+      <div class="lexical-control lexical-control--edges">
+        <span id="lexical-network-edge-mode-label">Links shown</span>
+        <div class="lexical-edge-modes" role="group" aria-labelledby="lexical-network-edge-mode-label">
+          <button type="button" data-edge-mode="backbone" aria-pressed="true">Main links</button>
+          <button type="button" data-edge-mode="all" aria-pressed="false">All links</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lexical-control-cluster lexical-control-cluster--focus">
+      <div class="lexical-control lexical-control--community">
+        <label for="lexical-network-community">Community</label>
+        <div class="lexical-community-entry">
+          <select id="lexical-network-community">
+            <option value="">All communities</option>
+          </select>
+          <span class="lexical-community-swatch" id="lexical-network-community-swatch" aria-hidden="true" hidden></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lexical-control lexical-control--actions" role="group" aria-label="View actions">
+      <button type="button" id="lexical-network-reset" aria-label="Reset view" title="Reset view">Reset</button>
+    </div>
+  </div>
+
+  <div class="lexical-network-search-results" id="lexical-network-search-results" aria-live="polite"></div>
+  <div class="lexical-network-body">
+    <div class="lexical-network-plot">
+      <div class="lexical-network-canvas" id="lexical-network-canvas">
+        <p class="lexical-network-loading" id="lexical-network-loading">Loading network…</p>
+        <div class="lexical-network-webgl" id="lexical-network-webgl" role="img" aria-label="Three-dimensional network of words recurring within four sentences of each other. Search or the word list provides access to individual words." aria-hidden="true" hidden></div>
+        <div class="lexical-network-webgl-labels" id="lexical-network-webgl-labels" aria-hidden="true" hidden></div>
+        <div class="lexical-network-tooltip" id="lexical-network-tooltip" role="tooltip" aria-live="polite" aria-hidden="true" tabindex="-1">
+          <strong data-lexical-tooltip-title></strong>
+          <span data-lexical-tooltip-detail hidden></span>
+        </div>
+        <svg id="lexical-network-svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="lexical-network-svg-title lexical-network-svg-description" aria-hidden="true">
+          <title id="lexical-network-svg-title">Lexical atlas: Four-sentence proximity</title>
+          <desc id="lexical-network-svg-description">Two-dimensional network of retained word forms recurring within four sentences of each other. Search or the word list provides access to individual words.</desc>
+        </svg>
+      </div>
+      <p class="lexical-network-webgl-status" id="lexical-network-webgl-status" role="status" hidden>The 3D view is unavailable; the 2D view remains available.</p>
+      <noscript><p class="lexical-network-error">JavaScript is required for the network view; the methods and data description remain available below.</p></noscript>
+    </div>
+
+    <aside class="lexical-network-inspector" id="lexical-network-inspector" aria-label="Word details">
+      <div class="lexical-network-hubs" id="lexical-network-hubs">
+        <p class="lexical-network-hubs-title">Example words</p>
+        <div class="lexical-network-hub-list" role="list" aria-label="Example words"></div>
+      </div>
+      <div class="lexical-network-key" aria-label="Lexical atlas key">
+        <p><strong>Circle size:</strong> how strongly this word links to others</p>
+        <p><strong>Colour =</strong> community</p>
+        <p><strong>Lines:</strong> connect words that recur within 4 sentences<sup>*</sup>; thicker = stronger association</p>
+        <p class="lexical-key-note"><sup>*</sup> The four-sentence window follows Letzler's AutoMap method</p>
+      </div>
+    </aside>
+  </div>
+  <div class="lexical-network-caption">
+    <p class="prose-copy">See <a href={methodsHref}>Methods</a>.</p>
+  </div>
+</section>
+
+<script>
+  import { waitForFigure } from '../lib/figureVisibility';
+  import { normaliseSearch } from '../scripts/siteSearch';
+  import { createLexicalRenderer } from '../scripts/lexicalRenderer';
+  import { communityColour, type NodeRecord, type EdgeRecord, type Payload } from '../lib/lexicalNetwork';
+
+  const root = document.getElementById('lexical-network') as HTMLElement;
+  if (!root) throw new Error('Lexical network root is missing');
+
+  const loading = root.querySelector<HTMLElement>('#lexical-network-loading')!;
+  const tooltip = root.querySelector<HTMLElement>('#lexical-network-tooltip')!;
+  const tooltipTitle = tooltip.querySelector<HTMLElement>('[data-lexical-tooltip-title]')!;
+  const tooltipDetail = tooltip.querySelector<HTMLElement>('[data-lexical-tooltip-detail]')!;
+  const webglStatus = root.querySelector<HTMLElement>('#lexical-network-webgl-status')!;
+  const searchForm = root.querySelector<HTMLFormElement>('#lexical-network-search-form')!;
+  const searchInput = root.querySelector<HTMLInputElement>('#lexical-network-search')!;
+  const searchStatus = root.querySelector<HTMLElement>('#lexical-network-search-status')!;
+  const searchResults = root.querySelector<HTMLElement>('#lexical-network-search-results')!;
+  const edgeModeButtons = root.querySelectorAll<HTMLButtonElement>('[data-edge-mode]');
+  const communitySelect = root.querySelector<HTMLSelectElement>('#lexical-network-community')!;
+  const communitySwatch = root.querySelector<HTMLElement>('#lexical-network-community-swatch')!;
+  const resetButton = root.querySelector<HTMLButtonElement>('#lexical-network-reset')!;
+  const dataControls = root.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLButtonElement>('.lexical-network-controls input, .lexical-network-controls select, .lexical-network-controls button');
+  dataControls.forEach(control => { control.disabled = true; });
+  const hubList = root.querySelector<HTMLElement>('.lexical-network-hub-list')!;
+  const wordList = root.querySelector<HTMLDataListElement>('#lexical-network-word-list')!;
+  const coarsePointer = window.matchMedia('(pointer: coarse)');
+  const exampleWordIds = ['rocket', 'peenemünde', 'light', 'bulb', 'power', 'inside', 'outside', 'body'];
+
+  const dataUrl = root.dataset.dataUrl || '../data/network/lexical-proximity.json';
+  const nfc = (value: string) => value.normalize('NFC');
+  const formatInt = (value: number) => new Intl.NumberFormat('en-GB').format(value);
+  const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character] ?? character));
+  let payload: Payload | null = null;
+  let nodes: NodeRecord[] = [];
+  let edges: EdgeRecord[] = [];
+  let nodeMap = new Map<string, NodeRecord>();
+  let edgeMap = new Map<string, EdgeRecord>();
+  let edgeMode: 'backbone' | 'all' = 'backbone';
+  let focusedCommunity: number | null = null;
+  let selectedNode: string | null = null;
+  let selectedEdge: string | null = null;
+  let hoveredNode: string | null = null;
+  let hoveredEdge: string | null = null;
+  let hoverPreviewTimer = 0;
+  const renderer = createLexicalRenderer(root, {
+    nodeClick: id => selectedNode === id ? clearSelection(true) : setSelectedNode(id, true, coarsePointer.matches),
+    edgeClick: id => selectedEdge === id ? clearSelection(true) : setSelectedEdge(id, true, coarsePointer.matches),
+    nodeHover: id => {
+      if (coarsePointer.matches) return;
+      if (id) queueNodePreview(id);
+      else clearHoverPreview();
+    },
+    edgeHover: id => {
+      if (coarsePointer.matches) return;
+      if (id) queueEdgePreview(id);
+      else clearHoverPreview();
+    },
+    backgroundClick: () => { if (selectedNode || selectedEdge) clearSelection(true); },
+    ready: () => { resetButton.disabled = false; },
+    unavailable: showWebGLFailure,
+  });
+
+  function renderGraph() {
+    renderer.render({ edgeMode, focusedCommunity, selectedNode, selectedEdge, hoveredNode, hoveredEdge });
+  }
+
+  function dispatch(name: string, detail: Record<string, unknown> = {}) {
+    document.dispatchEvent(new CustomEvent(name, { detail: { ...detail, source: 'lexical-network' } }));
+  }
+
+  function showWebGLFailure() {
+    webglStatus.textContent = 'The 3D view is unavailable; the 2D view remains available.';
+    webglStatus.hidden = false;
+    root.dataset.webgl = 'unavailable';
+    resetButton.disabled = true;
+  }
+
+  function showDataFailure() {
+    webglStatus.textContent = 'The network could not be loaded. Its data and calculation are available in Methods.';
+    webglStatus.hidden = false;
+    root.dataset.data = 'unavailable';
+    resetButton.disabled = true;
+  }
+
+  function cancelHoverPreview() {
+    if (!hoverPreviewTimer) return;
+    window.clearTimeout(hoverPreviewTimer);
+    hoverPreviewTimer = 0;
+  }
+
+  function clearHoverPreview() {
+    cancelHoverPreview();
+    if (selectedNode || selectedEdge || (!hoveredNode && !hoveredEdge)) return;
+    hoveredNode = null;
+    hoveredEdge = null;
+    renderInspector();
+    renderGraph();
+  }
+
+  function queueNodePreview(id: string) {
+    if (selectedNode || selectedEdge || hoveredNode === id) return;
+    cancelHoverPreview();
+    hoverPreviewTimer = window.setTimeout(() => {
+      hoverPreviewTimer = 0;
+      previewNode(id);
+    }, 140);
+  }
+
+  function queueEdgePreview(id: string) {
+    if (selectedNode || selectedEdge || hoveredEdge === id) return;
+    cancelHoverPreview();
+    hoverPreviewTimer = window.setTimeout(() => {
+      hoverPreviewTimer = 0;
+      previewEdge(id);
+    }, 140);
+  }
+
+  function incidentEdges(nodeId: string) {
+    return edges.filter(edge => edge.source === nodeId || edge.target === nodeId).sort((a, b) => b.npmi - a.npmi || a.id.localeCompare(b.id));
+  }
+
+  function nodeDetail(node: NodeRecord) {
+    const incident = incidentEdges(node.id);
+    return {
+      id: node.id,
+      word: node.display,
+      display: node.display,
+      frequency: node.frequency,
+      episodeCount: node.episode_count,
+      degree: node.degree,
+      weightedDegree: node.weighted_degree,
+      hubRank: node.hub_rank,
+      communityId: node.community_id,
+      componentId: node.component_id,
+      incidentEdgeCount: incident.length,
+      incidentNeighbours: incident.map((edge) => edge.source === node.id ? edge.target : edge.source),
+      committed: true,
+    };
+  }
+
+  function edgeDetail(edge: EdgeRecord) {
+    return {
+      id: edge.id,
+      source: edge.source,
+      target: edge.target,
+      npmi: edge.npmi,
+      pairEvents: edge.pair_events,
+      supportingEpisodeCount: edge.supporting_episode_count,
+      meanSentenceDistance: edge.mean_sentence_distance,
+      minimumSentenceDistance: edge.minimum_sentence_distance,
+      backbone: edge.backbone,
+      supportingEpisodes: edge.supporting_episodes,
+      committed: true,
+    };
+  }
+
+  function clearSearchResults() {
+    searchResults.replaceChildren();
+  }
+
+  function focusTooltip() {
+    tooltip.focus({ preventScroll: true });
+  }
+
+  function setSearchStatus(text: string) {
+    searchStatus.textContent = text;
+  }
+
+  function renderSearchResults(matches: NodeRecord[]) {
+    clearSearchResults();
+    if (matches.length < 2) return;
+    const list = document.createElement('ul');
+    list.className = 'lexical-network-search-result-list';
+    list.setAttribute('aria-label', 'Matching words');
+    matches.slice(0, 30).forEach((node) => {
+      const item = document.createElement('li');
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'lexical-network-search-result';
+      button.textContent = node.display;
+      button.addEventListener('click', () => {
+        searchInput.value = node.display;
+        setSelectedNode(node.id, true, true);
+        clearSearchResults();
+      });
+      item.append(button);
+      list.append(item);
+    });
+    searchResults.append(list);
+  }
+
+  function renderHubList() {
+    hubList.replaceChildren();
+    exampleWordIds
+      .map((id) => nodeMap.get(id))
+      .filter((node): node is NodeRecord => Boolean(node && node.degree > 0))
+      .forEach((node) => {
+        const item = document.createElement('div');
+        item.setAttribute('role', 'listitem');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'lexical-network-hub';
+        button.dataset.wordId = node.id;
+        button.setAttribute('aria-controls', 'lexical-network-tooltip');
+        button.setAttribute('aria-pressed', 'false');
+        button.innerHTML = `<span>${escapeHtml(node.display)}</span>`;
+        button.addEventListener('click', () => setSelectedNode(node.id, true, true));
+        item.append(button);
+        hubList.append(item);
+      });
+  }
+
+  function showTooltip() {
+    tooltip.setAttribute('aria-hidden', 'false');
+    tooltip.classList.remove('is-open');
+    requestAnimationFrame(() => tooltip.classList.add('is-open'));
+  }
+
+  function renderNodeInspector(node: NodeRecord) {
+    const linkedWords = incidentEdges(node.id)
+      .map((edge) => nodeMap.get(edge.source === node.id ? edge.target : edge.source))
+      .filter((linked): linked is NodeRecord => Boolean(linked))
+      .sort((first, second) => second.degree - first.degree || first.display.localeCompare(second.display, 'en', { sensitivity: 'variant' }))
+      .map((linked) => `${linked.display} (${formatInt(linked.degree)} links)`);
+    tooltipTitle.textContent = node.display;
+    tooltipDetail.textContent = linkedWords.length ? `Linked words: ${linkedWords.join(' · ')}` : 'No linked words';
+    tooltipDetail.hidden = false;
+    showTooltip();
+  }
+
+  function renderEdgeInspector(edge: EdgeRecord) {
+    const source = nodeMap.get(edge.source);
+    const target = nodeMap.get(edge.target);
+    tooltipTitle.textContent = `${source?.display || edge.source} × ${target?.display || edge.target}`;
+    tooltipDetail.textContent = '';
+    tooltipDetail.hidden = true;
+    showTooltip();
+  }
+
+  function renderPlaceholder() {
+    tooltip.setAttribute('aria-hidden', 'true');
+    tooltip.classList.remove('is-open');
+    tooltipTitle.textContent = '';
+    tooltipDetail.textContent = '';
+    tooltipDetail.hidden = true;
+  }
+
+  function renderInspector() {
+    const nodeId = selectedNode || hoveredNode;
+    const edgeId = selectedEdge || hoveredEdge;
+    tooltip.setAttribute('aria-live', selectedNode || selectedEdge ? 'polite' : 'off');
+    if (nodeId && nodeMap.has(nodeId)) renderNodeInspector(nodeMap.get(nodeId)!);
+    else if (edgeId && edgeMap.has(edgeId)) renderEdgeInspector(edgeMap.get(edgeId)!);
+    else renderPlaceholder();
+  }
+
+  function updateHubSelection() {
+    root.querySelectorAll<HTMLButtonElement>('.lexical-network-hub-list [data-word-id]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.wordId === selectedNode));
+    });
+  }
+
+  function setSelectedNode(id: string, committed: boolean, reveal = false) {
+    const node = nodeMap.get(nfc(id));
+    if (!node) return;
+    cancelHoverPreview();
+    selectedNode = node.id;
+    selectedEdge = null;
+    hoveredNode = null;
+    hoveredEdge = null;
+    searchInput.value = node.display;
+    setSearchStatus(`${node.display} selected`);
+    updateHubSelection();
+    renderInspector();
+    renderGraph();
+    if (committed && reveal) renderer.focusNode(node.id);
+    if (reveal) focusTooltip();
+    dispatch('lexical-term-select', { ...nodeDetail(node), term: node.display, locked: committed, committed });
+    if (committed) dispatch('lexical-term-selection-committed', { ...nodeDetail(node), term: node.display, locked: true });
+  }
+
+  function previewNode(id: string) {
+    const node = nodeMap.get(nfc(id));
+    if (!node || selectedNode || selectedEdge) return;
+    hoveredNode = node.id;
+    hoveredEdge = null;
+    renderInspector();
+    renderGraph();
+  }
+
+  function setSelectedEdge(id: string, committed: boolean, reveal = false) {
+    const edge = edgeMap.get(nfc(id));
+    if (!edge) return;
+    cancelHoverPreview();
+    selectedEdge = edge.id;
+    selectedNode = null;
+    hoveredNode = null;
+    hoveredEdge = null;
+    searchInput.value = '';
+    clearSearchResults();
+    setSearchStatus('');
+    updateHubSelection();
+    renderInspector();
+    renderGraph();
+    if (reveal) focusTooltip();
+    dispatch('lexical-edge-select', { ...edgeDetail(edge), locked: committed, committed });
+    if (committed) dispatch('lexical-edge-selection-committed', { ...edgeDetail(edge), locked: true });
+  }
+
+  function previewEdge(id: string) {
+    if (selectedNode || selectedEdge) return;
+    const edge = edgeMap.get(id);
+    if (!edge) return;
+    hoveredEdge = edge.id;
+    hoveredNode = null;
+    renderInspector();
+    renderGraph();
+  }
+
+  type SelectionKind = 'all' | 'node' | 'edge';
+
+  function clearSelection(dispatchEvent = true, kind: SelectionKind = 'all') {
+    cancelHoverPreview();
+    const hadNode = kind !== 'edge' && Boolean(selectedNode || hoveredNode);
+    const hadEdge = kind !== 'node' && Boolean(selectedEdge || hoveredEdge);
+    if (kind !== 'edge') {
+      selectedNode = null;
+      hoveredNode = null;
+      searchInput.value = '';
+    }
+    if (kind !== 'node') {
+      selectedEdge = null;
+      hoveredEdge = null;
+    }
+    updateHubSelection();
+    if (kind !== 'edge' || !selectedNode) setSearchStatus('');
+    renderInspector();
+    renderGraph();
+    if (dispatchEvent) {
+      if (hadNode) dispatch('lexical-term-selection-cleared');
+      if (hadEdge) dispatch('lexical-edge-selection-cleared');
+      if (kind === 'all' && !hadNode && !hadEdge) {
+        dispatch('lexical-term-selection-cleared');
+        dispatch('lexical-edge-selection-cleared');
+      }
+    }
+  }
+
+  function isExternalEvent(event: Event) {
+    const detail = (event as CustomEvent<unknown>).detail;
+    return typeof detail === 'object' && detail !== null && (detail as { source?: unknown }).source === 'lexical-network';
+  }
+
+  function eventString(value: unknown) {
+    return typeof value === 'string' && value.trim() ? value : null;
+  }
+
+  function selectSearchMatch() {
+    const query = nfc(searchInput.value.trim());
+    clearSearchResults();
+    if (!query) {
+      setSearchStatus('');
+      return;
+    }
+    const exact = nodes.find((node) => nfc(node.id) === query || nfc(node.display) === query);
+    if (exact) {
+      setSelectedNode(exact.id, true, true);
+      return;
+    }
+    const folded = normaliseSearch(query);
+    if (!folded) {
+      setSearchStatus('Enter a word');
+      return;
+    }
+    const matches = nodes.filter((node) => normaliseSearch(node.display).includes(folded));
+    if (matches.length === 1) {
+      setSelectedNode(matches[0].id, true, true);
+      return;
+    }
+    setSearchStatus(matches.length > 1 ? '' : 'No matching word');
+    renderSearchResults(matches);
+  }
+
+  function populateControls() {
+    if (!payload) return;
+    wordList.replaceChildren();
+    [...nodes].sort((a, b) => a.display.localeCompare(b.display, 'en', { sensitivity: 'variant' })).forEach((node) => {
+      const option = document.createElement('option');
+      option.value = node.display;
+      wordList.append(option);
+    });
+    communitySelect.querySelectorAll('option:not(:first-child)').forEach((option) => option.remove());
+    [...payload.communities].sort((a, b) => a.id - b.id).forEach((community) => {
+      const option = document.createElement('option');
+      option.value = String(community.id);
+      option.textContent = `Community ${community.id}`;
+      communitySelect.append(option);
+    });
+    renderHubList();
+  }
+
+  function updateEdgeModeButtons() {
+    edgeModeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.edgeMode === edgeMode)));
+  }
+
+  edgeModeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      edgeMode = button.dataset.edgeMode === 'all' ? 'all' : 'backbone';
+      updateEdgeModeButtons();
+      renderGraph();
+    });
+  });
+
+  function updateCommunitySwatch() {
+    if (focusedCommunity === null) {
+      communitySwatch.hidden = true;
+      return;
+    }
+    communitySwatch.hidden = false;
+    communitySwatch.style.background = communityColour(focusedCommunity);
+  }
+
+  communitySelect.addEventListener('change', () => {
+    focusedCommunity = communitySelect.value ? Number(communitySelect.value) : null;
+    updateCommunitySwatch();
+    renderGraph();
+    if (focusedCommunity !== null) renderer.focusCommunity(focusedCommunity);
+  });
+
+  resetButton.addEventListener('click', () => {
+    clearSelection(true);
+    focusedCommunity = null;
+    communitySelect.value = '';
+    updateCommunitySwatch();
+    renderer.resetCamera();
+    renderGraph();
+    setSearchStatus('');
+  });
+
+  searchForm.addEventListener('submit', (event) => { event.preventDefault(); selectSearchMatch(); });
+  searchInput.addEventListener('input', () => {
+    const query = normaliseSearch(searchInput.value);
+    if (!query) { clearSearchResults(); setSearchStatus(''); return; }
+    const matches = nodes.filter((node) => normaliseSearch(node.display).includes(query));
+    setSearchStatus(matches.length > 1 ? '' : matches.length === 1 ? '' : 'No matching word');
+    renderSearchResults(matches);
+  });
+
+  document.addEventListener('lexical-term-select', (event) => {
+    if (isExternalEvent(event)) return;
+    const detail = (event as CustomEvent<{ id?: string; word?: string; term?: string; locked?: boolean; committed?: boolean }>).detail || {};
+    const id = eventString(detail.id) || eventString(detail.word) || eventString(detail.term);
+    if (id) setSelectedNode(id, Boolean(detail.locked ?? detail.committed), true);
+  });
+  document.addEventListener('lexical-edge-select', (event) => {
+    if (isExternalEvent(event)) return;
+    const detail = (event as CustomEvent<{ id?: string; locked?: boolean; committed?: boolean }>).detail || {};
+    const id = eventString(detail.id);
+    if (id) setSelectedEdge(id, Boolean(detail.locked ?? detail.committed), true);
+  });
+  document.addEventListener('lexical-term-selection-cleared', (event) => { if (!isExternalEvent(event)) clearSelection(false, 'node'); });
+  document.addEventListener('lexical-edge-selection-cleared', (event) => { if (!isExternalEvent(event)) clearSelection(false, 'edge'); });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && (selectedNode || selectedEdge || hoveredNode || hoveredEdge)) clearSelection(true); });
+
+  waitForFigure(root).then(() => fetch(dataUrl))
+    .then((response) => {
+      if (!response.ok) throw new Error(`Lexical proximity data request failed (${response.status})`);
+      return response.json() as Promise<Payload>;
+    })
+    .then((raw) => {
+      if (!raw || !Array.isArray(raw.nodes) || !Array.isArray(raw.edges)) throw new Error('Lexical proximity data has no node or edge arrays');
+      const seen = new Set<string>();
+      raw.nodes.forEach((rawNode) => {
+        const canonical = nfc(rawNode.id);
+        if (rawNode.id !== canonical) throw new Error(`Non-NFC node identity: ${rawNode.id}`);
+        if (seen.has(canonical)) throw new Error(`Duplicate NFC node identity: ${canonical}`);
+        seen.add(canonical);
+      });
+      if (raw.meta.node_count !== undefined && raw.meta.node_count !== raw.nodes.length) throw new Error('Lexical proximity node count does not match its metadata');
+      if (raw.meta.edge_count !== undefined && raw.meta.edge_count !== raw.edges.length) throw new Error('Lexical proximity edge count does not match its metadata');
+      if (raw.meta.backbone_edge_count !== undefined && raw.meta.backbone_edge_count !== raw.edges.filter((edge) => edge.backbone).length) throw new Error('Lexical proximity backbone count does not match its metadata');
+      if (raw.edges.some((edge) => edge.id !== nfc(edge.id) || edge.source !== nfc(edge.source) || edge.target !== nfc(edge.target))) throw new Error('Lexical proximity edge identity is not NFC-normalised');
+      if (raw.edges.some((edge) => !seen.has(edge.source) || !seen.has(edge.target))) throw new Error('Lexical proximity edge endpoint is absent from the retained node table');
+      payload = raw;
+      nodes = raw.nodes.map((node) => ({ ...node, id: nfc(node.id), display: nfc(node.display) }));
+      edges = raw.edges.map((edge) => ({ ...edge, id: nfc(edge.id), source: nfc(edge.source), target: nfc(edge.target) }));
+      nodeMap = new Map(nodes.map((node) => [node.id, node]));
+      edgeMap = new Map(edges.map((edge) => [edge.id, edge]));
+      populateControls();
+      dataControls.forEach(control => { if (control !== resetButton) control.disabled = false; });
+      renderer.initialise(nodes, edges);
+    })
+    .catch((error) => {
+      console.error('Lexical proximity data unavailable:', error);
+      loading.textContent = 'The network could not be loaded.';
+      showDataFailure();
+    })
+    .finally(() => root.removeAttribute('aria-busy'));
+
+  if (!('WebGLRenderingContext' in window)) showWebGLFailure();
+</script>
+
+<style>
+  .lexical-network {
+    --lexical-community-1: #9eb0a8;
+    --lexical-community-2: #d1a681;
+    --lexical-community-3: #8eafb0;
+    --lexical-community-4: #c89aa3;
+    --lexical-community-5: #afb67e;
+    --lexical-community-6: #c4a5bb;
+    --lexical-community-7: #98a4b7;
+    --lexical-community-8: #b7ad7b;
+    --lexical-community-9: #b4a1c2;
+    --lexical-community-10: #9caf8b;
+    --lexical-community-11: #d1a2a6;
+    --lexical-community-12: #b1a18a;
+    --lexical-community-13: #91b2bd;
+    --lexical-community-14: #c5a0b6;
+    width: 100%;
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  :global([data-theme='light']) .lexical-network {
+    --lexical-community-1: #566f67;
+    --lexical-community-2: #8d694c;
+    --lexical-community-3: #4e7678;
+    --lexical-community-4: #865e70;
+    --lexical-community-5: #6f793e;
+    --lexical-community-6: #795c72;
+    --lexical-community-7: #5b6e84;
+    --lexical-community-8: #857641;
+    --lexical-community-9: #705e89;
+    --lexical-community-10: #607849;
+    --lexical-community-11: #935e64;
+    --lexical-community-12: #756953;
+    --lexical-community-13: #55777f;
+    --lexical-community-14: #895d75;
+  }
+
+  .lexical-network-header {
+    display: grid;
+  }
+
+  .lexical-network-header h2 {
+    width: auto;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1;
+    text-align: left;
+  }
+
+  .lexical-network-controls {
+    display: grid;
+    grid-template-columns: minmax(14rem, 24rem) max-content minmax(12rem, 17rem) max-content;
+    justify-content: start;
+    align-items: end;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    padding-block: var(--space-md);
+    padding-bottom: calc(var(--space-md) + 0.75rem);
+    border-block: 1px solid var(--color-border-subtle);
+  }
+
+  .lexical-control-cluster { display: contents; }
+
+  .lexical-control {
+    display: grid;
+    position: relative;
+    min-width: 0;
+    gap: 0.4rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+  }
+
+  .lexical-control--search > label,
+  .lexical-control--edges > span,
+  .lexical-control--community > label {
+    font: inherit;
+  }
+
+  .lexical-network-hubs-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+  }
+
+  .lexical-search-entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .lexical-community-entry {
+    position: relative;
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .lexical-control input,
+  .lexical-control select,
+  .lexical-control button {
+    min-width: 0;
+    height: 2.75rem;
+    min-height: 44px;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    background: var(--color-bg);
+    color: var(--color-text-secondary);
+    font: inherit;
+    line-height: 1.2;
+  }
+
+  .lexical-search-entry input { border-right: 0; }
+  .lexical-community-entry select {
+    width: 100%;
+    appearance: none;
+    padding-right: 2rem;
+  }
+  .lexical-community-entry::after {
+    content: '';
+    position: absolute;
+    right: 0.8rem;
+    top: 1.05rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border: solid currentColor;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+  .lexical-community-swatch { flex: 0 0 0.4rem; }
+  .lexical-edge-modes { display: flex; }
+  .lexical-edge-modes button { white-space: nowrap; }
+  .lexical-edge-modes button + button { border-left: 0; }
+  .lexical-edge-modes button[aria-pressed='true'] {
+    color: var(--color-accent);
+    box-shadow: inset 0 -2px var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 6%, var(--color-bg));
+  }
+
+  .lexical-control button { cursor: pointer; }
+  .lexical-control input::placeholder { color: var(--color-text-dim); opacity: 1; }
+  .lexical-control button:hover { color: var(--color-accent); }
+  .lexical-control input:focus-visible,
+  .lexical-control select:focus-visible,
+  .lexical-control button:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .lexical-control--actions { justify-self: start; }
+  .lexical-control--actions button {
+    border: 0;
+    padding-inline: 0;
+    color: var(--color-accent);
+  }
+
+  .lexical-control button:disabled { cursor: default; opacity: 0.5; }
+  .lexical-search-status {
+    position: absolute;
+    top: 100%;
+    padding-top: 0.2rem;
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+  }
+
+  .lexical-network-search-results {
+    max-width: 54rem;
+    max-height: 4.5rem;
+    overflow: auto;
+  }
+
+  .lexical-network-search-results :global(.lexical-network-search-result-list) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    list-style: none;
+    margin-top: var(--space-sm);
+    padding: 0;
+  }
+
+  .lexical-network-search-results :global(.lexical-network-search-result) {
+    appearance: none;
+    border: 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-accent);
+    cursor: pointer;
+    font: inherit;
+    font-family: var(--plot-label-font);
+    padding: 0.08rem 0;
+    text-align: left;
+  }
+
+  .lexical-network-search-results :global(.lexical-network-search-result:hover),
+  .lexical-network-search-results :global(.lexical-network-search-result:focus-visible) {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .lexical-network-search-results :global(.lexical-network-search-result:focus-visible) {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .lexical-network-body {
+    display: block;
+    margin-top: var(--space-md);
+  }
+
+  .lexical-network-plot {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .lexical-network-canvas {
+    position: relative;
+    width: 100%;
+    height: clamp(29rem, 53vw, 44rem);
+    min-height: 29rem;
+    overflow: hidden;
+    touch-action: manipulation;
+  }
+
+  .lexical-network-webgl {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: transparent;
+    touch-action: none;
+  }
+
+  .lexical-network-webgl[hidden] {
+    display: none;
+  }
+
+  .lexical-network-webgl :global(> div),
+  .lexical-network-webgl :global(.scene-container),
+  .lexical-network-webgl :global(canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .lexical-network-webgl :global(.float-tooltip-kap) {
+    display: none !important;
+  }
+
+  .lexical-network-webgl :global(.graph-info-msg) {
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+
+  .lexical-network-canvas :global(svg) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+  }
+
+  .lexical-network-canvas :global(svg[aria-hidden='true']) {
+    display: none;
+  }
+
+  .lexical-network-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: var(--space-md);
+    color: var(--color-text-dim);
+    font-family: var(--plot-label-font);
+    font-size: var(--plot-label-size);
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  .lexical-network-loading[hidden] {
+    display: none;
+  }
+
+  .lexical-network-webgl-status {
+    margin: 0.4rem 0 0;
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.35;
+  }
+
+  .lexical-network-webgl-status {
+    border: 0;
+    padding: 0;
+  }
+
+  .lexical-network-webgl-labels {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+    font-family: var(--plot-label-font);
+    font-size: var(--plot-label-size);
+    font-weight: var(--plot-label-weight);
+    line-height: 1.2;
+  }
+
+  .lexical-network-webgl-labels :global(.lexical-network-webgl-label) {
+    position: absolute;
+    max-width: 10rem;
+    overflow: visible;
+    color: var(--color-text);
+    font-family: var(--plot-label-font);
+    font-size: var(--plot-label-size);
+    line-height: 1.2;
+    text-overflow: clip;
+    transition: opacity var(--figure-highlight-duration) ease;
+    text-shadow: 0 0 0.22rem var(--color-bg), 0 0 0.42rem var(--color-bg);
+    white-space: nowrap;
+  }
+
+  .lexical-network-webgl-labels :global(.lexical-network-webgl-label.is-selected),
+  .lexical-network-webgl-labels :global(.lexical-network-webgl-label.is-hovered) {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .lexical-network-canvas :global(.lexical-edge-line) {
+    fill: none;
+    stroke: color-mix(in srgb, var(--color-text-secondary) 72%, var(--color-bg));
+    stroke-linecap: round;
+    transition: stroke-opacity var(--figure-highlight-duration) ease, stroke-width var(--figure-highlight-duration) ease;
+  }
+
+  .lexical-network-canvas :global(.lexical-node-mark) {
+    stroke: var(--color-bg);
+    transition: fill var(--figure-highlight-duration) ease, fill-opacity var(--figure-highlight-duration) ease, stroke var(--figure-highlight-duration) ease;
+  }
+
+  .lexical-network-canvas :global(.lexical-node-hit),
+  .lexical-network-canvas :global(.lexical-edge-hit) {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .lexical-network-canvas :global(.lexical-node-label) {
+    dominant-baseline: middle;
+    font-family: var(--plot-label-font);
+    font-weight: var(--plot-label-weight);
+    transition: opacity var(--figure-highlight-duration) ease, fill var(--figure-highlight-duration) ease;
+  }
+
+  .lexical-network-canvas :global(.lexical-node-label.is-selected) {
+    fill: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .lexical-network-inspector {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.95fr);
+    gap: clamp(1.25rem, 3vw, 3rem);
+    align-items: start;
+    width: 100%;
+    min-width: 0;
+    margin: var(--space-lg) 0 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 0;
+    padding: var(--space-md) 0 0;
+  }
+
+  .lexical-network-hubs,
+  .lexical-network-key {
+    min-width: 0;
+  }
+
+  .lexical-network-key,
+  .lexical-network-hub-list {
+    color: var(--color-text-dim);
+    font-family: var(--plot-label-font);
+    font-size: var(--plot-label-size);
+    line-height: 1.42;
+  }
+
+  .lexical-network-hubs,
+  .lexical-network-key {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .lexical-network-hubs-title {
+    margin: 0;
+  }
+
+  .lexical-network-hub-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.25rem 0.75rem;
+    margin-top: 0.45rem;
+  }
+
+  .lexical-network-hub-list > div {
+    min-width: 0;
+  }
+
+  .lexical-network-hub-list :global(.lexical-network-hub) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 0;
+    gap: 0.25rem;
+    border: 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font: inherit;
+    padding: 0.1rem 0;
+    text-align: left;
+  }
+
+  .lexical-network-hub-list :global(.lexical-network-hub span) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lexical-network-hub-list :global(.lexical-network-hub:hover),
+  .lexical-network-hub-list :global(.lexical-network-hub:focus-visible),
+  .lexical-network-hub-list :global(.lexical-network-hub[aria-pressed='true']) {
+    border-bottom-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .lexical-network-hub-list :global(.lexical-network-hub:focus-visible) {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .lexical-network-key p {
+    margin: 0;
+  }
+
+  .lexical-network-key p + p {
+    margin-top: 0.45rem;
+  }
+
+  .lexical-network-key .lexical-key-note {
+    color: var(--color-text-dim);
+    font-size: 0.88em;
+  }
+
+  .lexical-network-tooltip {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    z-index: 8;
+    max-width: min(22rem, calc(100% - 1.5rem));
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+    color: var(--color-text);
+    font-family: var(--font-prose);
+    font-size: var(--text-xs);
+    line-height: 1.25;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-0.25rem);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
+  }
+
+  .lexical-network-tooltip strong,
+  .lexical-network-tooltip span {
+    display: block;
+  }
+
+  .lexical-network-tooltip span {
+    margin-top: 0.15rem;
+    color: var(--color-text-secondary);
+  }
+
+  .lexical-network-tooltip.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+
+  .lexical-network-caption {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .lexical-network-caption .prose-copy {
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  @media (max-width: 48rem) {
+    .lexical-network-caption {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 86rem) {
+    .lexical-network-header h2 {
+      font-size: var(--text-h3);
+      line-height: var(--lh-heading);
+    }
+  }
+
+  @media (max-width: 74rem) {
+    .lexical-network-header {
+      display: block;
+    }
+
+    .lexical-network-header h2 {
+      width: 100%;
+      margin-left: 0;
+      text-align: left;
+    }
+
+    .lexical-network-inspector {
+      grid-template-columns: minmax(0, 1.25fr) minmax(14rem, 0.75fr);
+    }
+
+    .lexical-network-hubs {
+      border-left: 0;
+      border-top: 1px solid var(--color-border-subtle);
+      padding: var(--space-sm) 0 0;
+    }
+  }
+
+  @media (max-width: 56rem) {
+    .lexical-network-controls { grid-template-columns: minmax(0, 1fr) auto; }
+    .lexical-control--search { grid-column: 1 / -1; }
+    .lexical-search-status {
+      position: static;
+      min-height: 1.2em;
+      padding-top: 0;
+    }
+
+    .lexical-network-canvas {
+      height: min(77vw, 38rem);
+      min-height: 24rem;
+    }
+
+    .lexical-network-inspector {
+      display: block;
+    }
+
+    .lexical-network-hubs,
+    .lexical-network-key {
+      border-left: 0;
+      border-top: 1px solid var(--color-border-subtle);
+      margin-top: var(--space-md);
+      padding: var(--space-sm) 0 0;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .lexical-network-controls { grid-template-columns: minmax(0, 1fr); }
+    .lexical-control--search { grid-column: auto; }
+    .lexical-control input,
+    .lexical-control select,
+    .lexical-control button { min-height: 44px; }
+
+    .lexical-network-canvas {
+      height: min(100vw, 31rem);
+      min-height: 21rem;
+    }
+
+    .lexical-network-webgl-labels,
+    .lexical-network-webgl-labels :global(.lexical-network-webgl-label) {
+      font-size: 0.75rem;
+    }
+
+    .lexical-network-hub-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lexical-network-tooltip {
+      top: 0.75rem;
+      right: 0.75rem;
+      left: 0.75rem;
+      max-width: none;
+    }
+  }
+
+  @media (pointer: coarse) {
+    .lexical-control input,
+    .lexical-control select,
+    .lexical-control button {
+      min-height: 44px;
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lexical-network-tooltip {
+      transition: none;
+    }
+
+    .lexical-network-webgl-labels :global(.lexical-network-webgl-label),
+    .lexical-network-canvas :global(.lexical-edge-line),
+    .lexical-network-canvas :global(.lexical-node-mark),
+    .lexical-network-canvas :global(.lexical-node-label) {
+      transition: none;
+    }
+  }
+</style>

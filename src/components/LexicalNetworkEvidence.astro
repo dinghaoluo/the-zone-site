@@ -1,0 +1,340 @@
+---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+const dataHref = `${base}/data/network/lexical-proximity.json`;
+---
+
+<section class="lexical-network-evidence" data-lexical-network-evidence data-json-href={dataHref} aria-labelledby="lexical-network-evidence-heading">
+  <h4 id="lexical-network-evidence-heading">Graph evidence</h4>
+
+  <details data-evidence-table="words">
+    <summary>
+      <span>retained words</span>
+      <span class="disclosure-toggle" aria-hidden="true"></span>
+      
+    </summary>
+    <div class="lexical-network-evidence-body">
+      <p class="lexical-network-evidence-status" data-evidence-status role="status">Loading…</p>
+    </div>
+  </details>
+
+  <details data-evidence-table="edges">
+    <summary>
+      <span>selected edges</span>
+      <span class="disclosure-toggle" aria-hidden="true"></span>
+      
+    </summary>
+    <div class="lexical-network-evidence-body">
+      <p class="lexical-network-evidence-status" data-evidence-status role="status">Loading…</p>
+    </div>
+  </details>
+
+  <p class="lexical-network-evidence-raw"><a href={dataHref}>Raw lexical proximity data (JSON)</a></p>
+</section>
+
+<script>
+  type LexicalNode = {
+    display: string;
+    frequency: number;
+    episode_count: number;
+    degree: number;
+    weighted_degree: number;
+    hub_rank: number;
+    community_id: number;
+    component_id: number;
+  };
+
+  type SupportingEpisode = {
+    episode_id: string;
+    pair_events: number;
+  };
+
+  type LexicalEdge = {
+    source: string;
+    target: string;
+    npmi: number;
+    pair_events: number;
+    supporting_episode_count: number;
+    mean_sentence_distance: number;
+    minimum_sentence_distance: number;
+    backbone: boolean;
+    selection_reason: string[];
+    supporting_episodes: SupportingEpisode[];
+  };
+
+  type LexicalPayload = {
+    nodes: LexicalNode[];
+    edges: LexicalEdge[];
+  };
+
+  const evidenceRoot = document.querySelector<HTMLElement>('[data-lexical-network-evidence]');
+
+  if (evidenceRoot) {
+    const dataHref = evidenceRoot.dataset.jsonHref;
+    const numberFormat = new Intl.NumberFormat('en-GB');
+    let payloadRequest: Promise<LexicalPayload> | undefined;
+    const renderedTables = new Set<string>();
+    const pendingTables = new Set<string>();
+
+    const formatInteger = (value: number) => numberFormat.format(value);
+    const formatDecimal = (value: number, digits: number) => value.toFixed(digits);
+
+    function appendCell(row: HTMLTableRowElement, value: string, className = '') {
+      const cell = document.createElement('td');
+      cell.textContent = value;
+      if (className) cell.className = className;
+      row.append(cell);
+    }
+
+    function createTable(headers: string[], label: string, tableClass: string) {
+      const wrapper = document.createElement('div');
+      wrapper.className = `lexical-network-evidence-table-wrap ${tableClass}`;
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('aria-label', label);
+
+      const table = document.createElement('table');
+      const caption = document.createElement('caption');
+      caption.textContent = label;
+      table.append(caption);
+
+      const head = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      headers.forEach((header) => {
+        const cell = document.createElement('th');
+        cell.scope = 'col';
+        cell.textContent = header;
+        headerRow.append(cell);
+      });
+      head.append(headerRow);
+      table.append(head);
+
+      const body = document.createElement('tbody');
+      table.append(body);
+      wrapper.append(table);
+
+      return { wrapper, body };
+    }
+
+    function renderWordTable(container: HTMLElement, nodes: LexicalNode[]) {
+      const { wrapper, body } = createTable(
+        ['form', 'frequency', 'episodes', 'degree', 'weighted degree', 'hub rank', 'community', 'component'],
+        'Retained-word table',
+        'retained-word-table',
+      );
+
+      nodes.forEach((node) => {
+        const row = document.createElement('tr');
+        appendCell(row, node.display);
+        appendCell(row, formatInteger(node.frequency), 'is-numeric');
+        appendCell(row, formatInteger(node.episode_count), 'is-numeric');
+        appendCell(row, formatInteger(node.degree), 'is-numeric');
+        appendCell(row, formatDecimal(node.weighted_degree, 6), 'is-numeric');
+        appendCell(row, formatInteger(node.hub_rank), 'is-numeric');
+        appendCell(row, formatInteger(node.community_id), 'is-numeric');
+        appendCell(row, formatInteger(node.component_id), 'is-numeric');
+        body.append(row);
+      });
+
+      container.replaceChildren(wrapper);
+    }
+
+    function formatEpisodeEvidence(episodes: SupportingEpisode[]) {
+      return episodes
+        .map((episode) => `Episode ${episode.episode_id}`)
+        .join(', ');
+    }
+
+    function renderEdgeTable(container: HTMLElement, edges: LexicalEdge[]) {
+      const { wrapper, body } = createTable(
+        ['endpoints', 'NPMI', 'pair events', 'supporting episodes', 'mean distance', 'minimum distance', 'backbone', 'selection reason', 'episode evidence'],
+        'Selected-edge table',
+        'selected-edge-table',
+      );
+
+      edges.forEach((edge) => {
+        const row = document.createElement('tr');
+        appendCell(row, `${edge.source} × ${edge.target}`);
+        appendCell(row, formatDecimal(edge.npmi, 6), 'is-numeric');
+        appendCell(row, formatInteger(edge.pair_events), 'is-numeric');
+        appendCell(row, formatInteger(edge.supporting_episode_count), 'is-numeric');
+        appendCell(row, formatDecimal(edge.mean_sentence_distance, 3), 'is-numeric');
+        appendCell(row, formatInteger(edge.minimum_sentence_distance), 'is-numeric');
+        appendCell(row, edge.backbone ? 'yes' : 'no');
+        appendCell(row, edge.selection_reason.join(', '));
+        appendCell(row, formatEpisodeEvidence(edge.supporting_episodes), 'episode-evidence');
+        body.append(row);
+      });
+
+      container.replaceChildren(wrapper);
+    }
+
+    function loadPayload() {
+      if (!payloadRequest) {
+        payloadRequest = fetch(dataHref || '../data/network/lexical-proximity.json').then((response) => {
+          if (!response.ok) throw new Error('The lexical proximity data could not be loaded.');
+          return response.json() as Promise<LexicalPayload>;
+        });
+      }
+
+      return payloadRequest;
+    }
+
+    evidenceRoot.querySelectorAll<HTMLDetailsElement>('[data-evidence-table]').forEach((disclosure) => {
+      disclosure.addEventListener('toggle', async () => {
+        const tableName = disclosure.dataset.evidenceTable;
+        if (!disclosure.open || !tableName || renderedTables.has(tableName) || pendingTables.has(tableName)) return;
+
+        const container = disclosure.querySelector<HTMLElement>('.lexical-network-evidence-body');
+        const status = disclosure.querySelector<HTMLElement>('[data-evidence-status]');
+        if (!container || !status) return;
+
+        pendingTables.add(tableName);
+        status.textContent = 'Loading…';
+
+        try {
+          const payload = await loadPayload();
+          if (tableName === 'words') renderWordTable(container, payload.nodes);
+          if (tableName === 'edges') renderEdgeTable(container, payload.edges);
+          renderedTables.add(tableName);
+        } catch {
+          payloadRequest = undefined;
+          status.textContent = 'The data could not be loaded. The raw JSON link remains available below.';
+        } finally {
+          pendingTables.delete(tableName);
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  .lexical-network-evidence {
+    margin-top: var(--space-xl);
+  }
+
+  .lexical-network-evidence h4 {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-prose);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-text-dim);
+    text-transform: none;
+  }
+
+  .lexical-network-evidence-intro {
+    margin-bottom: var(--space-lg);
+    font-family: var(--font-prose);
+    font-size: var(--text-prose);
+    line-height: var(--lh-prose);
+    color: var(--color-text-secondary);
+  }
+
+  .lexical-network-evidence details {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .lexical-network-evidence details:last-of-type {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .lexical-network-evidence summary {
+    padding: 0.7rem 0;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .lexical-network-evidence summary:hover,
+  .lexical-network-evidence summary:focus-visible {
+    color: var(--color-accent);
+  }
+
+
+  .lexical-network-evidence-body {
+    padding-bottom: var(--space-lg);
+  }
+
+  .lexical-network-evidence-status,
+  .lexical-network-evidence-raw {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.45;
+    color: var(--color-text-dim);
+  }
+
+  .lexical-network-evidence-raw {
+    margin-top: var(--space-sm);
+  }
+
+  :global(.lexical-network-evidence-table-wrap) {
+    max-height: 34rem;
+    overflow: auto;
+    border-top: 1px solid var(--color-border-subtle);
+    overscroll-behavior: contain;
+  }
+
+  :global(.lexical-network-evidence-table-wrap table) {
+    width: 100%;
+    min-width: 54rem;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.35;
+  }
+
+  :global(.lexical-network-evidence-table-wrap.selected-edge-table table) {
+    min-width: 82rem;
+  }
+
+  :global(.lexical-network-evidence-table-wrap caption) {
+    padding: 0.5rem 0;
+    color: var(--color-text-dim);
+    text-align: left;
+  }
+
+  :global(.lexical-network-evidence-table-wrap th),
+  :global(.lexical-network-evidence-table-wrap td) {
+    padding: 0.35rem 0.4rem;
+    border-top: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  :global(.lexical-network-evidence-table-wrap th) {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--color-bg);
+    color: var(--color-text-dim);
+    font-weight: 400;
+    text-align: left;
+  }
+
+  :global(.lexical-network-evidence-table-wrap .is-numeric) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :global(.lexical-network-evidence-table-wrap .episode-evidence) {
+    min-width: 20rem;
+    white-space: normal;
+  }
+
+  :global(.lexical-network-evidence-table-wrap tbody tr:hover) {
+    background: color-mix(in srgb, var(--color-surface) 65%, transparent);
+  }
+
+  @media (max-width: 48rem) {
+    .lexical-network-evidence-count {
+      display: block;
+      float: none;
+      margin: var(--space-xs) 0 0 1rem;
+    }
+
+    :global(.lexical-network-evidence-table-wrap) {
+      max-height: 26rem;
+    }
+  }
+</style>

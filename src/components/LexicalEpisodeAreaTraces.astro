@@ -1,0 +1,729 @@
+---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+---
+
+<div class="lexical-area-traces" id="lexical-area-traces" data-base={base} aria-busy="true">
+  <div class="lexical-area-body">
+    <div class="lexical-area-canvas-column">
+      <div class="lexical-area-topline">
+        <div class="lexical-area-title"><slot name="title" /></div>
+      </div>
+      <div class="lexical-area-scroll" id="lexical-area-scroll" role="region" aria-label="Lexical density map" tabindex="0">
+        <div class="lexical-area-canvas" id="lexical-area-canvas">
+          <div class="lexical-quote-tooltip" id="lexical-quote-tooltip" role="tooltip" aria-hidden="true" hidden>
+            <p class="lexical-quote-copy">
+              <span data-lexical-quote-before></span><strong data-lexical-quote-match></strong><span data-lexical-quote-after></span>
+            </p>
+            <span class="lexical-quote-episode" data-lexical-quote-episode></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import * as d3 from 'd3';
+  import {
+    LEXICAL_DENSITY_EPISODE_COUNT,
+    LEXICAL_DENSITY_FORM_COUNT,
+    LEXICAL_DENSITY_MAX_RATE,
+    lexicalCommitDetail,
+    lexicalTrajectoryEvents,
+    linearRateFraction,
+    orderLexicalTermsByPeak,
+    parseLexicalCohortRow,
+    parseLexicalDensityRow,
+    type LexicalDensityPoint,
+  } from '../lib/lexicalDensity';
+  import { scalePlotLabels } from '../lib/plotLabels';
+  import { waitForFigure } from '../lib/figureVisibility';
+
+  type PeakQuote = {
+    word: string;
+    episodeId: string;
+    quoteBefore: string;
+    matchedSurface: string;
+    quoteAfter: string;
+  };
+
+  type DisplayRow = {
+    cohortDisplayOrder: number;
+    word: string;
+    values: LexicalDensityPoint[];
+    peak: LexicalDensityPoint;
+  };
+
+  type Selection = {
+    row: DisplayRow;
+    point: LexicalDensityPoint;
+  };
+
+  type SelectionDetail = {
+    word: string;
+    cohortDisplayOrder: number;
+    episodeId?: string;
+    locked?: boolean;
+  } | null;
+
+  const plate = document.getElementById('lexical-area-traces')!;
+  const canvas = document.getElementById('lexical-area-canvas')!;
+  const chartScroll = document.getElementById('lexical-area-scroll')!;
+  const quoteTooltip = document.getElementById('lexical-quote-tooltip')!;
+  const quoteBefore = quoteTooltip.querySelector<HTMLElement>('[data-lexical-quote-before]')!;
+  const quoteMatch = quoteTooltip.querySelector<HTMLElement>('[data-lexical-quote-match]')!;
+  const quoteAfter = quoteTooltip.querySelector<HTMLElement>('[data-lexical-quote-after]')!;
+  const quoteEpisode = quoteTooltip.querySelector<HTMLElement>('[data-lexical-quote-episode]')!;
+  const base = (plate.dataset.base || window.location.pathname.replace(/\/network(?:\/index\.html)?\/?$/, '')).replace(/\/$/, '');
+  const densityFile = base + '/data/network/lexical-through-episodes/episode_density.csv';
+  const cohortFile = base + '/data/network/lexical-through-episodes/cohort_terms.csv';
+  const quoteFile = base + '/data/network/lexical-through-episodes/peak_quotes.json';
+  const W = 1180;
+  const H = 576;
+  const PAD = { top: 62, right: 108, bottom: 62, left: 178 };
+  const ROW_PADDING = 0.1;
+  const AMPLITUDE_FRACTION = 0.82;
+  const MAX_RATE = LEXICAL_DENSITY_MAX_RATE;
+  const HOVER_DELAY = 500;
+  const partRanges = [
+    { label: 'Part I', start: 0, end: 20 },
+    { label: 'Part II', start: 21, end: 28 },
+    { label: 'Part III', start: 29, end: 60 },
+    { label: 'Part IV', start: 61, end: 72 },
+  ];
+  const xTicks = ['1.01', '1.11', '2.01', '3.01', '3.16', '4.01', '4.12'];
+  let pendingSelection: SelectionDetail | undefined;
+  let selectionHandler: ((detail: SelectionDetail) => void) | null = null;
+
+  function colourExpression(rate: number) {
+    const percentage = linearRateFraction(rate, MAX_RATE) * 100;
+    return 'color-mix(in srgb, var(--color-accent) ' + percentage + '%, var(--color-border))';
+  }
+
+  function parseDensity(text: string) {
+    return d3.csvParse(text).map(parseLexicalDensityRow);
+  }
+
+  function parseCohort(text: string) {
+    return d3.csvParse(text).map(parseLexicalCohortRow);
+  }
+
+  function parseQuotes(value: unknown) {
+    if (!Array.isArray(value)) throw new Error('Lexical density quote data is not an array');
+    const quotes = value.map((item): PeakQuote => {
+      if (
+        typeof item !== 'object' || item === null
+        || typeof (item as Record<string, unknown>).word !== 'string'
+        || typeof (item as Record<string, unknown>).episode_id !== 'string'
+        || typeof (item as Record<string, unknown>).quote_before !== 'string'
+        || typeof (item as Record<string, unknown>).matched_surface !== 'string'
+        || typeof (item as Record<string, unknown>).quote_after !== 'string'
+      ) {
+        throw new Error('Lexical density quote data has an invalid entry');
+      }
+      const record = item as Record<string, string>;
+      return {
+        word: record.word.trim(),
+        episodeId: record.episode_id.trim(),
+        quoteBefore: record.quote_before,
+        matchedSurface: record.matched_surface,
+        quoteAfter: record.quote_after,
+      };
+    });
+    if (quotes.length !== LEXICAL_DENSITY_FORM_COUNT || new Set(quotes.map((quote) => quote.word)).size !== LEXICAL_DENSITY_FORM_COUNT) {
+      throw new Error('Lexical density quote data does not contain one entry for each form');
+    }
+    return quotes;
+  }
+
+  document.addEventListener(lexicalTrajectoryEvents.select, (event) => {
+    const detail = (event as CustomEvent<SelectionDetail>).detail ?? null;
+    if (selectionHandler) selectionHandler(detail);
+    else pendingSelection = detail;
+  });
+
+  waitForFigure(plate).then(() => Promise.all([
+    fetch(densityFile).then((response) => {
+      if (!response.ok) throw new Error('Lexical density data returned ' + response.status);
+      return response.text();
+    }),
+    fetch(cohortFile).then((response) => {
+      if (!response.ok) throw new Error('Lexical cohort data returned ' + response.status);
+      return response.text();
+    }),
+    fetch(quoteFile).then((response) => {
+      if (!response.ok) throw new Error('Lexical density quote data returned ' + response.status);
+      return response.json();
+    }),
+  ]))
+    .then(([densityText, cohortText, quoteData]) => {
+      const points = parseDensity(densityText);
+      const terms = parseCohort(cohortText).sort((left, right) => left.cohortDisplayOrder - right.cohortDisplayOrder);
+      const quotes = parseQuotes(quoteData);
+      const pointsByWord = d3.group(points, (point) => point.word);
+      for (const values of pointsByWord.values()) values.sort((left, right) => left.episodeOrder - right.episodeOrder);
+
+      const displayRows = orderLexicalTermsByPeak(points, terms).map((term): DisplayRow => ({
+        cohortDisplayOrder: term.cohortDisplayOrder,
+        word: term.word,
+        values: pointsByWord.get(term.word) ?? [],
+        peak: term.peak,
+      }));
+      const quoteByWord = new Map(quotes.map((quote) => [quote.word, quote]));
+      if (displayRows.length !== LEXICAL_DENSITY_FORM_COUNT || points.length !== LEXICAL_DENSITY_FORM_COUNT * LEXICAL_DENSITY_EPISODE_COUNT) {
+        throw new Error('Lexical density data does not contain 16 forms by 73 episodes');
+      }
+      for (const displayRow of displayRows) {
+        const quote = quoteByWord.get(displayRow.word);
+        if (
+          !quote
+          || quote.episodeId !== displayRow.peak.episodeId
+          || quote.matchedSurface.trim().toLocaleLowerCase('en-GB') !== displayRow.word
+        ) {
+          throw new Error('Lexical density quote data does not match the peak for ' + displayRow.word);
+        }
+      }
+
+      const words = displayRows.map((displayRow) => displayRow.word);
+      const episodes = displayRows[0].values.map((point) => point.episodeId);
+      const plotWidth = W - PAD.left - PAD.right;
+      const plotHeight = H - PAD.top - PAD.bottom;
+      const x = d3.scalePoint<string>().domain(episodes).range([PAD.left, PAD.left + plotWidth]);
+      const row = d3.scaleBand<string>().domain(words).range([PAD.top, PAD.top + plotHeight]).paddingInner(ROW_PADDING);
+      const rowByCohortOrder = new Map(displayRows.map((displayRow) => [displayRow.cohortDisplayOrder, displayRow]));
+      const svg = d3.select(canvas).append('svg')
+        .attr('viewBox', '0 0 ' + W + ' ' + H)
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('role', 'group')
+        .attr('aria-label', 'Lexical density map of sixteen exact forms selected from two of David Letzler’s top-thirty corpus comparisons, shown across 73 formal episodes. Height and shade show observed density per 1,000 complete lexical tokens on a shared linear zero to sixteen scale.')
+        .attr('aria-describedby', 'lexical-area-svg-description');
+
+      svg.append('desc')
+        .attr('id', 'lexical-area-svg-description')
+        .text('Rows are ordered by their density-peak episode.');
+
+      const defs = svg.append('defs');
+      const plot = svg.append('g').attr('class', 'lexical-area-plot');
+
+      plot.selectAll<SVGTextElement, typeof partRanges[number]>('.lexical-part-label')
+        .data(partRanges)
+        .join('text')
+        .attr('class', 'plot-label lexical-part-label')
+        .attr('x', (part) => ((x(episodes[part.start]) ?? 0) + (x(episodes[part.end]) ?? 0)) / 2)
+        .attr('y', PAD.top - 30)
+        .attr('text-anchor', 'middle')
+        .text((part) => part.label);
+
+      plot.selectAll<SVGLineElement, typeof partRanges[number]>('.lexical-part-separator')
+        .data(partRanges.slice(1))
+        .join('line')
+        .attr('class', 'lexical-part-separator')
+        .attr('x1', (part) => ((x(episodes[part.start - 1]) ?? 0) + (x(episodes[part.start]) ?? 0)) / 2)
+        .attr('x2', (part) => ((x(episodes[part.start - 1]) ?? 0) + (x(episodes[part.start]) ?? 0)) / 2)
+        .attr('y1', PAD.top - 4)
+        .attr('y2', PAD.top + plotHeight + 3);
+
+      plot.selectAll<SVGTextElement, string>('.lexical-episode-tick')
+        .data(xTicks)
+        .join('text')
+        .attr('class', 'plot-label lexical-episode-tick')
+        .attr('x', (episode) => x(episode) ?? 0)
+        .attr('y', PAD.top + plotHeight + 15)
+        .attr('text-anchor', 'middle')
+        .text((episode) => episode);
+
+      const colourbarId = 'lexical-rate-colourbar';
+      const colourbarGradient = defs.append('linearGradient')
+        .attr('id', colourbarId)
+        .attr('x1', '0%')
+        .attr('x2', '0%')
+        .attr('y1', '100%')
+        .attr('y2', '0%');
+      colourbarGradient.append('stop').attr('offset', '0%').style('stop-color', colourExpression(0));
+      colourbarGradient.append('stop').attr('offset', '100%').style('stop-color', colourExpression(MAX_RATE));
+      const colourbar = plot.append('g').attr('class', 'lexical-colourbar');
+      const colourbarX = W - PAD.right + 26;
+      const colourbarY = PAD.top;
+      const colourbarHeight = 88;
+      colourbar.append('text')
+        .attr('class', 'plot-label lexical-colourbar-title')
+        .attr('x', W - 10)
+        .attr('y', colourbarY - 11)
+        .attr('text-anchor', 'end')
+        .text('density / 1,000');
+      colourbar.append('rect')
+        .attr('class', 'lexical-colourbar-ramp')
+        .attr('x', colourbarX)
+        .attr('y', colourbarY)
+        .attr('width', 8)
+        .attr('height', colourbarHeight)
+        .attr('fill', 'url(#' + colourbarId + ')');
+      [0, MAX_RATE / 2, MAX_RATE].forEach((rate) => {
+        const y = colourbarY + colourbarHeight - linearRateFraction(rate, MAX_RATE) * colourbarHeight;
+        colourbar.append('line')
+          .attr('class', 'lexical-colourbar-tick')
+          .attr('x1', colourbarX + 8)
+          .attr('x2', colourbarX + 12)
+          .attr('y1', y)
+          .attr('y2', y);
+        colourbar.append('text')
+          .attr('class', 'plot-label lexical-colourbar-label')
+          .attr('x', colourbarX + 16)
+          .attr('y', y)
+          .attr('dominant-baseline', 'middle')
+          .text(rate);
+      });
+
+      const rowGroups = plot.selectAll<SVGGElement, DisplayRow>('.lexical-row')
+        .data(displayRows)
+        .join('g')
+        .attr('class', 'lexical-row')
+        .attr('data-word', (displayRow) => displayRow.word);
+
+      const line = d3.line<LexicalDensityPoint>()
+        .x((point) => x(point.episodeId) ?? 0)
+        .curve(d3.curveLinear);
+      const area = d3.area<LexicalDensityPoint>()
+        .x((point) => x(point.episodeId) ?? 0)
+        .y0(0)
+        .y1(0)
+        .curve(d3.curveLinear);
+
+      rowGroups.each(function(displayRow) {
+        const group = d3.select(this);
+        const baseline = (row(displayRow.word) ?? PAD.top) + row.bandwidth();
+        const amplitude = row.bandwidth() * AMPLITUDE_FRACTION;
+        const y = (point: LexicalDensityPoint) => baseline - linearRateFraction(point.per1000, MAX_RATE) * amplitude;
+        const gradientId = 'lexical-rate-' + displayRow.word.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+        const gradient = defs.append('linearGradient')
+          .attr('id', gradientId)
+          .attr('gradientUnits', 'userSpaceOnUse')
+          .attr('x1', x(episodes[0]) ?? PAD.left)
+          .attr('x2', x(episodes[episodes.length - 1]) ?? PAD.left + plotWidth)
+          .attr('y1', 0)
+          .attr('y2', 0);
+        displayRow.values.forEach((point) => {
+          const offset = ((x(point.episodeId) ?? PAD.left) - (x(episodes[0]) ?? PAD.left)) / plotWidth * 100;
+          gradient.append('stop')
+            .attr('offset', offset + '%')
+            .style('stop-color', colourExpression(point.per1000));
+        });
+
+        group.append('line')
+          .attr('class', 'lexical-row-baseline')
+          .attr('x1', PAD.left)
+          .attr('x2', PAD.left + plotWidth)
+          .attr('y1', baseline)
+          .attr('y2', baseline);
+        group.append('path')
+          .attr('class', 'lexical-area-fill')
+          .attr('d', area.y0(baseline).y1(y)(displayRow.values) ?? '')
+          .attr('fill', 'url(#' + gradientId + ')');
+        group.append('path')
+          .attr('class', 'lexical-area-line')
+          .attr('d', line.y((point) => y(point))(displayRow.values) ?? '')
+          .attr('stroke', 'url(#' + gradientId + ')')
+          .attr('fill', 'none');
+        group.append('text')
+          .attr('class', 'plot-label lexical-row-label')
+          .attr('x', PAD.left - 12)
+          .attr('y', (row(displayRow.word) ?? PAD.top) + row.bandwidth() / 2)
+          .attr('text-anchor', 'end')
+          .attr('dominant-baseline', 'middle')
+          .text(displayRow.word);
+      });
+
+      const rowSummary = plot.append('text')
+        .attr('class', 'plot-label lexical-row-summary')
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'auto')
+        .attr('opacity', 0)
+        .attr('pointer-events', 'none');
+      const focusGuide = plot.append('line')
+        .attr('class', 'lexical-focus-guide')
+        .attr('y1', PAD.top - 4)
+        .attr('y2', PAD.top + plotHeight + 4)
+        .attr('opacity', 0)
+        .attr('pointer-events', 'none');
+      const focusPoint = plot.append('circle')
+        .attr('class', 'lexical-focus-point')
+        .attr('r', 4)
+        .attr('opacity', 0)
+        .attr('pointer-events', 'none');
+
+      const rowHits = plot.selectAll<SVGRectElement, DisplayRow>('.lexical-row-hit')
+        .data(displayRows)
+        .join('rect')
+        .attr('class', 'lexical-row-hit')
+        .attr('x', 0)
+        .attr('y', (displayRow) => row(displayRow.word) ?? 0)
+        .attr('width', W)
+        .attr('height', row.bandwidth())
+        .attr('role', 'button')
+        .attr('tabindex', 0)
+        .attr('aria-pressed', 'false')
+        .attr('aria-label', (displayRow) => 'Show ' + displayRow.word + ' across 73 formal episodes')
+        .attr('data-word', (displayRow) => displayRow.word);
+
+      let lockedRow: DisplayRow | null = null;
+      let hoverTimer: number | null = null;
+      let hoveredRow: DisplayRow | null = null;
+
+      function yForPoint(displayRow: DisplayRow, point: LexicalDensityPoint) {
+        const baseline = (row(displayRow.word) ?? PAD.top) + row.bandwidth();
+        return baseline - linearRateFraction(point.per1000, MAX_RATE) * row.bandwidth() * AMPLITUDE_FRACTION;
+      }
+
+      function positionTooltip(displayRow: DisplayRow, point: LexicalDensityPoint) {
+        const quote = quoteByWord.get(displayRow.word);
+        if (!quote) return;
+        quoteBefore.textContent = '‘' + quote.quoteBefore;
+        quoteMatch.textContent = quote.matchedSurface;
+        quoteAfter.textContent = quote.quoteAfter + '’';
+        quoteEpisode.textContent = 'Episode ' + quote.episodeId + ' · ' + displayRow.peak.per1000.toFixed(3) + ' / 1,000';
+        quoteTooltip.hidden = false;
+        quoteTooltip.setAttribute('aria-hidden', 'false');
+        quoteTooltip.style.opacity = '1';
+
+        const svgNode = svg.node() as SVGSVGElement;
+        const scale = svgNode.clientWidth / W;
+        const pointX = (x(point.episodeId) ?? PAD.left) * scale;
+        const pointY = yForPoint(displayRow, point) * scale;
+        const tooltipWidth = quoteTooltip.offsetWidth;
+        const tooltipHeight = quoteTooltip.offsetHeight;
+        const left = Math.max(8, Math.min(canvas.clientWidth - tooltipWidth - 8, pointX - tooltipWidth / 2));
+        const above = pointY - tooltipHeight - 12;
+        const top = above >= 6 ? above : Math.min(canvas.clientHeight - tooltipHeight - 6, pointY + 12);
+        quoteTooltip.style.left = left + 'px';
+        quoteTooltip.style.top = Math.max(6, top) + 'px';
+      }
+
+      function hideTooltip() {
+        quoteTooltip.hidden = true;
+        quoteTooltip.setAttribute('aria-hidden', 'true');
+        quoteTooltip.style.opacity = '0';
+        rowHits.attr('aria-describedby', null);
+      }
+
+      function showRowSummary(displayRow: DisplayRow) {
+        const peak = displayRow.peak;
+        rowSummary.selectAll('tspan').remove();
+        rowSummary.append('tspan').attr('font-style', 'italic').text('max');
+        rowSummary.append('tspan').text(': ' + peak.episodeId);
+        const peakX = x(peak.episodeId) ?? PAD.left;
+        const labelHalfWidth = Math.min((rowSummary.node()?.getComputedTextLength() ?? 0) / 2, plotWidth / 2);
+        const summaryX = Math.min(
+          PAD.left + plotWidth - labelHalfWidth,
+          Math.max(PAD.left + labelHalfWidth, peakX),
+        );
+        rowSummary
+          .attr('x', summaryX)
+          .attr('y', Math.max(PAD.top - 9, (row(displayRow.word) ?? PAD.top) - 9))
+          .attr('fill', 'var(--color-accent)')
+          .attr('opacity', 1)
+          .raise();
+      }
+
+      function clearRowSummary() {
+        rowSummary.attr('opacity', 0).text('');
+      }
+
+      function updateVisuals(selection: Selection | null) {
+        const activeWord = selection?.row.word ?? null;
+        rowGroups
+          .classed('is-row-active', (displayRow) => displayRow.word === activeWord)
+          .classed('is-row-muted', (displayRow) => activeWord !== null && displayRow.word !== activeWord);
+        rowHits
+          .attr('aria-pressed', (displayRow) => String(lockedRow?.word === displayRow.word))
+          .attr('aria-describedby', (displayRow) => displayRow.word === activeWord ? 'lexical-quote-tooltip' : null);
+
+        if (!selection) {
+          focusGuide.attr('opacity', 0);
+          focusPoint.attr('opacity', 0);
+          clearRowSummary();
+          hideTooltip();
+          return;
+        }
+
+        const { row: displayRow, point } = selection;
+        const pointX = x(point.episodeId) ?? PAD.left;
+        focusGuide.attr('x1', pointX).attr('x2', pointX).attr('opacity', 0.55);
+        focusPoint
+          .attr('cx', pointX)
+          .attr('cy', yForPoint(displayRow, point))
+          .attr('fill', colourExpression(point.per1000))
+          .attr('opacity', 1);
+        showRowSummary(displayRow);
+        positionTooltip(displayRow, displayRow.peak);
+      }
+
+      function clearSelection(dispatch = true) {
+        if (hoverTimer !== null) window.clearTimeout(hoverTimer);
+        hoverTimer = null;
+        hoveredRow = null;
+        lockedRow = null;
+        updateVisuals(null);
+        if (dispatch) document.dispatchEvent(new CustomEvent(lexicalTrajectoryEvents.cleared));
+      }
+
+      function select(displayRow: DisplayRow, point: LexicalDensityPoint, lock: boolean) {
+        if (lock) {
+          lockedRow = displayRow;
+          const peakX = (x(displayRow.peak.episodeId) ?? PAD.left) * canvas.clientWidth / W;
+          chartScroll.scrollTo({ left: peakX - chartScroll.clientWidth / 2, behavior: 'smooth' });
+          const detail = lexicalCommitDetail(displayRow.word, displayRow.cohortDisplayOrder, point.episodeId);
+          if (detail) document.dispatchEvent(new CustomEvent(lexicalTrajectoryEvents.committed, { detail }));
+        }
+        updateVisuals({ row: displayRow, point });
+      }
+
+      function cancelRowHover() {
+        if (hoverTimer !== null) window.clearTimeout(hoverTimer);
+        hoverTimer = null;
+        hoveredRow = null;
+      }
+
+      function selectionFromDetail(detail: SelectionDetail) {
+        if (!detail || typeof detail.word !== 'string' || !Number.isInteger(detail.cohortDisplayOrder)) return null;
+        const displayRow = rowByCohortOrder.get(detail.cohortDisplayOrder);
+        if (!displayRow || displayRow.word !== detail.word.trim()) return null;
+        const point = detail.episodeId
+          ? displayRow.values.find((candidate) => candidate.episodeId === detail.episodeId)
+          : displayRow.peak;
+        return point ? { row: displayRow, point } : null;
+      }
+
+      selectionHandler = (detail) => {
+        const selection = selectionFromDetail(detail);
+        if (!selection) {
+          clearSelection(false);
+          return;
+        }
+        select(selection.row, selection.point, detail?.locked ?? true);
+        if (detail?.locked && chartScroll.scrollWidth > chartScroll.clientWidth) {
+          chartScroll.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      };
+
+      rowHits
+        .on('pointerenter', (event, displayRow) => {
+          if (event.pointerType === 'touch' || lockedRow !== null) return;
+          cancelRowHover();
+          hoveredRow = displayRow;
+          hoverTimer = window.setTimeout(() => {
+            if (lockedRow === null && hoveredRow === displayRow) select(displayRow, displayRow.peak, false);
+            hoverTimer = null;
+          }, HOVER_DELAY);
+        })
+        .on('pointerleave', (_, displayRow) => {
+          if (hoveredRow === displayRow) cancelRowHover();
+          if (lockedRow === null) clearSelection();
+        })
+        .on('focus', (_, displayRow) => {
+          if (lockedRow === null) select(displayRow, displayRow.peak, false);
+        })
+        .on('blur', () => {
+          if (lockedRow === null) clearSelection();
+        })
+        .on('click', (event, displayRow) => {
+          event.stopPropagation();
+          if (lockedRow?.word === displayRow.word) clearSelection();
+          else select(displayRow, displayRow.peak, true);
+        })
+        .on('keydown', (event, displayRow) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            if (lockedRow?.word === displayRow.word) clearSelection();
+            else select(displayRow, displayRow.peak, true);
+          }
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            clearSelection();
+          }
+        });
+
+      svg.on('click', () => {
+        if (lockedRow !== null) clearSelection();
+      });
+      document.addEventListener('click', (event) => {
+        if (lockedRow === null) return;
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (canvas.contains(target) || target.closest('[data-lexical-trajectory-select]')) return;
+        clearSelection();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lockedRow !== null) clearSelection();
+      });
+
+      if (pendingSelection !== undefined) selectionHandler(pendingSelection);
+      const svgNode = svg.node() as SVGSVGElement;
+      const updateLabelScale = () => {
+        scalePlotLabels(svgNode);
+        scalePlotLabels(
+          svgNode,
+          '.lexical-row-summary, .lexical-colourbar-title, .lexical-colourbar-label',
+          12,
+        );
+      };
+      updateLabelScale();
+      new ResizeObserver(() => {
+        updateLabelScale();
+        if (lockedRow !== null) updateVisuals({ row: lockedRow, point: lockedRow.peak });
+      }).observe(canvas);
+    })
+    .catch((error) => {
+      console.error('Lexical density plot failed:', error);
+      canvas.innerHTML = '<p class="lexical-area-placeholder" role="status">The density map could not be loaded.</p>';
+    })
+    .finally(() => plate.removeAttribute('aria-busy'));
+</script>
+
+<style>
+  .lexical-area-traces {
+    position: relative;
+    width: 100%;
+  }
+
+  .lexical-area-body {
+    display: block;
+  }
+
+  .lexical-area-canvas-column { min-width: 0; }
+  .lexical-area-topline {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--space-sm);
+    padding-left: max(9.42rem, 15.1%);
+  }
+  .lexical-area-title { min-width: 0; }
+  .lexical-area-title :global(h2) {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .lexical-area-scroll {
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+  .lexical-area-scroll:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .lexical-area-canvas { position: relative; min-width: 62.4rem; aspect-ratio: 1180 / 576; }
+  .lexical-area-canvas :global(svg) {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 62.4rem;
+    height: auto;
+    overflow: visible;
+  }
+  .lexical-area-canvas :global(.lexical-area-placeholder) {
+    margin: 0;
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.71rem;
+    line-height: 1.35;
+  }
+
+  .lexical-area-canvas :global(.lexical-row-baseline) { stroke: var(--color-border); stroke-width: 0.8; }
+  .lexical-area-canvas :global(.lexical-area-fill) { fill-opacity: 0.24; }
+  .lexical-area-canvas :global(.lexical-area-line) {
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-opacity: 0.82;
+  }
+  .lexical-area-canvas :global(.lexical-row-label) { fill: var(--color-text-secondary); }
+  .lexical-area-canvas :global(.lexical-part-label) { fill: var(--color-text-secondary); font-style: normal; }
+  .lexical-area-canvas :global(.lexical-part-separator) { stroke: var(--color-border); stroke-width: 1; }
+  .lexical-area-canvas :global(.lexical-episode-tick) { fill: var(--color-text-dim); }
+  .lexical-area-canvas :global(.lexical-colourbar-title),
+  .lexical-area-canvas :global(.lexical-colourbar-label) { fill: var(--color-text-dim); }
+  .lexical-area-canvas :global(.lexical-colourbar-title) { font-size: 12px; }
+  .lexical-area-canvas :global(.lexical-colourbar-label) { font-size: 12px; }
+  .lexical-area-canvas :global(.lexical-colourbar-ramp) { stroke: var(--color-border); stroke-width: 0.6; }
+  .lexical-area-canvas :global(.lexical-colourbar-tick) { stroke: var(--color-text-dim); stroke-width: 0.8; }
+  .lexical-area-canvas :global(.lexical-focus-guide) {
+    stroke: var(--color-accent);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+  }
+  .lexical-area-canvas :global(.lexical-focus-point) { stroke: var(--color-bg); stroke-width: 1.5; }
+  .lexical-area-canvas :global(.lexical-row-summary) {
+    font-family: var(--plot-label-font);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .lexical-area-canvas :global(.lexical-row-hit) {
+    fill: transparent;
+    cursor: pointer;
+    outline: none;
+  }
+  .lexical-area-canvas :global(.lexical-row-hit:focus-visible) {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    stroke-opacity: 0.75;
+  }
+  .lexical-area-canvas :global(.lexical-area-line),
+  .lexical-area-canvas :global(.lexical-area-fill),
+  .lexical-area-canvas :global(.lexical-row-label) { transition: opacity var(--figure-highlight-duration) ease; }
+  .lexical-area-canvas :global(.lexical-row.is-row-muted .lexical-area-line),
+  .lexical-area-canvas :global(.lexical-row.is-row-muted .lexical-area-fill) { opacity: var(--figure-muted-opacity); }
+  .lexical-area-canvas :global(.lexical-row.is-row-muted .lexical-row-label) { opacity: var(--figure-muted-label-opacity); }
+
+  .lexical-area-canvas :global(.lexical-quote-tooltip) {
+    position: absolute;
+    z-index: 10;
+    width: min(17rem, calc(100% - 1rem));
+    pointer-events: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    padding: 0.4rem 0.6rem;
+    color: var(--color-text);
+    font-family: var(--font-prose);
+    font-size: var(--text-xs);
+    line-height: 1.25;
+    transition: opacity 0.15s;
+    white-space: normal;
+  }
+  .lexical-area-canvas :global(.lexical-quote-tooltip[hidden]) { display: none; }
+  .lexical-area-canvas :global(.lexical-quote-copy) { margin: 0; text-align: center; }
+  .lexical-area-canvas :global(.lexical-quote-copy strong) {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  .lexical-area-canvas :global(.lexical-quote-episode) {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 86rem) {
+    .lexical-area-title :global(h2) {
+      font-size: var(--text-h3);
+      line-height: var(--lh-heading);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lexical-area-canvas :global(.lexical-area-line),
+    .lexical-area-canvas :global(.lexical-area-fill),
+    .lexical-area-canvas :global(.lexical-row-label),
+    .lexical-area-canvas :global(.lexical-quote-tooltip) { transition: none; }
+  }
+</style>

@@ -27,6 +27,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 <script>
   import * as d3 from 'd3';
   import { scalePlotLabels } from '../lib/plotLabels';
+  import { characterCommunityColours } from '../lib/characterColours';
 
   type Point = {
     displayOrder: number;
@@ -68,13 +69,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   ];
   let pendingSelection: SelectionDetail | undefined;
   let selectionHandler: ((detail: SelectionDetail) => void) | null = null;
-  const communityColours: Record<string, string> = {
-    '1': 'var(--network-quest)',
-    '2': 'var(--network-counterforce)',
-    '3': 'var(--network-rocket)',
-    '4': 'var(--network-pokler)',
-    '5': 'var(--network-afterlives)',
-  };
 
   function densityOpacity(density: number, mode: DensityMode) {
     const scaleMaximum = mode === 'normalised' ? 1 : 18;
@@ -151,7 +145,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
           episodeOrder: +(row.episode_order ?? row.global_index ?? 0),
           density: +(row.mentions_per_1000 ?? 0),
           normalisedDensity: 0,
-          communityColour: node?.community_colour ?? communityColours[node?.community_id ?? ''] ?? 'var(--color-text-dim)',
+          communityColour: characterCommunityColours[node?.community_id ?? ''] ?? 'var(--color-text-dim)',
         };
       });
       const byCharacter = d3.group(rows, (row) => row.displayOrder);
@@ -190,7 +184,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         .attr('viewBox', `0 0 ${W} ${H}`)
         .attr('preserveAspectRatio', 'xMinYMin meet')
         .attr('role', 'group')
-        .attr('aria-label', 'Mention density heatmap for the twenty most-mentioned named characters through 73 episodes');
+        .attr('aria-label', 'Character-mention heatmap for the twenty most-mentioned named characters through 73 episodes');
       const plot = svg.append('g').attr('class', 'episode-heatmap-plot');
 
       plot.selectAll<SVGTextElement, typeof partRanges[number]>('.part-label')
@@ -485,7 +479,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     })
     .catch((error) => {
       console.error('Figure 3 failed:', error);
-      canvas.innerHTML = '<p class="episode-heatmap-placeholder">Character trajectory data unavailable.</p>';
+      canvas.innerHTML = '<p class="episode-heatmap-placeholder">Character-mention heatmap data unavailable.</p>';
     });
 </script>
 
@@ -516,12 +510,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .episode-density-control { display: none; }
   .episode-heatmap-canvas { min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; }
   .episode-heatmap-canvas :global(svg) { display: block; width: 100%; max-width: none; min-width: 62.4rem; height: auto; overflow: visible; }
-  .episode-heatmap-canvas :global(.heat-cell) { transition: opacity 160ms ease, fill 160ms ease; }
-  .episode-heatmap-canvas :global(.heat-cell.is-cell-muted) { opacity: 0.1; }
+  .episode-heatmap-canvas :global(.heat-cell) { transition: opacity var(--figure-highlight-duration) ease, fill var(--figure-highlight-duration) ease; }
+  .episode-heatmap-canvas :global(.heat-cell.is-cell-muted) { opacity: var(--figure-muted-opacity); }
   .episode-heatmap-canvas :global(.row-hit) { fill: transparent; cursor: pointer; }
   .episode-heatmap-canvas :global(.row-hit:focus) { outline: none; }
   .episode-heatmap-canvas :global(.row-hit:focus-visible) { stroke: var(--color-accent); stroke-width: 2; stroke-opacity: 0.75; }
-  .episode-heatmap-canvas :global(.heat-row.is-row-muted .heat-row-label) { opacity: 0.35; }
+  .episode-heatmap-canvas :global(.heat-row-label) { transition: opacity var(--figure-highlight-duration) ease; }
+  .episode-heatmap-canvas :global(.heat-row.is-row-muted .heat-row-label) { opacity: var(--figure-muted-label-opacity); }
   .episode-heatmap-canvas :global(.heat-row-summary) {
     font-family: var(--plot-label-font);
     font-style: normal;

@@ -4,12 +4,15 @@ import Nav from '../components/Nav.astro';
 import NetworkAtlas from '../components/NetworkAtlas.astro';
 import NetworkMatrix from '../components/NetworkMatrix.astro';
 import CharacterEpisodeHeatmap from '../components/CharacterEpisodeHeatmap.astro';
+import CastCompositionChange from '../components/CastCompositionChange.astro';
+import LexicalEpisodeAreaTraces from '../components/LexicalEpisodeAreaTraces.astro';
+import LexicalNetwork from '../components/LexicalNetwork.astro';
 import Layout from '../layouts/Layout.astro';
 
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 
-<Layout title="Network" description="Character co-presence in Gravity's Rainbow.">
+<Layout title="Network" description="Character, cast and lexical relations in Gravity's Rainbow.">
   <Nav slot="nav" />
 
   <div class="network-backdrop" id="network-backdrop" aria-hidden="true">
@@ -213,18 +216,16 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     </svg>
   </div>
 
-  <main class="site-page network-page" id="main-content">
+  <main class="site-page network-page" id="main-content" tabindex="-1">
     <header class="page-header network-header">
       <a class="page-back" href={`${base}/`}>&larr; The Zone</a>
       <h1 class="page-title">Network</h1>
-      <p class="page-wip">[ <i>work in progress</i> ]</p>
     </header>
 
     <div class="network-lede" data-network-lede data-lede-variant="marginal">
       <div class="lede-copy">
-        <p class="prose-copy">In typical Pynchon fashion, paranoia pervades <i>Gravity's Rainbow</i>: <span class="lede-term-pair" data-lede-anchor="puritan"><a href={`${base}/glossary/#glossary-puritan-paranoia`} data-lede-term-copy>Slothrop's Puritan reflex</a><button class="lede-term" type="button" data-lede-trigger data-quote="a Puritan reflex of seeking other orders behind the visible, also known as paranoia" data-episode="2.01" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>Slothrop's Puritan reflex</button></span> seems to infect everything that he touches, turning pure coincidences into conspitorial structures. Nothing unusual, though, since <span class="lede-term-pair" data-lede-anchor="conditioning"><span data-lede-term-copy>Pavlovian psychology</span><button class="lede-term" type="button" data-lede-trigger data-quote="No effect without cause, and a clear train of linkages." data-episode="1.13" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>Pavlovian psychology</button></span> has long ago taught us that associations are the backbones of human understanding and memory. Such is the way that the novel expands around associations, conditioning, drawing seemingly far-fetched (<i>who knows?</i>) connections between our little paranoia agents, who all oscillate between the <span class="lede-term-pair" data-lede-anchor="anti-paranoia"><span data-lede-term-copy>fear that nothing relates</span><button class="lede-term" type="button" data-lede-trigger data-quote="anti-paranoia, where nothing is connected to anything" data-episode="3.12" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>fear that nothing relates</button></span> and the <span class="lede-term-pair" data-lede-anchor="everything"><span data-lede-term-copy>suspicion that everything does</span><button class="lede-term" type="button" data-lede-trigger data-quote="the discovery that everything is connected, everything in the Creation" data-episode="4.07" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>suspicion that everything does</button></span>. So, what better way to analyse <i>Gravity's Rainbow</i> than looking at these networks between characters, names, and words?</p>
-        <p class="prose-copy">This, of course, has been done countless times before: <a href="https://thomaspynchon.com/rocket-power-gravitys-rainbow-reviewed-by-richard-poirier-1973/" target="_blank" rel="noopener">Richard Poirier</a> already traced these networks in his 1973 review; <a href="https://doi.org/10.1177/096394700301200102" target="_blank" rel="noopener">Luc Herman, Robert Hogenraad, and Wim van Mierlo</a> (2003) measured chapter-level word covariation; <a href="https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/" target="_blank" rel="noopener">Martin Paul Eve</a> (2015) mapped frequent terms and the connections between them; <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler</a> (2016) combined social-network analysis with word frequency, keyness, and topic modelling.</p>
-        <p class="prose-copy">On this page, therefore, I provide my own attempt to present the novel's various webs in interactive form.</p>
+        <p class="prose-copy">In typical Pynchon fashion, paranoia pervades <i>Gravity's Rainbow</i>: <span class="lede-term-pair" data-lede-anchor="puritan"><a href={`${base}/glossary/#glossary-puritan-paranoia`} data-lede-term-copy>Slothrop's Puritan reflex</a><button class="lede-term" type="button" data-lede-trigger data-quote="a Puritan reflex of seeking other orders behind the visible, also known as paranoia" data-episode="2.01" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>Slothrop's Puritan reflex</button></span> seems to infect everything that he touches, turning pure coincidences into conspiratorial structures. Nothing unusual, though, since <span class="lede-term-pair" data-lede-anchor="conditioning"><span data-lede-term-copy>Pavlovian psychology</span><button class="lede-term" type="button" data-lede-trigger data-quote="No effect without cause, and a clear train of linkages." data-episode="1.13" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>Pavlovian psychology</button></span> has long ago taught us that associations are the backbones of human understanding and memory. Such is the way that the novel expands around associations, conditioning, drawing seemingly far-fetched (<i>who knows?</i>) connections between our little paranoia agents, who all oscillate between the <span class="lede-term-pair" data-lede-anchor="anti-paranoia"><span data-lede-term-copy>fear that nothing relates</span><button class="lede-term" type="button" data-lede-trigger data-quote="anti-paranoia, where nothing is connected to anything" data-episode="3.12" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>fear that nothing relates</button></span> and the <span class="lede-term-pair" data-lede-anchor="everything"><span data-lede-term-copy>suspicion that everything does</span><button class="lede-term" type="button" data-lede-trigger data-quote="the discovery that everything is connected, everything in the Creation" data-episode="4.07" aria-controls="network-lede-tooltip" aria-expanded="false" hidden>suspicion that everything does</button></span>. So, what better way to analyse <i>Gravity's Rainbow</i> than looking at these networks between characters, names and words?</p>
+        <p class="prose-copy">This, of course, has been done countless times before: <a href="https://thomaspynchon.com/rocket-power-gravitys-rainbow-reviewed-by-richard-poirier-1973/" target="_blank" rel="noopener">Richard Poirier</a> already traced these networks in his 1973 review; <a href="https://doi.org/10.1177/096394700301200102" target="_blank" rel="noopener">Luc Herman, Robert Hogenraad and Wim van Mierlo</a> (2003) measured chapter-level word covariation; <a href="https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/" target="_blank" rel="noopener">Martin Paul Eve</a> (2015) mapped frequent terms and the connections between them; <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler</a> (2016) combined social-network analysis with word frequency, keyness and topic modelling. <a href="https://krmuth.github.io/plot-gr/" target="_blank" rel="noopener">Katie Muth</a> has also made interactive three-dimensional networks of the novel. On this page, I provide my own attempt to visualise its various webs.</p>
       </div>
       <aside class="lede-notes" aria-label="Quoted passages from Gravity's Rainbow" data-lede-notes>
         <blockquote class="lede-note" data-lede-note="puritan">
@@ -246,9 +247,28 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       </aside>
     </div>
 
-    <figure class="plot-plate" aria-label="Character co-presence network">
-      <NetworkAtlas />
-    </figure>
+    <nav class="network-toc" aria-label="Network figures">
+      <details>
+        <summary>[on this page]<span class="disclosure-toggle" aria-hidden="true"></span></summary>
+        <div class="disclosure-body">
+          <ol>
+          <li><a href="#character-atlas-title">Character atlas</a></li>
+          <li><a href="#cooccurrence-title">Co-occurrence matrix</a></li>
+          <li><a href="#mention-density-title">Character-mention heatmap</a></li>
+          <li><a href="#cast-composition-title">Cast transitions</a></li>
+          <li><a href="#lexical-through-episodes-title">Lexical density map</a></li>
+          <li><a href="#lexical-network-title">Lexical atlas</a></li>
+          </ol>
+        </div>
+      </details>
+    </nav>
+
+    <section class="network-section atlas-section" aria-labelledby="character-atlas-title">
+      <h2 class="atlas-heading" id="character-atlas-title">Character atlas</h2>
+      <figure class="plot-plate" aria-labelledby="character-atlas-title">
+        <NetworkAtlas />
+      </figure>
+    </section>
 
     <section class="network-section matrix-section">
       <div class="matrix-stage">
@@ -257,7 +277,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
           <NetworkMatrix />
         </figure>
         <div class="section-prose matrix-copy">
-          <p class="prose-copy">'They are in love. Fuck the war.' (1.06). The lovebirds Roger and Jessica share only eleven episodes compared to Katje and Slothrop's sixteen, the latter obviously leading by count; then why do we have <a href="https://themillions.com/2016/03/gravitys-rainbow-a-love-story.html" target="_blank" rel="noopener">so much more attachment</a> to the former's relationship? In this matrix we don't simply count co-occurrence episodes: it's much less surprising to find two characters present together in a crowded episode, compared to when a pair of characters dominate <i>their own</i> episodes. The resulting measure is 'prominence-corrected co-occurrence': <button class="matrix-pair-ref" type="button" data-matrix-pair="Jessica Swanlake|Roger Mexico" data-matrix-colour="var(--network-counterforce)" aria-controls="matrix-plate" aria-label="Highlight Roger and Jessica's co-occurrence" aria-pressed="false">Roger and Jessica</button> reach 1.6, the highest weight in the matrix, whereas <button class="matrix-pair-ref matrix-pair-ref--zone" type="button" data-matrix-pair="Katje Borgesius|Tyrone Slothrop" data-matrix-colour="var(--network-quest)" aria-controls="matrix-plate" aria-label="Highlight Katje and Slothrop's co-occurrence" aria-pressed="false">Katje and Slothrop</button> have only 0.9. Amongst the top forty pairs we see four out of the five communities identified in the  character Atlas above. <button class="matrix-pair-ref" type="button" data-matrix-pair="Jessica Swanlake|Roger Mexico" data-matrix-colour="var(--network-counterforce)" aria-controls="matrix-plate" aria-label="Highlight Roger and Jessica's co-occurrence" aria-pressed="false">Roger and Jessica</button> form London's strongest tie, <button class="matrix-pair-ref matrix-pair-ref--rocket" type="button" data-matrix-pair="Enzian|Tchitcherine" data-matrix-colour="var(--network-rocket)" aria-controls="matrix-plate" aria-label="Highlight Enzian and Tchitcherine's co-occurrence" aria-pressed="false">Enzian and Tchitcherine</button> Rocket's; <button class="matrix-pair-ref matrix-pair-ref--cross-community" type="button" data-matrix-pairs="Ned Pointsman|Tyrone Slothrop;Tchitcherine|Tyrone Slothrop;Marvy|Tyrone Slothrop;Tyrone Slothrop|Weissmann / Blicero;Enzian|Tyrone Slothrop;Laszlo Jamf|Tyrone Slothrop;Roger Mexico|Tyrone Slothrop" data-matrix-colour="var(--color-text-dim)" aria-controls="matrix-plate" aria-label="Highlight Slothrop's seven strongest cross-community co-occurrences" aria-pressed="false">Slothrop</button> appears in seven of the ten strongest cross-community pairs. This result concurs with prior analysis by <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler</a> (2016), which identifies Slothrop with Tantivy and Roger with Jessica as strongest. <a href="https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/" target="_blank" rel="noopener">Martin Paul Eve</a> (2015) groups Roger, Jessica, and Pointsman, using frequent-term proximity across the whole text rather than episode co-occurrence. The methods are <a href={`${base}/methods/`}>here</a>.</p>
+          <p class="prose-copy">'They are in love. Fuck the war.' (1.06). The lovebirds Roger and Jessica share only eleven episodes compared to Katje and Slothrop's sixteen, the latter obviously leading by count; then why do we have <a href="https://themillions.com/2016/03/gravitys-rainbow-a-love-story.html" target="_blank" rel="noopener">so much more attachment</a> to the former's relationship? In this matrix we don't simply count co-occurrence episodes: it's much less surprising to find two characters present together in a crowded episode, compared to when a pair of characters dominate <i>their own</i> episodes. The resulting measure is 'prominence-corrected co-occurrence': <button class="matrix-pair-ref" type="button" data-matrix-pair="Jessica Swanlake|Roger Mexico" data-matrix-colour="var(--network-counterforce)" aria-controls="matrix-plate" aria-label="Highlight Roger and Jessica's co-occurrence" aria-pressed="false">Roger and Jessica</button> reach 1.6, the highest weight in the matrix, whereas <button class="matrix-pair-ref matrix-pair-ref--zone" type="button" data-matrix-pair="Katje Borgesius|Tyrone Slothrop" data-matrix-colour="var(--network-quest)" aria-controls="matrix-plate" aria-label="Highlight Katje and Slothrop's co-occurrence" aria-pressed="false">Katje and Slothrop</button> have only 0.9. Amongst the forty names we see four out of the five communities identified in the Character atlas above. <button class="matrix-pair-ref" type="button" data-matrix-pair="Jessica Swanlake|Roger Mexico" data-matrix-colour="var(--network-counterforce)" aria-controls="matrix-plate" aria-label="Highlight Roger and Jessica's co-occurrence" aria-pressed="false">Roger and Jessica</button> form London's strongest tie, <button class="matrix-pair-ref matrix-pair-ref--rocket" type="button" data-matrix-pair="Enzian|Tchitcherine" data-matrix-colour="var(--network-rocket)" aria-controls="matrix-plate" aria-label="Highlight Enzian and Tchitcherine's co-occurrence" aria-pressed="false">Enzian and Tchitcherine</button> Rocket's; <button class="matrix-pair-ref matrix-pair-ref--cross-community" type="button" data-matrix-pairs="Ned Pointsman|Tyrone Slothrop;Tchitcherine|Tyrone Slothrop;Marvy|Tyrone Slothrop;Tyrone Slothrop|Weissmann / Blicero;Enzian|Tyrone Slothrop;Laszlo Jamf|Tyrone Slothrop;Roger Mexico|Tyrone Slothrop" data-matrix-colour="var(--color-text-dim)" aria-controls="matrix-plate" aria-label="Highlight Slothrop's seven strongest cross-community co-occurrences" aria-pressed="false">Slothrop</button> appears in seven of the ten strongest cross-community pairs. This result concurs with prior analysis by <a href="https://doi.org/10.16995/orbit.131" target="_blank" rel="noopener">David Letzler</a> (2016), which identifies Slothrop with Tantivy and Roger with Jessica as strongest. <a href="https://eve.gd/2015/06/07/visualizing-gravitys-rainbow/" target="_blank" rel="noopener">Martin Paul Eve</a> (2015) groups Roger, Jessica, and Pointsman, using frequent-term proximity across the whole text rather than episode co-occurrence. The methods are <a href={`${base}/methods/#matrix`}>here</a>.</p>
         </div>
       </div>
     </section>
@@ -266,15 +286,42 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       <div class="episode-stage">
         <figure class="section-chart episode-chart" aria-labelledby="mention-density-title">
           <CharacterEpisodeHeatmap>
-            <h2 slot="title" class="episode-heading" id="mention-density-title">Character mention density</h2>
+            <h2 slot="title" class="episode-heading" id="mention-density-title">Character-mention heatmap</h2>
             <div slot="reading" class="episode-reading">
-              <p class="prose-copy">The twenty characters on this heatmap have the highest raw mention totals across the novel. Strictly speaking, the plot has each character's mentions in an episode <i>per</i> 1,000 words, normalised within-character so that the final value is within the 0-to-1 range, with that character's own maximum set to 1; finally, the characters are ordered, from top to bottom, by their peak-mention episodes. Switch to <a href="#episode-heatmap" data-density-mode-toggle aria-label="Switch to raw density">raw</a> density here to compare <i>across</i> characters. Raw counts, episode lengths, and the calculation are in the <a href={`${base}/methods/#character-trajectories`}>Methods</a>.</p>
-              <p class="prose-copy">Here we see <button class="matrix-pair-ref episode-ref" type="button" data-trajectory-select="6,8" aria-controls="episode-heatmap" aria-label="Highlight Roger and Jessica's mention trajectories" aria-pressed="false">Roger and Jessica</button> flare together briefly at episode 1.07 and <button class="matrix-pair-ref matrix-pair-ref--zone episode-ref" type="button" data-trajectory-select="4" aria-controls="episode-heatmap" aria-pressed="false">Slothrop</button>'s burst of activity at the start of Part II as we move to continental Europe; we see the brothers <button class="matrix-pair-ref matrix-pair-ref--rocket episode-ref" type="button" data-trajectory-select="16" aria-controls="episode-heatmap" aria-label="Highlight Tchitcherine's mention trajectory" aria-pressed="false">Tchitcherine</button> and <button class="matrix-pair-ref matrix-pair-ref--rocket episode-ref" type="button" data-trajectory-select="11" aria-controls="episode-heatmap" aria-label="Highlight Enzian's mention trajectory" aria-pressed="false">Enzian</button>, and then <button class="matrix-pair-ref matrix-pair-ref--pokler episode-ref" type="button" data-trajectory-select="17,9,18" aria-controls="episode-heatmap" aria-label="Highlight Pökler, Jamf, and Bland's mention trajectories" aria-pressed="false">Pökler, Jamf, and Bland</button> near the end of Part III.</p>
+              <p class="prose-copy">The twenty characters on this heatmap have the highest raw mention totals across the novel. Strictly speaking, the plot has each character's mentions in an episode <i>per</i> 1,000 words, normalised within-character so that the final value is within the 0-to-1 range, with that character's own maximum set to 1; finally, the characters are ordered, from top to bottom, by their peak-mention episodes. Switch to <a href="#episode-heatmap" data-density-mode-toggle aria-label="Switch to raw density">raw</a> density here to compare <i>across</i> characters. Raw counts, episode lengths and the calculation are in the <a href={`${base}/methods/#character-trajectories`}>Methods</a>.</p>
+              <p class="prose-copy">Here we see <button class="matrix-pair-ref episode-ref" type="button" data-trajectory-select="6,8" aria-controls="episode-heatmap" aria-label="Highlight Roger and Jessica's mention trajectories" aria-pressed="false">Roger and Jessica</button> flare together briefly at episode 1.07 and <span class="episode-possessive"><button class="matrix-pair-ref matrix-pair-ref--zone episode-ref" type="button" data-trajectory-select="4" aria-controls="episode-heatmap" aria-pressed="false">Slothrop</button>'s</span> burst of activity at the start of Part II as we move to continental Europe; we see the brothers <button class="matrix-pair-ref matrix-pair-ref--rocket episode-ref" type="button" data-trajectory-select="16" aria-controls="episode-heatmap" aria-label="Highlight Tchitcherine's mention trajectory" aria-pressed="false">Tchitcherine</button> and <button class="matrix-pair-ref matrix-pair-ref--rocket episode-ref" type="button" data-trajectory-select="11" aria-controls="episode-heatmap" aria-label="Highlight Enzian's mention trajectory" aria-pressed="false">Enzian</button>, then <button class="matrix-pair-ref matrix-pair-ref--pokler episode-ref" type="button" data-trajectory-select="17,9,18" aria-controls="episode-heatmap" aria-label="Highlight Pökler, Jamf and Bland's mention trajectories" aria-pressed="false">Pökler, Jamf and Bland</button> near the end of Part III.</p>
               <p class="prose-copy">I loved working through this analysis, as seeing each character cluster brought back so many scenes and memories.</p>
             </div>
           </CharacterEpisodeHeatmap>
         </figure>
       </div>
+    </section>
+
+    <section class="network-section cast-section" aria-labelledby="cast-composition-title">
+      <div class="cast-stage">
+        <h2 class="cast-heading" id="cast-composition-title">Cast transitions</h2>
+        <div class="section-prose cast-copy cast-copy--intro">
+            <p class="prose-copy"><i>Gravity's Rainbow</i> is characterised, to a great extent, by how much the cast rotates through the episodes. One moment we are in Slothrop territory, and the next we are recounting Pökler's engineering years. Such transitions are here visualised with stems whose heights measure how sharply the relative weight of character sets change between episodes: a low stem means the current episode keeps a similar cast balance as the last, whereas a high stem marks a break in narrative attention.</p>
+        </div>
+        <div class="section-prose cast-copy cast-copy--detail">
+            <p class="prose-copy">At <button class="matrix-pair-ref cast-ref" type="button" data-cast-boundary-select="39" aria-controls="cast-composition-canvas" aria-label="Inspect 3.10 to 3.11 (C)" aria-pressed="false">C</button> we can see the aforementioned Slothrop-to-Pökler shift, a digression episode not dissimilar to the famed Webb Traverse episode early in <i>Against the Day</i>, bringing about some of the most emotionally charged writing in Pynchon's catalogue. <button class="matrix-pair-ref cast-ref" type="button" data-cast-boundary-select="14" aria-controls="cast-composition-canvas" aria-label="Inspect 1.14 to 1.15 (A)" aria-pressed="false">A</button> and <button class="matrix-pair-ref cast-ref" type="button" data-cast-boundary-select="15" aria-controls="cast-composition-canvas" aria-label="Inspect 1.15 to 1.16 (B)" aria-pressed="false">B</button> move from Blicero's fairy-tale battery to Darlene and then Roger and Jessica; <button class="matrix-pair-ref cast-ref" type="button" data-cast-boundary-select="53" aria-controls="cast-composition-canvas" aria-label="Inspect 3.24 to 3.25 (D)" aria-pressed="false">D</button> is a digression to the theology of William Slothrop... And so on. The calculation is in <a href={`${base}/methods/#cast-composition`}>Methods</a>.</p>
+        </div>
+        <figure class="section-chart cast-chart" aria-labelledby="cast-composition-title">
+          <CastCompositionChange />
+        </figure>
+      </div>
+    </section>
+
+    <section class="network-section lexical-section" aria-labelledby="lexical-through-episodes-title">
+      <figure class="section-chart lexical-chart" aria-labelledby="lexical-through-episodes-title">
+        <LexicalEpisodeAreaTraces>
+          <h2 slot="title" class="lexical-area-heading" id="lexical-through-episodes-title">Lexical density map</h2>
+        </LexicalEpisodeAreaTraces>
+      </figure>
+    </section>
+
+    <section class="network-section lexical-network-section" aria-labelledby="lexical-network-title">
+      <LexicalNetwork />
     </section>
 
   </main>
@@ -342,14 +389,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .network-header .page-title {
     width: auto;
     margin-inline: auto;
-    text-align: center;
-  }
-
-  .page-wip {
-    margin-top: var(--space-xs);
-    font-family: var(--font-prose);
-    font-size: var(--text-sm);
-    color: var(--color-text-dim);
     text-align: center;
   }
 
@@ -525,24 +564,113 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     padding-left: 0;
   }
 
-  .episode-section {
-    padding-inline: 0;
-    margin-top: var(--space-lg);
+  .network-toc {
+    width: min(100%, 38.56rem);
+    margin-inline: auto;
+    font-size: var(--text-sm);
+    --disclosure-duration: 150ms;
   }
 
-  .episode-stage {
-    position: static;
+  .network-toc summary {
+    width: fit-content;
+    padding-block: 0.35rem;
+    color: var(--color-accent);
+    cursor: pointer;
+    list-style: none;
   }
 
-  .episode-heading {
-    position: static;
-    width: auto;
+  .network-toc summary::-webkit-details-marker { display: none; }
+  .network-toc summary:hover { color: var(--color-text); }
+  .network-toc summary:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 0.2rem;
+  }
+
+  .network-toc .disclosure-body {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    opacity: 0;
+    transform: translateY(-0.2rem);
+    transition:
+      max-height var(--disclosure-duration) ease,
+      padding-top var(--disclosure-duration) ease,
+      opacity var(--disclosure-duration) ease,
+      transform var(--disclosure-duration) ease;
+  }
+
+  .network-toc details[open] .disclosure-body {
+    max-height: 20rem;
+    padding-top: var(--space-sm);
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .network-toc ol {
     margin: 0;
+    padding: 0 0 0 1.4rem;
+    border-left: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  .network-toc a {
+    display: inline-block;
+    padding-block: 0.25rem;
+  }
+
+  @media (max-width: 48rem) {
+    .network-toc a { min-height: 44px; }
+  }
+
+  .network-page :global(h2[id]) {
+    scroll-margin-top: calc(var(--nav-height, 3.5rem) + var(--space-md));
+  }
+
+  .atlas-heading {
+    margin: 0 0 var(--space-sm);
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 3.5rem;
     font-weight: 400;
     line-height: 1;
+  }
+
+  .episode-section,
+  .cast-section {
+    padding-inline: 0;
+  }
+
+  .episode-section {
+    margin-top: var(--space-lg);
+  }
+
+  .episode-stage,
+  .cast-stage {
+    position: static;
+  }
+
+  .episode-heading,
+  .cast-heading {
+    position: static;
+    width: min(100%, 32rem);
+    margin: 0;
+    margin-left: auto;
+    margin-bottom: var(--space-sm);
+    font-size: var(--text-h2);
+    font-weight: 400;
+    line-height: var(--lh-heading);
+    text-align: right;
+  }
+
+  .episode-heading {
+    width: auto;
+    margin-left: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 0;
     text-align: left;
   }
 
@@ -550,8 +678,64 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     margin-top: 0;
   }
 
-  .episode-ref {
+  @media (min-width: 88.01rem) {
+    .episode-stage { transform: translateX(-1.25rem); }
+  }
+
+  .cast-stage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md) clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .cast-heading {
+    grid-column: 1 / -1;
+    width: auto;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1;
+    text-align: left;
+  }
+
+  .cast-copy {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .cast-copy .prose-copy { margin: 0; }
+
+  .cast-chart {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  @media (max-width: 60rem) {
+    .cast-stage { grid-template-columns: minmax(0, 1fr); }
+    .cast-copy { max-width: 42rem; }
+  }
+
+  .cast-ref,
+  .episode-ref,
+  .lexical-ref {
     font-size: inherit;
+  }
+
+  .lexical-citation { white-space: nowrap; }
+
+  .matrix-pair-ref.lexical-ref {
+    --matrix-pair-colour: var(--color-accent);
+  }
+
+  .lexical-chart {
+    margin-top: 0;
+  }
+
+  .lexical-network-section {
+    margin-top: var(--space-2xl);
+    padding-inline: 0;
   }
 
   .matrix-stage {
@@ -576,7 +760,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .matrix-heading {
     position: absolute;
     top: auto;
-    right: 8.8988%;
+    right: var(--matrix-inset, 8.8988%);
     bottom: calc(100% + 0.75rem);
     z-index: 3;
     margin: 0;
@@ -592,7 +776,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     position: absolute;
     top: 0;
     left: 0;
-    right: 8.8988%;
+    right: var(--matrix-inset, 8.8988%);
     z-index: 2;
     height: 74.981%;
     max-width: none;
@@ -600,20 +784,20 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     pointer-events: none;
   }
 
-  /* The float follows the compressed diagonal and clears the cluster labels. */
+  /* the float follows the compressed diagonal and clears the cluster labels */
   .matrix-copy::before {
     content: '';
     float: left;
-    width: 100%;
+    width: var(--matrix-width, 109.768%);
     height: 100%;
-    shape-outside: polygon(0 0, 17.094% 0, 100% 100%, 0 100%);
+    shape-outside: polygon(0 0, 15.573% 0, 91.1012% 100%, 0 100%);
     shape-margin: 2.25rem;
   }
 
   .matrix-copy .prose-copy {
     font-size: var(--text-prose);
     line-height: var(--lh-prose);
-    text-align: justify;
+    text-align: center;
   }
 
   .matrix-copy a {
@@ -635,7 +819,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     background-size: 0 2px;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
-    color: var(--matrix-pair-colour, var(--network-counterforce));
+    color: color-mix(in srgb, var(--matrix-pair-colour, var(--network-counterforce)) 80%, var(--color-text));
     font: inherit;
     line-height: inherit;
     text-align: inherit;
@@ -648,8 +832,10 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   .matrix-pair-ref:focus-visible,
   .matrix-pair-ref[aria-pressed='true'] {
     background-size: 100% 2px;
-    color: color-mix(in srgb, var(--matrix-pair-colour, var(--network-counterforce)) 58%, white);
+    color: color-mix(in srgb, var(--matrix-pair-colour, var(--network-counterforce)) 58%, var(--color-text));
   }
+
+  .episode-possessive { white-space: nowrap; }
 
   .matrix-pair-ref--zone {
     --matrix-pair-colour: var(--network-quest);
@@ -673,6 +859,63 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   }
 
   @media (max-width: 48rem) {
+    .matrix-heading { text-align: left; }
+
+    .lede-tooltip {
+      width: max-content;
+      max-width: calc(100vw - 1.5rem);
+      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0;
+      background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+      box-shadow: none;
+      color: var(--color-text);
+      font-family: var(--font-prose);
+      font-size: var(--text-xs);
+      line-height: 1.25;
+      white-space: normal;
+      transform: none;
+      transition:
+        opacity 0.15s,
+        visibility 0s linear 0.15s;
+    }
+
+    .lede-tooltip[data-placement='below'],
+    .lede-tooltip[data-placement='dock'] {
+      transform: none;
+    }
+
+    .lede-tooltip.is-open {
+      transition-delay: 0s;
+    }
+
+    .lede-tooltip-quote {
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    .lede-term {
+      --lede-underline-colour: var(--color-accent-dim);
+      border-bottom: 0;
+      background-image: linear-gradient(
+        to right,
+        var(--lede-underline-colour) 0 0.3em,
+        transparent 0.3em
+      );
+      background-position: 0 calc(100% - 0.22em);
+      background-repeat: repeat-x;
+      background-size: 0.42em 1px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      text-decoration: none;
+    }
+
+    .lede-term:hover,
+    .lede-term:focus-visible,
+    .lede-term[aria-expanded='true'] {
+      --lede-underline-colour: var(--color-accent);
+    }
+
     .matrix-pair-ref {
       background-image: none;
       text-decoration-line: underline;
@@ -692,8 +935,8 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     .matrix-copy::before {
       display: none;
     }
-  }
 
+  }
 
   @media (min-width: 66.01rem) {
     .lede-notes.is-anchored {
@@ -724,6 +967,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   }
 
   @media (max-width: 86rem) {
+    .atlas-heading {
+      font-size: var(--text-h3);
+      line-height: var(--lh-heading);
+    }
+
     .matrix-stage {
       display: flex;
       flex-direction: column;
@@ -762,17 +1010,26 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       display: none;
     }
 
-    .episode-heading {
+    .matrix-copy .prose-copy { text-align: left; }
+
+    .episode-heading,
+    .cast-heading {
       position: static;
       width: auto;
-      margin: 0;
+      margin-left: 0;
+      margin: 0 0 var(--space-md);
       font-size: var(--text-h3);
       line-height: var(--lh-heading);
+      text-align: right;
+    }
+
+    .episode-heading {
+      margin-bottom: 0;
       text-align: left;
     }
 
+    .cast-heading { text-align: left; }
   }
-
 
   @media (max-width: 36rem) {
     .lede-notes {
@@ -790,10 +1047,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       opacity: 0.14;
     }
 
-    .graph-nodes .node animate {
-      display: none;
-    }
-
     .lede-term,
     .lede-tooltip {
       transition: none;
@@ -808,9 +1061,83 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 </style>
 
 <script>
+  import { lexicalSelectionDetail, lexicalTrajectoryEvents } from '../lib/lexicalDensity';
+
+  const networkTocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.network-toc a[href^="#"]'));
+  const networkReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let sectionScrollFrame = 0;
+
+  function easeInOutCubic(progress: number) {
+    return progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+  }
+
+  function scrollToNetworkSection(event: MouseEvent, link: HTMLAnchorElement) {
+    if (networkReducedMotion.matches) return;
+    const targetId = decodeURIComponent(new URL(link.href).hash.slice(1));
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    window.cancelAnimationFrame(sectionScrollFrame);
+    const navHeight = document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().height ?? 0;
+    const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - navHeight - 16);
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const duration = Math.min(1800, Math.max(900, Math.abs(distance) * 0.5));
+    const startedAt = performance.now();
+    const previousScrollBehaviour = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    history.pushState(null, '', link.href);
+
+    function step(now: number) {
+      const progress = Math.min(1, (now - startedAt) / duration);
+      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+      if (progress < 1) {
+        sectionScrollFrame = window.requestAnimationFrame(step);
+      } else {
+        document.documentElement.style.scrollBehavior = previousScrollBehaviour;
+      }
+    }
+
+    sectionScrollFrame = window.requestAnimationFrame(step);
+  }
+
+  networkTocLinks.forEach((link) => {
+    link.addEventListener('click', (event) => scrollToNetworkSection(event, link));
+  });
+
+  const matrixStage = document.querySelector<HTMLElement>('.matrix-stage')!;
+  const matrixCopy = matrixStage.querySelector<HTMLElement>('.matrix-copy')!;
+  const matrixParagraph = matrixCopy.querySelector<HTMLElement>('p')!;
+
+  function fitMatrixCaption() {
+    if (getComputedStyle(matrixCopy).position !== 'absolute') return;
+    const width = matrixStage.clientWidth;
+    matrixStage.style.setProperty('--matrix-width', `${width}px`);
+    let low = 0;
+    let high = width * 0.15;
+    // move the right edge without moving the exclusion along the matrix diagonal
+    for (let step = 0; step < 8; step++) {
+      const inset = (low + high) / 2;
+      matrixStage.style.setProperty('--matrix-inset', `${inset}px`);
+      if (matrixParagraph.offsetHeight <= matrixCopy.clientHeight - 4) low = inset;
+      else high = inset;
+    }
+    matrixStage.style.setProperty('--matrix-inset', `${low}px`);
+  }
+
+  document.fonts.ready.then(fitMatrixCaption);
+  new ResizeObserver(fitMatrixCaption).observe(matrixStage);
+
   const networkLede = document.querySelector<HTMLElement>('[data-network-lede]');
   const requestedLedeVariant = new URLSearchParams(window.location.search).get('lede');
-  const activeLedeVariant = requestedLedeVariant === 'tooltip' ? 'tooltip' : 'marginal';
+  const mobileLedeTooltip = window.matchMedia('(max-width: 48rem)');
+  const activeLedeVariant = requestedLedeVariant === 'tooltip'
+    || (requestedLedeVariant !== 'marginal' && mobileLedeTooltip.matches)
+    ? 'tooltip'
+    : 'marginal';
   const ledeNotes = document.querySelector<HTMLElement>('[data-lede-notes]');
   const ledeTermPairs = Array.from(document.querySelectorAll<HTMLElement>('.lede-term-pair'));
   const tooltipVariantActive = activeLedeVariant === 'tooltip';
@@ -900,7 +1227,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     if (!activeLedeTrigger || !ledeTooltip?.classList.contains('is-open')) return;
 
     const gutter = 12;
-    const gap = 10;
+    const gap = mobileLedeTooltip.matches ? 0 : 10;
     const navBottom = document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().bottom ?? 0;
     const topGutter = Math.max(gutter, navBottom + 8);
     ledeTooltip.style.right = 'auto';
@@ -1172,10 +1499,11 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
     refs.forEach((ref) => {
       ref.addEventListener('pointerenter', (event) => {
-        if (event.pointerType !== 'touch' && pinned === null && !externalPinned) dispatch(ref, false);
+        if (event.pointerType !== 'touch' && (pinned === null && !externalPinned)) dispatch(ref, false);
       });
       ref.addEventListener('pointerleave', (event) => {
-        if (event.pointerType !== 'touch' && pinned === null && !externalPinned) dispatch(null);
+        if (event.pointerType === 'touch') return;
+        if (pinned === null && !externalPinned) dispatch(null);
       });
       ref.addEventListener('focus', () => {
         if (pinned === null && !externalPinned) dispatch(ref, false);
@@ -1204,16 +1532,129 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     };
   }
 
-  wireReadingReferences({
+  const clearTrajectoryReference = wireReadingReferences({
     selector: '[data-trajectory-select]',
     eventName: 'trajectory-select',
     clearEventName: 'trajectory-selection-cleared',
     commitEventName: 'trajectory-selection-committed',
     key: 'displayOrder',
   });
+  const clearCastReference = wireReadingReferences({
+    selector: '[data-cast-boundary-select]',
+    eventName: 'cast-boundary-select',
+    clearEventName: 'cast-boundary-selection-cleared',
+    commitEventName: 'cast-boundary-selection-committed',
+    key: 'index',
+  });
+
+  type LexicalReferenceDetail = {
+    word: string;
+    cohortDisplayOrder: number;
+    episodeId?: string;
+    locked?: boolean;
+  } | null;
+
+  function wireLexicalReferences() {
+    const refs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lexical-trajectory-select]'));
+    const touchInput = window.matchMedia('(hover: none), (pointer: coarse)');
+    let pinned: HTMLButtonElement | null = null;
+    let externalPinned = false;
+
+    function updatePressed() {
+      refs.forEach((candidate) => candidate.setAttribute('aria-pressed', String(candidate === pinned)));
+    }
+
+    function detailFor(ref: HTMLButtonElement, locked = false): LexicalReferenceDetail {
+      const word = ref.dataset.lexicalTrajectorySelect?.trim() ?? '';
+      const cohortDisplayOrder = Number(ref.dataset.lexicalCohortOrder);
+      const episodeId = ref.dataset.lexicalEpisode?.trim();
+      return lexicalSelectionDetail(word, cohortDisplayOrder, episodeId, locked);
+    }
+
+    function dispatch(ref: HTMLButtonElement | null, locked = false) {
+      updatePressed();
+      document.dispatchEvent(new CustomEvent<LexicalReferenceDetail>(lexicalTrajectoryEvents.select, {
+        detail: ref ? detailFor(ref, locked) : null,
+      }));
+    }
+
+    document.addEventListener(lexicalTrajectoryEvents.cleared, () => {
+      pinned = null;
+      externalPinned = false;
+      updatePressed();
+    });
+
+    document.addEventListener(lexicalTrajectoryEvents.committed, (event) => {
+      const detail = (event as CustomEvent<Exclude<LexicalReferenceDetail, null>>).detail;
+      const committed = detail?.episodeId
+        ? refs.find((ref) => (
+          ref.dataset.lexicalTrajectorySelect?.trim() === detail.word
+          && Number(ref.dataset.lexicalCohortOrder) === detail.cohortDisplayOrder
+          && ref.dataset.lexicalEpisode?.trim() === detail.episodeId
+        )) ?? null
+        : null;
+      pinned = committed;
+      externalPinned = committed === null;
+      updatePressed();
+    });
+
+    refs.forEach((ref) => {
+      ref.addEventListener('pointerenter', (event) => {
+        if (event.pointerType !== 'touch' && pinned === null && !externalPinned) dispatch(ref, false);
+      });
+      ref.addEventListener('pointerleave', (event) => {
+        if (event.pointerType !== 'touch' && pinned === null && !externalPinned) dispatch(null);
+      });
+      ref.addEventListener('focus', () => {
+        if (pinned === null && !externalPinned) dispatch(ref, false);
+      });
+      ref.addEventListener('blur', () => {
+        if (pinned === null && !externalPinned) dispatch(null);
+      });
+      ref.addEventListener('click', () => {
+        if (pinned === ref) {
+          pinned = null;
+          dispatch(null);
+          return;
+        }
+        pinned = ref;
+        externalPinned = false;
+        dispatch(ref, true);
+        if (touchInput.matches) {
+          document.getElementById('lexical-area-traces')?.scrollIntoView({
+            behavior: reducedMotion.matches ? 'auto' : 'smooth',
+            block: 'center',
+          });
+        }
+      });
+    });
+
+    return () => {
+      pinned = null;
+      externalPinned = false;
+      dispatch(null);
+    };
+  }
+
+  const clearLexicalReference = wireLexicalReferences();
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    clearTrajectoryReference();
+    clearCastReference();
+    clearLexicalReference();
+  });
 
   const backdrop = document.getElementById('network-backdrop');
   if (backdrop) {
+    const backgroundGraph = backdrop.querySelector('svg')!;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function updateBackgroundMotion() {
+      if (reducedMotion.matches) backgroundGraph.pauseAnimations();
+      else backgroundGraph.unpauseAnimations();
+    }
+    updateBackgroundMotion();
+    reducedMotion.addEventListener('change', updateBackgroundMotion);
     const fadeStart = 80;
     const fadeEnd = 400;
     let ticking = false;
@@ -1235,5 +1676,6 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         ticking = true;
       }
     }, { passive: true });
+    updateOpacity();
   }
 </script>

@@ -1,0 +1,295 @@
+---
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+---
+
+<div class="cast-composition" id="cast-composition" data-base={base} aria-busy="true">
+  <div class="cast-composition-canvas" id="cast-composition-canvas"></div>
+</div>
+
+<script>
+  import * as d3 from 'd3';
+  import { scalePlotLabels } from '../lib/plotLabels';
+  import { waitForFigure } from '../lib/figureVisibility';
+  import type { CastBoundary as Boundary } from '../lib/castTransitions';
+
+  type SelectionDetail = { index: number; locked?: boolean } | null;
+
+  const EXEMPLARS = new Map([[14, 'A'], [15, 'B'], [39, 'C'], [53, 'D'], [69, 'E']]);
+  const EXEMPLAR_LABEL_OFFSET = -12;
+
+  const plate = document.getElementById('cast-composition')!;
+  const canvas = document.getElementById('cast-composition-canvas')!;
+  const basePath = (plate.dataset.base || window.location.pathname.replace(/\/network(?:\/index\.html)?\/?$/, '')).replace(/\/$/, '');
+  const dataUrl = `${basePath}/data/cast-transitions.json`;
+
+  const H = 238;
+  let boundaries: Boundary[] = [];
+  let boundaryMap = new Map<number, Boundary>();
+  let lockedIndex: number | null = null;
+  let pendingSelection: SelectionDetail | undefined;
+  let boundaryMarks: d3.Selection<SVGGElement, Boundary, SVGGElement, unknown> | null = null;
+
+  function setExternalSelection(detail: SelectionDetail) {
+    if (!boundaryMap.size) {
+      pendingSelection = detail;
+      return;
+    }
+    if (!detail) {
+      clearSelection();
+      return;
+    }
+    selectBoundary(detail.index, detail.locked ?? true);
+  }
+
+  document.addEventListener('cast-boundary-select', (event) => {
+    setExternalSelection((event as CustomEvent<SelectionDetail>).detail ?? null);
+  });
+
+  function clearSelection() {
+    lockedIndex = null;
+    highlightBoundary(null);
+    document.dispatchEvent(new CustomEvent('cast-boundary-selection-cleared'));
+  }
+
+  function highlightBoundary(index: number | null) {
+    boundaryMarks
+      ?.classed('is-boundary-active', boundary => boundary.index === index)
+      .classed('is-boundary-muted', boundary => index !== null && boundary.index !== index);
+  }
+
+  function selectBoundary(index: number, lock: boolean) {
+    const boundary = boundaryMap.get(index);
+    if (!boundary) return;
+    if (lock) {
+      lockedIndex = index;
+      document.dispatchEvent(new CustomEvent('cast-boundary-selection-committed', { detail: { index } }));
+    }
+    highlightBoundary(index);
+  }
+
+  waitForFigure(plate).then(() => fetch(dataUrl))
+    .then(response => {
+      if (!response.ok) throw new Error(`cast-composition data returned ${response.status}`);
+      return response.json() as Promise<Boundary[]>;
+    })
+    .then(data => {
+      boundaries = data;
+      boundaryMap = new Map(boundaries.map(boundary => [boundary.index, boundary]));
+
+      const svg = d3.select(canvas).append('svg')
+        .attr('viewBox', `0 0 1180 ${H}`)
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('role', 'img')
+        .attr('aria-label', 'Cast transitions between adjacent episodes')
+        .attr('aria-describedby', 'cast-composition-svg-desc');
+      function redraw(rawWidth: number) {
+        const width = Math.max(320, rawWidth || 1180);
+        const PAD = width < 480
+          ? { top: 54, right: 12, bottom: 48, left: 44 }
+          : { top: 54, right: 36, bottom: 43, left: 42 };
+        const plotWidth = width - PAD.left - PAD.right;
+        const chartTop = PAD.top + 12;
+        const chartBottom = H - PAD.bottom;
+        svg.attr('viewBox', `0 0 ${width} ${H}`);
+        svg.selectAll('*').remove();
+        svg.append('desc').attr('id', 'cast-composition-svg-desc').text('Each point compares character mention proportions in two neighbouring episodes, in reading order. Zero means identical proportions; one means no names in common. Letters A to E match the caption.');
+        const x = d3.scaleLinear().domain([1, 72]).range([PAD.left, PAD.left + plotWidth]);
+        const y = d3.scaleLinear().domain([0, 1]).range([chartBottom, chartTop]);
+        const sequence = svg.append('g').attr('class', 'cast-sequence');
+
+      sequence.append('g').attr('class', 'cast-axis')
+        .attr('transform', `translate(${PAD.left - 8},0)`)
+        .call(d3.axisLeft(y).tickValues([0, 0.5, 1]).tickFormat(d3.format('~g')).tickSize(0).tickPadding(5))
+        .call(axis => axis.select('.domain').remove())
+        .selectAll('text').attr('class', 'plot-label');
+      const axisTitleY = (chartTop + chartBottom) / 2;
+      sequence.append('text')
+        .attr('class', 'plot-label cast-axis-title')
+        .attr('x', 12)
+        .attr('y', axisTitleY)
+        .attr('text-anchor', 'middle')
+        .attr('transform', `rotate(-90 12 ${axisTitleY})`)
+        .text('difference in character mentions');
+      sequence.append('line').attr('class', 'cast-baseline').attr('x1', PAD.left).attr('x2', PAD.left + plotWidth).attr('y1', chartBottom).attr('y2', chartBottom);
+
+      const partRanges = [
+        { label: 'Part I', start: 1, end: 20 },
+        { label: 'Part II', start: 21, end: 28 },
+        { label: 'Part III', start: 29, end: 60 },
+        { label: 'Part IV', start: 61, end: 72 },
+      ];
+      const partLabels = sequence.selectAll<SVGTextElement, typeof partRanges[number]>('.part-label')
+        .data(partRanges)
+        .join('text')
+        .attr('class', 'plot-label part-label')
+        .attr('x', (part) => (x(part.start) + x(part.end)) / 2)
+        .attr('y', 35)
+        .attr('text-anchor', 'middle')
+        .attr('font-style', 'normal')
+        .text((part) => part.label);
+      sequence.selectAll<SVGLineElement, Boundary>('.part-separator')
+        .data(boundaries.filter((boundary) => boundary.partBoundary))
+        .join('line')
+        .attr('class', 'part-separator')
+        .attr('x1', (boundary) => x(boundary.index - 0.5))
+        .attr('x2', (boundary) => x(boundary.index - 0.5))
+        .attr('y1', chartTop - 5)
+        .attr('y2', chartBottom + 4);
+
+      const episodeTicks = [
+        { index: 1, label: '1.01 → 1.02', compact: '1.01 → 1.02' },
+        { index: 21, label: '1.21 → 2.01', compact: '1.21 → 2.01' },
+        { index: 29, label: '2.08 → 3.01', compact: '2.08 → 3.01' },
+        { index: 61, label: '3.32 → 4.01', compact: '3.32 → 4.01' },
+        { index: 72, label: '4.11 → 4.12', compact: '4.11 → 4.12' },
+      ];
+      const episodeLabels = sequence.selectAll<SVGTextElement, typeof episodeTicks[number]>('.episode-tick')
+        .data(episodeTicks)
+        .join('text')
+        .attr('class', (tick) => `plot-label episode-tick ${tick.index === 1 || tick.index === 72 ? 'episode-tick--edge' : ''}`)
+        .attr('x', (tick) => x(tick.index))
+        .attr('y', H - 10)
+        .attr('text-anchor', (tick) => {
+          if (tick.index === 1) return 'start';
+          if (tick.index === 72) return 'end';
+          if (width < 1000) return tick.index === 29 ? 'start' : 'end';
+          return 'middle';
+        })
+        .text((tick) => tick.label);
+
+      boundaryMarks = sequence.selectAll<SVGGElement, Boundary>('.boundary-mark')
+        .data(boundaries)
+        .join('g')
+        .attr('class', 'boundary-mark')
+        .attr('transform', boundary => `translate(${x(boundary.index)},${y(boundary.jsd)})`);
+      boundaryMarks.append('line')
+        .attr('class', 'boundary-stem')
+        .attr('y1', boundary => chartBottom - y(boundary.jsd))
+        .attr('y2', 0);
+      boundaryMarks.append('circle')
+        .attr('class', 'boundary-point')
+        .attr('r', 3)
+        .attr('data-boundary', boundary => boundary.index);
+
+      sequence.selectAll<SVGTextElement, Boundary>('.exemplar-label')
+        .data(boundaries.filter((boundary) => EXEMPLARS.has(boundary.index)))
+        .join('text')
+        .attr('class', 'plot-label exemplar-label')
+        .attr('x', (boundary) => x(boundary.index))
+        .attr('y', (boundary) => y(boundary.jsd) + EXEMPLAR_LABEL_OFFSET)
+        .attr('text-anchor', (boundary) => boundary.index === 14 ? 'end' : boundary.index === 15 ? 'start' : 'middle')
+        .text((boundary) => EXEMPLARS.get(boundary.index)!);
+
+        highlightBoundary(lockedIndex);
+        const svgNode = svg.node() as SVGSVGElement;
+        const compact = svgNode.getBoundingClientRect().width < 640;
+        svgNode.classList.toggle('is-compact', compact);
+        partLabels.text((part) => compact ? part.label.replace('Part ', '') : part.label);
+        episodeLabels.text((tick) => compact ? tick.compact : tick.label);
+        scalePlotLabels(svgNode, '.plot-label');
+      }
+
+      document.addEventListener('click', event => {
+        const target = event.target;
+        if (target instanceof Element && (canvas.contains(target) || target.closest('[data-cast-boundary-select]'))) return;
+        if (lockedIndex !== null) clearSelection();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lockedIndex !== null) clearSelection();
+      });
+
+      const initialSelection = pendingSelection;
+      redraw(canvas.getBoundingClientRect().width);
+      if (initialSelection) setExternalSelection(initialSelection);
+      new ResizeObserver(() => redraw(canvas.getBoundingClientRect().width)).observe(canvas);
+    })
+    .catch((error) => {
+      console.error('Figure 4 failed:', error);
+      canvas.innerHTML = '<p class="cast-composition-placeholder" role="status">The cast comparison could not be loaded.</p>';
+    })
+    .finally(() => plate.removeAttribute('aria-busy'));
+</script>
+
+<style>
+  .cast-composition {
+    position: relative;
+    width: 100%;
+  }
+
+  .cast-composition-canvas {
+    width: 100%;
+    min-height: 238px;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .cast-composition-canvas :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cast-composition-canvas :global(.cast-baseline) {
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .cast-composition-canvas :global(.boundary-stem) {
+    stroke: var(--color-text-dim);
+    stroke-width: 1;
+    stroke-opacity: 0.35;
+  }
+
+  .cast-composition-canvas :global(.boundary-point) {
+    fill: var(--color-text-dim);
+    stroke: var(--color-text-dim);
+    stroke-width: 1;
+    pointer-events: none;
+  }
+
+  .cast-composition-canvas :global(.boundary-mark) {
+    transition: opacity var(--figure-highlight-duration) ease;
+  }
+
+  .cast-composition-canvas :global(.boundary-mark.is-boundary-muted) {
+    opacity: var(--figure-muted-opacity);
+  }
+
+  .cast-composition-canvas :global(.part-separator) {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 2 4;
+  }
+
+  .cast-composition-canvas :global(.part-label) {
+    fill: var(--color-text-dim);
+    font-style: normal;
+  }
+
+  .cast-composition-canvas :global(.cast-axis text) { fill: var(--color-text-dim); }
+  .cast-composition-canvas :global(.cast-axis-title) { font-size: 11px; }
+
+  .cast-composition-canvas :global(.episode-tick) {
+    fill: var(--color-text-dim);
+  }
+
+  .cast-composition-canvas :global(.exemplar-label) {
+    fill: var(--color-text);
+    font-weight: 700;
+  }
+
+  .cast-composition :global(.cast-composition-placeholder) {
+    color: var(--color-text-dim);
+    font-family: var(--font-prose);
+    font-size: var(--text-sm);
+    line-height: 1.45;
+  }
+
+  .cast-composition-canvas :global(svg.is-compact .episode-tick:not(.episode-tick--edge)),
+  .cast-composition-canvas :global(svg.is-compact .exemplar-label) { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cast-composition-canvas :global(.boundary-mark) { transition: none; }
+  }
+</style>

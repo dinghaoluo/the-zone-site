@@ -13,12 +13,13 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
 <script>
   import { scalePlotLabels } from '../lib/plotLabels';
+  import { characterCommunityColours } from '../lib/characterColours';
   import * as d3 from 'd3';
 
   const plate = document.getElementById('matrix-plate')!;
   const canvas = plate.querySelector<HTMLElement>('.matrix-canvas')!;
   const communityKey = plate.querySelector<HTMLElement>('.matrix-community-key')!;
-  const mobileMatrix = window.matchMedia('(max-width: 48rem)');
+  const mobileMatrix = window.matchMedia('(max-width: 86rem)');
   const base = (plate.dataset.base || window.location.pathname.replace(/\/network(?:\/index\.html)?\/?$/, '')).replace(/\/$/, '');
 
   // top 40 by weighted degree, sorted community-first so block-diagonal emerges
@@ -34,19 +35,24 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   const LABEL_PAD_RIGHT = 80;
   const LABEL_PAD_BOTTOM = 145;
   let activePairs = new Set<string>();
+  let hoveredPair: string | null = null;
   let activeMatrixTrigger: HTMLElement | null = null;
   let showMobilePairTooltip: ((pairs: string[] | null, trigger: HTMLElement | null) => void) | null = null;
 
   function updatePairHighlight() {
     const cells = plate.querySelectorAll<SVGRectElement>('.matrix-cell');
-    const isActive = activePairs.size > 0;
-    const showCellHighlight = !mobileMatrix.matches;
+    const highlightedPairs = hoveredPair ? new Set([hoveredPair]) : activePairs;
+    const isActive = highlightedPairs.size > 0;
+    const selectedNames = new Set([...highlightedPairs].flatMap(pair => pair.split('|')));
 
-    plate.classList.toggle('is-pair-highlighted', isActive && showCellHighlight);
+    plate.classList.toggle('is-pair-highlighted', isActive);
     cells.forEach((cell) => {
-      const isPairActive = activePairs.has(cell.dataset.pair ?? '');
-      cell.classList.toggle('is-pair-active', showCellHighlight && isPairActive);
-      cell.classList.toggle('is-pair-muted', showCellHighlight && isActive && !isPairActive);
+      const isPairActive = highlightedPairs.has(cell.dataset.pair ?? '');
+      cell.classList.toggle('is-pair-active', isPairActive);
+      cell.classList.toggle('is-pair-muted', isActive && !isPairActive);
+    });
+    plate.querySelectorAll<SVGTextElement>('.matrix-row-labels text, .matrix-column-labels text').forEach(label => {
+      label.classList.toggle('is-label-muted', isActive && !selectedNames.has(label.dataset.node ?? ''));
     });
   }
 
@@ -69,10 +75,17 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
   });
 
   Promise.all([
-    fetch(`${base}/data/network/nodes.csv`).then(r => r.text()),
-    fetch(`${base}/data/network/edges.csv`).then(r => r.text()),
+    fetch(`${base}/data/network/nodes.csv`).then(response => {
+      if (!response.ok) throw new Error(`Matrix nodes returned ${response.status}`);
+      return response.text();
+    }),
+    fetch(`${base}/data/network/edges.csv`).then(response => {
+      if (!response.ok) throw new Error(`Matrix edges returned ${response.status}`);
+      return response.text();
+    }),
   ]).then(([nodesText, edgesText]) => {
     const allNodes = d3.csvParse(nodesText);
+    for (const node of allNodes) node.community_colour = characterCommunityColours[node.community_id!];
     const allEdges = d3.csvParse(edgesText);
     const pairKey = (first: string, second: string) => [first, second].sort().join('|');
 
@@ -111,6 +124,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       const n = top[i];
       rowLabels.append('text')
         .attr('class', 'plot-label')
+        .attr('data-node', n.id!)
         .attr('x', LABEL_PAD_LEFT - 6)
         .attr('y', LABEL_PAD_TOP + i * ROW_STEP + CELL_HEIGHT / 2)
         .attr('text-anchor', 'end')
@@ -131,6 +145,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       const y = LABEL_PAD_TOP + matrixHeight + 2;
       columnLabels.append('text')
         .attr('class', 'plot-label')
+        .attr('data-node', n.id!)
         .attr('x', x)
         .attr('y', y)
         .attr('text-anchor', 'start')
@@ -166,7 +181,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
           .attr('width', CELL_WIDTH)
           .attr('height', CELL_HEIGHT)
           .attr('fill', colour)
-          .attr('opacity', opacity)
+          .attr('fill-opacity', opacity)
           .attr('rx', 1)
           .attr('data-row', top[row].short_name!)
           .attr('data-col', top[col].short_name!)
@@ -251,6 +266,8 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
       .on('mouseenter', function(ev) {
         if (mobileMatrix.matches) return;
         const el = d3.select(this);
+        hoveredPair = el.attr('data-pair');
+        updatePairHighlight();
         const row = el.attr('data-row');
         const col = el.attr('data-col');
         const w = el.attr('data-weight');
@@ -276,6 +293,8 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
         tooltip.style('top', `${Math.max(4, y - 10)}px`);
       })
       .on('mouseleave', () => {
+        hoveredPair = null;
+        updatePairHighlight();
         tooltip.attr('aria-hidden', 'true').style('opacity', '0');
       });
 
@@ -438,20 +457,20 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     font-weight: 700;
   }
 
+  .matrix-plate :global(.matrix-row-labels text),
+  .matrix-plate :global(.matrix-column-labels text) {
+    transition: opacity var(--figure-highlight-duration) ease;
+  }
+  .matrix-plate :global(.is-label-muted) { opacity: var(--figure-muted-label-opacity); }
+
   .matrix-plate :global(.matrix-cell) {
-    transition: opacity 160ms ease, fill 160ms ease, stroke 160ms ease;
+    transition: opacity var(--figure-highlight-duration) ease;
   }
 
   .matrix-plate :global(.matrix-cell.is-pair-muted) {
-    opacity: 0.08;
+    opacity: var(--figure-muted-opacity);
   }
 
-  .matrix-plate :global(.matrix-cell.is-pair-active) {
-    fill: color-mix(in srgb, var(--matrix-active-pair-colour, var(--network-counterforce)) 58%, white);
-    opacity: 1;
-    stroke: color-mix(in srgb, var(--matrix-active-pair-colour, var(--network-counterforce)) 40%, white);
-    stroke-width: 1.2px;
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .matrix-plate :global(.matrix-cell) {
@@ -465,7 +484,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
     }
   }
 
-  @media (max-width: 48rem) {
+  @media (max-width: 86rem) {
     .matrix-plate {
       touch-action: auto;
     }
